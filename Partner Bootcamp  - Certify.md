@@ -383,15 +383,18 @@ Ideally, you'd configure this before installing CM. If CM/CDH are already runnin
 ## <center> Deploy MySQL with Replication 
 
 1. Install the following MySQL packages on your target nodes
-    * mysql
-    * mysql-server
-    * mysql-connector-java<p>
-
-2. Configure /etc/my.cnf **before** starting any MySQL processes. Your instructor will provide a starter file. Distribute the file to both nodes.<p>
-
-3. Run mysql_install_db and start the mysqld service on both nodes<p>
-
-4. Run /usr/bin/mysql_secure_installation on both nodes. Answer the questions according to these instructions: 
+    * <code>mysql</code>
+    * <code>mysql-server</code>
+    * <code>mysql-connector-java</code><p>
+2. Configure <code>/etc/my.cnf</code> **before** starting any MySQL process. 
+    * Use the <code>my.cnf</code> file included in this repo as your configuration file.
+    * Review the settings in this file; some are commented for your information.
+    * Create any directories specified in the config that do not exist
+    * Give the mysql user permission to write to them.
+    * Copy the file to the <code>/etc</code> directory on the master and replica nodes.
+    * Set the server-id property in the replica node copy to 2.<p>
+3. Run <code>mysql_install_db</code> before starting the <code>mysqld</code> service on both nodes<p>
+4. Run <code>/usr/bin/mysql_secure_installation</code> on both nodes. Answer the questions using these instructions: 
     * Set (and record!) the root password
     * Remove anonymous users
     * Allow remote login
@@ -399,23 +402,25 @@ Ideally, you'd configure this before installing CM. If CM/CDH are already runnin
     * Reload the privilege table<p>
 5. Grant replication privileges on all databases to the MySQL user of your choice.
     * Log in to the MySQL master node with <code>mysql -p</code> 
-    * To authorize replication, you will need a valid MySQL user/password and the FQDN for the replication node. *Note: The following step does not validate these data. An IP address will not suffice in place of a FQDN.*
+    * To authorize replication, you will need a valid MySQL user/password and the FQDN for the replication node.
+        * MySQL does not verify this data.
+        * An IP address will not work; you must supply a FQDN.
     * <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
-    d. <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code>
-    e. <code>mysql> **FLUSH TABLES WITH READ LOCK;</code>**<p>
-6. Suspend the current MySQL session (^Z) or open another terminal window, and log in again to the MySQL server.<p>
-7. In this new session, report the server's status to get the current replication offset
-    a. <code>mysql> **SHOW MASTER STATUS;**</code>
-    b. Note the file and position; the replicant uses this data to sync with the master.
-    c. Close this session. Remove the lock in the original session; you can then close the session if you like.
-    d. <code>mysql> **UNLOCK TABLES;**</code><p>
+    * <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code>
+    * <code>mysql> **FLUSH TABLES WITH READ LOCK;</code>**<p>
+6. Suspend your MySQL session (using ^Z) or open another terminal window; log in again to the MySQL server.<p>
+7. In the new session, display the server's status to retrieve the replication offset
+    * <code>mysql> **SHOW MASTER STATUS;**</code>
+    * Note the file and position; the replicant uses this data to sync with the master.
+    * Close this session. Remove the lock in the original session; you can then close the session if you like.
+    * <code>mysql> **UNLOCK TABLES;**</code><p>
 8. Log in to the replica instance and set the environment to locate the master:
-    a. <code>mysql> **CHANGE MASTER TO**<br>> **MASTER_HOST='*master host*',**<br>> **MASTER_USER='*replica user*',**<br>> **MASTER_PASSWORD='*replica password*',**<br>> **MASTER_LOG_FILE='*master file*',**<br>> **MASTER_LOG_POS='*master file position*';**</code><p>
+    * <code>mysql> **CHANGE MASTER TO** <br> > **MASTER_HOST='*master host*',** <br> > **MASTER_USER='*replica user*',** <br> > **MASTER_PASSWORD='*replica password*',** <br> > **MASTER_LOG_FILE='*master file*',** <br> > **MASTER_LOG_POS='*master file position*';**</code><p>
 9. Initiate slave operation and determine its status. 
-    a. <code>mysql> **START SLAVE;**</code>
-    b. <code>mysql> **SHOW SLAVE STATUS \G**</code>
-    c. If successful, the <code>Slave_IO_State</code> field in the output will report <code>Waiting for master to send event</code>
-    d. Otherwise, check the log file for errors.<p>
+    * <code>mysql> **START SLAVE;**</code>
+    * <code>mysql> **SHOW SLAVE STATUS \G**</code>
+    * If successful, the <code>Slave_IO_State</code> field will show <code>Waiting for master to send event</code>
+    * Otherwise, check the log file for errors.<p>
 
 ---
 <div style="page-break-after: always;"></div>
