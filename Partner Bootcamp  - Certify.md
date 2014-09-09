@@ -435,13 +435,15 @@ You can configure this before putting MySQL into service. If CM/CDH are already 
     * <code> echo {hdfs|mapred|hbase} - {nofile 32768|nproc 32768} >> /etc/security/limits.conf </code>
 5. Dedicate a disk to the OS and log files.
 6. Test name resolution in both directions
-    a. <code>/etc/hosts</code>: List the FQDN first, aliases second  
-    b. <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
-    c. DNS: ensure the hostname matches the FQDN
+    * <code>/etc/hosts</code>: List the FQDN first, aliases second  
+    * <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
+    * DNS: ensure the hostname matches the FQDN
 7. Do not enable nscd until name resolution has been tested!
-    a. Without System Security Services Daemon (SSSD)
-        * <code># chkconfig --level 345 nscd on; service nscd start; nscd -g </code>
-    b. [If also using SSSD](http://goo.gl/68HTMQ)
+    * Without System Security Services Daemon (SSSD)
+        * <code> # chkconfig --level 345 nscd on</code> 
+        * <code> # service nscd start </code> 
+        * <code> # nscd -g </code>
+    * [With SSSD](http://goo.gl/68HTMQ)
 
 ---
 <div style="page-break-after: always;"></div>
