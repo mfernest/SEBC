@@ -414,8 +414,8 @@ Ideally, you'd configure this before installing CM. If CM/CDH are already runnin
     * Note the file and position; the replicant uses this data to sync with the master.
     * Close this session. Remove the lock in the original session; you can then close the session if you like.
     * <code>mysql> **UNLOCK TABLES;**</code><p>
-8. Log in to the replica instance and set the environment to locate the master:
-    * <code>mysql> **CHANGE MASTER TO** <br> > **MASTER_HOST='*master host*',** <br> > **MASTER_USER='*replica user*',** <br> > **MASTER_PASSWORD='*replica password*',** <br> > **MASTER_LOG_FILE='*master file*',** <br> > **MASTER_LOG_POS='*master file position*';**</code><p>
+8. Log in to the replica instance and set the environment to locate the master. You may break the line after each comma if you wish (in SQL, a semicolon indicates the end of a command).
+    * <code>mysql> **CHANGE MASTER TO** **MASTER_HOST='*master host*',** **MASTER_USER='*replica user*',**  **MASTER_PASSWORD='*replica password*',**  **MASTER_LOG_FILE='*master file*',**  **MASTER_LOG_POS='*master file position*';**</code><p>
 9. Initiate slave operation and determine its status. 
     * <code>mysql> **START SLAVE;**</code>
     * <code>mysql> **SHOW SLAVE STATUS \G**</code>
