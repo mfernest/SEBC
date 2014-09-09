@@ -355,32 +355,8 @@ Ideally, you'd configure this before installing CM. If CM/CDH are already runnin
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM Install Lab
-## <center> [Linux Configuration Check](http://tiny.cloudera.com/7steps)
-
-1. Check swappiness on all your nodes 
-    * <code># cat /proc/sys/vm/swappiness </code>
-2. Set <code>noatime</code> on node-specific volumes
-    * ex. <code>/dev/sdc /data01 ext3 defaults,noatime 0; mount -o remount /data02 </code>
-3. Reserve zero disk space for root on DN disks
-    * <code> mkfs.ext3 -m 0 /dev/sdc; tune2fs -m 0 /dev/sdc </code>
-4. Maximize open file descriptors and concurrent processes
-    * <code> echo {hdfs|mapred|hbase} - {nofile 32768|nproc 32768} >> /etc/security/limits.conf </code>
-5. Dedicate a disk to the OS and log files.
-6. Test name resolution in both directions
-    a. <code>/etc/hosts</code>: List the FQDN first, aliases second  
-    b. <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
-    c. DNS: ensure the hostname matches the FQDN
-7. Do not enable nscd until name resolution has been tested!
-    a. Without System Security Services Daemon (SSSD)
-        * <code># chkconfig --level 345 nscd on; service nscd start; nscd -g </code>
-    b. [If also using SSSD](http://goo.gl/68HTMQ)
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> CM Install Lab
-## <center> Deploy MySQL with Replication 
+## <center> CM Pre-install Lab
+## <center> Deploy MySQL server with replica 
 
 1. Install the following MySQL packages on your target nodes
     * <code>mysql</code>
@@ -435,8 +411,32 @@ Ideally, you'd configure this before installing CM. If CM/CDH are already runnin
     * [Latest CDH4 release](http://archive.cloudera.com/cdh4/parcels/latest)
     * Components not yet integrated into a parcels bundle (Impala, Search)
 * Follow these [steps in the documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_create_local_parcel_repo.html).
-* Set CM to use the new repository
+* Configure CM to use the new repository
     * Administration -> Settings -> Parcels
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> CM Post-Install Lab
+## <center> [Linux Configuration Check](http://tiny.cloudera.com/7steps)
+
+1. Check swappiness on all your nodes 
+    * <code># cat /proc/sys/vm/swappiness </code>
+2. Set <code>noatime</code> on node-specific volumes
+    * ex. <code>/dev/sdc /data01 ext3 defaults,noatime 0; mount -o remount /data02 </code>
+3. Reserve zero disk space for root on DN disks
+    * <code> mkfs.ext3 -m 0 /dev/sdc; tune2fs -m 0 /dev/sdc </code>
+4. Maximize open file descriptors and concurrent processes
+    * <code> echo {hdfs|mapred|hbase} - {nofile 32768|nproc 32768} >> /etc/security/limits.conf </code>
+5. Dedicate a disk to the OS and log files.
+6. Test name resolution in both directions
+    a. <code>/etc/hosts</code>: List the FQDN first, aliases second  
+    b. <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
+    c. DNS: ensure the hostname matches the FQDN
+7. Do not enable nscd until name resolution has been tested!
+    a. Without System Security Services Daemon (SSSD)
+        * <code># chkconfig --level 345 nscd on; service nscd start; nscd -g </code>
+    b. [If also using SSSD](http://goo.gl/68HTMQ)
 
 ---
 <div style="page-break-after: always;"></div>
