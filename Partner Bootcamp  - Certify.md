@@ -259,10 +259,12 @@ For any path, these five milestones comprise a CM-led install process:
 4. Install a CDH distribution
 5. Configure/enable desired CDH services<p/>
 
-**You can use [or devise](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html) the approach that suits your customer's needs. Common hurdles we see include:
+You can use [or devise](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html) the approach that suits your customer's needs. 
+
+* Common challenges include
     * Adding CM to an unmanaged CDH cluster
-    * Integrating CM with customer preferences such as Puppet
-    * Coping with network restrictions (including no internet)
+    * Integrating CM with popular tools such as Puppet
+    * Working with restrictive firewalls, no internet access, etc.
     * Adhering to site-, security- and DBA-driven policies
 
 ---
@@ -304,24 +306,26 @@ For any path, these five milestones comprise a CM-led install process:
 
 ## <center> <a name="cm_replace_default_db"/> Replacing CM's Default Database 
 
-The CM database manages schema and records of several management services.
-
-In practice, sometimes the embedded database (PostgreSQL) hasn't scaled well. Some shops require Oracle. We recommend MySQL when no other requirement prevents it.
-
-* You can install with MySQL from scratch (manual process)
-* You can replace the embedded server with external PostgreSQL or other supported database.
-* You can migrate from an existing PostgreSQL instance 
-    * More complicated and time-consuming in production, of course.
-* You can use the same server to host [Oozie](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.1/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_14.html) data and the [Hive Metastore](http://www.cgoogle.loudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_18_4.html), and other databases if desired.
+* The CM database manages schema and records for management services.
+    *  We'll detail these on Wednesday.
+* The embedded database (PostgreSQL) has not scaled well in practice.
+* Some shops require a particular database (if supported).
+* We recommend MySQL and prefer to install it before CM.
+    * You can install with MySQL from scratch (manual process)
+    * You can replace the embedded server with external PostgreSQL or other supported database.
+    * Migrating from an embedded PostgreSQL can be messy, time-consuming, interrupt other services. 
+* The CM db server can also host [Oozie](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.1/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_14.html) data and the [Hive Metastore](http://www.cgoogle.loudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_18_4.html), and other databases if desired.
+    * Reasonable when minimizing administration is a good idea.
+        * Dev and POC clusters, for example
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_replicate_db"/> Database Replication for HA (MySQL)
 
-When using MySQL for CM or other Hadoop services (Oozie, Hive Metastore) or both, customers often want replicated servers for redundancy.
+* When using MySQL for CM and other Hadoop services (Oozie, Hive Metastore), customers often want replication to ensure availability.
 
-Ideally, you'd configure this before installing CM. If CM/CDH are already running, it's more complicated, but doable.
+You can configure this before putting MySQL into service. If CM/CDH are already running, it's more time-consuming to replicate existing data.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -330,7 +334,8 @@ Ideally, you'd configure this before installing CM. If CM/CDH are already runnin
 
 * Using <a href="http://whirr.apache.org/">Apache Whirr</a>
 * Headless (terminal screens only)
-    *  CM installer supports this
+    *  The CM installer binary supports this
+    *   Administering CDH services without a browser poses a steep learning curve.
 * <a href="https://forge.puppetlabs.com/tags/cdh">Puppet</a>
     * Cloudera-certified partner
     * Support for CDH installation is well-received
