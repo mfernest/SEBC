@@ -14,17 +14,15 @@
 ---
 <div style="page-break-after: always;"></div>
 
-
 ## <center> Introductions & Overview
 
-- <a href="#instructor">Instructor</a>
-- <a href="#audience">Audience</a>
-- <a href="#selfcheck">Self-check questions</a>
-- <a href="#design_layout">Course design & layout</a>
-
-<div style="page-break-after: always;"></div>
+* <a href="#instructor">Instructor</a>
+* <a href="#audience">Audience</a>
+* <a href="#selfcheck">Self-check questions</a>
+* <a href="#design_layout">Course design & layout</a>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## <center> <a name="instructor"/> Instructors
 
@@ -109,12 +107,12 @@
     * Checks are not (yet) automated -- we'll review your work.
     * How you do the work matters -- keep notes!
 * Core objectives in this training:
-	* Prepare you for Cloudera field work
-	* Offer feedback on your readiness
-	* Advise you on your study and practice
-<p/>
-
-* **We evaluate lab work with ***competence*** in mind.** Mistakes in process can subtract more than finesse will add. For example, unnecessary cluster restarts are a bad sign.
+    * Prepare you for Cloudera field work
+    * Offer feedback on your readiness
+    * Advise you on your study and practice
+* We evaluate lab work with ***competence*** in mind.<br>
+    * Mistakes in process subtract more than finesse adds.
+    * For example, unnecessary cluster restarts are a bad sign.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -128,7 +126,8 @@
     * Identify likely causes
     * Implement the fix
     * Showing your fix addresses the problem or rules out a hypothesis <p/>
-* There's partial credit form making progress without solving a problem, and for fixing a problem without explaining how you did it. 
+* There's partial credit for making progress without solving a problem
+    * And for fixing a problem without explaining how you did it. 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -164,7 +163,7 @@
 
 ## <center> <a name="parcels"/> What's a Parcel?
 
-A [binarized CDH installation object](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F) that:
+A [binarized installation object](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F) that:
 
 * Bundles one CDH release
     * Built-in version-matching of Hadoop services
@@ -198,7 +197,7 @@ A [binarized CDH installation object](https://github.com/cloudera/cm_ext/wiki/Pa
     * Distribute
     * Activate/deactivate
     * Remove
-    * Delete<p/>
+    * Delete
 * File convention: <code>*objectname*-*version*-*[distro suffix](https://github.com/cloudera/cm_ext/wiki/Parcel-distro-suffixes)*.parcel</code> 
 * Tar structure with [internal layout requirements](https://github.com/cloudera/cm_ext/wiki/Building-a-parcel)
     * Content list kept in <code>meta/parcel.json</code> 
@@ -214,10 +213,10 @@ A [binarized CDH installation object](https://github.com/cloudera/cm_ext/wiki/Pa
 * We use parcels to distribute and install software
     * See CM's Administration settings
     * Parcels separate CDH software management from the OS
-    * Parcels do ***not*** support processes or services 
+    * Parcels do not support processes or services 
 * CM uses [CSDs to configure and integrate services](https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
     * Ideal for ISV partners to integrate with CM
-    * Customers may ask if CSDs will help them incorporate their tools
+    * Customers sometimes ask if CSDs can help them integrate their tools
     * Usual answer: probably not. Expensive effort for a one-time effort 
 * CSDs support integration with CM features including:
     * Monitoring
@@ -254,13 +253,13 @@ A [binarized CDH installation object](https://github.com/cloudera/cm_ext/wiki/Pa
 For any path, these five milestones comprise a CM-led install process:
 
 1. Set up CM databases
-    * The embedded (default) database server is PostgreSQL
+    * PostgreSQL is bundled with CM (we say "embedded")
 2. Install CM server software (one node, two for HA)
 3. Install CM agent software (all nodes supporting CDH services)
 4. Install a CDH distribution
 5. Configure/enable desired CDH services<p/>
 
-**Use [or devise](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html) the approach that suits your customer's needs. Common hurdles we see include:
+**You can use [or devise](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html) the approach that suits your customer's needs. Common hurdles we see include:
     * Adding CM to an unmanaged CDH cluster
     * Integrating CM with customer preferences such as Puppet
     * Coping with network restrictions (including no internet)
@@ -286,8 +285,8 @@ For any path, these five milestones comprise a CM-led install process:
 ## <center> <a name="word_on_launchpad"/>Launchpad (Informational Only)
 
 * Automate production-ready CM cluster deployment
-    * Amazon VPC (Virtual Private Cloud)
-    * Cloudera AWS Reference Architecture
+    * Will first support Amazon VPC (Virtual Private Cloud) only
+    * Uses Cloudera's AWS Reference Architecture
 * Currently in testing with platinum customers
 * GA release expected with C5.2
 
@@ -310,19 +309,19 @@ The CM database manages schema and records of several management services.
 In practice, sometimes the embedded database (PostgreSQL) hasn't scaled well. Some shops require Oracle. We recommend MySQL when no other requirement prevents it.
 
 * You can install with MySQL from scratch (manual process)
-* You can replace the embedded server
-* You can migrate from an existing PostreSQL instance at any time
-    * But it can be more complicated and time-consuming
-* YOu can use the same server for [Oozie](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.1/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_14.html) and the [Hive Metastore](http://www.cgoogle.loudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_18_4.html), and other databases if desired.
+* You can replace the embedded server with external PostgreSQL or other supported database.
+* You can migrate from an existing PostgreSQL instance 
+    * More complicated and time-consuming in production, of course.
+* You can use the same server to host [Oozie](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.1/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_14.html) data and the [Hive Metastore](http://www.cgoogle.loudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_18_4.html), and other databases if desired.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_replicate_db"/> Database Replication for HA (MySQL)
 
-When MySQL is in play, either for CM or Hadoop services (such as Oozie or a Hive Metastore), replication is a commonly-requested feature.
+When using MySQL for CM or other Hadoop services (Oozie, Hive Metastore) or both, customers often want replicated servers for redundancy.
 
-Ideally, you'd set this up before installing CM. If it and CDH services are already running, it will probably take longer and require more care (exisiting data, site practices).
+Ideally, you'd configure this before installing CM. If CM/CDH are already running, it's more complicated, but doable.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -331,7 +330,10 @@ Ideally, you'd set this up before installing CM. If it and CDH services are alre
 
 * Using <a href="http://whirr.apache.org/">Apache Whirr</a>
 * Headless (terminal screens only)
+    *  CM installer supports this
 * <a href="https://forge.puppetlabs.com/tags/cdh">Puppet</a>
+    * Cloudera-certified partner
+    * Support for CDH installation is well-received
 
 ---
 <div style="page-break-after: always;"></div>
@@ -341,13 +343,13 @@ Ideally, you'd set this up before installing CM. If it and CDH services are alre
 * Clusters menu (collapsible in CM 5.1)
 * Role assignments page
 * Options shown in <code>Administration -> Settings</code>
-* Wizard-driven options include
+* Wizard-driven support includes
     * Express Install
     * Add Service/Role
     * Upgrade CM 
     * Upgrade CDH
     * Enable HA (NameNode, JobTracker, Oozie, YARN RM)
-* Some gems are buried here and there
+* Some wizards are buried here and there
     * <code><i>Service</i>->Instances->Add Role Instances->View By Host</code> (button)
 
 ---
@@ -381,11 +383,14 @@ Ideally, you'd set this up before installing CM. If it and CDH services are alre
 ## <center> Deploy MySQL with Replication 
 
 1. Install the following MySQL packages on your target nodes
-    a. mysql
-    b. mysql-server
-    c. mysql-connector-java<p>
+    * mysql
+    * mysql-server
+    * mysql-connector-java<p>
+
 2. Configure /etc/my.cnf **before** starting any MySQL processes. Your instructor will provide a starter file. Distribute the file to both nodes.<p>
+
 3. Run mysql_install_db and start the mysqld service on both nodes<p>
+
 4. Run /usr/bin/mysql_secure_installation on both nodes. Answer the questions according to these instructions: 
     a. Set (and record!) the root password
     b. Remove anonymous users
