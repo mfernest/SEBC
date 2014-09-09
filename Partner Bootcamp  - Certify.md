@@ -392,15 +392,15 @@ Ideally, you'd configure this before installing CM. If CM/CDH are already runnin
 3. Run mysql_install_db and start the mysqld service on both nodes<p>
 
 4. Run /usr/bin/mysql_secure_installation on both nodes. Answer the questions according to these instructions: 
-    a. Set (and record!) the root password
-    b. Remove anonymous users
-    c. Allow remote login
-    d. Remove the test database
-    e. Reload the privilege table<p>
+    * Set (and record!) the root password
+    * Remove anonymous users
+    * Allow remote login
+    * Remove the test database
+    * Reload the privilege table<p>
 5. Grant replication privileges on all databases to the MySQL user of your choice.
-    a. Log in to the MySQL master node with <code>mysql -p</code> 
-    b. To authorize replication, you will need a valid MySQL user/password and the FQDN for the replication node. *Note: The following step does not validate these data. An IP address will not suffice in place of a FQDN.*
-    c. <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
+    * Log in to the MySQL master node with <code>mysql -p</code> 
+    * To authorize replication, you will need a valid MySQL user/password and the FQDN for the replication node. *Note: The following step does not validate these data. An IP address will not suffice in place of a FQDN.*
+    * <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
     d. <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code>
     e. <code>mysql> **FLUSH TABLES WITH READ LOCK;</code>**<p>
 6. Suspend the current MySQL session (^Z) or open another terminal window, and log in again to the MySQL server.<p>
