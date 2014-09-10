@@ -1175,9 +1175,13 @@ You can configure this before putting MySQL into service. If CM/CDH are already 
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Lab
-## <center> (Optional) Add CM to a CDH Cluster<p>
+## <center> (Optional) Adding CM to a CDH Cluster<p>
 
-Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters).
+Current instructions are internal to Cloudera and must be vetted
+-- I'll add them to the course once I'm sure they work as advertised.
+
+Follow the [instructions
+here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1187,7 +1191,10 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 
 * Create a new CM user 'dash' in your cluster
 * Assign this user the Configurator role
-* 
+* Log out of CM and log back in as the dash user
+* Choose 2-3 charts visible from CM's home page
+    * Modify them according to the docs given in presentation
+    * Save them to your own dashboard
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1203,7 +1210,7 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="security_review">Quick basics overview</a>
+## <center> <a name="security_review">Common security concerns </a>
 
 * Enterprise functional requirements
     * Perimeter access
@@ -1223,44 +1230,43 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 
 ## <center> <a name="security_authentication"/>Strong Authentication/Kerberos</a>
 
-* ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) lists four areas of authentication concern. All of them depend on Kerberos, directly or indirectly
+* The Apache documentation ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) lists four areas of concern.
     * Users
     * Hadoop services
     * Web consoles
     * Data confidentiality
-
+* "Hadoop in Secure Mode" notes presume Kerberos is the answer 
+    * Provides data encryption services out of the box
+    * Supports browser-based authentication via [HTTP SPNEGO](http://en.wikipedia.org/wiki/SPNEGO)
 * Linux supports [MIT Kerberos](http://web.mit.edu/kerberos/)
-    * See your [Hadoop for Administrators](http://university.cloudera.com/course/administrator) notes for an overview
-* ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) relies on Kerberos
-    * Data encryption services available out of the box
-    * Browser authentication supported by [HTTP SPNEGO](http://en.wikipedia.org/wiki/SPNEGO)
+    * Review your [Hadoop for Administrators](http://university.cloudera.com/course/administrator) notes for a high-level refresh
 * LDAP/Active Directory integration
-    * Applying existing user databases to Hadoop cluster is a common ask       
+    * Leveraging these resources is a common request       
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Active Directory Integration </center>
 
-* Cloudera recommends a [one-way cross-realm trust to customer's AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
-    * Requires MIT Kerberos realm in Hadoop cluster
-    * Avoids adding principals to AD 
+* Prior to the release of C5.1, Cloudera recommended a [one-way cross-realm trust to a customer's AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
+    * Requires an MIT Kerberos realm in Hadoop cluster
+    * Avoids having to add principals in AD 
 * Common sticking points
-    * Misremembered details
-    * Undocumented changes/updates
-    * Other settings that "shouldn't be a problem"
+    * Misremembered details of AD configuration
+    * Ongoing changes/updates
+    * Site-preferred settings that "shouldn't be a problem"
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Common Direct-to-AD Issues </center>
+## <center> Common Direct-to-AD Misfires </center>
 
-* <code>/etc/krb5.conf</code> doesn't authenticate to KDC
-    * Test with <code>kinit *AD_user*</code>
+* <code>/etc/krb5.conf</code> configuration doesn't work with KDC
+    * Looks like it should
+    * Testing with <code>kinit *AD_user*</code> works
 * Required encryption type isn't supported by JDK
-* Suported encryption types are disjoint
-
-* To trace Kerberos & Hadoop
+* Suported encryption types are disjoint between clients and server
+* To trace Kerberos & Hadoop interaction
     * <code>export KRB5_TRACE=/dev/stderr</code> 
     * Include <code>-Dsun.security.krb5.debug=true</code> in <code>HADOOP_OPTS</code> (& export it )
     * <code>export HADOOP_ROOT_LOGGER="DEBUG,console"</code>
@@ -1271,12 +1277,13 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 ## <center> <a name="security_authorization">Fine-grained Authorization</a>
 
 * <a href="#hdfs_perms_acls">HDFS permissions & ACLs</a>
-    * Need principal definitions beyond user-group-world
-    * Relief from edge cases and implications of hierarchical data
-    * Can provide permissions for a restricted list of users and groups
+    * Need access control finer than  user-group-world
+    * Answers edge cases brought about by multi-user, hierarchical data
+        * E.g., DBA vs. platform/Linux administrator
+    * Restricts permissions to an explicit list of users/groups
 * [Apache Sentry (incubating)](https://sentry.incubator.apache.org/)
-    * Database servers need files for storage, managed by admins
-    * Authorizations needed for database objects may be disjoint 
+    * Database servers need file storage, managed by admins
+    * Authorizations needed to retrieve database objects are often disjoint 
     
 ---
 <div style="page-break-after: always;"></div>
