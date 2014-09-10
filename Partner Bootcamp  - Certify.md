@@ -1429,12 +1429,11 @@ Then the steps in this blog are a one-stop shop. If you're fluent with these too
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Security Lab (Choose A or B)
+## <center> Security Lab: Sentry
 
-Complete *one* of the following labs:
-
-A. [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
-B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
+* Choose one to complete:
+    * [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
+    * [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
 
 ---
 <div style="page-break-after: always;"></div>
