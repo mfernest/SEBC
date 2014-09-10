@@ -1192,9 +1192,10 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 * Create a new CM user 'dash' in your cluster
 * Assign this user the Configurator role
 * Log out of CM and log back in as the dash user
-* Choose 2-3 charts visible from CM's home page
-    * Modify them according to the docs given in presentation
+* Create and name a new dashboard 
+* Choose 2-3 charts from CM's home page
     * Save them to your own dashboard
+    * In your dashboard, modify each chart as you like
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1230,15 +1231,15 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 
 ## <center> <a name="security_authentication"/>Strong Authentication/Kerberos</a>
 
-* The Apache documentation ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) lists four areas of concern.
+* The Apache documentation ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) addresses four areas of data security concern.
     * Users
     * Hadoop services
     * Web consoles
     * Data confidentiality
-* "Hadoop in Secure Mode" notes presume Kerberos is the answer 
-    * Provides data encryption services out of the box
-    * Supports browser-based authentication via [HTTP SPNEGO](http://en.wikipedia.org/wiki/SPNEGO)
-* Linux supports [MIT Kerberos](http://web.mit.edu/kerberos/)
+* 'Kerberos' is the foregone answer 
+    * Provides in-transit (on-the-wire) encryption 
+    * Provides browser-based authentication via [HTTP SPNEGO](http://en.wikipedia.org/wiki/SPNEGO)
+* Linux distros support [MIT Kerberos](http://web.mit.edu/kerberos/)
     * Review your [Hadoop for Administrators](http://university.cloudera.com/course/administrator) notes for a high-level refresh
 * LDAP/Active Directory integration
     * Leveraging these resources is a common request       
@@ -1248,7 +1249,9 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 
 ## <center> Active Directory Integration </center>
 
-* Prior to the release of C5.1, Cloudera recommended a [one-way cross-realm trust to a customer's AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
+* Prior to the release of C5.1, Cloudera recommended a [one-way
+cross-realm trust to a customer's
+AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
     * Requires an MIT Kerberos realm in Hadoop cluster
     * Avoids having to add principals in AD 
 * Common sticking points
@@ -1277,9 +1280,9 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 ## <center> <a name="security_authorization">Fine-grained Authorization</a>
 
 * <a href="#hdfs_perms_acls">HDFS permissions & ACLs</a>
-    * Need access control finer than  user-group-world
-    * Answers edge cases brought about by multi-user, hierarchical data
-        * E.g., DBA vs. platform/Linux administrator
+    * Need access control that is finer than user-group-world
+    * Address edge cases that arise from multi-user, multi-role, hierarchical data
+        * e.g., DBA vs. platform/Linux administrator
     * Restricts permissions to an explicit list of users/groups
 * [Apache Sentry (incubating)](https://sentry.incubator.apache.org/)
     * Database servers need file storage, managed by admins
@@ -1297,9 +1300,10 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 * [POSIX-style ACLs also supported](http://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists)
     * Disabled by default (<code>dfs.namenode.acls.enabled</code>)
     * Additional permissions for named users, groups, other, and the mask
-        * chmod operates on mask filter -> effective permissions
-    * Best used to refine, not replace, file permissions
-        * Some overhead to store/process them
+        * <code>chmod</code> operates on the mask filter to yield effective permissions
+    * Best used to supplement Unix file permissions
+        * Site practices with ACLs can vary widely (and wildly)
+        * Additional overhead to storing and processing them
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1355,15 +1359,16 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 
 ## <center> [Sentry as a Service](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_sentry_service.html)
 
-* DB-based provider 
+* DB provider 
     * Available in CDH 5.1.x/CM 5.1.x
-    * Will store to CM's embedded database or custom database
+    * Can use CM's embedded database or other supported db
 * CM supports migration from file-based policies
     * CLI version: <code>sentry --command config-tool --policyIni *policy_file* --import</code>
-    * File-based provider must be disabled for the service to work
-* May be enabled for Hive or Impala or both
+    * The file-based provider must be disabled for this service to work
+* Can be enabled for Hive or Impala or both
     * Legacy Hive users can retain file provider if desired
     * Impala users do not have to inherit from Hive configuration
+    * Open to abuse: not recommended by our field experts
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1381,9 +1386,8 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
         * Need: Key-based protection
         * Need: Minimal performance cost [HDFS-10693](https://issues.apache.org/jira/browse/HADOOP-10693)
     * [HDFS extended attributes](http://blog.cloudera.com/blog/2014/06/why-extended-attributes-are-coming-to-hdfs/) for client transparency
-        * Originated as a hook for 
         * [HDFS-2006](https://issues.apache.org/jira/browse/HDFS-2006)
-        * Descriptive properties for files and directories
+        * Lets you associate descriptive metadata with files and directories
         * Parameters for function-specific clients
 
 ---
@@ -1402,12 +1406,14 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 <div style="page-break-after: always;"></div>
 
 ## <center> Security Lab
-## <center> [Enabling Kerberos with CM](https://wiki.cloudera.com/display/FieldTechServices/Enabling+Kerberos+using+Cloudera+Manager) </center> 
+## <center> Enabling Kerberos with CM </center>
 
-* Find the wizard in CM and follow it.
-* Use the links given during presentation to answer the wizard's prerequisites
+<!-- (https://wiki.cloudera.com/display/FieldTechServices/Enabling+Kerberos+using+Cloudera+Manager) </center> 
 
-<!-- Do I need permission to share this wiki article with a non-employee audience? -->
+* Locate the wizard in CM and follow the screens.
+* Use the links given in presentation to answer the wizard's prerequisites
+
+<!-- Do I need permission to share a wiki article with a non-employee audience? -->
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1415,14 +1421,16 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 ## <center> Optional challenge
 ## <center>[JDBC Connections in a Kerberised Cluster](http://blog.cloudera.com/blog/2014/05/how-to-configure-jdbc-connections-in-secure-apache-hadoop-environments/)</center>
 
-* There's quite a bit of work to this lab, but if you want to do it all, don't need much hands-on guidance and have the resources, you can:
+* There's quite a bit of work to this lab. If you want to a full
+scenario to practice on, don't need step-driven guidance and have
+the AWS/VM/hardware resources, you can:
     * Set up CDH 5
-    * Test for client connectivity (using JDBC)
-    * Set up and/or integrate an Active Directory instance
-    * Test for a secured client connection
+    * Test client connectivity via JDBC
+    * Integrate an Active Directory instance
+    * Test a secured client connection
     * Enable Kerberos
-    * Add a Sentry configuration to the mix
-    * Test client connection on last itme
+    * Add a Sentry configuration 
+    * Test client connection one last itme
  
 Then the steps in this blog are a one-stop shop. If you're fluent with these tools, it may take a little more than one hour. Let your instructor know if you plan to attempt this lab as part of the class.
 
