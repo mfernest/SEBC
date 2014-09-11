@@ -1421,10 +1421,12 @@ AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/C
 ## <center> Optional challenge
 ## <center>[JDBC Connections in a Kerberised Cluster](http://blog.cloudera.com/blog/2014/05/how-to-configure-jdbc-connections-in-secure-apache-hadoop-environments/)</center>
 
-* There's quite a bit of work to this lab. If you want to a full
-scenario to practice on, don't need step-driven guidance and have
-the AWS/VM/hardware resources, you can:
-    * Set up CDH 5
+* There's quite a bit of work to this lab. If you want to full-fledged
+scenario on which to practice on, and you don't need step-driven
+guidance, and you have the AWS/VM/hardware resources, this blog article
+will help you:
+    * Set up a CDH 5 cluster
+        * (Or use the one you've got)
     * Test client connectivity via JDBC
     * Integrate an Active Directory instance
     * Test a secured client connection
@@ -1432,7 +1434,9 @@ the AWS/VM/hardware resources, you can:
     * Add a Sentry configuration 
     * Test client connection one last itme
  
-Then the steps in this blog are a one-stop shop. If you're fluent with these tools, it may take a little more than one hour. Let your instructor know if you plan to attempt this lab as part of the class.
+If you're fluent with the tools in play here, it may take about an
+hour. Let your instructor know if you attempt this lab during the
+course.
 
 ---
 <div style="page-break-after: always;"></div>
