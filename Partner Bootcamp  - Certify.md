@@ -461,7 +461,7 @@ installing, it's again feasible, but not as straightforward.
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> <a href="HDFS"/>Tuesday AM: HDFS<p>
+# <center> <a href="hdfs"/>Tuesday AM: HDFS<p>
 ## <center>Topic Overview
 
 * Review/refresh topics
