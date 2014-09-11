@@ -310,33 +310,32 @@ You can use [or devise](http://www.cloudera.com/content/cloudera-content/clouder
 
 ## <center> <a name="cm_replace_default_db"/> Replacing CM's Default Database 
 
-* The CM database manages schema and records for management services.
-    *  We'll detail these on Wednesday.
-* The embedded database (PostgreSQL) has not scaled well in practice.
-* Some shops require a particular database (if supported).
-* We recommend MySQL and prefer to install it before CM.
-    * You can install with MySQL from scratch (manual process)
-    * You can replace the embedded server with external PostgreSQL or other supported database.
-    * Migrating from an embedded PostgreSQL can be messy, time-consuming, interrupt other services. 
-* The CM db server can also host [Oozie](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.1/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_14.html) data and the [Hive Metastore](http://www.cgoogle.loudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_18_4.html), and other databases if desired.
-    * Reasonable when minimizing administration is a good idea.
-        * Dev and POC clusters, for example
+* The CM database manages several management services (covered on Wednesday)
+* The embedded database (PostgreSQL) hasn't performed well for customers.
+* We strongly recommend replacing it with MySQL 
+    * [Install it first, before CM](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_mysql.html)
+    * External PostgreSQL and Oracle database are also supported.
+    * Migrating after the fact is feasible. Also messy, time-consuming, requires CM downtime. 
+* The same server can also host [Oozie](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.1/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_14.html) data and the [Hive Metastore](http://www.cgoogle.loudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_18_4.html), and other databases if desired.
+    * Useful when minimizing admin work is a good idea.
+        * e.g., dev/POC clusters
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_replicate_db"/> Database Replication for HA (MySQL)
 
-* When using MySQL for CM and other Hadoop services (Oozie, Hive Metastore), customers often want replication to ensure availability.
+* Customers often want the database replicated to ensure availability.
 
-You can configure this before putting MySQL into service. If CM/CDH are already running, it's more time-consuming to replicate existing data.
+You can also implement this prior to installing CM. If CM is already
+installing, it's again feasible, but not as straightforward.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="other_install_methods"/>Other Installation Methods
 
-* Using <a href="http://whirr.apache.org/">Apache Whirr</a>
+* [Apache Whirr](http://whirr.apache.org)
 * Headless (terminal screens only)
     *  The CM installer binary supports this
     *   Administering CDH services without a browser poses a steep learning curve.
