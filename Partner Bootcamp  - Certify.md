@@ -273,13 +273,16 @@ You can use [or devise](http://www.cloudera.com/content/cloudera-content/clouder
 ## <center> <a name="cm_install_logging"/>Installation logging
 
 * As CM installs, it writes up to six log files:
-    * check-selinux.log
-    * install-repo-pkg.log
-    * install-jdk.x86_64.log
-    * {install CM server}.log
-    * {install CM server db}.log
-    * {start embedded database}.log
-    * {start cloudera-scm-server}.log
+    * 0.check-selinux.log
+    * 1.install-repo-pkg.log
+    * 2.install-oracle-j2sdk1.7.log
+    * 3.install-cloudera-manager-server.log
+    * 4.install-cloudera-manager-server-db-2.log
+    * 5.start-embedded-db.log
+    * 6.start-scm-server.log
+* File names can vary with the CM release. 
+    * If the installation fails along the way, CM creates a remove
+    log at the affected stage for review.
 
 ---
 <div style="page-break-after: always;"></div>
