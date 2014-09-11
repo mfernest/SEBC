@@ -38,11 +38,12 @@
 
 * You've attended Cloudera's Hadoop/Administrators Course
 * You have hands-on exposure to field work (shadowing, support cases, project contributions)
-    * You may none of this. You will work very hard this week. 
+    * If you have none of this, you will work very hard this week. 
 * You can complete exercises without step-by-step direction
+    * Wherever possible, we leverage existing docs, blogs, how-tos
 * You can read and write shell scripts
 * You have strong and broad Linux command knowledge
-    * And you can (quickly) find docs/support when necessary 
+    * i.e., you can find docs/support when necessary 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -79,7 +80,7 @@
 
 * Seven topics: one per morning and afternoon
     * <a href="#cm_cdh_installation">Cloudera Manager & CDH installation</a>
-    * HDFS
+    * <a href="#hdfs">HDFS</a>
     * YARN & Resource Management
     * CM Monitoring & Customizing
     * CDH Security (Kerberos, Sentry)
@@ -460,23 +461,22 @@ installing, it's again feasible, but not as straightforward.
 ---
 <div style="page-break-after: always;"></div>
 
-
-# <center> Tuesday AM: HDFS<p>
+# <center> <a href="HDFS"/>Tuesday AM: HDFS<p>
 ## <center>Topic Overview
 
-* Review and reinforcement
+* Review/refresh topics
     * <a href="#hdfs_namenode_ha">NameNode HA</a>
     * <a href="#hdfs_benchmarking">Benchmarking</a>
     * <a href="#namenode_web_ui">NameNode Web UI</a>
     * <a href="#using_safemode">What safemode does</a>
-* <a href="#hdfs_c5">HDFS for C5</a>    
+* <a href="#hdfs_c5">New for HDFS in C5</a>    
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_namenode_ha"/>NameNode HA
 
-* CM 5 provides a wizard for [HDFS HA](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
+* CM 5 has a wizard for [HDFS HA](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
     * {HDFS service} -> Actions -> Enable High Availability
 * [Locating Quorum-based Storage](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html?scroll=cmug_topic_5_12_1_unique_1)
 - [Understanding Zookeeper's Role](http://hadoop.apache.org/docs/r2.3.0/hadoop-yarn/hadoop-yarn-site/HDFSHighAvailabilityWithQJM.html#Deploying_ZooKeeper)
