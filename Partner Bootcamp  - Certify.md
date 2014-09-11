@@ -283,6 +283,7 @@ You can use [or devise](http://www.cloudera.com/content/cloudera-content/clouder
     * <code>6.start-scm-server.log</code>
 * File names can vary with the CM release. 
     * If the installation fails, CM creates a remove log at the failed stage.
+    * e.g., <code>4.remove-cloudera-manager-repository.log</code>
 
 ---
 <div style="page-break-after: always;"></div>
