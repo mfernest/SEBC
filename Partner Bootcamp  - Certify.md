@@ -461,7 +461,7 @@ installing, it's again feasible, but not as straightforward.
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> <a name="hdfs"/>Tuesday AM: HDFS<p>
+# <center> <a name="hdfs"/> Tuesday AM: HDFS<p>
 ## <center>Topic Overview
 
 * Review/refresh topics
@@ -474,7 +474,7 @@ installing, it's again feasible, but not as straightforward.
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="hdfs_namenode_ha"/>NameNode HA
+## <center> <a name="hdfs_namenode_ha"/> NameNode HA
 
 * CM 5 has a wizard for [HDFS HA](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
     * {HDFS service} -> Actions -> Enable High Availability
@@ -1732,35 +1732,93 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 # <center> Friday AM
 # <center> Challenges
 
----
-<div style="page-break-after: always;"></div>
-
-## <center> Challenge 1
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> Challenge 2
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> Challenge 3
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> Challenge 4
+* You're going to build a C5 cluster and Kerberise it.
+* We'll forego time limits for the beta, as the challenges have not
+yet been vetted for that.
+* You will instead document your progress by email
+    * The timestamps will help us gauge complexity -- please be prompt
+* If you have difficulty with some stage of this challenge, remember:
+    * Use the troubleshooting steps listed earlier to guide your email report:
+        * What do you know works?
+        * What have you checked, including where?
+        * What log data or screenshots can you include in your report?
+* There is zero credit for getting nothing to work and having nothing
+to say about the problems you encountered.
+    * It is more helpful to say "I forgot how to do X" than pretend you didn't.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 5
+## <center> Challenge 1 - Install a custom database for CM
+
+* Add a MySQL database server to one of your instances.
+    * No need for replication.
+    * When ready, send the instructor the root account password
+    * Include a screen capture of a successful login.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6
+## <center> Challenge 2 - Install Cloudera Manager
+
+* Install and configure Cloudera Manager 5
+    * Use any path you like
+    * Use the MySQL server in lieu of the embdedded database
+* Add a user "bootcamp" to the CM service
+    * Set the password to "cloudera"
+    * Set the role as Configurator
+* Email the CM URL to the instructor when you are ready to have access tested. 
 
 ---
 <div style="page-break-after: always;"></div>
+
+## <center> Challenge 3 - Install CDH
+
+* Install a CDH parcel
+    * You may use the latest 4.x version if you wish
+    * Do not install any additional bundles 
+    * It is not necessary to enable all services available
+* Email captures of any misconfiguration/threshold error messages shown on your CM server
+* Clear as many of these errors as you can
+    * You may use the post-install checklist or any other resource to help you.
+* When done, email a capture of your CM home page to show any changes
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Challenge 4 - Test HDFS Performance
+
+* Use the teragen suite, run a performance test on HDFS
+    * Pick a file size you feel sure can complete in < 10 minutes.
+    * Email the instructor with the commands used and the timing results.
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Challenge 5 - Kerberise Your Cluster
+
+* Kerberise your cluster
+    * Correct and incomplete **far** outweighs finished but buggy
+    * You'll be given a 10-minute notice of time to finish.
+    * Document and email your progress and latest show-stopper if you have one.
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Challenge 6 - Course and self evaluation
+
+* Take a few minutes to evaluate the course and your sense of
+field-readiness in your own words. Please include the following
+points:
+
+* The most valuable portion of the course
+* The least valuable portion of the course
+* Aspects of the course that promoted or detracted from the objectives:
+    * Class setting, hours, site hospitality
+    * Quality of materials, including form of delivery
+    * Instructors: knowledge, helpfulness, responsiveness
+* Your sense of field-readiness
+    * How much time spent on preparation do you feel you need?
+    * What learning points in class can you cite to back up that figure?
+    * What specifically would you spend the time on to prepare for Cloudera field work?
+
