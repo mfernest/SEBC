@@ -26,7 +26,7 @@
 
 ## <center> <a name="instructor"/> Instructors
 
-* Michael Ernest (Sr. Consultant, Course Developer/Facilitator)
+* Michael Ernest (Sr. Technical Consultant, Course Developer)
     * mfernest@cloudera.com
 * Benjamin Spivey (Solution Architect, Field Expert)
     * ben@cloudera.com
@@ -34,16 +34,16 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="audience"/> Audience
+## <center> <a name="audience"/> Audience Expectations
 
 * You've attended Cloudera's Hadoop/Administrators Course
-* You have hands-on exposure to field work (shadowing, support cases, project contributions)
-    * If you have none of this, you will work very hard this week. 
-* You can complete exercises without step-by-step direction
-    * Wherever possible, we leverage existing docs, blogs, how-tos
-* You can read and write shell scripts
-* You have strong and broad Linux command knowledge
-    * i.e., you can find docs/support when necessary 
+* You have hands-on exposure to field work
+    * Shadowing, support, project mentoring
+    * Otherwise, this may be a difficult, frustrating week. 
+* You can complete exercises without step-by-step directions
+    * You'll get doc links and objectives to achieve
+* You can read/write shell scripts (quickly)
+* You have solid Linux command knowledge
 
 ---
 <div style="page-break-after: always;"></div>
@@ -52,16 +52,16 @@
 
 <strong> Can you answer the following questions in five minutes or less? </strong>
 
-* Recall three ways to report the Hadoop version of a CDH cluster?
-* Which terminal command will list all JVM-based processes on a machine?
-* Which network port does a Kerberos 5 KDC server use? 
-* What is the default port assigned to the NameNode Web UI?
-* Pick all that apply: HDFS block replication can be set by
+* What are three ways to find the Hadoop version of a CDH cluster?
+* Write a command to list all the JVM-based processes on a machine?
+* What is the default network port for a Kerberos 5 KDC server? 
+* What is the default port for the NameNode Web UI?
+* Pick all that apply: HDFS block replication value can be set by:
     * a) the cluster receiving a file write request
     * b) a client sending a file write request
     * c) the job processing the file
-    * d) all of the above
-* T/F: The Pig client does not work on Windows, except in local mode. 
+    * d) none of the above
+* T/F: A Flume agent cannot coexist with a DataNode process.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -97,38 +97,33 @@
     * Target audience should need ~1 hour
 * Afternoon: 3 hours discussion, up to 2 hours lab work
     * Including 5-6 pm, if you need it
-    * May also be used for bonus labs for the extra-motivated
+    * Some bonus labs for the extra-motivated
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scored_labs"/> Scored Labs
 
-* In other words, required. Not self-evaluated.
-    * Checks are not (yet) automated -- we'll review your work.
-    * How you do the work matters -- keep notes!
+* Part of your assessment comes from the work you do all week.
+    * Keep notes -- being able to explain your work matters
 * Core objectives in this training:
     * Prepare you for Cloudera field work
     * Offer feedback on your readiness
-    * Advise you on your study and practice
+    * Advise you on further study and practice
 * We evaluate lab work with ***competence*** in mind.<br>
-    * Mistakes in process subtract more than finesse adds.
-    * For example, unnecessary cluster restarts are a bad sign.
+    * Perfection is just ok
+    * We look for signs of inexperience, inattention to key objectives
+    * Ex: frequent rebooting to clear errors
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scored_challenges"/> Scored Challenges
 
-* Friday morning: six half-hour troubleshooting scenarios
-* You get credit for solving the problem, of course
-* It's (way) better if you can explain and demonstrate what you did.
-    * Articulate the problem
-    * Identify likely causes
-    * Implement the fix
-    * Showing your fix addresses the problem or rules out a hypothesis <p/>
-* There's partial credit for making progress without solving a problem
-    * And for fixing a problem without explaining how you did it. 
+* Friday morning: six progressive challenges
+* You'll be asked to stand up a cluster in a specific way
+* You'll document your progress, not just the result
+* Your instructors may track the work as you do it.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -147,17 +142,18 @@
 
 ## <center> <a name="cm_cdh_key_points"/> High-level CM and CDH Points
 
-* A CM version is not tied to one CDH release
-    * You can administer CDH4 clusters with CM5
+* CM and CDH are not fused products
+    * You can add CM to a CDH cluster that's already made
+    * The CM version may be a later release than the CDH nodes
 * CM agents placed on each cluster node talk back to the CM server
     * Ergo, you cannot connect to any cluster with any CM instance    
 * Cloudera recommends deploying CDH with parcels 
     * Package- and tarball-based deployment are also supported
-* CMs supports REST API for browser-based and script-driven tasks
-    * API versions are supersets of previous versions (with some inconsistencies)
-    * http://<i>your_cm_host</i>:7180/api/version returns the latest supported release
-    * Some API calls may not pertain to earlier CDH releases
-        * (We'll review the [CM API](http://cloudera.github.io/cm_api/) on Wednesday)
+* CMs supports a REST API for browser- and CLI-based tasks
+    * API follows a superset versioning model 
+    * Use http://<i>your_cm_host</i>:7180/api/version to see the current version
+    * Certain API calls may be deprecated
+        * We'll review the [CM API](http://cloudera.github.io/cm_api/) on Wednesday
 
 ---
 <div style="page-break-after: always;"></div>
@@ -211,7 +207,7 @@ A [binarized installation object](https://github.com/cloudera/cm_ext/wiki/Parcel
 
 ## <center> Custom Service Descriptors (CSDs)
 
-* We use parcels to distribute and install software
+* We use parcels to distribute and install CDH releases
     * See CM's Administration settings
     * Parcels separate CDH software management from the OS
     * Parcels do not support processes or services 
@@ -1730,14 +1726,13 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 <div style="page-break-after: always;"></div>
 
 # <center> Friday AM
-# <center> Challenges
+# <center> Challenges - Open Lab
 
 * You're going to build a C5 cluster and Kerberise it.
-* We'll forego time limits for the beta, as the challenges have not
-yet been vetted for that.
-* You will instead document your progress by email
+* We'll forego time limits for the beta, 
+* You will document your progress by email
     * The timestamps will help us gauge complexity -- please be prompt
-* If you have difficulty with some stage of this challenge, remember:
+* If you have difficulty at a stage in this challenge, remember:
     * Use the troubleshooting steps listed earlier to guide your email report:
         * What do you know works?
         * What have you checked, including where?
@@ -1779,6 +1774,7 @@ to say about the problems you encountered.
     * Do not install any additional bundles 
     * It is not necessary to enable all services available
 * Email captures of any misconfiguration/threshold error messages shown on your CM server
+* Name your cluster to distinguish it - your given name and surname initial, for example
 * Clear as many of these errors as you can
     * You may use the post-install checklist or any other resource to help you.
 * When done, email a capture of your CM home page to show any changes
@@ -1811,13 +1807,12 @@ to say about the problems you encountered.
 field-readiness in your own words. Please include the following
 points:
 
-* The most valuable portion of the course
-* The least valuable portion of the course
-* Aspects of the course that promoted or detracted from the objectives:
+* The most/least valuable portions of the course
+* Aspects that promoted or detracted from the objectives, including:
     * Class setting, hours, site hospitality
     * Quality of materials, including form of delivery
     * Instructors: knowledge, helpfulness, responsiveness
-* Your sense of field-readiness
+* Your evaluation of your field-readiness
     * How much time spent on preparation do you feel you need?
     * What learning points in class can you cite to back up that figure?
     * What specifically would you spend the time on to prepare for Cloudera field work?
