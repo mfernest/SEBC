@@ -14,54 +14,56 @@
 ---
 <div style="page-break-after: always;"></div>
 
+
 ## <center> Introductions & Overview
 
-* <a href="#instructor">Instructor</a>
-* <a href="#audience">Audience</a>
-* <a href="#selfcheck">Self-check questions</a>
-* <a href="#design_layout">Course design & layout</a>
+- <a href="#instructor">Instructors</a>
+- <a href="#audience">Audience Expectations</a>
+- <a href="#selfcheck">Self-check questions</a>
+- <a href="#design_layout">Course design & layout</a>
+
+<div style="page-break-after: always;"></div>
 
 ---
-<div style="page-break-after: always;"></div>
 
 ## <center> <a name="instructor"/> Instructors
 
-* Michael Ernest (Sr. Technical Consultant, Course Developer)
+* Michael Ernest (Sr. Consultant, Course Developer/Facilitator)
     * mfernest@cloudera.com
-* Benjamin Spivey (Solution Architect, Field Expert)
-    * ben@cloudera.com
+* Jeff Field (Solution Architect, Field Expert)
+    * jfield@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="audience"/> Audience Expectations
+## <center> <a name="audience"/> Audience
 
-* You've attended Cloudera's Hadoop/Administrators Course
-* You have hands-on exposure to field work
-    * Shadowing, support, project mentoring
-    * Otherwise, this may be a difficult, frustrating week. 
-* You can complete exercises without step-by-step directions
-    * You'll get doc links and objectives to achieve
-* You can read/write shell scripts (quickly)
-* You have solid Linux command knowledge
+We will address you as field technicians who:
+
+* Have attended Cloudera's Hadoop/Administrators Course
+* Have hands-on exposure to CDH install/config work
+    * Includes shadowing, tech support, maintenance
+* Can complete exercises without step-by-step direction
+* Read and write shell scripts regularly
+* Can find Linux and CDH documentation on their own
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="selfcheck"/> Self-check questions
+## <center> <a name="selfcheck"/> Self-check questions</p>
 
 <strong> Can you answer the following questions in five minutes or less? </strong>
 
-* What are three ways to find the Hadoop version of a CDH cluster?
-* Write a command to list all the JVM-based processes on a machine?
-* What is the default network port for a Kerberos 5 KDC server? 
-* What is the default port for the NameNode Web UI?
-* Pick all that apply: HDFS block replication value can be set by:
-    * a) the cluster receiving a file write request
+* Name three ways to retrieve the Hadoop version of a CDH cluster?
+* Which terminal command lists only the JVM-based processes on a machine?
+* What is the default port used by a Kerberos 5 KDC server? 
+* What is the default port assigned to the NameNode's Web UI?
+* Pick all that apply: HDFS block replication may be set by
+    * a) a cluster receiving a file write request
     * b) a client sending a file write request
     * c) the job processing the file
-    * d) none of the above
-* T/F: A Flume agent cannot coexist with a DataNode process.
+    * d) all of the above
+* Installing a CDH parcel requires root privilege (T/F)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -78,58 +80,60 @@
 
 ## <center> <a name="sections_timing"/> Sections & Timing
 
-* Seven topics: one per morning and afternoon
-    * <a href="#cm_cdh_installation">Cloudera Manager & CDH installation</a>
-    * <a href="#hdfs">HDFS</a>
-    * YARN & Resource Management
-    * CM Monitoring & Customizing
-    * CDH Security (Kerberos, Sentry)
-    * HUE Services & Administration
-    * Diagnostics & Troubleshooting Practice
+* Seven topics: one each morning and afternoon
+    * <a href="#cm_cdh_installation_section">Cloudera Manager & CDH installation</a>
+    * <a href="#hdfs_section">HDFS</a>
+    * <a href="#yarn_rm_section">YARN & Resource Management</a>
+    * <a href="#cm_monitor_customize_section">CM Monitoring & Customizing</a>
+    * <a href="#cdh_security_section">CDH Security</a>
+    * <a href="#hue_services_admin_section">HUE Services & Administration</a>
+    * <a href="#troubleshooting_practices_section">Troubleshooting Practices</a>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="discussion_format"/> Discussion Format
 
-* Morning: 2 hours discussion, up to 2 hours lab work
-    * Including the lunch hour to finish, if you need it 
-    * Target audience should need ~1 hour
-* Afternoon: 3 hours discussion, up to 2 hours lab work
-    * Including 5-6 pm, if you need it
-    * Some bonus labs for the extra-motivated
+* Morning: Two-hour discussion, up to two hours for lab work
+    * Including the lunch hour, unattended
+    * One hour should suffice
+* Afternoon: Three-hour discussion, up to two hours for lab work
+    * Including 5-6 pm, unattended
+    * Occasional bonus labs for the super-motivated
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scored_labs"/> Scored Labs
 
-* Part of your assessment comes from the work you do all week.
-    * Keep notes -- being able to explain your work matters
-* Core objectives in this training:
-    * Prepare you for Cloudera field work
-    * Offer feedback on your readiness
-    * Advise you on further study and practice
-* We evaluate lab work with ***competence*** in mind.<br>
-    * Perfection is just ok
-    * We look for signs of inexperience, inattention to key objectives
-    * Ex: frequent rebooting to clear errors
+* Lab work is required
+    * How you do the work matters
+    * It's a good idea to keep notes
+* Core objectives for this training:
+	* Prepare for Cloudera field work
+	* Receive feedback on your readiness
+	* Identify areas for further study and practice
+<p/>
+
+* We evaluate lab work with **competence** in mind, not speed or flair.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scored_challenges"/> Scored Challenges
 
-* Friday morning: six progressive challenges
-* You'll be asked to stand up a cluster in a specific way
-* You'll document your progress, not just the result
-* Your instructors may track the work as you do it.
+* Friday morning: six challenges, in stages
+* Credit for completing each stage
+* You may be asked to explain how you completed a stage by
+    * Explaining the method you used
+    * Identifying any pitfalls/bugs you encountered
+    * Writing a test to prove your results
 
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Monday PM
-## <center> <a name="cm_cdh_installation"/>Cloudera Manager & CDH Installs
+## <center> Monday PM
+## <center> <a name="cm_cdh_installation_section"/>Cloudera Manager & CDH Install
 
 * <a href="#cm_cdh_key_points">CM and CDH Key Points</a>
 * <a href="#parcels">Understanding Parcels</a>
@@ -142,38 +146,35 @@
 
 ## <center> <a name="cm_cdh_key_points"/> High-level CM and CDH Points
 
-* CM and CDH are not fused products
-    * You can add CM to a CDH cluster that's already made
-    * The CM version may be a later release than the CDH nodes
-* CM agents placed on each cluster node talk back to the CM server
-    * Ergo, you cannot connect to any cluster with any CM instance    
-* Cloudera recommends deploying CDH with parcels 
-    * Package- and tarball-based deployment are also supported
-* CMs supports a REST API for browser- and CLI-based tasks
-    * API follows a superset versioning model 
-    * Use http://<i>your_cm_host</i>:7180/api/version to see the current version
-    * Certain API calls may be deprecated
-        * We'll review the [CM API](http://cloudera.github.io/cm_api/) on Wednesday
+* CM and CDH releases are not exclusive pairs
+    * You can administer older CDH clusters with newer CM versions
+* [CM agents](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ag_agent_config.html) are configured to report to one CM server
+* We recommend deploying CDH with parcels 
+    * We support package- and tarball-based installs
+* CM supports a REST API for browser-based and script-driven tasks
+    * Each successive API has a superset of available calls
+    * <code>http://<i>your_cm_host</i>:7180/api/version</code> gives the latest version
+    * Recent API calls may not apply to earlier CDH releases
+        * The CM API [is here](http://cloudera.github.io/cm_api/)
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="parcels"/> What's a Parcel?
+## <center> <a name="parcels"/> What is a Parcel?
 
-A [binarized installation object](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F) that:
+Parcels are [binarized CDH installation files](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F). We use them to
 
-* Bundles one CDH release
-    * Built-in version-matching of Hadoop services
-    * Supports add-on and third-party parcels (Impala at one time, now Accumulo) 
-* Independent of Linux package formats, tools, requirements
+* Bundle all elements of a CDH release into one file
+    * Version-matching is built in
+    * Separate components (such as Accumulo) have their own parcel 
+* Separate CDH from Linux platform install tools and requirements
     * Default install path: <code>/opt/cloudera/parcels</code>
-    * Don't need root user or sudo privileges
-* Adds deployment lifecycle semantics to CDH deployment
-    * You can store alternate CDH parcels on-disk without conflict 
-* Supports rolling upgrades
-    * Also makes downgrading easier
-* Simple HTTP-based repository
-    *  URL may be set in CM
+    * Doesn't need superuser privileges
+* Add a lifecycle scheme to CDH deployment
+    * You can store multiple parcel versions without conflict 
+* Support rolling upgrades and (less painful) downgrades
+* Support easy access (HTTP-based repos)
+    *  URL may be altered in CM's configuration
 
 ---
 <div style="page-break-after: always;"></div>
@@ -182,7 +183,7 @@ A [binarized installation object](https://github.com/cloudera/cm_ext/wiki/Parcel
 
 <center> <img src="http://blog.cloudera.com/wp-content/uploads/2013/05/parcels1.png"> </center> 
 
-* How to manage parcels via CM is [documented here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_parcels.html)
+* Managing parcels via CM is [documented here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_parcels.html).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -194,33 +195,32 @@ A [binarized installation object](https://github.com/cloudera/cm_ext/wiki/Parcel
     * Distribute
     * Activate/deactivate
     * Remove
-    * Delete
-* File convention: <code>*objectname*-*version*-*[distro suffix](https://github.com/cloudera/cm_ext/wiki/Parcel-distro-suffixes)*.parcel</code> 
-* Tar structure with [internal layout requirements](https://github.com/cloudera/cm_ext/wiki/Building-a-parcel)
-    * Content list kept in <code>meta/parcel.json</code> 
-    * Client download info is served in a separate <code>manifest.json</code> file
-* The symbolc link <code>/opt/cloudera/parcels/<font color=cyan>CDH</font></code> refers to the active bundle
-    * <font color=magenta>parcel name</font>-<font color=orange>version</font> only: <code><font color=magenta>CDH</font>-<font color=orange>5.1.0-1.cdh5.1.0.p0.53</font></code> 
+    * Delete<p/>
+* File naming convention: <code>*objectname*-*version*-*[distro suffix](https://github.com/cloudera/cm_ext/wiki/Parcel-distro-suffixes)*.parcel</code> 
+* Tar format with [simple layout requirements](https://github.com/cloudera/cm_ext/wiki/Building-a-parcel)
+    * List of contents is kept in <code>meta/parcel.json</code> 
+    * Client download checks are available in a separate <code>manifest.json</code> file
+* The directory <code>/opt/cloudera/parcels/CDH</code> links to the active bundle
+    * Each bundle is identified by its <font color=magenta>parcel name</font> and <font color=orange>version</font>
+    * For example, <code><font color=magenta>CDH</font>-<font color=orange>5.1.0-1.cdh5.1.0.p0.53</font></code> 
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Custom Service Descriptors (CSDs)
+## <center> [Custom Service Descriptors](https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
 
-* We use parcels to distribute and install CDH releases
-    * See CM's Administration settings
-    * Parcels separate CDH software management from the OS
-    * Parcels do not support processes or services 
-* CM uses [CSDs to configure and integrate services](https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
-    * Ideal for ISV partners to integrate with CM
-    * Customers sometimes ask if CSDs can help them integrate their tools
-    * Usual answer: probably not. Expensive effort for a one-time effort 
-* CSDs support integration with CM features including:
-    * Monitoring
+* Parcels make it easier to distribute and install CDH software
+    * They do ***not*** support process or service integration
+* CM uses CSDs to tie cluster services into
+    * Monitoring and charting
     * Resource management
-    * Service lifecycles
-    * Setting properties
-    * Host/instance assignments
+    * Service lifecycle controls
+    * Property configuration
+    * Host/instance role assignments
+* Customers may ask about using CSDs for in-house integration
+    * Determine if the effort supports their use case
+    * Do you need a single admin pane for a cluster app?
+    * [One partner says](http://blog.cloudera.com/blog/2014/04/how-to-extend-cloudera-manager-with-custom-service-descriptors/) they're useful for supporting gateway/edge nodes
 
 ---
 <div style="page-break-after: always;"></div>
@@ -230,200 +230,159 @@ A [binarized installation object](https://github.com/cloudera/cm_ext/wiki/Parcel
 * <a href="#cm_install_paths">Documented installation paths</a>
 * <a href="#cm_install_milestones">Installation milestones</a>
 * <a href="#cm_install_logging">Install logging</a>
-* <a href="#word_on_launchpad">Launchpad</a>
+* <a href="#word_on_cloudera_director">Cloudera Director</a>
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_paths"/>Documented installation paths
+## <center> <a name="cm_install_paths"/>Installation procedures
 
-* SImple called A, B, and C paths in our documentation:
-    * [Path A uses CM's installer, parcels, and wizards](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Installation-Guide/cmig_install_path_A.html)
-    * [Path B use Linux package and installer tools](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.7.0/Cloudera-Manager-Installation-Guide/cmig_install_path_B.html)
-    * [Path C uses tarballs (Hardcore DIY)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.7.1/Cloudera-Manager-Installation-Guide/cmig_install_path_C.html)
+* Called A, B, and C "paths" in our documentation:
+    * [Path A: CM install with parcels and wizards](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
+    * [Path B: Linux packages and install tools](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
+    * [Path C: tarballs for the hardcore DIYer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
     
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_install_milestones"/> Installation milestones
 
-For any path, these five milestones comprise a CM-led install process:
+1. Set up server for [CM databases](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
+    * Embedded server is PostgreSQL -- not recommended for production
+2. Install CM server software (on one node)
+3. Install CM agent software (all specified nodes)
+4. Install CDH software (all specified nodes)
+5. Configure and enable desired services<p/>
 
-1. Set up CM databases
-    * PostgreSQL is bundled with CM (we say "embedded")
-2. Install CM server software (one node, two for HA)
-3. Install CM agent software (all nodes supporting CDH services)
-4. Install a CDH distribution
-5. Configure/enable desired CDH services<p/>
+**You can [customize a path](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html) to suit customer needs such as:</p>
 
-You can use [or devise](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html) the approach that suits your customer's needs. 
-
-* Common challenges include
     * Adding CM to an unmanaged CDH cluster
-    * Integrating CM with popular tools such as Puppet
-    * Working with restrictive firewalls, no internet access, etc.
-    * Adhering to site-, security- and DBA-driven policies
+    * Integrating CM with existing tools, such as Puppet
+    * Adjusting to network restrictions (no internet access)
+    * Conforming to other site and security policies
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_logging"/>Installation logging
+## <center> <a name="cm_install_logging"/>Installation logging and troubleshooting
 
-* When CM is installed via Path A , it creates seven log files
-* In <code>/var/log/cloudera-manager-installer</code>:
+* In a clean installation, CM creates six log files in <code>/var/opt/cloudera-scm-server</code> as it works: 
     * <code>0.check-selinux.log</code>
     * <code>1.install-repo-pkg.log</code>
-    * <code>2.install-oracle-j2sdk1.7.log</code>
+    * <code>2.install-jdk.x86_64.log</code>
     * <code>3.install-cloudera-manager-server.log</code>
-    * <code>4.install-cloudera-manager-server-db-2.log</code>
-    * <code>5.start-embedded-db.log</code>
-    * <code>6.start-scm-server.log</code>
-* File names can vary with the CM release. 
-    * If the installation fails, CM creates a remove log at the failed stage.
-    * e.g., <code>4.remove-cloudera-manager-repository.log</code>
+    * <code>4.install-cloudera-manager-server-db.log</code>
+    * <code>5.init-embedded-db.log</code>
+    * <code>6.start-embedded-db.log</code>
+    * <code>7.start-scm-server.log</code>
+* Additional log files are created if components are removed, such as:
+    * <code>8.remove-cloudera-manager-daemons.log</code>
+    * <code>9.remove-cloudera-manager-repository.log</code> 
+* Use the presence of these files to isolate failure or review the process to date.
+* Well-known install problems are [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html).
+* Review [known issues and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html) of a release before installing it.
+* Review [fixed issues too](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html).
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="word_on_launchpad"/>Launchpad (Informational Only)
+## <center> <a name="word_on_cloudera_director"/>[Cloudera Director](http://www.cloudera.com/content/cloudera/en/products-and-services/director.html)
 
-* Automate production-ready CM cluster deployment
-    * Will first support Amazon VPC (Virtual Private Cloud) only
-    * Uses Cloudera's AWS Reference Architecture
-* Currently in testing with platinum customers
-* GA release expected with C5.2
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> <a name="custom_installs"/>Customizing Installation
-
-* <a href="#cm_replace_default_db">Replacing the default database</a>
-* <a href="#cm_replicate_db">Database Replication for HA</a>
-* <a href="#other_install_methods">Other Install Methods</a>
+* Automate/expedite cloud-based deployments
+    * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
+    * Uses [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
+* Internal project name: Launchpad
+* See the [User Guide](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf) for v1.0.0
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_replace_default_db"/> Replacing CM's Default Database 
+## <center> <a name="custom_installs"/>Custom Install Topics
 
-* The CM database manages several management services (covered on Wednesday)
-* The embedded database (PostgreSQL) hasn't performed well for customers.
-* We strongly recommend replacing it with MySQL 
-    * [Install it first, before CM](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_mysql.html)
-    * External PostgreSQL and Oracle database are also supported.
-    * Migrating after the fact is feasible. Also messy, time-consuming, requires CM downtime. 
-* The same server can also host [Oozie](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.1/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_14.html) data and the [Hive Metastore](http://www.cgoogle.loudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_18_4.html), and other databases if desired.
-    * Useful when minimizing admin work is a good idea.
-        * e.g., dev/POC clusters
+* <a href="#cm_service_dbs">CM Service Databases</a>
+* <a href="#cm_replace_default_db">Replacing the embedded database server</a>
+* <a href="#cm_replicate_db">CM database replication for HA</a>
+* <a href="#other_install_methods">Other Installation Methods</a>
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_replicate_db"/> Database Replication for HA (MySQL)
+## <center> <a name="cm_service_dbs"/>[CM Service Databases](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html) 
 
-* Customers often want the database replicated to ensure availability.
+The following services use databases that CM's server controls:
 
-You can also implement this prior to installing CM. If CM is already
-installing, it's again feasible, but not as straightforward.
+* Activity Monitor 
+* Reports Manager
+* Sentry Server (new with C5.1)
+* Cloudera Navigator Audit Server
+* Cloudera Navigator Metadata Server
+* Hive Metastore
+
+*CM's Host Monitor and Service Monitor use [LevelDB](https://github.com/google/leveldb) for their storage layer.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="other_install_methods"/>Other Installation Methods
+## <center> <a name="cm_replace_default_db"/> Replacing CM's Embedded Database</a> 
 
-* [Apache Whirr](http://whirr.apache.org)
-* Headless (terminal screens only)
-    *  The CM installer binary supports this
-    *   Administering CDH services without a browser poses a steep learning curve.
-* <a href="https://forge.puppetlabs.com/tags/cdh">Puppet</a>
-    * Cloudera-certified partner
-    * Support for CDH installation is well-received
+In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We recommend using MySQL. Some customers prefer Oracle, which is also supported.
+
+* Most of the field recommends installing MySQL before installing CM
+    * Some prefer replacing PostgreSQL after the install -- take your pick
+* You can migrate a standing CM instance's database server
+    * It may be tedious and require service outages    
+* The same server will support [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1) and [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1). Customers who delegate db administration to another group will require this.
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> <a name="cm_replicate_db"/> MySQL Replication for HA </a></p>
+
+* Many customers want an HA solution for CM. 
+    * MySQL [replication](http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) is a common approach. 
+    * It's easiest to do this before you install CM. 
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> <a name="other_install_methods"/>Other Install Methods
+
+* <a href="http://whirr.apache.org/">Apache Whirr</a>: interest seems to be be dwindling
+* Headless installs come up now and then
+* Puppet Labs <a href="https://forge.puppetlabs.com/tags/cdh">has a Cloudera-certified CDH install helper</a>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_ui_overview"/>Cloudera Manager UI Overview
 
-* Clusters menu (collapsible in CM 5.1)
+* Clusters menu for managing 
 * Role assignments page
 * Options shown in <code>Administration -> Settings</code>
-* Wizard-driven support includes
+* Wizards include
     * Express Install
     * Add Service/Role
-    * Upgrade CM 
-    * Upgrade CDH
+    * Upgrade CM and CDH 
     * Enable HA (NameNode, JobTracker, Oozie, YARN RM)
-* Some wizards are buried here and there
+* Some useful ones are buried here and there
     * <code><i>Service</i>->Instances->Add Role Instances->View By Host</code> (button)
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM Pre-install Lab
-## <center> Deploy MySQL server with replica 
+## <center> CM Install Labs
 
-1. Install the following MySQL packages on your target nodes
-    * <code>mysql</code>
-    * <code>mysql-server</code>
-    * <code>mysql-connector-java</code><p>
-2. Configure <code>/etc/my.cnf</code> **before** starting any MySQL process. 
-    * Use the <code>my.cnf</code> file included in this repo as your configuration file.
-    * Review the settings in this file; some are commented for your information.
-    * Create any directories specified in the config that do not exist
-    * Give the mysql user permission to write to them.
-    * Copy the file to the <code>/etc</code> directory on the master and replica nodes.
-    * Set the server-id property in the replica node copy to 2.<p>
-3. Run <code>mysql_install_db</code> before starting the <code>mysqld</code> service on both nodes<p>
-4. Run <code>/usr/bin/mysql_secure_installation</code> on both nodes. Answer the questions using these instructions: 
-    * Set (and record!) the root password
-    * Remove anonymous users
-    * Allow remote login
-    * Remove the test database
-    * Reload the privilege table<p>
-5. Grant replication privileges on all databases to the MySQL user of your choice.
-    * Log in to the MySQL master node with <code>mysql -p</code> 
-    * To authorize replication, you will need a valid MySQL user/password and the FQDN for the replication node.
-        * MySQL does not verify this data.
-        * An IP address will not work; you must supply a FQDN.
-    * <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
-    * <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code>
-    * <code>mysql> **FLUSH TABLES WITH READ LOCK;</code>**<p>
-6. Suspend your MySQL session (using ^Z) or open another terminal window; log in again to the MySQL server.<p>
-7. In the new session, display the server's status to retrieve the replication offset
-    * <code>mysql> **SHOW MASTER STATUS;**</code>
-    * Note the file and position; the replicant uses this data to sync with the master.
-    * Close this session. Remove the lock in the original session; you can then close the session if you like.
-    * <code>mysql> **UNLOCK TABLES;**</code><p>
-8. Log in to the replica instance and set the environment to locate the master. You may break the line after each comma if you wish (in SQL, a semicolon indicates the end of a command).
-    * <code>mysql> **CHANGE MASTER TO** **MASTER_HOST='*master host*',** **MASTER_USER='*replica user*',**  **MASTER_PASSWORD='*replica password*',**  **MASTER_LOG_FILE='*master file*',**  **MASTER_LOG_POS=*master file position*;**</code><p>
-9. Initiate slave operation and determine its status. 
-    * <code>mysql> **START SLAVE;**</code>
-    * <code>mysql> **SHOW SLAVE STATUS \G**</code>
-    * If successful, the <code>Slave_IO_State</code> field will show <code>Waiting for master to send event</code>
-    * Otherwise, check the log file for errors.<p>
+* Prepare Four EC2 nodes
+* <a href="#linux_config_lab">Linux Configuration Check</a>
+* <a href="#mysql_replication_lab">Deploy MySQL with replication</a>
+* <a href="#parcels_repo_lab">Create a Parcels repository</a>
+* <a href="#scripted_install_lab">Further study: Scripting an Install</a>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Lab
-## <center> Create a local parcels repo (manual)
-
-* Click the parcel indicator in CM's navigation bar
-    * Under Settings, note the Remote Parcel Repository URLs value
-* Default parcels links include:
-    * [Latest CDH5 release](http://archive.cloudera.com/cdh5/parcels/latest)
-    * [Latest CDH4 release](http://archive.cloudera.com/cdh4/parcels/latest)
-    * Components not yet integrated into a parcels bundle (Impala, Search)
-* Follow these [steps in the documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_create_local_parcel_repo.html).
-* Configure CM to use the new repository
-    * Administration -> Settings -> Parcels
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> CM Post-Install Lab
-## <center> [Linux Configuration Check](http://tiny.cloudera.com/7steps)
+## <center> <a name="linux_config_lab"/>[Linux Configuration Check](http://tiny.cloudera.com/7steps)
 
 1. Check swappiness on all your nodes 
     * <code># cat /proc/sys/vm/swappiness </code>
@@ -435,21 +394,73 @@ installing, it's again feasible, but not as straightforward.
     * <code> echo {hdfs|mapred|hbase} - {nofile 32768|nproc 32768} >> /etc/security/limits.conf </code>
 5. Dedicate a disk to the OS and log files.
 6. Test name resolution in both directions
-    * <code>/etc/hosts</code>: List the FQDN first, aliases second  
-    * <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
-    * DNS: ensure the hostname matches the FQDN
-7. Do not enable nscd until name resolution has been tested!
-    * Without System Security Services Daemon (SSSD)
-        * <code> # chkconfig --level 345 nscd on</code> 
-        * <code> # service nscd start </code> 
-        * <code> # nscd -g </code>
-    * [With SSSD](http://goo.gl/68HTMQ)
+    a. <code>/etc/hosts</code>: List the FQDN first, aliases second  
+    b. <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
+    c. DNS: ensure the hostname matches the FQDN
+7. Do not enable nscd until you've tested your name resolver service!
+    a. Enabling without System Security Services Daemon (SSSD)
+        * <code># chkconfig --level 345 nscd on; service nscd start; nscd -g </code>
+    b. [Enabling with SSSD](http://goo.gl/68HTMQ)
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> CM Install Lab
+## <center> <a name="mysql_replication_lab"/>Deploy MySQL with Replication 
+
+1. Install the following MySQL packages on your CM and replica nodes
+    a. mysql
+    b. mysql-server
+    c. mysql-connector-java<p>
+2. Configure /etc/my.cnf **before** starting any MySQL processes. Your instructor will provide a starter file. Distribute the file to both nodes.<p>
+3. Run mysql_install_db and start the mysqld service on both nodes<p>
+4. Run /usr/bin/mysql_secure_installation on both nodes. Answer the questions according to these instructions: 
+    a. Set (and record!) the root password
+    b. Remove anonymous users
+    c. Allow remote login
+    d. Remove the test database
+    e. Reload the privilege table<p>
+5. Grant replication privileges on all databases to the MySQL user of your choice.
+    a. Log in to the MySQL master node with <code>mysql -p</code> 
+    b. To authorize replication, you will need a valid MySQL user/password and the FQDN for the replication node. *Note: The following step does not validate these data. An IP address will not suffice in place of a FQDN.*
+    c. <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
+    d. <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code>
+    e. <code>mysql> **FLUSH TABLES WITH READ LOCK;</code>**<p>
+6. Suspend the current MySQL session (^Z) or open another terminal window, and log in again to the MySQL server.<p>
+7. In this new session, report the server's status to get the current replication offset
+    a. <code>mysql> **SHOW MASTER STATUS;**</code>
+    b. Note the file and position; the replicant uses this data to sync with the master.
+    c. Close this session. Remove the lock in the original session; you can then close the session if you like.
+    d. <code>mysql> **UNLOCK TABLES;**</code><p>
+8. Log in to the replica instance and set the environment to locate the master:
+    a. <code>mysql> **CHANGE MASTER TO**<br>> **MASTER_HOST='*master host*',**<br>> **MASTER_USER='*replica user*',**<br>> **MASTER_PASSWORD='*replica password*',**<br>> **MASTER_LOG_FILE='*master file*',**<br>> **MASTER_LOG_POS='*master file position*';**</code><p>
+9. Initiate slave operation and determine its status. 
+    a. <code>mysql> **START SLAVE;**</code>
+    b. <code>mysql> **SHOW SLAVE STATUS \G**</code>
+    c. If successful, the <code>Slave_IO_State</code> field in the output will report <code>Waiting for master to send event</code>
+    d. Otherwise, check the log file for errors.<p>
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> CM Install Lab
+## <center> <a name="parcels_repo_lab"/>Create a local parcels repo (manual)
+
+* Click the parcel indicator in CM's navigation bar
+    * Under Settings, note the Remote Parcel Repository URLs value
+* Default parcels links include:
+    * [Latest CDH5 release](http://archive.cloudera.com/cdh5/parcels/latest)
+    * [Latest CDH4 release](http://archive.cloudera.com/cdh4/parcels/latest)
+    * Components not yet integrated into a parcels bundle (Impala, Search)
+* Follow these [steps in the documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_create_local_parcel_repo.html).
+* Set CM to use the new repository
+    * Administration -> Settings -> Parcels
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Lab (Optional)
-## <center> Auto-deploy CM
+## <center> <a name="scripted_install_lab"/>Auto-deploy CM
 
 * Fork/clone [Justin Hayes' auto-deployment work](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
 * Follow instructions, including validation test of the install
@@ -457,22 +468,22 @@ installing, it's again feasible, but not as straightforward.
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> <a name="hdfs"/> Tuesday AM: HDFS<p>
-## <center>Topic Overview
+# <center> Tuesday AM
+# <center> <a name="hdfs_section"/>HDFS<p>
 
-* Review/refresh topics
+* Review and reinforcement
     * <a href="#hdfs_namenode_ha">NameNode HA</a>
     * <a href="#hdfs_benchmarking">Benchmarking</a>
     * <a href="#namenode_web_ui">NameNode Web UI</a>
     * <a href="#using_safemode">What safemode does</a>
-* <a href="#hdfs_c5">New for HDFS in C5</a>    
+* <a href="#hdfs_c5">HDFS for C5</a>    
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="hdfs_namenode_ha"/> NameNode HA
+## <center> <a name="hdfs_namenode_ha"/>NameNode HA
 
-* CM 5 has a wizard for [HDFS HA](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
+* CM 5 provides a wizard for [HDFS HA](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
     * {HDFS service} -> Actions -> Enable High Availability
 * [Locating Quorum-based Storage](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html?scroll=cmug_topic_5_12_1_unique_1)
 - [Understanding Zookeeper's Role](http://hadoop.apache.org/docs/r2.3.0/hadoop-yarn/hadoop-yarn-site/HDFSHighAvailabilityWithQJM.html#Deploying_ZooKeeper)
@@ -546,7 +557,7 @@ installing, it's again feasible, but not as straightforward.
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Problem: Repeated Query Performance
+## <center> Problem: Performance on Repeated Queries
 
 * The NameNode knows which DataNodes stores blocks for a given request
     * It doesn't know [which nodes may have cached them](https://issues.apache.org/jira/browse/HDFS-4949)
@@ -607,13 +618,14 @@ installing, it's again feasible, but not as straightforward.
 
 ## <center> <a name="scr_and_zcr"/> Notes on SCR and ZCR
 
-* Short-circuit Read
+* Short-circuit Reads
     * [HDFS-2246](https://issues.apache.org/jira/browse/HDFS-2246): Let local clients read DN's process map
     * Uses [file descriptor passing](http://infohost.nmt.edu/~eweiss/222_book/222_book/0201433079/ch17lev1sec4.html) capability in Linux
+    * [Configured through CM or hdfs-site.xml file](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_hdfs_short_circuit_reads.html) 
 * Zero-copy Read
     * [Bypass the DN, use mmap() to read page$](https://issues.apache.org/jira/browse/HDFS-4953)
-    * For clients that implement [ZCR API](https://issues.apache.org/jira/browse/HDFS-5191) 
-    * The dream: bypass page$ altogether for hardware speed
+    * Clients must implement [ZCR API](https://issues.apache.org/jira/browse/HDFS-5191) 
+    * The dream: bypass system page cache, achieve hardware-rated speed
 * Future goals
     * Caching directories based on workload
     * Automatic output file caching (to expedite pipelined jobs)
@@ -627,7 +639,7 @@ installing, it's again feasible, but not as straightforward.
     * Let users (who had write permissions) retrieve a deleted file
     * Based on [copy-on-write](http://en.wikipedia.org/wiki/Copy-on-write) technique to associate HDFS directories with DN block locations
     * Files may be retrieved through a versioned folder
-    * Similar to .Trash but without an expiry setting
+    * Similar to .Trash/ but without an expiry setting
 
 * CLI Usage
     * <code>hdfs dfsadmin [dis]allowSnapshot <i>path</i> </code>
@@ -724,7 +736,8 @@ installing, it's again feasible, but not as straightforward.
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> <a name="yarn_rm"/>Tuesday PM: YARN & RM
+# <center> Tuesday PM
+# <center> <a name="yarn_rm_section"/>YARN & RM
 
 * <a href="#mrv1_review">MRv1 Design and Configuration</a>
 * <a href="#mrv2_review">MRv2 Design and Configuration</a>
@@ -964,7 +977,7 @@ installing, it's again feasible, but not as straightforward.
 <div style="page-break-after: always;"></div>
 
 # <center> Wednesday AM
-# <center> CM Monitoring/Customizing
+# <center> <a name="cm_monitor_customize_section"/>CM Monitoring & Customizing
 
 * <a href="#cm_overview">CM's vocabulary</a>
 * <a href="#cm_search_bar">CM search bar features</a>
@@ -1150,6 +1163,7 @@ installing, it's again feasible, but not as straightforward.
 * [Examples using curl](http://cloudera.github.io/cm_api/docs/quick-start/)
 * [Examples using Python](http://cloudera.github.io/cm_api/docs/python-client/)
 * [Example using Java](http://cloudera.github.io/cm_api/docs/java-client/)
+* Mark Brooks's script for [listing cluster service ports](https://github.com/onefoursix/cm-get-ports)
 * Some often talked-about goals with the API
     * Fully automated, client-driven CM/CDH install
     * Dynamic multi-tenancy monitoring, utilization and tuning
@@ -1174,13 +1188,9 @@ installing, it's again feasible, but not as straightforward.
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Lab
-## <center> (Optional) Adding CM to a CDH Cluster<p>
+## <center> (Optional) Add CM to a CDH Cluster<p>
 
-Current instructions are internal to Cloudera and must be vetted
--- I'll add them to the course once I'm sure they work as advertised.
-
-Follow the [instructions
-here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters).
+Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1190,16 +1200,13 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 
 * Create a new CM user 'dash' in your cluster
 * Assign this user the Configurator role
-* Log out of CM and log back in as the dash user
-* Create and name a new dashboard 
-* Choose 2-3 charts from CM's home page
-    * Save them to your own dashboard
-    * In your dashboard, modify each chart as you like
+* 
 
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Wednesday PM: CDH Security
+# <center> Wednesday PM
+# <center> <a name="cdh_security_section"/>CDH Security
 
 * <a href="#security_review">Quick basics overview</a>
 * <a href="#security_authentication">Strong Authentication</a> 
@@ -1210,7 +1217,7 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="security_review">Common security concerns </a>
+## <center> <a name="security_review">Quick basics overview</a>
 
 * Enterprise functional requirements
     * Perimeter access
@@ -1230,45 +1237,44 @@ here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Man
 
 ## <center> <a name="security_authentication"/>Strong Authentication/Kerberos</a>
 
-* The Apache documentation ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) addresses four areas of data security concern.
+* ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) lists four areas of authentication concern. All of them depend on Kerberos, directly or indirectly
     * Users
     * Hadoop services
     * Web consoles
     * Data confidentiality
-* 'Kerberos' is the foregone answer 
-    * Provides in-transit (on-the-wire) encryption 
-    * Provides browser-based authentication via [HTTP SPNEGO](http://en.wikipedia.org/wiki/SPNEGO)
-* Linux distros support [MIT Kerberos](http://web.mit.edu/kerberos/)
-    * Review your [Hadoop for Administrators](http://university.cloudera.com/course/administrator) notes for a high-level refresh
+
+* Linux supports [MIT Kerberos](http://web.mit.edu/kerberos/)
+    * See your [Hadoop for Administrators](http://university.cloudera.com/course/administrator) notes for an overview
+* ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.3.0/hadoop-project-dist/hadoop-common/SecureMode.html) relies on Kerberos
+    * Data encryption services available out of the box
+    * Browser authentication supported by [HTTP SPNEGO](http://en.wikipedia.org/wiki/SPNEGO)
 * LDAP/Active Directory integration
-    * Leveraging these resources is a common request       
+    * Applying existing user databases to Hadoop cluster is a common ask       
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Active Directory Integration </center>
 
-* Prior to the release of C5.1, Cloudera recommended a [one-way
-cross-realm trust to a customer's
-AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
-    * Requires an MIT Kerberos realm in Hadoop cluster
-    * Avoids having to add principals in AD 
+* Cloudera recommends a [one-way cross-realm trust to customer's AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
+    * Requires MIT Kerberos realm in Hadoop cluster
+    * Avoids adding principals to AD 
 * Common sticking points
-    * Misremembered details of AD configuration
-    * Ongoing changes/updates
-    * Site-preferred settings that "shouldn't be a problem"
+    * Misremembered details
+    * Undocumented changes/updates
+    * Other settings that "shouldn't be a problem"
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Common Direct-to-AD Misfires </center>
+## <center> Common Direct-to-AD Issues </center>
 
-* <code>/etc/krb5.conf</code> configuration doesn't work with KDC
-    * Looks like it should
-    * Testing with <code>kinit *AD_user*</code> works
+* <code>/etc/krb5.conf</code> doesn't authenticate to KDC
+    * Test with <code>kinit *AD_user*</code>
 * Required encryption type isn't supported by JDK
-* Suported encryption types are disjoint between clients and server
-* To trace Kerberos & Hadoop interaction
+* Suported encryption types are disjoint
+
+* To trace Kerberos & Hadoop
     * <code>export KRB5_TRACE=/dev/stderr</code> 
     * Include <code>-Dsun.security.krb5.debug=true</code> in <code>HADOOP_OPTS</code> (& export it )
     * <code>export HADOOP_ROOT_LOGGER="DEBUG,console"</code>
@@ -1279,13 +1285,12 @@ AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/C
 ## <center> <a name="security_authorization">Fine-grained Authorization</a>
 
 * <a href="#hdfs_perms_acls">HDFS permissions & ACLs</a>
-    * Need access control that is finer than user-group-world
-    * Address edge cases that arise from multi-user, multi-role, hierarchical data
-        * e.g., DBA vs. platform/Linux administrator
-    * Restricts permissions to an explicit list of users/groups
+    * Need principal definitions beyond user-group-world
+    * Relief from edge cases and implications of hierarchical data
+    * Can provide permissions for a restricted list of users and groups
 * [Apache Sentry (incubating)](https://sentry.incubator.apache.org/)
-    * Database servers need file storage, managed by admins
-    * Authorizations needed to retrieve database objects are often disjoint 
+    * Database servers need files for storage, managed by admins
+    * Authorizations needed for database objects may be disjoint 
     
 ---
 <div style="page-break-after: always;"></div>
@@ -1299,10 +1304,9 @@ AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/C
 * [POSIX-style ACLs also supported](http://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists)
     * Disabled by default (<code>dfs.namenode.acls.enabled</code>)
     * Additional permissions for named users, groups, other, and the mask
-        * <code>chmod</code> operates on the mask filter to yield effective permissions
-    * Best used to supplement Unix file permissions
-        * Site practices with ACLs can vary widely (and wildly)
-        * Additional overhead to storing and processing them
+        * chmod operates on mask filter -> effective permissions
+    * Best used to refine, not replace, file permissions
+        * Some overhead to store/process them
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1358,16 +1362,15 @@ AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/C
 
 ## <center> [Sentry as a Service](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_sentry_service.html)
 
-* DB provider 
+* DB-based provider 
     * Available in CDH 5.1.x/CM 5.1.x
-    * Can use CM's embedded database or other supported db
+    * Will store to CM's embedded database or custom database
 * CM supports migration from file-based policies
     * CLI version: <code>sentry --command config-tool --policyIni *policy_file* --import</code>
-    * The file-based provider must be disabled for this service to work
-* Can be enabled for Hive or Impala or both
+    * File-based provider must be disabled for the service to work
+* May be enabled for Hive or Impala or both
     * Legacy Hive users can retain file provider if desired
     * Impala users do not have to inherit from Hive configuration
-    * Open to abuse: not recommended by our field experts
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1385,8 +1388,9 @@ AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/C
         * Need: Key-based protection
         * Need: Minimal performance cost [HDFS-10693](https://issues.apache.org/jira/browse/HADOOP-10693)
     * [HDFS extended attributes](http://blog.cloudera.com/blog/2014/06/why-extended-attributes-are-coming-to-hdfs/) for client transparency
+        * Originated as a hook for 
         * [HDFS-2006](https://issues.apache.org/jira/browse/HDFS-2006)
-        * Lets you associate descriptive metadata with files and directories
+        * Descriptive properties for files and directories
         * Parameters for function-specific clients
 
 ---
@@ -1405,14 +1409,12 @@ AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/C
 <div style="page-break-after: always;"></div>
 
 ## <center> Security Lab
-## <center> Enabling Kerberos with CM </center>
+## <center> [Enabling Kerberos with CM](https://wiki.cloudera.com/display/FieldTechServices/Enabling+Kerberos+using+Cloudera+Manager) </center> 
 
-<!-- (https://wiki.cloudera.com/display/FieldTechServices/Enabling+Kerberos+using+Cloudera+Manager) </center> 
+* Find the wizard in CM and follow it.
+* Use the links given during presentation to answer the wizard's prerequisites
 
-* Locate the wizard in CM and follow the screens.
-* Use the links given in presentation to answer the wizard's prerequisites
-
-<!-- Do I need permission to share a wiki article with a non-employee audience? -->
+<!-- Do I need permission to share this wiki article with a non-employee audience? -->
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1420,37 +1422,32 @@ AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/C
 ## <center> Optional challenge
 ## <center>[JDBC Connections in a Kerberised Cluster](http://blog.cloudera.com/blog/2014/05/how-to-configure-jdbc-connections-in-secure-apache-hadoop-environments/)</center>
 
-* There's quite a bit of work to this lab. If you want to full-fledged
-scenario on which to practice on, and you don't need step-driven
-guidance, and you have the AWS/VM/hardware resources, this blog article
-will help you:
-    * Set up a CDH 5 cluster
-        * (Or use the one you've got)
-    * Test client connectivity via JDBC
-    * Integrate an Active Directory instance
-    * Test a secured client connection
+* There's quite a bit of work to this lab, but if you want to do it all, don't need much hands-on guidance and have the resources, you can:
+    * Set up CDH 5
+    * Test for client connectivity (using JDBC)
+    * Set up and/or integrate an Active Directory instance
+    * Test for a secured client connection
     * Enable Kerberos
-    * Add a Sentry configuration 
-    * Test client connection one last itme
+    * Add a Sentry configuration to the mix
+    * Test client connection on last itme
  
-If you're fluent with the tools in play here, it may take about an
-hour. Let your instructor know if you attempt this lab during the
-course.
+Then the steps in this blog are a one-stop shop. If you're fluent with these tools, it may take a little more than one hour. Let your instructor know if you plan to attempt this lab as part of the class.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Security Lab: Sentry
+## <center> Security Lab (Choose A or B)
 
-* Choose one to complete:
-    * [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
-    * [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
+Complete *one* of the following labs:
+
+A. [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
+B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
 
 ---
 <div style="page-break-after: always;"></div>
 
 # <center> Thursday AM
-# <center> HUE Services & Administration
+# <center> <a name="hue_services_admin_section"/>HUE Services & Administration
 
 * <a href="#hue_design_goals">HUE Design and Goals</a>
 * <a href="#hue_services">Services</a>
@@ -1604,7 +1601,7 @@ course.
 <div style="page-break-after: always;"></div>
 
 # <center> Thursday PM
-# <center> Troubleshooting
+# <center> <a name="troubleshooting_practices_section"/>Troubleshooting
 
 * <a href="#troubleshooting_philosophy">Cloudera's Partner Philosophy</a>
 * <a href="#troubleshooting_enabling_partners">Enabling field partners</a>
@@ -1617,17 +1614,15 @@ course.
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="troubleshooting_philosophy"/> Cloudera's Partner Philosophy </center>
+## <center> <a name="troubleshooting_philosophy"/> Cloudera's Partner Training Philosophy </center>
 
-* You're soaking in it!
-    * This event is a pilot for a field-readiness program .
-    * Mentoring and shadowing experts on assignment won't scale
-    * Initial training is public, not partner-oriented 
-* We're now learning how best to share field knowledge and resources
-    * While observing internal constraints we encounter, of course 
-* Feedback helps
-    * How can we support you in the field?
-    * What are the best applications of our resources to your success?
+* You're hearing it right now
+    * This event is a pilot for a broader field-readiness program.
+    * We can't scale with mentoring and shadowin
+    * Cloudera University training is user, not partner oriented 
+* We're learning how best to share our field knowledge and resources
+    * Feedback helps: how can we support you in the field?
+    * Which resources can contribute most to your success?
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1637,20 +1632,19 @@ course.
 * [ASF account for reporting/reviewing bugs](https://issues.apache.org/jira/secure/Dashboard.jspa)
 * [Cloudera Connect - partner portal](http://www.cloudera.com/content/cloudera/en/partners.html)
 * [Github account](https://github.com/)
-* <!-- Other partner resources I'm not aware of --> 
+<!-- Other partner resources I'm not aware of --> 
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="troubleshooting_docs_assistance"> Documentation & Support </a>
 
-* We must cover what customers can get on their own
-    * At minimum, follow http://community.cloudera.com
-    * Even better: participate!
-* Documentation: the price of freedom is constant vigilance
-    * Always ask: which versions CM/CDH?
-    * [Start here](http://www.cloudera.com/content/support/en/documentation.html) to select the version you need 
-* Be aware of Technical Service Bulletins as they are published
+* We must review all materials customers can access
+    * Follow and participate in [Cloudera's forums](http://community.cloudera.com)
+    * Always ask which CM/CDH versions are in use?
+    * [Documentation starts here](http://www.cloudera.com/content/support/en/documentation.html) 
+* Review all Technical Service Bulletins
+* Learn to use the [Diagnostic Bundle Collector](http://www.cloudera.com/content/support/en/support-info/cluster-statistics.html)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1726,94 +1720,37 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 <div style="page-break-after: always;"></div>
 
 # <center> Friday AM
-# <center> Challenges - Open Lab
-
-* You're going to build a C5 cluster and Kerberise it.
-* We'll forego time limits for the beta, 
-* You will document your progress by email
-    * The timestamps will help us gauge complexity -- please be prompt
-* If you have difficulty at a stage in this challenge, remember:
-    * Use the troubleshooting steps listed earlier to guide your email report:
-        * What do you know works?
-        * What have you checked, including where?
-        * What log data or screenshots can you include in your report?
-* There is zero credit for getting nothing to work and having nothing
-to say about the problems you encountered.
-    * It is more helpful to say "I forgot how to do X" than pretend you didn't.
+# <center> Challenges
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1 - Install a custom database for CM
-
-* Add a MySQL database server to one of your instances.
-    * No need for replication.
-    * When ready, send the instructor the root account password
-    * Include a screen capture of a successful login.
+## <center> Challenge 1
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 2 - Install Cloudera Manager
-
-* Install and configure Cloudera Manager 5
-    * Use any path you like
-    * Use the MySQL server in lieu of the embdedded database
-* Add a user "bootcamp" to the CM service
-    * Set the password to "cloudera"
-    * Set the role as Configurator
-* Email the CM URL to the instructor when you are ready to have access tested. 
+## <center> Challenge 2
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 3 - Install CDH
-
-* Install a CDH parcel
-    * You may use the latest 4.x version if you wish
-    * Do not install any additional bundles 
-    * It is not necessary to enable all services available
-* Email captures of any misconfiguration/threshold error messages shown on your CM server
-* Name your cluster to distinguish it - your given name and surname initial, for example
-* Clear as many of these errors as you can
-    * You may use the post-install checklist or any other resource to help you.
-* When done, email a capture of your CM home page to show any changes
+## <center> Challenge 3
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 4 - Test HDFS Performance
-
-* Use the teragen suite, run a performance test on HDFS
-    * Pick a file size you feel sure can complete in < 10 minutes.
-    * Email the instructor with the commands used and the timing results.
+## <center> Challenge 4
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 5 - Kerberise Your Cluster
-
-* Kerberise your cluster
-    * Correct and incomplete **far** outweighs finished but buggy
-    * You'll be given a 10-minute notice of time to finish.
-    * Document and email your progress and latest show-stopper if you have one.
+## <center> Challenge 5
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - Course and self evaluation
+## <center> Challenge 6
 
-* Take a few minutes to evaluate the course and your sense of
-field-readiness in your own words. Please include the following
-points:
-
-* The most/least valuable portions of the course
-* Aspects that promoted or detracted from the objectives, including:
-    * Class setting, hours, site hospitality
-    * Quality of materials, including form of delivery
-    * Instructors: knowledge, helpfulness, responsiveness
-* Your evaluation of your field-readiness
-    * How much time spent on preparation do you feel you need?
-    * What learning points in class can you cite to back up that figure?
-    * What specifically would you spend the time on to prepare for Cloudera field work?
-
+---
+<div style="page-break-after: always;"></div>
