@@ -385,18 +385,18 @@ In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We r
 ## <center> <a name="linux_config_lab"/>[Linux Configuration Check](http://tiny.cloudera.com/7steps)
 
 1. Check swappiness on all your nodes 
-    * <code># cat /proc/sys/vm/swappiness </code>
+    * <code># cat /proc/sys/vm/swappiness </code> <p>
 2. Set <code>noatime</code> on node-specific volumes
-    * ex. <code>/dev/sdc /data01 ext3 defaults,noatime 0; mount -o remount /data02 </code>
+    * ex. <code>/dev/sdc /data01 ext3 defaults,noatime 0; mount -o remount /data02 </code><p>
 3. Reserve zero disk space for root on DN disks
-    * <code> mkfs.ext3 -m 0 /dev/sdc; tune2fs -m 0 /dev/sdc </code>
+    * <code> mkfs.ext3 -m 0 /dev/sdc; tune2fs -m 0 /dev/sdc </code> <p>
 4. Maximize open file descriptors and concurrent processes
-    * <code> echo {hdfs|mapred|hbase} - {nofile 32768|nproc 32768} >> /etc/security/limits.conf </code>
-5. Dedicate a disk to the OS and log files.
+    * <code> echo {hdfs|mapred|hbase} - {nofile 32768|nproc 32768} >> /etc/security/limits.conf </code> <p>
+5. Dedicate a disk to the OS and log files.<p>
 6. Test name resolution in both directions
     a. <code>/etc/hosts</code>: List the FQDN first, aliases second  
     b. <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
-    c. DNS: ensure the hostname matches the FQDN
+    c. DNS: ensure the hostname matches the FQDN <p>
 7. Do not enable nscd until you've tested your name resolver service!
     a. Enabling without System Security Services Daemon (SSSD)
         * <code># chkconfig --level 345 nscd on; service nscd start; nscd -g </code>
@@ -409,31 +409,31 @@ In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We r
 ## <center> <a name="mysql_replication_lab"/>Deploy MySQL with Replication 
 
 1. Install the following MySQL packages on your CM and replica nodes
-    a. mysql
-    b. mysql-server
-    c. mysql-connector-java<p>
-2. Configure /etc/my.cnf **before** starting any MySQL processes. Your instructor will provide a starter file. Distribute the file to both nodes.<p>
-3. Run mysql_install_db and start the mysqld service on both nodes<p>
-4. Run /usr/bin/mysql_secure_installation on both nodes. Answer the questions according to these instructions: 
-    a. Set (and record!) the root password
-    b. Remove anonymous users
-    c. Allow remote login
+    a. <code>mysql</code>
+    b. <code>mysql-server</code>
+    c. <code>mysql-connector-java</code> <p>
+2. Configure <code>/etc/my.cnf</code> **before** starting your MySQL processes. A starter file is available in the course repository. Put the file on both master and slave nodes, and watch for values that must differ between master and slave. <p>
+3. Run <code>mysql_install_db</code> and start the <code>mysqld</code> service on both nodes<p>
+4. Run <code>/usr/bin/mysql_secure_installation</code> on both nodes. Answer the questions according to these instructions: 
+    a. Do set (and record!) the root password
+    b. Remove the permission for anonymous users
+    c. Allow for remote login
     d. Remove the test database
     e. Reload the privilege table<p>
 5. Grant replication privileges on all databases to the MySQL user of your choice.
     a. Log in to the MySQL master node with <code>mysql -p</code> 
-    b. To authorize replication, you will need a valid MySQL user/password and the FQDN for the replication node. *Note: The following step does not validate these data. An IP address will not suffice in place of a FQDN.*
+    b. To authorize replication, you'll need the MySQL user/password and the FQDN of the replication node. *Note: This command will not validate your input. Do not use an IP address lieu of a FQDN.*
     c. <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
     d. <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code>
     e. <code>mysql> **FLUSH TABLES WITH READ LOCK;</code>**<p>
-6. Suspend the current MySQL session (^Z) or open another terminal window, and log in again to the MySQL server.<p>
+6. For the next step, you can suspend the current MySQL session (^Z) and use the same terminal window or open another one and log in again to the server.<p>
 7. In this new session, report the server's status to get the current replication offset
     a. <code>mysql> **SHOW MASTER STATUS;**</code>
-    b. Note the file and position; the replicant uses this data to sync with the master.
-    c. Close this session. Remove the lock in the original session; you can then close the session if you like.
+    b. Note the file and position from the output of the last command. The slave instance uses this data to sync to the master.
+    c. Close the second session. Remove the lock on the first session. Close the first session if you like.
     d. <code>mysql> **UNLOCK TABLES;**</code><p>
-8. Log in to the replica instance and set the environment to locate the master:
-    a. <code>mysql> **CHANGE MASTER TO**<br>> **MASTER_HOST='*master host*',**<br>> **MASTER_USER='*replica user*',**<br>> **MASTER_PASSWORD='*replica password*',**<br>> **MASTER_LOG_FILE='*master file*',**<br>> **MASTER_LOG_POS='*master file position*';**</code><p>
+8. Log in to the replica instance and set the environment to locate the master:</p>
+    <code>mysql> **CHANGE MASTER TO**<br> **MASTER_HOST='*master host*',**<br> **MASTER_USER='*replica user*',**<br> **MASTER_PASSWORD='*replica password*',**<br> **MASTER_LOG_FILE='*master file*',**<br> **MASTER_LOG_POS=*master file position*;**</code><p>
 9. Initiate slave operation and determine its status. 
     a. <code>mysql> **START SLAVE;**</code>
     b. <code>mysql> **SHOW SLAVE STATUS \G**</code>
@@ -494,11 +494,15 @@ In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We r
 
 ## <center> <a name="hdfs_benchmarking"/>Benchmarking
 
-* [TeraSort Suite: teragen, terasort, teravalidate](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite)
-* [TestDFSIO](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio)
-* [<strong>S</strong>tatistical <strong>W</strong>orkload <strong>I</strong>njector for <strong>M</strong>apReduce](https://github.com/SWIMProjectUCB/SWIM/wiki)
-    * Preferred by Cloudera's Partner Engineering group
-* NameNode only: [nnbench](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#namenode-benchmark-nnbench)
+* First things first: what's the difference between benchmarking and performance?
+    * And what's the difference between baseline and workload measurement? 
+* What tools do we use in the field?
+    * [TeraSort Suite: teragen, terasort, teravalidate](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite)
+    * [TestDFSIO](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio)
+    * [<strong>S</strong>tatistical <strong>W</strong>orkload <strong>I</strong>njector for <strong>M</strong>apReduce](https://github.com/SWIMProjectUCB/SWIM/wiki)
+        * Used by Cloudera Partner Engineering
+        * Not an OOB tool
+* My advice: always start with NameNode testing: [nnbench](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#namenode-benchmark-nnbench)
 
 [Michael G. Noll's blog post](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/) provides a thorough review of these tools (not including SWIM).
 
@@ -508,10 +512,11 @@ In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We r
 ## <center> <a name="namenode_web_ui"/> NameNode Web UI
 
 * [Vijay Thakorlal's breakdown/annotation article](http://vijayjt.blogspot.com/2013/02/hadoop-namenode-web-interface.html) is a useful review/refresh
-* Significant facelift in newer Hadoop versions
+* It's received a significant facelift in recent Hadoop releases
     * Browse and navigate it if you haven't!
-* SNN's web UI is at port 50090
-    * Also reports the Hadoop version in use
+* SNN's web UI port: 50090
+    * One place to find the Hadoop version in use
+    * (I use this interface when the NameNode is in any kind of trouble)
 
 ---
 <div style="page-break-after: always;"></div>
