@@ -406,7 +406,9 @@ In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We r
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Lab
-## <center> <a name="mysql_replication_lab"/>Deploy MySQL with Replication 
+## <center> <a name="mysql_replication_lab"/>Deploy MySQL with Replication
+
+<!-- Need an appearance fix for steps 7 and 8 -->
 
 1. Install the following MySQL packages on your CM and replica nodes
     a. <code>mysql</code>
@@ -566,22 +568,22 @@ In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We r
 
 * The NameNode knows which DataNodes stores blocks for a given request
     * It doesn't know [which nodes may have cached them](https://issues.apache.org/jira/browse/HDFS-4949)
-    * Any repeat job that uses a different replica pays disk-transfer cost twice
-    * Probably washes out in MR performance
-    * For queries ([Impala](http://impala.io/) in particular)<p>, mitigates having more memory to hold working sets<p>
+    * Any repeated job that uses a different replica pays disk-transfer cost twice
+    * Probably washes out with the overhead of a Hive job
+    * With [Impala queries](http://impala.io/), though, it could lead to inefficient (redundant) caching
     
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Solution: Directory caching
     
-* 'Globalizing' cache, or supplying locality for cached blocks to NN
-    1. Specify HDFS objects for caching in advance
-    2. Let DN read associated block into page cache, notify the NN
-    3. Let NN prefer DNs with cache-local blocks
-    3. Provide support to clients via <a href="#scr_and_zcr">fastlane-aware API</a>
-        * Short-circuit read (SCR)
-        * Zero-copy read (ZCR)    
+* Adds a degree of locality for cached blocks
+    1. NN directory data used to specify cacheable HDFS blocks
+    2. The DN reads a block into page cache associated with a specific directory, notifies the NN
+    3. The NN prefers any DN with a cached copy of a requested block
+    3. Clients can be made cache-aware <a href="#scr_and_zcr">one of two ways</a>
+        * Short-circuit read (SCR) API
+        * Zero-copy read (ZCR) API
 
 ---
 <div style="page-break-after: always;"></div>
@@ -613,32 +615,32 @@ In practice, the server that ships with CM (PostgreSQL) doesn't scale well. We r
 ## <center> Directory caching: Other notes
 
 * [Documentation](https://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_hdfs_caching.html)
-* For some it begs the question: how we balance cluster resources
+* The next question: how do we balance memory demand?
     * Queries with [NRT expectations](http://stackoverflow.com/questions/5267231/what-is-the-definition-of-realtime-near-realtime-and-batch-give-examples-of-ea)
     * MR jobs favoring parallel efficiency, low cost, simple scheduling
-    * We'll go deeper in <a href="yarn_rm">YARN RM</a>
+    * We'll dig deeper this afternoon in the <a href="#yarn_rm">YARN RM</a> section
     
 ---     
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scr_and_zcr"/> Notes on SCR and ZCR
 
-* Short-circuit Reads
-    * [HDFS-2246](https://issues.apache.org/jira/browse/HDFS-2246): Let local clients read DN's process map
-    * Uses [file descriptor passing](http://infohost.nmt.edu/~eweiss/222_book/222_book/0201433079/ch17lev1sec4.html) capability in Linux
-    * [Configured through CM or hdfs-site.xml file](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_hdfs_short_circuit_reads.html) 
+* Short-circuit Read
+    * [HDFS-2246](https://issues.apache.org/jira/browse/HDFS-2246): Let a local client read a datanode's process map
+    * Uses [file descriptor passing](http://infohost.nmt.edu/~eweiss/222_book/222_book/0201433079/ch17lev1sec4.html) capability
+    * [Configurable via CM or hdfs-site.xml file](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_hdfs_short_circuit_reads.html) 
 * Zero-copy Read
-    * [Bypass the DN, use mmap() to read page$](https://issues.apache.org/jira/browse/HDFS-4953)
-    * Clients must implement [ZCR API](https://issues.apache.org/jira/browse/HDFS-5191) 
-    * The dream: bypass system page cache, achieve hardware-rated speed
-* Future goals
-    * Caching directories based on workload
-    * Automatic output file caching (to expedite pipelined jobs)
+    * [Forget the DN: just use mmap() to read page$](https://issues.apache.org/jira/browse/HDFS-4953)
+    * Client implements [ZCR API](https://issues.apache.org/jira/browse/HDFS-5191) 
+    * The dream: can we bypass page cache completely?
+* On the roadmap
+    * Mark directories for caching based on workload
+    * Automatically cache job results (for workflow/pipeline jobs)
     
 ---    
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="hdfs_dir_snapshots"/>Directory snapshots
+## <center> <a name="hdfs_dir_snapshots"/> Directory snapshots
 
 * Capabilities
     * Let users (who had write permissions) retrieve a deleted file
@@ -1727,35 +1729,76 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 # <center> Friday AM
 # <center> Challenges
 
+* You're going to build a C5.1 cluster and kerberise it
+* You will document your progress largely by emails to me and Jeff
+    * mfernest@cloudera.com, jfield@cloudera.com
+* Your email timestamps help us gauge the complexity of the challenge -- don't be hasty, don't wait to the last minute.
+* When you run into trouble, follow the steps we outlined yesterday
+    * Understand your problem first! If there's time, then fix it.
+* It is less important to complete all stages than being able to show/explain your work 
+
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1
+## <center> Challenge 1 - Install an external db server for CM
+
+* Add a MySQL server on any instance that does not host CM
+    * Don't replicate it
+    * Send your instrutors a screenshot of a login session and test query 
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 2
 
+* Install and configure Cloudera Manager 5.1
+* Use the MySQL server you created as its database
+* Create an Instructor account with the password bootcamp
+   * Assign Administrator privileges to this account
+* Email the URL of your CM instance when done
+
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 3
+
+* Install a CDH parcel
+* Enable at minimum the following services: HDFS, YARN, Hive, HUE
+* Email a screenshot of any config errors you first encounter
+* Email a second screenshot once you have cleared as many config errors as you can
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 4
 
+* Use teragen and terasort to run a benchmark on HDFS
+* Choose a file size you feel should complete sorting in 10 minutes or less
+* Email the instructors with the output of your test
+
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 5
 
+* Kerberise your cluster
+* This is a problematic challenge
+    * You have until 11:50a to get as far as you can
+* Email a scfreenshot of the CM home page and HDFS service at that time
+* Include details on the last problem you were working on and what you think needs fixing  
+
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 6
+
+* Evaluate this course -- address the high and low points as you see fit
+* Evaluate your own readiness. Based on your work today and learning over the last wee:
+    * Could you install a cluster at a customer site by yourself?
+    * Which technical area are you strongest?
+    * Which areasdo you need to work on?
+    * What else do you need to prepare yourself?
+* Email this feedback to us. 
 
 ---
 <div style="page-break-after: always;"></div>
