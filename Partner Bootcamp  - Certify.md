@@ -31,7 +31,7 @@
 * Michael Ernest (Senior Solutions Consultant)
     * mfernest@cloudera.com
 * Jeff Shmain (Senior Solutions Architect)
-    * jfield@cloudera.com
+    * jshmain@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
