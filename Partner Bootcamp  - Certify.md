@@ -8,8 +8,8 @@
 
 ---
 
-# <center> Cloudera SI/Partner Bootcamp </center>
-# <center> Monday PM: Introductions/INstallation </center>
+# <center> Cloudera Services Enablement Boot Camp </center>
+# <center> Monday PM: Introductions/Installation </center>
 
 ---
 <div style="page-break-after: always;"></div>
