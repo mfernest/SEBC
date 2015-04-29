@@ -1518,7 +1518,7 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 <div style="page-break-after: always;"></div>
 
 ## <center> Security Lab
-## <center> [Enabling Kerberos with CM](https://wiki.cloudera.com/display/FieldTechServices/Enabling+Kerberos+using+Cloudera+Manager) </center> 
+## <center> [Enabling Kerberos with CM](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-manager/v5-1-x/Configuring-Hadoop-Security-with-Cloudera-Manager/cm5chs_s4_kerb_wizard.html)
 
 * Find the wizard in CM and follow it.
 * Use the links given during presentation to answer the wizard's prerequisites
