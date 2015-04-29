@@ -1511,6 +1511,7 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 * Set up a dedicated Kerberos Domain Controller
     * KRB5 MIT [instructions are here](http://web.mit.edu/Kerberos/krb5-1.8/krb5-1.8.6/doc/krb5-install.html#Realm-Configuration-Decisions)
     * Cloudera [slightly higher-level instructions are here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Configuring-Hadoop-Security-with-Cloudera-Manager/cm5chs_authentication_cm.html)
+    * Or you can use [RedHat's documentation](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
     * Make sure your KDC allows renewable tickets
     * Create a KDC account for the Cloudera Manager user
 
