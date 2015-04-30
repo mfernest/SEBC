@@ -1448,15 +1448,14 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 
 ## <center> Sentry Design Notes
 
-* <a href="http://en.wikipedia.org/wiki/Mediator_pattern">Mediator design</a> implementation
 * Client-side interfaces for binding to the policy engine
     * Hooks for impalad and HiveServer2 supply the hooks
 * Service Provider interfaces for persisting policies to a store
     * Support for file storage to HDFS or local filesystem
-* The policy engine grants/denies access
-    * Rules applied to user, object and permission requested
-* A full-figured [config example is here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH4/4.6.0/CDH4-Security-Guide/cdh4sg_Sentry.html?scroll=concept_iw1_5dp_wk_unique_1)
-* Short [video overview is here](http://vimeo.com/79936560)
+* The policy engine grants/revokes access
+    * Rules applied to user, the objects requested and the necessary permission
+* A fully-formed [config example is here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH4/4.6.0/CDH4-Security-Guide/cdh4sg_Sentry.html?scroll=concept_iw1_5dp_wk_unique_1)
+* You can watch a short [video overview here](http://vimeo.com/79936560)
 <!-- can also throw in my own "Notes on Configuring Sentry" as a handout
 
 ---
@@ -1471,15 +1470,15 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 
 ## <center> [Sentry as a Service](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_sentry_service.html)
 
-* DB-based provider 
-    * Available in CDH 5.1.x/CM 5.1.x
-    * Will store to CM's embedded database or custom database
-* CM supports migration from file-based policies
+* Relational model and storage 
+    * Introduced in CDH 5.1.0/CM 5.1.0
+    * Can leverage CM database server
+* CDH supports migration to database from file-based policies
     * CLI version: <code>sentry --command config-tool --policyIni *policy_file* --import</code>
-    * File-based provider must be disabled for the service to work
-* May be enabled for Hive or Impala or both
-    * Legacy Hive users can retain file provider if desired
-    * Impala users do not have to inherit from Hive configuration
+* Mutually exclusive with file-based provider
+    * Cannot use Sentry service in parallel with File-based configuration
+* However, the service can be enabled for Hive only or Impala only
+    * Allows Impala privileges to evolve separately rather than inherit from Hive
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1522,36 +1521,36 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 ## <center> [Enabling Kerberos with CM](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-manager/v5-1-x/Configuring-Hadoop-Security-with-Cloudera-Manager/cm5chs_s4_kerb_wizard.html)
 
 * Find the wizard in CM and follow it.
-* Use the links given during presentation to answer the wizard's prerequisites
-
-<!-- Do I need permission to share this wiki article with a non-employee audience? -->
+* Use the links given with this presentation to answer the wizard
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Optional challenge
+## <center> Optional challenge - Test-driven setup
 ## <center>[JDBC Connections in a Kerberised Cluster](http://blog.cloudera.com/blog/2014/05/how-to-configure-jdbc-connections-in-secure-apache-hadoop-environments/)</center>
 
-* There's quite a bit of work to this lab, but if you want to do it all, don't need much hands-on guidance and have the resources, you can:
-    * Set up CDH 5
-    * Test for client connectivity (using JDBC)
-    * Set up and/or integrate an Active Directory instance
-    * Test for a secured client connection
+* There's more work to this lab. If you choose to do it, you will:
+    * Ignore the section on setting up CDH 5 (you've done that)
+    * Test client connectivity with JDBC
+    * Set up and integrate an Active Directory instance
+    * Test with a secured client connection
     * Enable Kerberos
     * Add a Sentry configuration to the mix
-    * Test client connection on last itme
+    * Test client connection again
  
-Then the steps in this blog are a one-stop shop. If you're fluent with these tools, it may take a little more than one hour. Let your instructor know if you plan to attempt this lab as part of the class.
+If you're familiar with AD already, this may take an hour. Let your
+instructor know if you will attempt this lab instead of the shorter
+one. There's no need to do both unless you want the practice.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Security Lab (Choose A or B)
 
-Complete *one* of the following labs:
+Complete *one* of the following labs:<p>
 
-A. [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
-B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
+* [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
+* [Sentry as a Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1582,12 +1581,11 @@ B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/conte
 
 ## <center> Current Version & Resources
 
-* HUE 3.5 released in December, 2013
-   * Pluggable app additions follow CDH version releases
-* Self-help resource site: [gethue.com](http://gethue.com)
-* Walk-throughs [hosted on Vimeo](http://vimeo.com/search?q=gethue)
-    * Short and compressed -- play them repeatedly or stop-and-start
-* The front end for [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
+* HUE 3.7 released in October, 2014
+* Your self-help resource site: [gethue.com](http://gethue.com)
+* Several walk-throughs [available on Vimeo](http://vimeo.com/search?q=gethue)
+    * These are short/compressed 
+* Provides the front end for [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1606,6 +1604,7 @@ B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/conte
 
 * [Hive](http://hive.apache.org)
     * [Beeswax editor](http://demo.gethue.com/beeswax/#query)
+    * Can also use HiveServer2
 * [Impala](http://impala.io/)
     * [Graphical SQL data browser and query interface](http://demo.gethue.com/impala/#query)
 * [DB Query](http://demo.gethue.com/rdbms/)
@@ -1630,8 +1629,8 @@ B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/conte
 
 ## <center> <a name="hue_workflow_editors">Workflow Tools</a>
 
-* [(Oozie) Dashboard](http://demo.gethue.com/oozie/)
-* [Editor, AKA Workflow Manager](http://demo.gethue.com/oozie/list_workflows/)
+* [Oozie Dashboard](http://demo.gethue.com/oozie/)
+* [Workflow Manager](http://demo.gethue.com/oozie/list_workflows/)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1662,19 +1661,17 @@ B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/conte
 ## <center> <a name="hue_admin_features">HUE Administrative Features</a>
 
 * Hue's database stores user accounts, Hive queries, job submissions
-* Inspectable: <code>sqlite3 /var/lib/hue/desktop.db</code>  
 * Embedded database is <code>(SQLite)</code>
-    * Supported alternatives: [MySQL, PostgreSQL, Oracle](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Requirements-and-Supported-Versions/cdhrsv_db.html)
+    * Also supported: [MySQL, PostgreSQL, Oracle](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Requirements-and-Supported-Versions/cdhrsv_db.html)
+* Inspectable: <code>sqlite3 /var/lib/hue/desktop.db</code>  
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> UI Walk-through
+## <center> HUE Lab: Self-guided walk-throughs
 
 * [Demo a query (Impala)](http://blog.cloudera.com/blog/2013/10/explore-the-impala-app-in-hue/)
 * [Demo a job submission](http://gethue.com/hadoop-tutorial-submit-any-oozie-jobs-directly-from/)
-* File/job browsing
-* User administration
 * [Single sign-on (SSO) Support](http://blog.cloudera.com/blog/2013/10/enabling-sso-authentication-in-hue/)
 * [LDAP integration](http://blog.cloudera.com/blog/2014/02/how-to-make-hadoop-accessible-via-ldap/)
 
@@ -1683,29 +1680,40 @@ B. [Sentry Service Configuration (new in CDH 5.1)](http://www.cloudera.com/conte
 
 ## <center> HUE Lab: Standalone Installation </center>
 
-1. Use [this documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_hue_installation.html), perform the following steps:
-2. Package-install HUE on any non-CM node in your cluster.
-3. TBD this
-4. TBD that
-5. TBD third task
-6. Review the processes TBD
-7. Review the logs TBD
-8. Review the database schema 
+* Use [this documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_hue_installation.html)
+* Install a standalone instance of HUE on one of your worker nodes
+* Have a lab partner access your instance and explore
+    * Let them add/delete a file, etc.
+* Add the user/password: instructor/cloudera
+* Email a capture of this HUE instance along with the URL **in** **text** 
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> HUE Lab: Run Sample Job via Workflow
+## <center> HUE Lab: Connect to Sentry Service
+
+* If you set up Sentry with a file-based provider, go back and install it as a service
+* Use [this tutorial](http://gethue.com/apache-sentry-made-easy-with-the-new-hue-security-app) to connect to the service
+* Email your hue.ini file when it is complete and working
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> HUE Lab: Add Security Component
+## <center> HUE Lab: Authenticate using Linux users/groups
+
+* Do this work on your standalone HUE instance
+* Add a Linux user account 'bootcamper' with the password 'cloudera' to that host. 
+* [Use this guide](http://gethue.com/hadoop-tutorial-how-to-integrate-unix-users-and-groups/) to log into HUE with the bootcamper account.
+* You can show this working to either instructor -- no other report is required.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> HUE Lab: Run HUE Service on CM
+## <center> HUE Bonus Lab: Speeding up HUE Service 
+
+* Your HUE standalone installation should be version 3.8
+* If so, [follow this guide](http://gethue.com/using-nginx-to-speed-up-hue-3-8-0/) to accelerate HUE responsiveness 
+* Capture the screen for nginx and email it.
 
 ---
 <div style="page-break-after: always;"></div>
