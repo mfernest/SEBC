@@ -1734,10 +1734,10 @@ Complete *one* of the following labs:<p>
 
 ## <center> <a name="troubleshooting_philosophy"/> Cloudera's Partner Training Philosophy </center>
 
-* You're hearing it right now
-    * This event is a pilot for a broader field-readiness program.
-    * We can't scale with mentoring and shadowin
-    * Cloudera University training is user, not partner oriented 
+* The mantra: we need partners to win
+    * The program, on the other hand: slowly forming
+    * Cloudera University training is user, not field-partner oriented 
+    * This is the third delivery for field training.
 * We're learning how best to share our field knowledge and resources
     * Feedback helps: how can we support you in the field?
     * Which resources can contribute most to your success?
@@ -1840,76 +1840,105 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 # <center> Friday AM
 # <center> Challenges
 
-* You're going to build a C5.1 cluster and kerberise it
-* You will document your progress largely by emails to me and Jeff
-    * mfernest@cloudera.com, jfield@cloudera.com
-* Your email timestamps help us gauge the complexity of the challenge -- don't be hasty, don't wait to the last minute.
-* When you run into trouble, follow the steps we outlined yesterday
-    * Understand your problem first! If there's time, then fix it.
-* It is less important to complete all stages than being able to show/explain your work 
+* You're going to build a C5.x cluster and kerberise it
+* You'll document your progress by email to me and Jeff
+    * mfernest@cloudera.com
+    * jshmain@cloudera.com
+* If you run into show-stopping trouble along the way:
+    * Identify the problem and describe it
+    * BEFORE you fix anything, list 2-3 hypotheses about the problem
+    * Email this description. THEN AND ONLY THEN should you try to fix it.
+* Do not focus on doing everything. Focus on doing what you can very well.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 1 - Install an external db server for CM
 
-* Add a MySQL server on any instance that does not host CM
-    * Don't replicate it
-    * Send your instrutors a screenshot of a login session and test query 
+* Install a MySQL server on a non-CM node 
+* Be sure to secure the database and assign a root password
+* Create databases for the Cloudera Management Services and Hive Metastore **only**
+* Send your instrutors a screenshot of the following:
+    * Output from MySQL listing the databases
+    * Output from MySQL listing the database users
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 2
+## <center> Challenge 2 - Install Cloudera Manager
 
-* Install and configure Cloudera Manager 5.1
-* Use the MySQL server you created as its database
-* Create an Instructor account with the password bootcamp
-   * Assign Administrator privileges to this account
-* Email the URL of your CM instance when done
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> Challenge 3
-
-* Install a CDH parcel
-* Enable at minimum the following services: HDFS, YARN, Hive, HUE
-* Email a screenshot of any config errors you first encounter
-* Email a second screenshot once you have cleared as many config errors as you can
+* Install and configure Cloudera Manager 5.4
+* Use your MySQL server for the CM management services that need a database
+* Create a MyOverlord account with the password is_michael
+   * Assign Full Administrator privileges to this account
+* Email the URL of your CM console
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 4
+## <center> Challenge 3 - Install CDH
 
-* Use teragen and terasort to run a benchmark on HDFS
-* Choose a file size you feel should complete sorting in 10 minutes or less
-* Email the instructors with the output of your test
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> Challenge 5
-
-* Kerberise your cluster
-* This is a problematic challenge
-    * You have until 11:50a to get as far as you can
-* Email a scfreenshot of the CM home page and HDFS service at that time
-* Include details on the last problem you were working on and what you think needs fixing  
+* Install CDH 5.2.1
+    * See http://archive.cloudera.com/cdh5/parcels/
+* Enable ZooKeeper, HDFS, YARN, and Hive only
+    * Configure the Hive Metastore to use your MySQL server
+* When your services are amber or green, move on.
+    * If you have time, you can clear non-fatal alerts
+* Email screenshot(s) that shows:
+    * The schema of your metastore database (not the data)
+    * The Cloudera Manager console 
+    * An additional screenshot showing any alerts you cleared
+* Once I receive this, I might login to your CM using the MyOverlord account
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6
+## <center> Challenge 4 - Testing
 
-* Evaluate this course -- address the high and low points as you see fit
-* Evaluate your own readiness. Based on your work today and learning over the last wee:
-    * Could you install a cluster at a customer site by yourself?
-    * Which technical area are you strongest?
-    * Which areasdo you need to work on?
-    * What else do you need to prepare yourself?
-* Email this feedback to us. 
+* Run the following tests on each node
+    * hdparm -t on the node's root volume
+    * dd if=/dev/zero bs=1M count=1024 | md5sum
+    * Capture each test and its output (one screenshot per node, please)
+* Submit your email and **explain** what is being tested along with output 
+* Use the time(1) command with the following to record total duration
+    * teragen a file of 10,240,000 records;
+    * Enforce a block size of 64MB
+    * Run terasort on this file
+    * Capture the first 20-24 lines of each command and job output 
+* Email the screenshots, the teragen/terastore commands and the time(1) results
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Challenge 5 - Kerberize the cluster
+
+* Secure your cluster as follows:
+    * Create your own KDC with a realm **YOURFIRSTNAME**.FCE, e.g., MICHAEL.FCE
+    * Capture a kinit/klist output
+    * Submit your kdc.conf file 
+* Enable Kerberos in Cloudera Manager
+    * Capture the Kerberos credentials page in CM once they have been populated
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Challenge 6 - Set up Sentry as a Service
+
+* You will first have to create a database in your MySQL server
+* You will also have to create the schema
+    *  (There is a script for this in the parcels distribution)
+* Enable and configure the service
+
+* Capture a screenshot showing the database connection test succeeded
+* EMAIL WHAT YOU HAVE NO LATER THAN 11:45 AM
+
+* HEADS UP, PENCILS DOWN:
+* Complete the course survey: http://tinyurl.com/fce-bc-survey
+* In an email to Jeff and me: evaluate your own readiness. Based on your work this week:
+    * How long would it take to complete all six challenges, if there was no time limit?
+    * In which challenge did you feel strongest?
+    * In which challenge did you feel weakest?
+    * What resources could you most use to improve (admin training, lab practices, mentoring)?
 
 ---
 <div style="page-break-after: always;"></div>
