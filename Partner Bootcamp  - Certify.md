@@ -322,7 +322,11 @@ The database server bundled with CM is not production-oriented. Cloudera support
 * Many customers want to de-SPOF Cloudera Manager itself. 
     * [Replicating the DB](http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) addresses one piece. 
 <<<<<<< HEAD
+<<<<<<< HEAD
     * Configuring agents to failover is not yet documented for public consumption
+=======
+    * Configuring CM agents for failover is not documented for public use
+>>>>>>> 375c16e... Updates for May 18, 2015 delivery (London)
 =======
     * Configuring CM agents for failover is not documented for public use
 >>>>>>> 375c16e... Updates for May 18, 2015 delivery (London)
@@ -1851,8 +1855,13 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 
 * You're going to build a C5.1 cluster and kerberise it
 <<<<<<< HEAD
+<<<<<<< HEAD
 * You will document your progress largely by emails to me and Jeff
     * mfernest@cloudera.com, jfield@cloudera.com
+=======
+* You will document your progress largely by emails to me and David
+    * mfernest@cloudera.com, dbeech@cloudera.com
+>>>>>>> 375c16e... Updates for May 18, 2015 delivery (London)
 =======
 * You will document your progress largely by emails to me and David
     * mfernest@cloudera.com, dbeech@cloudera.com
