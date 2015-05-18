@@ -30,8 +30,8 @@
 
 * Michael Ernest (Senior Solutions Consultant)
     * mfernest@cloudera.com
-* Jeff Shmain (Senior Solutions Architect)
-    * jshmain@cloudera.com
+* David Beech (Senior Solutions Architect)
+    * dbeech@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
@@ -218,7 +218,7 @@ We will address you as experienced field technicians who:
 
 ## <center> <a name="parcels"/> What is a Parcel?
 
-<p>A [structured tar file](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why). We use them to:</p>
+<p>Parcels are [minimally structured tar files](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F). We use them to:</p>
 
 * Bundle components for one CDH release
     * Version-matching is a given
@@ -293,8 +293,8 @@ The following services require a database:
 * Sentry Server (C5.1 and later)
 * Cloudera Navigator Audit & Metadata Servers
 * Hive Metastore
-* [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1) (workflow automation)
-* [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) (*H*adoop *U*ser *E*nvirenment)
+* [Oozie]((http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1) (workflow automation)
+* [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) (*H*adoop *U*ser *E*nvironment)
 
 *CM's Host Monitor and Service Monitor use a [LevelDB](https://github.com/google/leveldb)-based storage layer.
 
@@ -336,20 +336,20 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 ## <center> CM Install Labs - *Before* You Start
 
-* Email both instructors your GitHub handle using this subject line:
+* Email both instructors with this subject line:
     * [Your Name] - Boot Camp Lab Work
-    * Ex: [Michael Ernest] - Boot Camp Lab Work
-* Reply to this thread for all lab submissions this week
-* Each lab will indicate the content to submit
-* Make sure host information appears in every terminal capture
-* Make sure the cluster name appears in every UI capture
+* Use this thread for all submissions through Thursday
+    * This step saves us a lot of time
+* Follow the instructions in each lab on what to submit
+* Show the host information in every terminal screen capture
+* Show the cluster identity in every UI capture
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Lab - AWS
 
-* You should have an AWS account and have practiced with it. 
+* You should have an AWS account and practice with it. 
     * If not, [you've got some work ahead of you](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html). 
 * Create 4-5 EC2 nodes
     * Spot instances are risky; you're working under deadlines here
@@ -357,17 +357,15 @@ The database bundled with CM's binary installer is not production-oriented. Clou
     * Instance Family/Type; m3.large will suffice 
     * Use a [Cloudera-supported version](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html) of RHEL/CentOS.
     * AWS Marketplace [can help you](https://aws.amazon.com/marketplace/pp/B00IOYDTV6) 
-    * You'll need [extra storage](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html)
-    * Security may be wide open 
+    * You'll need [an extra volume to play with](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html)
+    * Hint: wide-open security makes for less work
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Labs - Overview
 
-* Email the public IPs of your EC2 nodes to the instructors
-    * mfernest@cloudera.com
-    * dbeech@cloudera.com
+* Submit the public IPs of your EC2 nodes to the instructors     
 * Run <a href="#linux_config_lab">OS configuration checks</a>
 * Install [MySQL](<a href="#mysql_replication_lab">)
 * Follow Installation Path B (guidance below)
@@ -382,23 +380,19 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 This checklist uses a [presentation on Slideshare](http://tiny.cloudera.com/7steps) and is a small sample of an install precheck. 
 
-Complete the following objectives and submit the results by email.
-
-The command you used and its output (screenshot). Make sure the
-screenshot includes the host that was used. You may send one
-screenshot for all the work.
+For this lab, show the commands you used and the output for each step in a screenshot. Make sure the screenshot includes the host that was used. 
 
 1. Check swappiness on all your nodes, then set the recommended value
     * Set the value to 1 for current and future boots
 2. Set <code>noatime</code> on DN volumes
-    * Do this on your non-root volume 
+    * For labs, do this on your root volume 
 3. Set reserve space for root on DN volumes to 0
-    * Do this on your non-root volume
-4. Verify the user resource limits for max file descriptors and processes
+    * For labs, do this on your root volume
+4. Check the user resource limits for max file descriptors and processes
 5. Test forward and reverse lookups for both file-based and DNS name services
     a. Note: <code>/etc/hosts</code>, the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) must be listed first  
     b. Note: <code>127.0.0.1</code> **must** resolve to <code>localhost</code>
-6. Enable nscd and ntpd services
+6. Enable nscd
     a. Note: consult documentation before [running nscd with SSSD](http://goo.gl/68HTMQ)
 
 ---
