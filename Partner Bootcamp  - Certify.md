@@ -30,8 +30,8 @@
 
 * Michael Ernest (Senior Solutions Consultant)
     * mfernest@cloudera.com
-* David Beech (Senior Solutions Architect)
-    * dbeech@cloudera.com
+* Jeff Shmain (Senior Solutions Architect)
+    * jshmain@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
@@ -55,10 +55,10 @@ We will address you as experienced field technicians who:
 
 * Name three ways to retrieve the Hadoop version of a CDH cluster.
 * Which command reports only the JVM-based processes on a machine?
-* In what location are Yum repository configurations stored?
+* What is the default port used by a Kerberos 5 KDC server? 
 * What is the default port used by the NameNode web UI?
-* Where is the replication of a specific HDFS file reported?
-* You must have superuser privileges to install CDH parcels (T/F)
+* How can you find the replication of a specific HDFS file?
+* Installing CDH parcels requires superuser privilege (T/F)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -75,9 +75,8 @@ We will address you as experienced field technicians who:
 
 ## <center> <a name="course_objectives"/a> Objectives
 
-* Prepare for Cloudera field engagements
-* Test your abilities against broad objectives and time challenges
-* Provide feedback on your readiness
+* Prepare for Cloudera field work
+* Receive feedback on your readiness
 * Identify areas to study and practice further
 
 ---
@@ -115,12 +114,10 @@ We will address you as experienced field technicians who:
 * You'll be asked to summarize and/or submit lab work
     * We want to see how you do the work
     * Be prepared to describe your methods/process
-* We evaluate **competence** and field-relevant practices in mind.
+* We evaluate with **competence** in mind.
     * Good: you can diagnose your own missteps
     * Better: you can reproduce them
-    * Even better: you can describe ways to avoid them
-    * You document well enough to share knowledge
-* No one has passed without completing lab work for five sections
+    * Best: you can describe ways to avoid them
 
 ---
 <div style="page-break-after: always;"></div>
@@ -128,12 +125,11 @@ We will address you as experienced field technicians who:
 ## <center> <a name="scored_challenges"/> Friday Morning: Challenges
 
 * Six challenges, increasingly difficult
-* There is credit for completing/documenting each stage
+* Credit for completing and documenting each stage
 * You may have to explain problems you encounter
     * The hypothesis you used to identify a problem
     * The method you used to demonstrate a problem 
     * The test you used to show resolution
-* No one has passed without completing at least four stages
 
 ---
 <div style="page-break-after: always;"></div>
@@ -141,9 +137,9 @@ We will address you as experienced field technicians who:
 ## <center> Monday PM
 ## <center> <a name="cm_cdh_installation_section"/>Cloudera Manager & CDH Installation
 
-* <a href="#install_methods">Installation methods</a>
-* <a href="#parcels">Understanding parcels</a>
-* <a href="#db_setup">Setting up a database</a>
+* <a href="#install_methods">Installation Methods</a>
+* <a href="#parcels">Understanding Parcels</a>
+* <a href="#db_setup">Setting up the database</a>
 * <a href="#cm_cdh_key_points">CM and CDH Key Points</a>
 * <a href="#cm_ui_overview">Cloudera Manager UI Overview</a>
 
@@ -172,11 +168,10 @@ We will address you as experienced field technicians who:
 * [Path A: One-stop binary installer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
     * Short-term, no-admin projects (pilots, POCs, dev)
 * [Path B: Install CM as a package](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
-    * Any long-term use, production clusters
+    * Intended for long-term use and production clusters
 * [Path C: tarballs ](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
-    * No root/sudo access is available
-    * Heavy customization required
-    * Third-party deployment tools
+    * No root/sudo access
+    * You've got your own deployment tools
     
 ---
 <div style="page-break-after: always;"></div>
@@ -185,16 +180,17 @@ We will address you as experienced field technicians who:
 
 1. Install a DB server for [Cloudera Manager](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
     * CDH services can hop on: Hive Metastore, Oozie, HUE 
-2. Install the CM Server package
+2. Install CM Server package
 3. Distribute agent software (packages or through CM)
 4. Distribute/activate CDH packages or parcels
-5. Locate CDH services<p/>
+5. Assign CDH services<p/>
 
 **[Common side requests include](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html):</p>
-    * Adding CM to a standing CDH cluster (non-trivial, not fully documented)
-    * Integrating CM with Puppet, Chef
-    * Installing without internet access
-    * Adhering to site/security policies
+
+* Adding CM to a standing CDH cluster
+* Integrating CM with tools such as Puppet
+* Working with no internet access
+* Working with site/security policies
 
 ---
 <div style="page-break-after: always;"></div>
@@ -290,29 +286,29 @@ We will address you as experienced field technicians who:
 
 ## <center> <a name="cm_service_dbs"/>[Service Databases](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html) 
 
-The following CM & CDH services use a database:
+The following services require a database:
 
-* CM Activity Monitor (MRv1 service only)
+* CM Activity Monitor (MRv1 only; not used by YARN)
 * CM Reports Manager
-* Cloudera Navigator (Audit & Metadata services)
-* Sentry service (C5.1 and later)
+* Sentry Server (C5.1 and later)
+* Cloudera Navigator Audit & Metadata Servers
 * Hive Metastore
 * [Oozie]((http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1) (workflow automation)
 * [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) (*H*adoop *U*ser *E*nvironment)
 
-*CM's Host Monitor and Service Monitor use a [LevelDB](https://github.com/google/leveldb)-based storage layer, which is file-based.
+*CM's Host Monitor and Service Monitor use a [LevelDB](https://github.com/google/leveldb)-based storage layer.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_embedded_db"/> CM's embedded database</a> 
 
-The database server bundled with CM is not production-oriented. Cloudera supports Oracle, MySQL, and PostgreSQL as external servers.  
+The database bundled with CM's binary installer is not production-oriented. Cloudera supports an Oracle, MySQL, and PostgreSQL as external servers.  
 
-* Some field people will use Path A for expedience but bypass the embedded DB
-* You can migrate to an external DB server later if necessary
-    * Tedious, requires restarts -- make sure your customer can tolerate this
-* Some customers delegate all DB services to an administrative group.
+* Some field people will use Path A and ignore the embedded instance
+* You can also migrate later if necessary
+    * Can be tedious and require service outages
+* Note: some customers delegate all DBs to an administrative group.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -321,7 +317,7 @@ The database server bundled with CM is not production-oriented. Cloudera support
 
 * Many customers want to de-SPOF Cloudera Manager itself. 
     * [Replicating the DB](http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) addresses one piece. 
-    * Configuring CM agents for failover is not documented for public use
+    * Configuring agents to failover: not yet documented for public use
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1845,8 +1841,8 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 # <center> Challenges
 
 * You're going to build a C5.1 cluster and kerberise it
-* You will document your progress largely by emails to me and David
-    * mfernest@cloudera.com, dbeech@cloudera.com
+* You will document your progress largely by emails to me and Jeff
+    * mfernest@cloudera.com, jfield@cloudera.com
 * Your email timestamps help us gauge the complexity of the challenge -- don't be hasty, don't wait to the last minute.
 * When you run into trouble, follow the steps we outlined yesterday
     * Understand your problem first! If there's time, then fix it.
