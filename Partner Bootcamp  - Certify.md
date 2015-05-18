@@ -268,9 +268,9 @@ We will address you as experienced field technicians who:
 
 * Automates cloud-based CM/CDH deployment
     * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
-    * Internalizes [Cloudera AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
-* See [User Guide for v1.0.0](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
-* Cloud deployment is **not** discussed in this boot camp.
+    * Internalizes [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
+* See [User Guide v1.0.0](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
+* Cloud-based deployment is **not** discussed in this boot camp.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -293,7 +293,7 @@ The following services require a database:
 * Sentry Server (C5.1 and later)
 * Cloudera Navigator Audit & Metadata Servers
 * Hive Metastore
-* [Oozie]((http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1) (workflow automation)
+* [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1)
 * [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) (*H*adoop *U*ser *E*nvironment)
 
 *CM's Host Monitor and Service Monitor use a [LevelDB](https://github.com/google/leveldb)-based storage layer.
@@ -317,7 +317,7 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 * Many customers want to de-SPOF Cloudera Manager itself. 
     * [Replicating the DB](http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) addresses one piece. 
-    * Configuring agents to failover: not yet documented for public use
+    * Configuring agents to failover is not yet documented for public consumption
 
 ---
 <div style="page-break-after: always;"></div>
@@ -338,6 +338,7 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 * Email both instructors with this subject line:
     * [Your Name] - Boot Camp Lab Work
+    * Ex. [Michael Ernest] - Boot Camp Lab Work
 * Use this thread for all submissions through Thursday
     * This step saves us a lot of time
 * Follow the instructions in each lab on what to submit
@@ -349,10 +350,10 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 ## <center> CM Install Lab - AWS
 
-* You should have an AWS account and practice with it. 
+* You have an AWS account and have practiced with it. 
     * If not, [you've got some work ahead of you](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html). 
 * Create 4-5 EC2 nodes
-    * Spot instances are risky; you're working under deadlines here
+    * Spot instances are risky; you're working under deadlines in this course
     * Use five nodes if you want to separate Cloudera Manager from the rest 
     * Instance Family/Type; m3.large will suffice 
     * Use a [Cloudera-supported version](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html) of RHEL/CentOS.
