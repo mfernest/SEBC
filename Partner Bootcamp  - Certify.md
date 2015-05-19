@@ -150,7 +150,7 @@ We will address you as experienced field technicians who:
 
 * <a href="#cm_install_paths">Documented paths</a>
 * <a href="#cm_install_milestones">Using installation milestones</a>
-* <a href="#cm_install_logging">Using logging</a>
+* <a href="#cm_install_logging">Logging milestones</a>
 * <a href="#word_on_cloudera_director">Cloudera Director</a>
 
 ---
@@ -222,7 +222,7 @@ We will address you as experienced field technicians who:
 
 * Bundle components for one CDH release
     * Version-matching is a given
-    * New components (Accumulo, Kafka) come as additional parcels 
+    * New components (Accumulo, Kafka) delivered as add-on parcels 
 * Separate from Linux packaging
     * Default location: <code>/opt/cloudera/parcels</code>
     * Avoids superuser privileges
@@ -957,9 +957,9 @@ Adds cache locality to NN reports<p>
     * Currently running queries
     * Resources available (only memory is checked at present)
     * Current queue length
-* The local impalad decides using cached global data
-    * Given possible latency, admission control is soft
-* Favori keeping tasks alive over maintaining headroom
+* The local impalad decides, using cached global data
+    * Given possible delays, admission control is soft
+* Favors keeping tasks alive over maintaining headroom
     * Work to improve this area is ongoing
 
 ---
@@ -972,7 +972,7 @@ Adds cache locality to NN reports<p>
     * Apply opportunistic processing to improve utilization
     * The trick is balancing low-latency and batch processing tasks
 * Effort is ongoing to improve resource estimation
-* One project: a <strong>Low</strong>-<strong>L</strong>atency <strong>A</strong>pplication <strong>MA</strong>ster ([LLAMA](http://cloudera.github.io/llama/)) for Impala
+* One project: a <strong>L</strong>ow-<strong>L</strong>atency <strong>A</strong>pplication <strong>MA</strong>ster ([LLAMA](http://cloudera.github.io/llama/)) for Impala
     * Released on CDH5 as a beta component
     * Goal: to run all Impala queries using one ApplicationMaster
         * Cache resources, minimize interaction with RM
@@ -985,9 +985,9 @@ Adds cache locality to NN reports<p>
 
 * Prefer Admission Control over straight RM
 * LLAMA is experimental
-    * Customer feedback is great -- if they're up for it
+    * Feedback is great -- if the customer is up for it
 * Current best practices
-    * Static Resource Pools for coarse-grained isolation
+    * Use Static Resource Pools for coarse-grained service isolation
     * Impala with AC to set resource limits by user/group
     * Try [LLAMA](http://cloudera.github.io/llama/) on Pilot/Dev/Staging
 
@@ -997,11 +997,10 @@ Adds cache locality to NN reports<p>
 ## <center> YARN/RM Lab: Doing the Math
 
 * [Use this guide](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cdh_ig_yarn_tuning.html), if needed, to answer the following questions. 
-    * How many vcores and how much RAM do you have on your EC2 nodes?
     * How much RAM does an Impalad process need, at minimum?
     * What percentage of RAM should be earmarked for the OS and system services?
-    * Under what conditions might you allocate 2 cores to YARN for every spindle on a worker node?
-    * Using the Container Formulas in Table 8, calculate the value for mapreduce.jobs.maps on your cluster. Show your work carefully.
+    * Under what condition(s) would you allot two cores per spindle in your calculations?
+    * Assume 20 vcores, 128 MB RAM, and ten spindles on eight worker nodes. Using the Container Formulas listed in Table 8, what is the derived value for mapreduce.jobs.maps? Show your work carefully.
     
 Email these questions and your answers to them to the instructors.     
 
@@ -1011,12 +1010,13 @@ Email these questions and your answers to them to the instructors.
 ## <center> YARN/RM Lab: Tuning for YARN
 
 * Review the file <code>yarn/YARNtest.sh</code> in the course repository
+    * It may be broken but still execute
 * Copy it to a cluster node and get it working
     * You can limit the loops to one value each in this phase
 * Run the tests 
     * Raise the parameters to max out your cluster, if necessary
-* Email the instructors with:
-    * The final version of your script (hint: useful comment help)
+* Email the instructors with
+    * The final version of your script (hint: useful comments are good)
     * The results of your least and most efficient runs
 
 ---
