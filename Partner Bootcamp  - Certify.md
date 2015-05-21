@@ -311,7 +311,7 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 * Note: some customers delegate all DBs to an administrative group.
 
 ---
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>G
 
 ## <center> <a name="cm_replicate_db"/> MySQL Replication for HA </a></p>
 
