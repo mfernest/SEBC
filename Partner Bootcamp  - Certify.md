@@ -1,15 +1,16 @@
 <!-- CSS work goes here for the time being -->
-
 <!-- set a:link text-decoration to none -->
-
 <!-- set a:hover text-decoration to underline -->
-
 <!-- http://forums.markdownpad.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
 
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
 # <center> Monday PM: Introductions/Installation </center>
+
+## <center> May 18-22, 2015 </center>
+## <center> London, UK </center>
+
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1904,16 +1905,18 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 
 ## <center> Challenge 4 - Testing
 
+* Apply YARN tunings from your lab exercise 
+    * Use the tunings from the scripted testing 
 * Run the following tests on each node
     * <code>hdparm -t</code> on the node's volume(s)
     * <code>dd if=/dev/zero bs=1M count=1024 | md5sum</code>
     * Capture the tests and output (one screenshot per node)
-* In your email, **explain** what each exercise is testing 
-* Use the <code>time(1)</code> command to record duration on the following jobs:
-    * teragen a file of 102,400,000 records with a 64 MB block size
-    * terasort this fil
-    * Capture the full job output, including command line invocation and time result as a text file
-* Include your explain in the body of the email, and attach the screenshots and text file 
+* Name the capacity each exercise tests, e.g., network throughput
+* teragen/terasort a file of 102,400,000 records 
+    * Use <code>time(1)</code> to record process duration
+    * Use a 64MB block size
+    * Save the job output, including the command and time result, to a text file
+* Attach the screenshots and text file to your email; include the capacities tested in the body of the email.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1923,23 +1926,23 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 * Secure your cluster as follows:
     * Create your KDC with the realm **YOURFIRSTNAME**.FCE, e.g., MICHAEL.FCE
     * Demonstrate its operation with <code>kinit</code> and <code>klist</code>
-    * Save your <code>kdc.conf</code> settings in a text file
 * Enable Kerberos using the Cloudera Manager wizard
-    * Capture the second screen of the wizard once it is filled out
-    * Capture the keytabs listing in CM after it has been populated
+* Include the following in your email:
+    * The <code>kdc.conf</code> contents as a text file
+    * The second screen of the Kerberos wizard once it is filled out
+    * The list of keytabs in CM once it has been populated
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - Set up Sentry as a Service
+## <center> Challenge 6 - Configure Sentry as a Service
 
 * Add a database for Sentry in your MySQL server and create the schema
 * Enable and configure the service
 * Capture the list of tables in the Sentry database
-* Capture a screenshot of the database connection test succeeding
-* EMAIL WHAT YOU HAVE NO LATER THAN 11:50 AM
+* Capture a screenshot of a successful database connection test 
+* EMAIL WHAT YOU HAVE NO LATER THAN 11:55 AM
 
-* HEADS UP, PENCILS DOWN:
 * Complete the course survey: http://tinyurl.com/fce-bc-survey
 * In one last email: evaluate your own readiness. Based on your work this week:
     * How long would it take to complete all six challenges, if there was no time limit?
