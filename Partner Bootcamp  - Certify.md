@@ -1865,10 +1865,12 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 
 ## <center> Challenge 1 - Install an external db server for CM
 
-* Install a MySQL server on a non-CM node 
+* Install a MySQL server on any non-CM node 
+    * Use a repo-based package installer
 * Be sure to secure the database and assign a root password
 * Create databases for the Cloudera Management Services and Hive Metastore **only**
 * Send your instrutors a screenshot of the following:
+    * The text of your MySQL repo configuration file 
     * Output from MySQL listing the databases
     * Output from MySQL listing the database users
 
