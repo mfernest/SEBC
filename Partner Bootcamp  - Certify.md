@@ -7,7 +7,6 @@
 
 # <center> Cloudera Services Enablement Boot Camp </center>
 # <center> Monday PM: Introductions/Installation </center>
-
 ## <center> May 18-22, 2015 </center>
 ## <center> London, UK </center>
 
