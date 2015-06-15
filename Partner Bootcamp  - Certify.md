@@ -315,19 +315,10 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 * Many customers want to de-SPOF Cloudera Manager itself. 
     * [Replicating the DB](http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) addresses one piece. 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     * Configuring agents to failover is not yet documented for public consumption
-=======
     * Configuring CM agents for failover is not documented for public use
->>>>>>> 375c16e... Updates for May 18, 2015 delivery (London)
-=======
     * Configuring CM agents for failover is not documented for public use
->>>>>>> 375c16e... Updates for May 18, 2015 delivery (London)
-=======
     * Configuring agents to failover: not yet documented for public use
->>>>>>> parent of 375c16e... Updates for May 18, 2015 delivery (London)
 
 ---
 <div style="page-break-after: always;"></div>
