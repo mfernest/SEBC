@@ -7,8 +7,8 @@
 
 # <center> Cloudera Services Enablement Boot Camp </center>
 # <center> Monday PM: Introductions/Installation </center>
-## <center> May 18-22, 2015 </center>
-## <center> London, UK </center>
+## <center> June 15-19, 2015 </center>
+## <center> Palo Alto, CA </center>
 
 
 ---
@@ -30,8 +30,6 @@
 
 * Michael Ernest (Senior Solutions Consultant)
     * mfernest@cloudera.com
-* David Beech (Senior Solutions Architect)
-    * dbeech@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
@@ -508,15 +506,15 @@ For this lab, show the commands you used and the output for each step in a scree
 ## <center> <a name="cm_cdh_key_points"/> Summary Points
 
 * Your CM release can be >= your CDH release
-    * We do have customers using CM 5.x to monitor CDH 4.x 
-* A [CM agent](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ag_agent_config.html) reports to one CM server by default
-    * True CM HA is under development
-* CM isn't required to deploy CDH, just a huge improvement
+    * Some customers use CM 5.x to monitor CDH 4.x installations
+* The [CM agent](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ag_agent_config.html) is configured to report to one CM server 
+    * Configuring CM HA is [documented as of Cloudera 5.4](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
+* CM isn't needed to deploy CDH, but a huge convenience
 * CM supports a REST API
-    * Each API version is a ~superset of all prior versions
+    * Each API version is a superset of all prior versions
     * Try <code>http://<i>your_cm_host</i>:7180/api/version</code>
-    * Some endpoints don't apply to earlier CDH releases
-        * The [CM API is here](http://cloudera.github.io/cm_api/)
+    * Some later-version endpoints won't pertain to older CDH releases
+        * Browse the [CM API here](http://cloudera.github.io/cm_api/)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1854,8 +1852,8 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 # <center> Challenges
 
 * You're going to build a C5.x cluster and kerberise it
-* You will document your progress largely by emails to me and David
-    * mfernest@cloudera.com, dbeech@cloudera.com
+* You will document your progress largely by emails 
+    * mfernest@cloudera.com
 * We use your email timestamps to gauge progress -- submit challenges as you go. 
 * If you crush your cluster beyond use, let us know immediately.
 * Mind the requests for explanations when you see them -- we're testing for understanding.
