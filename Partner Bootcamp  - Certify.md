@@ -315,8 +315,6 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 * Many customers want to de-SPOF Cloudera Manager itself. 
     * [Replicating the DB](http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) addresses one piece. 
-    * Configuring agents to failover is not yet documented for public consumption
-    * Configuring CM agents for failover is not documented for public use
     * Configuring CM agents for failover is not documented for public use
     * Configuring agents to failover: not yet documented for public use
 
@@ -1843,70 +1841,90 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 # <center> Challenges
 
 * You're going to build a C5.x cluster and kerberise it
-* You will document your progress largely by emails 
+* You will document your progress by emails 
     * mfernest@cloudera.com
-* We use your email timestamps to gauge progress -- submit challenges as you go. 
-* If you crush your cluster beyond use, let us know immediately.
-* Mind the requests for explanations when you see them -- we're testing for understanding.
+* Submit challenges as you complete them. Do not wait until the end and submit them all.
+* If you brick your cluster and determine you can't continue, let me know immediately.
+* Occasionally I ask for explanations of your results. If you miss them, the stage is considered incomplete.
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Before You Start
+
+* Include in an email with the subject line: <Your Name> - Boot Camp Challenges
+    * A list of your EC2 nodes' DNS names
+    * Indicate which node will have the utility role
+    * Attach a terminal-based screen capture that shows this node's uptime.
+    * Also show the results for the command <code>hadoop fs -ls /</code>
+    * Create a Linux user account, using your own first name, with a UID of 1500
+* You may begin after this email is submitted.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 1 - Install an external db server for CM
 
-* Install a MySQL server on any non-CM node 
-    * Use a repo-based package installer
-* Be sure to secure the database and assign a root password
-* Create databases for the Cloudera Management Services and Hive Metastore **only**
-* Send your instrutors a screenshot of the following:
-    * The text of your MySQL repo configuration file 
-    * Output from MySQL listing the databases
-    * Output from MySQL listing the database users
+* Install a MySQL 5.6 server on any non-utility node 
+    * Add a repo; install the server and client packages only
+    * Download and install the JDBC connector JAR file
+* Add databases for Cloudera Management Services and Hive Metastore
+* Submit the following components as screen captures:
+    * The node hosting your MySQL server
+    * The login/password for each database you added
+    * The full text of your MySQL repo file
+    * Describe the method you used to retrieve to connector, or submit the command-line invocation.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 2 - Install Cloudera Manager
 
-* Install and configure Cloudera Manager 5.4
-* Use your MySQL server for the CM management services that need a database
+* Install the Cloudera repo on your utility node
+* Install the latest version of Cloudera Manager
 * Create a MyOverlord account with the password is_michael
    * Assign Full Administrator privileges to this account
-* Email the URL to your CM console
+* Submit the following components:
+    * List of files in <code>/var/log/cloudera-scm-server</code>
+    * Full output from the CM API endpoint <code>api/v10/cm/deployment</code>
+    * Indicate the new CM account has been tested and is ready to use
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 3 - Install CDH
 
-* Install CDH 5.2.1
-* Enable ZooKeeper, HDFS, YARN, and Hive serivces **only**
-    * Point the Hive Metastore to your MySQL server
-* Once your services are amber or green, move on.
-    * If you clear any alerts, document how you did so
-* Email screenshot(s) that shows:
-    * The tables that make up your metastore database 
-    * The Cloudera Manager page that lists services and their current state
-    * An additional screenshot showing any alerts you cleared
-* Once I receive this, I will verify the MyOverlord account has access
+* Install CDH 5.3.0
+* Enable ZooKeeper, HDFS, YARN and Hive **only**
+* Enable NameNode HA
+* Name this cluster <code>NHBC</code>
+* Create an HDFS directory <code>/user/*youraccount*</code>
+* Submit the following components
+    * Node hosting the Standby NameNode
+    * Full output from the CM API endpoint <code>api/v10/cm/deployment</code>
+    * Username/password to the Metastore database in MySQL
+    * Output of <code>hdfs dfs -ls /user</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 4 - Testing
 
-* Apply YARN tunings from your lab exercise 
-    * Use the tunings from the scripted testing 
-* Run the following tests on each node
+* Tune YARN using the findings from your lab exercise
+* Run the following tests on **each** node
     * <code>hdparm -t</code> on the node's volume(s)
-    * <code>dd if=/dev/zero bs=1M count=1024 | md5sum</code>
-    * Capture the tests and output (one screenshot per node)
-* Name the capacity each exercise tests, e.g., network throughput
+    * <code>dd if=/dev/zero bs=1M count=2048 | md5sum</code>
+    * Retain the results for the fastest and slowest runs only
 * teragen/terasort a file of 102,400,000 records 
     * Use <code>time(1)</code> to record process duration
-    * Use a 64MB block size
-    * Save the job output, including the command and time result, to a text file
-* Attach the screenshots and text file to your email; include the capacities tested in the body of the email.
+    * Enforce a 64MB block size
+    * Change the default mapper count, if you wish
+    * Write the results to your user's HDFS directory
+* Submit the following components
+    * Results of the <code>hdparm</code> and <code>dd</code> commands as specified above
+    * The full <code>terasort</code> and <code>teragen</code> commands you used
+    * The elapsed time for each command
+    * Output of <code>hdfs dfs -ls /user</code>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1914,31 +1932,37 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 ## <center> Challenge 5 - Kerberize the cluster
 
 * Secure your cluster as follows:
-    * Create your KDC with the realm **YOURFIRSTNAME**.FCE, e.g., MICHAEL.FCE
-    * Demonstrate its operation with <code>kinit</code> and <code>klist</code>
+    * Create a KDC to support the realm <code>CHALLENGE.FCE</code>
+    * Authenticate with your user account. Keep the commands/output from both <code>kinit</code> and <code>klist</code>  
 * Enable Kerberos using the Cloudera Manager wizard
-* Include the following in your email:
-    * The <code>kdc.conf</code> contents as a text file
-    * The second screen of the Kerberos wizard once it is filled out
-    * The list of keytabs in CM once it has been populated
+* Run a small 
+* Submit the following:
+    * The transcript od your command-line authentication
+    * The full text of your <code>kdc.conf</code> file
+    * A screen shot of the <code>Credentials</code> tab from your <code>Administration -> Kerberos</code> screen
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 6 - Configure Sentry as a Service
 
-* Add a database for Sentry in your MySQL server and create the schema
-* Enable and configure the service
-* Capture the list of tables in the Sentry database
-* Capture a screenshot of a successful database connection test 
-* EMAIL WHAT YOU HAVE NO LATER THAN 11:55 AM
+* Add a database for Sentry in your MySQL server
+* Enable and configure the Sentry service
+* Create an admin role in Sentry and map your user account to it.
+* Submit the following:
+    * <code>SHOW TABLES</code> output for your Sentry database
+    * <code>SHOW GRANTS</code> output too
+* If you've still got time, run a validation query on Hive from Hue and capture/submit the result.
+     
+* <strong>EMAIL WHAT YOU HAVE NO LATER THAN 11:45 AM, PDT</strong>
 
-* Complete the course survey: http://tinyurl.com/fce-bc-survey
-* In one last email: evaluate your own readiness. Based on your work this week:
-    * How long would it take to complete all six challenges, if there was no time limit?
-    * In which challenge did you feel most prepared?
-    * In which challenge did you feel least prepared?
-    * What resources could you use to improve (training, lab practice, mentoring)?
+* Please complete the course survey: <code>http://tinyurl.com/fce-bc-survey</code>
+
+* <strong>In one last email</strong>: I want you to evaluate, in your own words, a) this course; and b) your own readiness. Specifically, I want you to note:
+    * How long would you need to finish the challenges today (assuming you didn't)?
+    * Which section of this course helped you the most? The least?
+    * Which aspect of this course did you like the most? The least?
+    * What other resources do you need to improve (training, practice time, mentoring)?
 
 ---
 <div style="page-break-after: always;"></div>
