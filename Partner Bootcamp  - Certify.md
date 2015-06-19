@@ -1935,7 +1935,7 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
     * Create a KDC to support the realm <code>CHALLENGE.FCE</code>
     * Authenticate with your user account. Keep the commands/output from both <code>kinit</code> and <code>klist</code>  
 * Enable Kerberos using the Cloudera Manager wizard
-* Run a small 
+* Run the Hadoop pi test program to verify authentication. 
 * Submit the following:
     * The transcript od your command-line authentication
     * The full text of your <code>kdc.conf</code> file
