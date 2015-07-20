@@ -6,15 +6,14 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-# <center> Monday PM: Introductions/Installation </center>
-## <center> June 15-19, 2015 </center>
+## <center> July 20-24, 2015 </center>
 ## <center> Palo Alto, CA </center>
 
 
 ---
 <div style="page-break-after: always;"></div>
 
-
+# <center> Monday PM: Introductions/Installation </center>
 ## <center> Introductions & Overview
 
 - <a href="#instructor">Instructors</a>
@@ -30,6 +29,8 @@
 
 * Michael Ernest (Senior Solutions Consultant)
     * mfernest@cloudera.com
+* Sunil Sitaula (Senior Solutions Architect)
+    * sunil@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
@@ -51,12 +52,12 @@ We will address you as experienced field technicians who:
 
 <strong> Can you answer the following questions in five minutes or less? </strong>
 
-* Name three ways to retrieve the Hadoop version of a CDH cluster.
+* Name three ways to find the Hadoop version of a CDH cluster.
 * Which command reports only the JVM-based processes on a machine?
-* What is the default port used by a Kerberos 5 KDC server? 
+* What are the three elements that compose a Kerberos principal?
 * What is the default port used by the NameNode web UI?
-* How can you find the replication of a specific HDFS file?
-* Installing CDH parcels requires superuser privilege (T/F)
+* How do you determine the replication of a given HDFS file?
+* (T/F) Installing CDH parcels requires superuser privilege 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1937,7 +1938,7 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 * Enable Kerberos using the Cloudera Manager wizard
 * Run the Hadoop pi test program to verify authentication. 
 * Submit the following:
-    * The transcript od your command-line authentication
+    * The transcript of your command-line authentication
     * The full text of your <code>kdc.conf</code> file
     * A screen shot of the <code>Credentials</code> tab from your <code>Administration -> Kerberos</code> screen
 
