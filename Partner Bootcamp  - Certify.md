@@ -217,20 +217,19 @@ We will address you as experienced field technicians who:
 
 ## <center> <a name="parcels"/> What is a Parcel?
 
-<p>Parcels are [minimally structured tar files](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F). We use them to:</p>
+<p>Parcels are [CM-specific service packages](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F). We use them to:</p>
 
 * Bundle components for one CDH release
-    * Version-matching is a given
-    * New components (Accumulo, Kafka) delivered as add-on parcels 
-* Separate from Linux packaging
+    * Version-matching is tested and certified
+    * Some components (Accumulo, KeyTrustee) delivered separately 
+* Resolves Linux packaging constraints
     * Default location: <code>/opt/cloudera/parcels</code>
-    * Avoids superuser privileges
-* Adds lifecycle scheme to deployment
-    * Store multiple CDH parcels without conflict
-    * Only one is active at a time
-    * Supports rolling upgrade and (less painful) downgrade
-* Uses HTTP-based repos
-    *  CM can point to a local repo as needed 
+    * No superuser privileges required
+* Adds lifecycle scheme to service management
+    * You can store multiple parcel versions without conflict
+    * One is active at a time
+    * Support for rolling upgrades and (less painful) downgrade
+* Uses HTTP-based repos, remote or local
 
 ---
 <div style="page-break-after: always;"></div>
