@@ -416,7 +416,7 @@ For this lab, show the commands you used and the output for each step in a scree
 2. Edit your <code>/etc/my.cnf</code> **before** you start MySQL. 
     * The starter file in the course repo is mostly complete/correct.
     * Mind the settings related to the master and slave roles. <p>
-3. Run the <code>mysql_install_db</code> on both nodes before starting the <code>mysqld</code> service<p>
+3. Run the <code>mysql_install_db</code> on both nodes before starting the <code>mysqld</code> service<p>. Ensure that you run the mysql_install_db command as the <code>mysql</code> user to avoid creating files with incorrect permissions.
 4. Run <code>/usr/bin/mysql_secure_installation</code> on each node: 
     a. Set the root password (and write it down!)
     b. Remove permissions for anonymous users
