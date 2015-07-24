@@ -5,6 +5,7 @@
 
 ---
 
+
 # <center> Cloudera Services Enablement Boot Camp </center>
 ## <center> July 20-24, 2015 </center>
 ## <center> Palo Alto, CA </center>
@@ -999,9 +1000,9 @@ Adds cache locality to NN reports<p>
     * How much RAM does an Impalad process need, at minimum?
     * What percentage of RAM should be earmarked for the OS and system services?
     * Under what condition(s) would you allot two cores per spindle in your calculations?
-    * Assume 20 vcores, 128 MB RAM, and ten spindles on eight worker nodes. Using the Container Formulas listed in Table 8, what is the derived value for mapreduce.jobs.maps? Show your work carefully.
+    * Assume 20 vcores, 128 GB RAM, and ten spindles on eight worker nodes. Using the Container Formulas listed in Table 8, what is the derived value for <code>mapreduce.jobs.maps</code>? Show your work carefully.
     
-Email these questions and your answers to them to the instructors.     
+Email these questions with your answers to the instructors.     
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1009,7 +1010,7 @@ Email these questions and your answers to them to the instructors.
 ## <center> YARN/RM Lab: Tuning for YARN
 
 * Review the file <code>yarn/YARNtest.sh</code> in the course repository
-    * It may be broken but still execute
+    * It may be broken but may still run
 * Copy it to a cluster node and get it working
     * You can limit the loops to one value each in this phase
 * Run the tests 
@@ -1843,88 +1844,88 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 * You're going to build a C5.x cluster and kerberise it
 * You will document your progress by emails 
     * mfernest@cloudera.com
-* Submit challenges as you complete them. Do not wait until the end and submit them all.
-* If you brick your cluster and determine you can't continue, let me know immediately.
-* Occasionally I ask for explanations of your results. If you miss them, the stage is considered incomplete.
+    * sunil@cloudera.com
+* Submit challenges as you complete them. 
+* If you brick your cluster, let me know immediately.
+* If I ask you to analyze or explain a step, respond. If you miss
+these, the stage is considered incomplete.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Before You Start
 
-* Include in an email with the subject line: <Your Name> - Boot Camp Challenges
-    * A list of your EC2 nodes' DNS names
-    * Indicate which node will have the utility role
-    * Attach a terminal-based screen capture that shows this node's uptime.
-    * Also show the results for the command <code>hadoop fs -ls /</code>
-    * Create a Linux user account, using your own first name, with a UID of 1500
-* You may begin after this email is submitted.
+* Include in an email with the subject line: [Your Name] - Boot Camp Challenges
+    * Submit a list of your EC2 nodes public DNS names
+    * Indicate which node will host Cloudera Manager
+    * Attach a screen capture that reports this node's uptime and
+    the the output of the command <code>hadoop fs -ls /</code>
+    * Create a Linux user account on all nodes. Use the name <code>challenger</code> and assign a UID of 1500.
+* Once you submit this email, you may begin.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1 - Install an external db server for CM
+## <center> Challenge 1 - Install a MySQL server for CM
 
-* Install a MySQL 5.6 server on any non-utility node 
-    * Add a repo; install the server and client packages only
-    * Download and install the JDBC connector JAR file
-* Add databases for Cloudera Management Services and Hive Metastore
+* Install a MySQL 5.5 or 5.6 server on a different node than CM 
+    * Install the server and client packages only
+    * Download and install the JDBC connector on all nodes
+* Create databases for Management Services and Hive Metastore **only**
 * Submit the following components as screen captures:
+    * A list of MySQL packages installed
     * The node hosting your MySQL server
     * The login/password for each database you added
     * The full text of your MySQL repo file
-    * Describe the method you used to retrieve to connector, or submit the command-line invocation.
+    * A directory listing where you placed the connector.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 2 - Install Cloudera Manager
 
-* Install the Cloudera repo on your utility node
+* Install the Cloudera package repository on the node you specified
 * Install the latest version of Cloudera Manager
-* Create a MyOverlord account with the password is_michael
-   * Assign Full Administrator privileges to this account
-* Submit the following components:
-    * List of files in <code>/var/log/cloudera-scm-server</code>
-    * Full output from the CM API endpoint <code>api/v10/cm/deployment</code>
-    * Indicate the new CM account has been tested and is ready to use
+* Add a MyOverlord account with the password is_michael
+   * Assign the Full Administrator role to this account
+* Submit the following elements as attached text files:
+    * List of contents in <code>/var/log/cloudera-scm-server</code>
+    * Output for the CM API endpoint <code>api/v10/cm/deployment</code>
+* Indicate the new CM account has been tested and is ready to use
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 3 - Install CDH
 
-* Install CDH 5.3.0
-* Enable ZooKeeper, HDFS, YARN and Hive **only**
+* Install the CDH 5.4.0 and Kafka parcels
+* Install the ZooKeeper, HDFS, YARN and Hive services **only**
 * Enable NameNode HA
-* Name this cluster <code>NHBC</code>
+* Rename this cluster <code>NHBC</code>
 * Create an HDFS directory <code>/user/*youraccount*</code>
-* Submit the following components
-    * Node hosting the Standby NameNode
-    * Full output from the CM API endpoint <code>api/v10/cm/deployment</code>
-    * Username/password to the Metastore database in MySQL
-    * Output of <code>hdfs dfs -ls /user</code>
+* Submit the following elements
+    * Screen capture: The CM page that shows the Active and Standby NameNodes
+    * Text file: Output from <code>api/v10/cm/deployment</code> (yes, again)
+    * Screen capture: Output of <code>hdfs dfs -ls /user</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 4 - Testing
 
-* Tune YARN using the findings from your lab exercise
+* Tune YARN according to the findings you got in the YARN/RM lab.
 * Run the following tests on **each** node
     * <code>hdparm -t</code> on the node's volume(s)
     * <code>dd if=/dev/zero bs=1M count=2048 | md5sum</code>
-    * Retain the results for the fastest and slowest runs only
+    * Calculate an average of times across all nodes
 * teragen/terasort a file of 102,400,000 records 
-    * Use <code>time(1)</code> to record process duration
-    * Enforce a 64MB block size
-    * Change the default mapper count, if you wish
+    * Use <code>time(1)</code> to record the job duration
+    * Change the default mapper count to twice the number of DataNodes
     * Write the results to your user's HDFS directory
 * Submit the following components
-    * Results of the <code>hdparm</code> and <code>dd</code> commands as specified above
-    * The full <code>terasort</code> and <code>teragen</code> commands you used
-    * The elapsed time for each command
-    * Output of <code>hdfs dfs -ls /user</code>
+    * Text file: The results of <code>hdparm</code> and <code>dd</code> as specified above
+    * Screen capture: The <code>terasort</code> and <code>teragen</code> commands you used
+    * Output of <code>hdfs dfs -ls /user/challenger</code>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1932,37 +1933,44 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 ## <center> Challenge 5 - Kerberize the cluster
 
 * Secure your cluster as follows:
-    * Create a KDC to support the realm <code>CHALLENGE.FCE</code>
-    * Authenticate with your user account. Keep the commands/output from both <code>kinit</code> and <code>klist</code>  
+    * Install/configure a KDC for the realm <code>BOOT.FCE</code>
+    * Create a principal for your user account. Capture the commands/output <code>kinit</code> and <code>klist</code> to show authenticating with this account.
 * Enable Kerberos using the Cloudera Manager wizard
-* Run the Hadoop pi test program to verify authentication. 
+* Run the Hadoop pi test program as <code>challenger</code>. 
 * Submit the following:
-    * The transcript of your command-line authentication
-    * The full text of your <code>kdc.conf</code> file
-    * A screen shot of the <code>Credentials</code> tab from your <code>Administration -> Kerberos</code> screen
+    * Screen shot: Your command-line authentication and output of
+    ticket credentials
+    * Text file: Your <code>kdc.conf</code> file
+    * Screen shot: The <code>Credentials</code> tab from
+    <code>Administration -> Kerberos</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 6 - Configure Sentry as a Service
 
-* Add a database for Sentry in your MySQL server
-* Enable and configure the Sentry service
+* Create a database for Sentry in your MySQL server
+* Enable/configure the Sentry service
 * Create an admin role in Sentry and map your user account to it.
 * Submit the following:
-    * <code>SHOW TABLES</code> output for your Sentry database
-    * <code>SHOW GRANTS</code> output too
-* If you've still got time, run a validation query on Hive from Hue and capture/submit the result.
+    * <code>SHOW TABLES</code> output for your Sentry database (from MySQL)
+    * <code>SHOW GRANTS</code> output from Hive (beeline)
+* If you've still got time, install HUE and run a sample query.
+    * Submit a screen capture of the result.
      
 * <strong>EMAIL WHAT YOU HAVE NO LATER THAN 11:45 AM, PDT</strong>
 
 * Please complete the course survey: <code>http://tinyurl.com/fce-bc-survey</code>
 
-* <strong>In one last email</strong>: I want you to evaluate, in your own words, a) this course; and b) your own readiness. Specifically, I want you to note:
-    * How long would you need to finish the challenges today (assuming you didn't)?
-    * Which section of this course helped you the most? The least?
+* <strong>In one last email</strong>: I want you to evaluate, in
+your own words, a) the value of this course to you; and b) your own
+readiness. Please write whatever you think is appropriate, but
+include with your note:
+    * How much longer would you need to finish the challenges
+    (assuming you didn't)?
+    * Which section of this course helped you the most? Which helped the least?
     * Which aspect of this course did you like the most? The least?
-    * What other resources do you need to improve (training, practice time, mentoring)?
+    * What other resources could you use to improve your skills (training, practice time, mentoring)?
 
 ---
 <div style="page-break-after: always;"></div>
