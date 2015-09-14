@@ -7,7 +7,7 @@
 
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> July 20-24, 2015 </center>
+## <center> September 14-18, 2015 </center>
 ## <center> Palo Alto, CA </center>
 
 
@@ -28,10 +28,8 @@
 
 ## <center> <a name="instructor"/> Instructors
 
-* Michael Ernest (Senior Solutions Consultant)
+* Michael Ernest (Senior Partner Sales Engineer)
     * mfernest@cloudera.com
-* Sunil Sitaula (Senior Solutions Architect)
-    * sunil@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
