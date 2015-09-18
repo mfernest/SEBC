@@ -363,7 +363,7 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 
 * Submit the public IPs of your EC2 nodes to the instructor(s)
 * Run <a href="#linux_config_lab">OS configuration checks</a>
-* Install [MySQL](<a href="#mysql_replication_lab">)
+* Install <a href="#mysql_replication_lab"> MySQL</a>
 * Follow Installation Path B (guidance below)
 * <a href="#parcels_repo_lab">Create a Parcels repository</a>
 * <a href="#scripted_install_lab">Bonus work: Scripting your pre-checks</a>
