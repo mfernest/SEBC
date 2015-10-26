@@ -6,9 +6,8 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> September 14-18, 2015 </center>
-## <center> Palo Alto, CA </center>
-
+## <center> Octobert 26-30, 2015 </center>
+## <center> New York, NYC </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -37,11 +36,11 @@
 
 We will address you as experienced field technicians who:
 
-* Attended Cloudera's Hadoop for Administrators Course
+* Have attended Cloudera's Hadoop for Administrators Course
 * Have installed CDH on multi-node clusters before
-* Can complete labs without step-by-step directions
-* Read and write shell scripts all the time
-* Are self-motivated; you can read/apply documented processes with little guidance
+* Can complete labs by objective: few step-by-step directions
+* Can read and write shell scripts 
+* Can follow public-facing documentation with little additional guidance
 
 ---
 <div style="page-break-after: always;"></div>
