@@ -1833,41 +1833,41 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 # <center> Friday AM
 # <center> Challenges
 
-* You're going to build a C5.x cluster and kerberise it
-* You will document your progress by emails 
+* You're going to build a C5 cluster and Kerberise it
+* You will document your progress by email
 * mfernest@cloudera.com
-* sunil@cloudera.com
-* Submit challenges as you complete them. 
-* If you brick your cluster, let me know immediately.
-* If I ask you to analyze or explain a step, respond. If you miss
-these, the stage is considered incomplete.
+* Submit your challenges as you complete them -- not at the end of the session.
+* If you brickify your cluster, tell me immediately.
+* I may ask you to explain results you see along the way. If you miss
+this requirement, the entire stage is marked incomplete.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Before You Start
 
-* Include in an email with the subject line: [Your Name] - Boot Camp Challenges
-    * A list of your EC2 nodes DNS names
-    * Specify which node will host Cloudera Manager
-    * A screen capture shows the CM node's uptime and result for the command <code>hadoop fs -ls /</code>
-* Create a Linux user account <code>challenger</code> on all nodes. Use UID 1521.
+* Start an email with the subject line: [Your Name] - Boot Camp Challenges
+    * In it, list your EC2 nodes by public DNS name
+    * Indicate which node will run Cloudera Manager
+    * Show this node's uptime and the output of <code>hadoop fs -ls /</code>
+       * Use a screen capture or ask me to check your screen.
+* Create a Linux user account <code>challenger</code> on all nodes. Set its UID to 1521.
     * Show the <code>/etc/passwd</code> entry for this account
-* Once you submit this email, you may begin the firt challenge.
+* Once you submit this email, you may begin the first challenge.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 1 - Install a MySQL server for CM
 
-* Install a MySQL 5.5 server on a different node than CM 
-* Use packages to install the server and client packages **only**
-* Download and install the JDBC connector on all nodes manually
-* Create databases for CM Management Services and the Hive Metastore **only**
-* Submit the following elements as an email for this challenge:
-    * The IP of the node with your MySQL server installed
-    * A list of the databases created in your MySQL instance
-    * A listing of directory contents where you installed the MySQL connector.
+* Install a MySQL 5.5 server on a non-CM node.
+* Install the server and client with packages, NOT tarballs.
+* Place the JDBC connector correctly on all nodes 
+* Create a database for the CM Management Services and Hive Metastore **only**
+* Submit the following elements in email
+    * The host name of your MySQL server 
+    * A list of the databases in it
+    * A listing of the directory containing the MySQL connector.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1875,45 +1875,47 @@ these, the stage is considered incomplete.
 ## <center> Challenge 2 - Install Cloudera Manager
 
 * Install the Cloudera package repository on your CM node 
-* Install the latest available version of Cloudera Manager
+* Install Cloudera Manager 5.4.3
 * Create a Full Administrator CM account with the name Boss and the password Michael. 
-* Submit the following elements as attached text files:
+* Submit the following elements as inline text:
+    * The URL to your CM login page
     * Directory listing for <code>/var/log/cloudera-scm-server</code>
-    * Result of calling the CM API endpoint <code>api/v10/cm/deployment</code>
-    * A screenshot of your CM home page showing that shows you are logged in as Boss.
+    * Result for the CM API endpoint <code>api/v10/cm/deployment</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 3 - Install CDH
 
-* Create a Linux account newbie with UID 2015 on all nodes
-* Activate the CDH 5.4.3 and Accumulo parcels
-* Install the ZooKeeper, HDFS, YARN and Hive services **only**
-* Name your cluster after your first name 
-* Create the HDFS directory <code>/user/challenger</code>
+* Create a Linux account <code>newbie</code> with UID 2157 on all nodes
+* Install CDH 5.4.3
+* Enable only the ZooKeeper, HDFS, YARN and Hive services
+* Enable NameNode HA
+* Name your cluster with your last name
+* Create the HDFS directory <code>/user/newbie</code>
 * Submit the following:
     * Screen capture: The CM page that shows the Active and Standby NameNodes
     * Text file: Output from <code>api/v10/cm/deployment</code> (yes, again)
-    * Screen capture: Output of <code>hdfs dfs -ls /user</code>
+    * Text file: Output of <code>hdfs dfs -ls /user</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 4 - Testing
 
-* Tune YARN according to the findings you got in the YARN/RM lab.
+* Tune YARN using the findings you got from the YARN/RM lab.
 * Run the following tests on **each** node
     * <code>hdparm -t</code> on the node's volume(s)
+      * Explain which system capability this command tests
     * <code>dd if=/dev/zero bs=1M count=2048 | md5sum</code>
-    * Calculate an average of times across all nodes
-* Use teragen to create a file containing 51,200,000 records 
+      * Explain what system capability this command tests
+* Use <code>teragen</code> to create a file of 51,200,000 records 
     * Use <code>time(1)</code> to record the job duration
     * Change the default mapper count to twice the number of DataNodes
     * Write the results to <code>/user/challenger</code> in HDFS
 * Use terasort on the file and capture the duration of the job
 * Submit the following 
-    * As a text file attachment: The results of <code>hdparm</code> and <code>dd</code> tests
+    * Text file: The results of your <code>hdparm</code> and <code>dd</code> tests
     * As a screen capture: The <code>terasort</code> and <code>teragen</code> commands you used 
     * Output of the command <code>hdfs dfs -ls /user/challenger</code>
 
@@ -1923,8 +1925,8 @@ these, the stage is considered incomplete.
 ## <center> Challenge 5 - Kerberize the cluster
 
 * Secure your cluster as follows:
-* Install/configure a KDC for the realm <code>BOOT.FCE</code>
-* Create a principal for your user account. Capture the commands/output <code>kinit</code> and <code>klist</code> to show authenticating with this account.
+* Install/configure a KDC for the realm <code>PARTNER.FCE</code>
+* Create a principal for your <code>challenger</code> login. Capture the commands/output <code>kinit</code> and <code>klist</code> to show authenticating with this account.
 * Enable Kerberos using the Cloudera Manager wizard
 * Run the Hadoop pi test program as <code>challenger</code>. 
 * Submit the following:
@@ -1939,11 +1941,11 @@ these, the stage is considered incomplete.
 
 * Create a database for Sentry in your MySQL server
 * Enable/configure the Sentry service
-* Create an admin role in Sentry and map your user account to it.
+* Create an admin role in Sentry and map your <code>challenger</code> account to it.
 * Submit the following:
     * <code>SHOW TABLES</code> output for your Sentry database (from MySQL)
-    * <code>SHOW GRANTS</code> output from Hive (beeline)
-* If you've still got time, install HUE and run a sample query.
+    * <code>SHOW GRANTS</code> output using Hive (Beeline)
+* If you've got time remaining, enable HUE  via CM and run a sample query.
     * Submit a screen capture of the result.
      
 * <strong>EMAIL WHAT YOU HAVE NO LATER THAN 11:55 AM, PDT</strong>
