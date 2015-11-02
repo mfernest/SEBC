@@ -6,8 +6,8 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> October 26-30, 2015 </center>
-## <center> New York, NYC </center>
+## <center> November 2-6, 2015 </center>
+## <center> Palo Alto, CA </center>
 
 ---
 <div style="page-break-after: always;"></div>
