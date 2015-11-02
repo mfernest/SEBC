@@ -353,7 +353,7 @@ The database bundled with CM's binary installer is not production-oriented. Clou
     * Use a [Cloudera-supported version](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html) of RHEL/CentOS.
     * Use AWS Marketplace [to find a suitable AMI](https://aws.amazon.com/marketplace/pp/B00IOYDTV6) 
     * [Get more volume space to work with](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html)
-    * Hint: kepeing security wide-open is easier to practice with
+    * Hint: keeping security wide-open is easier to practice with
 
 ---
 <div style="page-break-after: always;"></div>
