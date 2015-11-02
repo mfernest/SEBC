@@ -263,7 +263,7 @@ We will address you as experienced field technicians who:
 * Automates cloud-based CM/CDH deployment
     * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
     * Internalizes [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
-* See [User Guide v1.0.0](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
+* See [User Guide v1.5.1](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
 * Cloud-based deployment is **not** discussed in this boot camp.
 
 ---
@@ -305,7 +305,7 @@ The database bundled with CM's binary installer is not production-oriented. Clou
 * Some customers delegate all DB creation to a dedicated group -- this is ok.
 
 ---
-<div style="page-break-after: always;"></div>G
+<div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_replicate_db"/> MySQL Replication for HA </a></p>
 
