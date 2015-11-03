@@ -518,7 +518,7 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 
 * CM 5 supports a [NameNode HA wizard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
     * {HDFS service} -> Actions -> Enable High Availability
-    * [Locating the Journal Quroum Managers](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html?scroll=cmug_topic_5_12_1_unique_1)
+    * [Locating the Journal Quorum Managers](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html?scroll=cmug_topic_5_12_1_unique_1)
     * [Understanding Zookeeper's role](http://hadoop.apache.org/docs/r2.3.0/hadoop-yarn/hadoop-yarn-site/HDFSHighAvailabilityWithQJM.html#Deploying_ZooKeeper)
 * You may want to relocate services as a cluster grows
 * Best practices vary with cluster size
