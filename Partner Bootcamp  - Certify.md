@@ -883,7 +883,7 @@ Adds cache locality to NN reports<p>
 ## <center> <a name="migrating_mrv1_mrv2"/> Migrating from MRv1 to MRv2
 
 * Common mistake: assuming YARN roles map 1:1 to MRv1 roles
-* Common mistake: assuming CM manages the complexityt
+* Common mistake: assuming CM manages the complexity
 * Read <a href="http://blog.cloudera.com/blog/2014/04/apache-hadoop-yarn-avoiding-6-time-consuming-gotchas/">Jeff Bean's blog post on common gotchas</a>, including:
     * The change from slot count to container sizing is just one part.
     * Comparing apples-to-apples for performance is hard
