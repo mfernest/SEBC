@@ -1260,7 +1260,7 @@ Enter an object type in the search bar
 ## <center> Note on [Custom Service Descriptors](https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
 
 * Cloudera uses parcels to bundle CDH and other software
-* We use CSDs to integrate software with Clouidera Manager's services
+* We use CSDs to integrate software with Cloudera Manager's services
     * Monitoring and charting
     * Resource management (cgroups)
     * Service lifecycle controls
