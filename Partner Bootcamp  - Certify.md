@@ -892,7 +892,7 @@ Adds cache locality to NN reports<p>
 
 <p><i>YARN's Resource Management strategy is divided into three layers</i></p>
 
-1. <a href="rm_service_isolation">Service-level isolation</a>
+1. <a href="#rm_service_isolation">Service-level isolation</a>
     * Sets minimum resources for all cluster services, including YARN
     * E.g., HDFS, HBase, Impala, Search, MRv1
 2. <a href="#admission_control">Scheduling/Impala's Admission Control</a>
