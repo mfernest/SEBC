@@ -6,8 +6,8 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> November 2-6, 2015 </center>
-## <center> Palo Alto, CA </center>
+## <center> December 7-11, 2015 </center>
+## <center> Singapore, Singapore </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -28,6 +28,8 @@
 
 * Michael Ernest (Senior Partner Sales Engineer)
     * mfernest@cloudera.com
+* Scott Gryzbowski (Senior Solutions Consultant)
+    * scottgriz@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
@@ -40,7 +42,7 @@ We will address you as experienced field technicians who:
 * Have installed CDH on multi-node clusters before
 * Can complete labs by objective: few step-by-step directions
 * Can read and write shell scripts 
-* Can follow public-facing documentation with little additional guidance
+* Can follow Cloudera's public-facing documentation with occasional guidance
 
 ---
 <div style="page-break-after: always;"></div>
@@ -92,13 +94,10 @@ We will address you as experienced field technicians who:
 
 ## <center> <a name="scored_labs"/> Submitting lab work for review 
 
-* You'll be asked to summarize and/or submit lab work
+* You'll summarize reading and/or submit lab work
     * We want to see how you do the work
-    * Be prepared to describe your methods/process
-* We evaluate with **competence** in mind.
-    * Good: You can diagnose your own missteps
-    * Better: You can reproduce them
-    * Best: You can describe ways to avoid them
+    * You'll be asked to describe your methods/process
+* We evaluate your work with competence in mind
 
 ---
 <div style="page-break-after: always;"></div>
@@ -107,7 +106,7 @@ We will address you as experienced field technicians who:
 
 * Six challenges, increasingly difficult
 * Credit for completing and documenting each stage
-* You may have to explain problems you encounter
+* You may have to explain obstacles you encounter
     * The hypothesis you used to identify a problem
     * The method you used to demonstrate a problem 
     * The test you used to show resolution
@@ -120,8 +119,8 @@ We will address you as experienced field technicians who:
 
 * <a href="#install_methods">Installation Methods</a>
 * <a href="#parcels">Understanding Parcels</a>
-* <a href="#db_setup">Setting up the database</a>
-* <a href="#cm_cdh_key_points">CM and CDH Key Points</a>
+* <a href="#db_setup">Installing an external database</a>
+* <a href="#cm_cdh_key_points">Supplmental CM/DH Points</a>
 * <a href="#cm_ui_overview">Cloudera Manager UI Overview</a>
 
 ---
@@ -148,26 +147,29 @@ We will address you as experienced field technicians who:
 
 * [Path A: One-stop binary installer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
     * Short-term, admin-lite approach (pilots, POCs, dev)
-* [Path B: Install CM as a package](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
-    * Any long-term and/or production-ready cluster
-* [Path C: tarballs ](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
-    * No root/sudo access (i.e., no package install privileges)
-    * Alternate deployment methods
-    * Not interested in Cloudera Manager
+    * Embedded PostgreSQL database server
+* [Path B: CM-driven install](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
+    * Long-term or production-ready cluster
+    * External database server (Oracle, MySQL, PostgreSQL)
+* [Path C: tarballs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
+    * No root/sudo access 
+    * Complements other deployment tools
+    * Cloudera Manager not required
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_install_milestones"/> Path B Steps
 
-1. Install a db server for [Cloudera Manager](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
-    * Management Services
-    * CDH services that can share it: Hive Metastore, Oozie, HUE 
-2. Install the CM Server package
+1. Install Oracle JDK
+2. Install a DB server for [Cloudera Manager](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
+    * Used by Management Services: Service Monitor, Host Monitor, Navigator, etc.
+    * CDH services backed by db: Hive Metastore, Oozie, Hue 
+3. Install the CM Server package
     * Omit the embedded database package
-3. Distribute CM agent software (by hand or with CM)
-4. Distribute CDH (packages or parcels)
-5. Deploy CDH services<p/>
+4. Distribute CM agent software (by hand or with CM)
+5. Distribute CDH (packages or parcels)
+6. Deploy CDH services<p/>
 
 **[Common side requests include](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html):</p>
 
@@ -179,40 +181,33 @@ We will address you as experienced field technicians who:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_logging"/>Path A logging and troubleshooting
+## <center> <a name="cm_install_logging"/>CM Installation Milestones
 
-* The Path A method uses log files in <code>/var/opt/cloudera-scm-server</code> to mark progress. For example: 
-    * <code>0.check-selinux.log</code>
-    * <code>1.install-repo-pkg.log</code>
-    * <code>2.install-jdk.x86_64.log</code>
-    * <code>3.install-cloudera-manager-server.log</code>
-    * <code>4.install-cloudera-manager-server-db.log</code>
-    * <code>5.init-embedded-db.log</code>
-    * <code>6.start-embedded-db.log</code>
-    * <code>7.start-scm-server.log</code>
-* If you back something out, that's noted too:
-    * <code>8.remove-cloudera-manager-daemons.log</code>
-    * <code>9.remove-cloudera-manager-repository.log</code> 
-* Alway review well-known issues [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html).
-* Always review [known issues and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html) before installing.
-* Review [fixed issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
+* Linux configuration/prechecks
+* Install package repositories (DB server, Cloudera Manager)
+* Install Oracle JDK (included in CM repo)
+* Install/configure/initialize database server
+* Install/configure/initialize Cloudera Manager
+* Add hosts, deploy cluster
+
+* Review [well-known conditions](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html).
+* Review [known problems and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html) before installing.
+* Review [recently fixed issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="parcels"/> What is a Parcel?
+## <center> <a name="parcels"/> Installing CDH with Parcels
 
-Parcels are [CM packages](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F). We use them to:
+Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F) used to:
 
-* Bundle all components for one CDH release
-    * Simplifies version-matching 
-* Avoids Linux packaging requirements
-    * Location: <code>/opt/cloudera/parcels</code>
-    * Privileges needed for <code>yum</code> are not required
-    * Multiple parcel versions can coexist on one system
-    * Uses HTTP-based repos, remote or local
-* Provides hooks for CM integration
-* Provides basis rolling upgrades and (less painful) downgrade
+* Bundle services of one CDH release
+* Work around Linux packaging requirements
+    * Non-privileged location: <code>/opt/cloudera/parcels</code>
+    * Multiple parcel versions can coexist 
+    * Making a local parcels repo is straightforward
+* Encapsulate CM integration hooks (Custom Service Descriptors)
+* Minimizes upgrade and downgrade windows 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -221,7 +216,7 @@ Parcels are [CM packages](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-
 
 <center> <img src="http://blog.cloudera.com/wp-content/uploads/2013/05/parcels1.png"> </center> 
 
-* [How to manage parcels via CM](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_parcels.html)
+* [How to manage parcels](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_parcels.html)
 
 ---
 <div style="page-break-after: always;"></div>
