@@ -28,7 +28,7 @@
 
 * Michael Ernest (Senior Partner Sales Engineer)
     * mfernest@cloudera.com
-* Scott Gryzbowski (Senior Solutions Consultant)
+* Scott Grzybowski (Senior Solutions Consultant)
     * scottgriz@cloudera.com
 
 ---
@@ -40,9 +40,9 @@ We will address you as experienced field technicians who:
 
 * Have attended Cloudera's Hadoop for Administrators Course
 * Have installed CDH on multi-node clusters before
-* Can complete labs by objective: few step-by-step directions
-* Can read and write shell scripts 
-* Can follow Cloudera's public-facing documentation with occasional guidance
+* Can complete labs by objective without step-by-step scripts
+* Are proficient with Linux and common CLI tools
+* Are familiar with Cloudera's public-facing documentation
 
 ---
 <div style="page-break-after: always;"></div>
@@ -59,9 +59,9 @@ We will address you as experienced field technicians who:
 
 ## <center> <a name="course_objectives"/a> Objectives
 
-* Prepare for Cloudera field work
-* Receive feedback on your readiness
-* Identify areas to study and practice further
+* Prepare you for CM/CDH cluster installation work
+* Provide you with feedback on your readiness
+* Identify areas for further study and practice
 
 ---
 <div style="page-break-after: always;"></div>
@@ -72,8 +72,8 @@ We will address you as experienced field technicians who:
     * <a href="#cm_cdh_installation_section">CM/CDH installation</a>
     * <a href="#hdfs_section">HDFS features</a>
     * <a href="#yarn_rm_section">YARN & Resource Management</a>
-    * <a href="#cm_monitor_customize_section">CM Monitors & Customizations</a>
-    * <a href="#cdh_security_section">CDH Security & Kerberos</a>
+    * <a href="#cm_monitor_customize_section">CM Monitoring & Customizing</a>
+    * <a href="#cdh_security_section">Enterprise Security</a>
     * <a href="#hue_services_admin_section">HUE Services & Administration</a>
     * <a href="#troubleshooting_practices_section">Troubleshooting Resources</a>
 
@@ -82,34 +82,34 @@ We will address you as experienced field technicians who:
 
 ## <center> <a name="discussion_format"/> Class Format
 
-* Mornings: Two-hour discussion, 1-2 hours lab work
-    * Includes the lunch hour
-    * One hour will often suffice
-* Afternoon: Three-hour discussion, 1-2 hours lab work
-    * Includes 5-6 pm
-    * Occasional bonus labs for the quick/motivated
+* Mornings: Two hours discussion, 1-2 hours lab
+    * You can use the lunch hour when needed
+* Afternoon: Three hours discussion, 1-2 hours lab
+    * Instructors may stop at 6pm
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scored_labs"/> Submitting lab work for review 
 
-* You'll summarize reading and/or submit lab work
-    * We want to see how you do the work
-    * You'll be asked to describe your methods/process
-* We evaluate your work with competence in mind
+* We expect you to submit lab work for review
+    * We use timestamps and spot checks to track progress
+    * We may ask you to describe your method or process
+* We evaluate this work with competence in mind
+    * Treat every submission as work product
+    * Communicate clearly
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="scored_challenges"/> Friday Morning: Challenges
+## <center> <a name="scored_challenges"/> Friday Morning: Challenges []()
 
-* Six challenges, increasingly difficult
-* Credit for completing and documenting each stage
-* You may have to explain obstacles you encounter
-    * The hypothesis you used to identify a problem
-    * The method you used to demonstrate a problem 
-    * The test you used to show resolution
+* Six challenge stages
+* Stages are marked Complete, Incomplete, or Did Not Submit
+* How you communicate is part of the test!
+    * Noting problems you encountered, if any.
+    * How you isolate the problem 
+    * How you compensated for or fixed the problem
 
 ---
 <div style="page-break-after: always;"></div>
@@ -126,7 +126,7 @@ We will address you as experienced field technicians who:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="install_methods"/> CM/CDH Install Methods
+## <center> <a name="install_methods"/> CM/CDH Installation
 
 * <a href="#cm_install_paths">Documented paths</a>
 * <a href="#cm_install_milestones">Using installation milestones</a>
@@ -146,12 +146,12 @@ We will address you as experienced field technicians who:
 ## <center> <a name="cm_install_paths"/>Installation paths
 
 * [Path A: One-stop binary installer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
-    * Short-term, admin-lite approach (pilots, POCs, dev)
-    * Embedded PostgreSQL database server
-* [Path B: CM-driven install](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
+    * For short-term, admin-lite clusters (pilots, POCs, dev)
+    * Uses "embedded" PostgreSQL database server
+* [Path B: You install CM, CM installs CDH](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
     * Long-term or production-ready cluster
     * External database server (Oracle, MySQL, PostgreSQL)
-* [Path C: tarballs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
+* [Path C: Tarballs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
     * No root/sudo access 
     * Complements other deployment tools
     * Cloudera Manager not required
@@ -159,29 +159,24 @@ We will address you as experienced field technicians who:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_milestones"/> Path B Steps
+## <center> <a name="cm_install_milestones"/> Path B Steps []()
 
+0. Verify supported platform and appropriate settings
 1. Install Oracle JDK
-2. Install a DB server for [Cloudera Manager](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
+    * Included with Cloudera Manager package repo
+2. Install a [DB server supported by Cloudera Manager](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
     * Used by Management Services: Service Monitor, Host Monitor, Navigator, etc.
     * CDH services backed by db: Hive Metastore, Oozie, Hue 
 3. Install the CM Server package
     * Omit the embedded database package
 4. Distribute CM agent software (by hand or with CM)
 5. Distribute CDH (packages or parcels)
-6. Deploy CDH services<p/>
-
-**[Common side requests include](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.5.3/Cloudera-Manager-Enterprise-Edition-Installation-Guide/cmeeig_topic_21.html):</p>
-
-    * Adding CM to a standing CDH cluster
-    * Integrating CM with tools such as Puppet
-    * Working with no internet access
-    * Working with site/security policies
+6. Deploy CDH services<p>
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_logging"/>CM Installation Milestones
+## <center> <a name="cm_install_logging"/>CM Installation Milestones []()
 
 * Linux configuration/prechecks
 * Install package repositories (DB server, Cloudera Manager)
@@ -246,7 +241,7 @@ Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parce
     * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
     * Internalizes [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
 * See the latest [User Guide](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
-* Automating a cloud-based deployment is **not** part of this boot camp. We mention this tool so you're aware of it.
+* Automating a cloud-based deployment is **not** part of this boot camp. We mention Cloudera Director so you're aware of it.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -273,7 +268,7 @@ The following services require a database:
     * [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1)
     * [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) 
 
-*The Host and Service Monitors use a storage scheme based on [LevelDB](https://github.com/google/leveldb).
+*The Host and Service Monitors use [LevelDB](https://github.com/google/leveldb).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -393,10 +388,9 @@ For this lab, complete the steps below. Show the commands you used and the outpu
     * <code>mysql-server</code>
     * Download and install [the JDBC connector](http://dev.mysql.com/downloads/connector/j/5.1.html).<p>
 2. Edit your <code>/etc/my.cnf</code> **before** you start MySQL. 
-<<<<<<< HEAD
-    * The starter file in the course repo is mostly complete/correct.
+    * The starter file in the course repo is incomplete.
     * Mind the settings related to the master and slave roles. <p>
-3. Run the <code>mysql_install_db</code> on both nodes before starting the <code>mysqld</code> service<p>. Ensure that you run the mysql_install_db command as the <code>mysql</code> user to avoid creating files with incorrect permissions.
+3. Run the <code>mysql_install_db</code> as the <code>mysql</code> user on both nodes before starting the <code>mysqld</code> service<p>. Running as the <code>mysql</code> user will create files with correct permissions.
 4. Run <code>/usr/bin/mysql_secure_installation</code> on each node: 
     a. Set the root password (and write it down!)
     b. Remove permissions for anonymous users
@@ -407,15 +401,15 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 5. On the master, grant replication privileges for all databases:
 =======
     * The starter file in the course repo is not complete!
-    * Determine the setting that identifies which server is a master and which is a replica. <p>
-3. Run the <code>mysql_install_db</code> script on each node before starting the <code>mysqld</code> service<p>
+    * Determine the setting that identifies which server is a master and which is a replica.<p>
+3. Run <code>mysql_install_db</code> on each node before starting the <code>mysqld</code> service<p>
 4. Running the <code>/usr/bin/mysql_secure_installation</code> script does the following: 
     a. Sets the root password 
     b. Removes permissions for anonymous users
     c. Allows remote login
     d. Removes the test database
     e. Reloads the privileges table into memory
-    f. Cycles the mysqld service<p>
+    f. Refreshes the <code>mysqld</code> service<p>
 5. On the master MySQL node, grant replication privileges for all databases:
 >>>>>>> master
     a. Log in with <code>mysql -p</code> 
@@ -445,15 +439,17 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 
 [The full rundown is here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html?scroll=cmig_topic_6_6). Make the following choices:
 
-* Don't prepare for single user mode
+* Do not use single user mode when asked
 * Use Cloudera's standard repositories
 * Ignore all steps marked "(Optional)"
 * Install the Data Hub Edition 
 * Install CDH using parcels
-* Name your cluster after you  
-* Add the Coreset of CDH services -- memory is tight
-    * Assign a ZooKeeper role to three hosts
-* Capture your CM home page and email it when you're done   
+* Rename your cluster to your name
+* Enable only the Coreset of CDH services -- memory is tight
+* Assign a ZooKeeper role to three hosts
+* Once complete, take a screenshot of your CM home page 
+    * Attach the screenshot to an email addressed to the instructors
+    * In the email body, give the URL of your Cloudera Manager server along with the <code>admin</code> account password.
 
 [Go here](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cm_ig_uninstall_cm.html) if your installation doesn't complete.
 
@@ -471,7 +467,7 @@ For this lab, complete the steps below. Show the commands you used and the outpu
     * Standalone components (such as Accumulo or Kafka)
 * Follow the [documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_create_local_parcel_repo.html).
 * Set the new repository in CM
-* Capture this setting and email to the instructor
+* Capture this setting in CM and email it to the instructors
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1138,14 +1134,14 @@ Enter an object type in the search bar
 * Administration -> Users
     * Adding users recommended to differentiate admins
     * Supports role-based access limits
-* CM 5.0x supports five roles
+* CM 5.4x supports 10 roles, including:
     * Administrator
     * Configurator
     * Operator
     * Limited Operator
     * Read-Only
 * CM: Administration -> Users -> Add Users button
-    * Select a role to see a description of its privileges
+    * Select a role to get a description of its scope
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1301,8 +1297,9 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 ## <center> CM Lab
 ## <center> Create a Custom Dashboard
 
-* Create a new CM user 'dash' in your cluster
-* Assign this user the Configurator role
+* Create a new CM user <code>minotaur</code> in your cluster
+* Assign <code>minotaur</code> the Configurator role
+* Create a dashboard for <code>minotaur</code> with four charts of your choice
 * 
 
 ---
@@ -1720,7 +1717,6 @@ Complete *one* of the following labs:<p>
 * <a href="#troubleshooting_docs_assistance">Using documentation, getting assistance</a>
 * <a href="#troubleshooting_problems_bugs_issues">Defining problems, bugs, and customer issues</a>
 * <a href="#troubleshooting_methodology">Troubleshooting methodology</a> 
-* <a href="#troubleshooting_examples">Example problems</a>
 * <a href="#troubleshooting_challenges">Preparing for Friday challenges</a>
 
 ---
@@ -1799,34 +1795,64 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Miscellany: Associating Patch to a Release
+## <center> Pro Tip: Find Patches by Release
 
-* Thanks to <a href="mailto:brock@cloudera.com">Brock Noland</a>
-* Start with [the change logs](http://archive-primary.cloudera.com/cdh5/cdh/5/)
-* Search the [relevant CDH project](http://jira.cloudera.com) with the JIRA name in double quotes
-* Grep the code! An example using FLUME-2245 with CDH 5.0.x:
-* <code>$ **git clone https://github.com/cloudera/flume-ng** </code>
-* <code>$ **cd flume-ng** </code>
-* <code>$ **git branch -a** </code>
-* <code>$ **git log origin/cdh5-1.4.0_5.0.2 | grep 'FLUME-2245'** </code>
-* <code>$ **git log origin/cdh5-1.4.0_5.0.3 | grep 'FLUME-2245'** </code><br><code>FLUME-2245. Pre-close flush failure can cause HDFS Sinks to not process events</code>
-* To get patch updates: <code>$ **git fetch origin** </code>
+* Review the [change log](http://archive-primary.cloudera.com/cdh5/cdh/5/)
+* Search by [CDH project](http://jira.cloudera.com) -- put JIRA identifier in double quotes
+* Grep the code! For example, to find FLUME-2245 in CDH 5.1.x:
+    * <code>$ **git clone https://github.com/cloudera/flume-ng** </code>
+    * <code>$ **cd flume-ng** </code>
+    * <code>$ **git branch -a** </code>
+    * <code>$ **git log origin/cdh5-1.4.0_5.0.2 | grep 'FLUME-2245'** </code>
+    * <code>$ **git log origin/cdh5-1.4.0_5.0.3 | grep 'FLUME-2245'** </code><br><code>FLUME-2245. Pre-close flush failure can cause HDFS Sinks to not process events</code>
+* Getting patch updates: <code>$ **git fetch origin** </code>
 
 ---
 <div style="page-break-after: always;"></div>
 
+## <center> Pro Action: Finding Patches with Better Tools
 
-## <center> <a name="troubleshooting_examples"/> Example Problems
+* Fork/review Jarcec Cecho's [gb-grep tool](https://github.com/jarcec/cmd-tools/blob/master/gb-grep)
+    * Doesn't require branch-specific search
+ <!-- Use Miklos Christine's [instructions on using Jarcec's script](
+https://wiki.cloudera.com/display/~mwc/Git+Find+Branch+given+a+Jira)) -->
+* Usage:
+    * <code>$ **git clone http://github.mtv.cloudera.com/CDH/hadoop</code>**
+    * <code>$ **cd hadoop/</code>**
+    * <code>$ **gb-grep "HDFS-7575"</code>**
+* Sample output line:
+<code><br>
+Searching for HDFS-7575
+hadoop-hdfs-project: f1a2fce5b3c21e3335f99fe210edbb1f9c7bb29f
+HDFS-7575. Upgrade should generate a unique storage ID for each
+volume. (Contributed by Arpit Agarwal)</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="troubleshooting_challenges"/> Friday Challenges
 
+* Read through the challenges in this document
+    * These challenges were part of the last delivery 
+* Notice the following
+    * The focus of each challenge
+    * The details in the instructions
+    * The submission requirements
+    * The deadlines
+
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Lab: Review time
+
+* You should:
+    * Review the challenges. 
+    * Review your class notes
+    * Repeat or continue lab work
+    * Prepare new instances for tomorrow's challenges 
+* You should not:
+    * Write scripts to automate tomorrow's work -- waste of time
+    * Install software to your new instances
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1837,9 +1863,9 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 * Overview: Build a cluster and secure it
 * You will document your progress by email the same way you have all week.
     * mfernest@cloudera.com
-* Submit one challenge result before starting the next challenge
-* If you brickify your cluster, tell us immediately.
-* I may ask you to explain steps/results you see along the way. Do not ignore these requirements.
+* Submit each challenge result before you start the next one.
+* If you brick your cluster, notify us first by email, then tell us.
+* Be sure to respond to every instructor request for a clarification.
 
 ---
 <div style="page-break-after: always;"></div>
