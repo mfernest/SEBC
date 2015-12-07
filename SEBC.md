@@ -389,34 +389,34 @@ For this lab, complete the steps below. Show the commands you used and the outpu
     * Download and install [the JDBC connector](http://dev.mysql.com/downloads/connector/j/5.1.html).<p>
 2. Edit your <code>/etc/my.cnf</code> **before** you start MySQL. 
     * The starter file in the course repo is incomplete.
-    * Mind the settings related to the master and slave roles. <p>
-3. Run the <code>mysql_install_db</code> as the <code>mysql</code> user on both nodes before starting the <code>mysqld</code> service. Running this program as the <code>mysql</code> user will create files with correct permissions.<p>
-4. The <code>/usr/bin/mysql_secure_installation</code> script does the following: 
-    a. Sets the root password 
-    b. Removes permissions for anonymous users
-    c. Allows remote login
-    d. Removes the test database
-    e. Reloads the privileges table into memory
+    * Mind the settings related to the master and slave roles.<p>
+3. Run the <code>mysql_install_db</code> as the <code>mysql</code> user on each node before starting the <code>mysqld</code> service. This will create files with correct permissions.<p>
+4. The <code>/usr/bin/mysql_secure_installation</code> script does the following:<br>
+    a. Sets the root password<br>
+    b. Removes permissions for anonymous users<br>
+    c. Allows remote login<br>
+    d. Removes the test database<br>
+    e. Reloads the privileges table into memory<br>
     f. Refreshes the <code>mysqld</code> service<p>
-5. On the master MySQL node, grant replication privileges for all databases:
-    a. Log in with <code>mysql -p</code> 
-    b. Provide the FQDN of your replica's host.
-    c. <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
-    d. <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code>
+5. On the master MySQL node, grant replication privileges for all databases:<br>
+    a. Log in with <code>mysql -p</code> <br>
+    b. Provide the FQDN of your replica's host.<br>
+    c. <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code><br>
+    d. <code>mysql> **SET GLOBAL binlog_format = 'ROW';** </code><br>
     e. <code>mysql> **FLUSH TABLES WITH READ LOCK;</code>**<p>
-6. Start another terminal session and log into to MySQL. In the new session, show the master's status:
-    a. <code>mysql> **SHOW MASTER STATUS;**</code>
-    b. Note the file name and byte offset. The replica needs this data to sync with the master.
-    c. Close the second session and remove the lock on the first session.
+6. Start another terminal session and log into to MySQL. In the new session, show the master's status:<br>
+    a. <code>mysql> **SHOW MASTER STATUS;**</code><br>
+    b. Note the file name and byte offset. The replica needs this data to sync with the master.<br>
+    c. Close the second session and remove the lock on the first session.<br>
     d. <code>mysql> **UNLOCK TABLES;**</code><p>
-7. Open a session on the replica. Set the environment to locate the master:</p>
+7. Open a session on the replica. Set the environment to locate the master:<br>
     <code>mysql> **CHANGE MASTER TO**<br> **MASTER_HOST='*master host*',**<br> **MASTER_USER='*replica user*',**<br> **MASTER_PASSWORD='*replica password*',**<br> **MASTER_LOG_FILE='*master file name*',**<br> **MASTER_LOG_POS=*master file offset*;**</code><p>
-8. Initiate slave operation and determine its status. 
+8. Initiate slave operation and determine its status.<br>
     a. <code>mysql> **START SLAVE;**</code><br>
     b. <code>mysql> **SHOW SLAVE STATUS \G**</code><br>
-    c. If successful, the <code>Slave_IO_State</code> field in the output will report <code>Waiting for master to send event</code><p>
+    c. If successful, the <code>Slave_IO_State</code> field in the output will report <code>Waiting for master to send event</code><br>
     d. Capture this output by screenshot and email it to the instructor.<br>
-    e. If unsuccessful, review <code>/var/log/mysqld.log</code> for errors.<br>
+    e. If unsuccessful, review <code>/var/log/mysqld.log</code> for errors.<p>
 
 ---
 <div style="page-break-after: always;"></div>
