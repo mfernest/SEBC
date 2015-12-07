@@ -390,20 +390,8 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 2. Edit your <code>/etc/my.cnf</code> **before** you start MySQL. 
     * The starter file in the course repo is incomplete.
     * Mind the settings related to the master and slave roles. <p>
-3. Run the <code>mysql_install_db</code> as the <code>mysql</code> user on both nodes before starting the <code>mysqld</code> service<p>. Running as the <code>mysql</code> user will create files with correct permissions.
-4. Run <code>/usr/bin/mysql_secure_installation</code> on each node: 
-    a. Set the root password (and write it down!)
-    b. Remove permissions for anonymous users
-    c. Allow remote login
-    d. Remove the test database
-    e. Reload the privilege table
-    f. Start the mysqld service<p>
-5. On the master, grant replication privileges for all databases:
-=======
-    * The starter file in the course repo is not complete!
-    * Determine the setting that identifies which server is a master and which is a replica.<p>
-3. Run <code>mysql_install_db</code> on each node before starting the <code>mysqld</code> service<p>
-4. Running the <code>/usr/bin/mysql_secure_installation</code> script does the following: 
+3. Run the <code>mysql_install_db</code> as the <code>mysql</code> user on both nodes before starting the <code>mysqld</code> service. Running this program as the <code>mysql</code> user will create files with correct permissions.<p>
+4. The <code>/usr/bin/mysql_secure_installation</code> script does the following: 
     a. Sets the root password 
     b. Removes permissions for anonymous users
     c. Allows remote login
@@ -411,7 +399,6 @@ For this lab, complete the steps below. Show the commands you used and the outpu
     e. Reloads the privileges table into memory
     f. Refreshes the <code>mysqld</code> service<p>
 5. On the master MySQL node, grant replication privileges for all databases:
->>>>>>> master
     a. Log in with <code>mysql -p</code> 
     b. Provide the FQDN of your replica's host.
     c. <code>mysql> **GRANT REPLICATION SLAVE ON \*.\* TO '*user*'@'*FQDN*' IDENTIFIED BY '*password*';**</code>
@@ -425,11 +412,11 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 7. Open a session on the replica. Set the environment to locate the master:</p>
     <code>mysql> **CHANGE MASTER TO**<br> **MASTER_HOST='*master host*',**<br> **MASTER_USER='*replica user*',**<br> **MASTER_PASSWORD='*replica password*',**<br> **MASTER_LOG_FILE='*master file name*',**<br> **MASTER_LOG_POS=*master file offset*;**</code><p>
 8. Initiate slave operation and determine its status. 
-    a. <code>mysql> **START SLAVE;**</code>
-    b. <code>mysql> **SHOW SLAVE STATUS \G**</code>
-    c. If successful, the <code>Slave_IO_State</code> field in the output will report <code>Waiting for master to send event</code>
-    d. Capture this output by screenshot and email it to the instructor.
-    e. If unsuccessful, review <code>/var/log/mysqld.log</code> for errors.<p>
+    a. <code>mysql> **START SLAVE;**</code><br>
+    b. <code>mysql> **SHOW SLAVE STATUS \G**</code><br>
+    c. If successful, the <code>Slave_IO_State</code> field in the output will report <code>Waiting for master to send event</code><p>
+    d. Capture this output by screenshot and email it to the instructor.<br>
+    e. If unsuccessful, review <code>/var/log/mysqld.log</code> for errors.<br>
 
 ---
 <div style="page-break-after: always;"></div>
