@@ -102,14 +102,14 @@ We will address you as experienced field technicians who:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="scored_challenges"/> Friday Morning: Challenges
+## <center> <a name="scored_challenges"/> Friday Morning: Challenges []()
 
 * Six challenge stages
 * Stages are marked Complete, Incomplete, or Did Not Submit
 * How you communicate is part of the test!
-    * What problems did you encounter, if any?
-    * How did you isolate the problem? 
-    * How did you demonstrate the fix?
+    * Noting problems you encountered, if any.
+    * How you isolate the problem 
+    * How you compensated for or fixed the problem
 
 ---
 <div style="page-break-after: always;"></div>
@@ -126,7 +126,7 @@ We will address you as experienced field technicians who:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="install_methods"/> CM/CDH Install Methods
+## <center> <a name="install_methods"/> CM/CDH Installation
 
 * <a href="#cm_install_paths">Documented paths</a>
 * <a href="#cm_install_milestones">Using installation milestones</a>
@@ -241,7 +241,7 @@ Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parce
     * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
     * Internalizes [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
 * See the latest [User Guide](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
-* Automating a cloud-based deployment is **not** part of this boot camp. We mention this tool so you're aware of it.
+* Automating a cloud-based deployment is **not** part of this boot camp. We mention Cloudera Director so you're aware of it.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -268,7 +268,7 @@ The following services require a database:
     * [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1)
     * [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) 
 
-*The Host and Service Monitors use a storage scheme based on [LevelDB](https://github.com/google/leveldb).
+*The Host and Service Monitors use [LevelDB](https://github.com/google/leveldb).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -401,15 +401,15 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 5. On the master, grant replication privileges for all databases:
 =======
     * The starter file in the course repo is not complete!
-    * Determine the setting that identifies which server is a master and which is a replica. <p>
-3. Run the <code>mysql_install_db</code> script on each node before starting the <code>mysqld</code> service<p>
+    * Determine the setting that identifies which server is a master and which is a replica.<p>
+3. Run <code>mysql_install_db</code> on each node before starting the <code>mysqld</code> service<p>
 4. Running the <code>/usr/bin/mysql_secure_installation</code> script does the following: 
     a. Sets the root password 
     b. Removes permissions for anonymous users
     c. Allows remote login
     d. Removes the test database
     e. Reloads the privileges table into memory
-    f. Cycles the mysqld service<p>
+    f. Refreshes the <code>mysqld</code> service<p>
 5. On the master MySQL node, grant replication privileges for all databases:
 >>>>>>> master
     a. Log in with <code>mysql -p</code> 
@@ -439,15 +439,17 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 
 [The full rundown is here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html?scroll=cmig_topic_6_6). Make the following choices:
 
-* Don't prepare for single user mode
+* Do not use single user mode when asked
 * Use Cloudera's standard repositories
 * Ignore all steps marked "(Optional)"
 * Install the Data Hub Edition 
 * Install CDH using parcels
-* Name your cluster after you  
-* Add the Coreset of CDH services -- memory is tight
-    * Assign a ZooKeeper role to three hosts
-* Capture your CM home page and email it when you're done   
+* Rename your cluster to your name
+* Enable only the Coreset of CDH services -- memory is tight
+* Assign a ZooKeeper role to three hosts
+* Once complete, take a screenshot of your CM home page 
+    * Attach the screenshot to an email addressed to the instructors
+    * In the email body, give the URL of your Cloudera Manager server along with the <code>admin</code> account password.
 
 [Go here](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cm_ig_uninstall_cm.html) if your installation doesn't complete.
 
@@ -465,7 +467,7 @@ For this lab, complete the steps below. Show the commands you used and the outpu
     * Standalone components (such as Accumulo or Kafka)
 * Follow the [documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_create_local_parcel_repo.html).
 * Set the new repository in CM
-* Capture this setting and email to the instructor
+* Capture this setting in CM and email it to the instructors
 
 ---
 <div style="page-break-after: always;"></div>
