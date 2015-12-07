@@ -364,10 +364,10 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 3. Set the reserve space for your supplementary volumes to 0
 4. Verify the user resource limits for max file descriptors and processes
 5. Test forward and reverse host lookups for both file and DNS resolvers
-    a. Note: In <code>/etc/hosts</code>, the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) must be listed first  
-    b. Note: The IP address <code>127.0.0.1</code> **must** resolve to then name <code>localhost</code>
+    * In <code>/etc/hosts</code>, the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) must be listed first  
+    * The IP address <code>127.0.0.1</code> **must** resolve to <code>localhost</code><p>
 6. Enable nscd
-    a. Note: In practice, you should consult your documentation before [integrating  nscd with SSSD](http://goo.gl/68HTMQ)
+7. Install/enable <code>ntpd</code>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -422,7 +422,7 @@ For this lab, complete the steps below. Show the commands you used and the outpu
 <div style="page-break-after: always;"></div>
 
 ## <center> CM/CDH Install Lab
-## <center> Path B using Cloudera 5.3.x 
+## <center> Path B using Cloudera 5.5.0 
 
 [The full rundown is here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html?scroll=cmig_topic_6_6). Make the following choices:
 
