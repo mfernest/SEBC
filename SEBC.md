@@ -179,13 +179,13 @@ We will address you as experienced field technicians who:
 ## <center> <a name="cm_install_logging"/>CM Installation Milestones []()
 
 * Linux configuration/prechecks
-* Install package repositories (DB server, Cloudera Manager)
-* Install Oracle JDK (included in CM repo)
+* Install package repositories for database server and Cloudera Manager
+* Install Oracle JDK package
 * Install/configure/initialize database server
 * Install/configure/initialize Cloudera Manager
-* Add hosts, deploy cluster
+* Add hosts, then deploy cluster
 
-* Review [well-known conditions](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html).
+* Review [well-known conditions](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html)
 * Review [known problems and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html) before installing.
 * Review [recently fixed issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
 
@@ -241,7 +241,7 @@ Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parce
     * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
     * Internalizes [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
 * See the latest [User Guide](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
-* Automating a cloud-based deployment is **not** part of this boot camp. We mention Cloudera Director so you're aware of it.
+* Automating a cloud deployments is not part of this boot camp.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -346,7 +346,7 @@ We support Oracle, MySQL, and PostgreSQL as external servers.
 * Install <a href="#mysql_replication_lab"> MySQL</a>
 * Follow Installation Path B (guidance below)
 * <a href="#parcels_repo_lab">Create a Parcels repository</a>
-* <a href="#scripted_install_lab">Bonus work: Scripting your pre-checks</a>
+* <a href="#scripted_install_lab">Bonus work: Write a script for your pre-checks</a>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -358,32 +358,32 @@ This checklist draws from a [presentation on Slideshare](http://tiny.cloudera.co
 
 For this lab, complete the steps below. Show the commands you used and the output for each step in a separate screenshot. Make sure the screenshot indicates the host. 
 
-1. Check vm.swappiness on all your nodes
-    * Set the value to 1 if necessary
+1. Check <code>vm.swappiness</code> on all your nodes
+    * Set the value to <code>1</code> if necessary
 2. Set <code>noatime</code> on your supplementary volumes
 3. Set the reserve space for your supplementary volumes to 0
 4. Verify the user resource limits for max file descriptors and processes
-5. Test forward and reverse host lookups for both file and DNS resolvers
-    * In <code>/etc/hosts</code>, the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) must be listed first  
-    * The IP address <code>127.0.0.1</code> **must** resolve to <code>localhost</code><p>
-6. Enable nscd
-7. Install/enable <code>ntpd</code>
+5. Test forward and reverse host lookups. If you use the <code>/etc/hosts</code> file: 
+    * The [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) must be listed first  
+    * The IP address <code>127.0.0.1</code> must resolve to <code>localhost</code><p>
+6. Enable the <code>nscd</code> service
+7. Enable the <code>ntpd</code> service
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Lab
-## <center> <a name="mysql_replication_lab"/>Configure MySQL with a Replication Server
+## <center> <a name="mysql_replication_lab"/>Configure MySQL with a replica server
 
 **Plan One**: follow the steps [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cm_ig_mysql.html?scroll=cmig_topic_5_5#cmig_topic_5_5_1_unique_1).<br>
 **Plan Two**: Follow the steps given below<br>
 **Plan Three**: Do your own thing
 
-**Email the instructor(s) with your chosen plan before you start**.
+Important: Email the instructor(s) with your chosen plan **before** you start.
 
 **Details of Plan Two**
 
-1. Install MySQL 5.5 packages on your CM node and one other
+1. Install the following MySQL 5.5 packages on your CM node; any other node may host the replica 
     * <code>mysql</code>
     * <code>mysql-server</code>
     * Download and install [the JDBC connector](http://dev.mysql.com/downloads/connector/j/5.1.html).<p>
@@ -723,7 +723,8 @@ Adds cache locality to NN reports<p>
 * Configure a replication directory for your lab partner
 * Teragen a ~400MB file 
     * Replicate to the directory your partner made for you
-* Email a screenshot showing 
+* Email a screenshot showing the received files exist on your system
+    * You can use thre HDFS File Browser in Cloudera Manager if you wish
 
 ---
 <div style="page-break-after: always;"></div>
@@ -732,11 +733,11 @@ Adds cache locality to NN reports<p>
 
 * Use the steps outlined in [Michael Noll's blog](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/) as a guide.
 * Run terasort twice
-    * Use the time command to capture each run
-    * terasort the file you created in the previous lab
-    * terasort the replicated file you received
-* Email the results of these runs, including the time results.
-    * You can omit the task completion percentages from the output.
+    * Use the <code>time</code> command to capture each run
+    * Use <code>terasort</code> on the file you created in the last lab
+    * Use <code>terasort</code> on the file replicated to your HDFS
+* Email the results of these runs; be sure to include the <code>time</code> results.
+    * Please omit the task completion percentages from the output.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -745,10 +746,10 @@ Adds cache locality to NN reports<p>
 
 * Use the CM Wizard to enable HA
 * Capture/email your HDFS service main page when complete 
-* Add an "instructor" user in CM 
-    * Assign the Operator role
-    * Use the password cloudera
-* Email the URL to your CM instance when this account is ready
+* Add an <code>instructor</code> user in CM 
+    * Assign the Operator role to this user
+    * Use the password <code>cloudera</code>
+* Email the URL of your CM instance when this account is ready
 
 ---
 <div style="page-break-after: always;"></div>
