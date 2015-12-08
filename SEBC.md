@@ -1728,6 +1728,7 @@ Complete *one* of the following labs:<p>
 * [ASF account for reporting/reviewing bugs](https://issues.apache.org/jira/secure/Dashboard.jspa)
 * [Cloudera Connect - partner portal](http://www.cloudera.com/content/cloudera/en/partners.html)
 * [Github account](https://github.com/)
+
 <!-- Other partner resources I'm not aware of --> 
 
 ---
