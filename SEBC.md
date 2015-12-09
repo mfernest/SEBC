@@ -1321,6 +1321,7 @@ You may work in a team on this exercise. When you submit your response, include 
     * Perimeter access
         * Physical network, firewall, IP filtering
         * Strong authentication
+        * Transport Layer Security (TLS)
     * Restricted visibility to data
         * Proxy services (for client transparency), data encryption
     * Controlled access
