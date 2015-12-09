@@ -15,10 +15,10 @@
 # <center> Monday PM: Introductions/Installation </center>
 ## <center> Introductions & Overview
 
-- <a href="#instructor">Instructors</a>
-- <a href="#audience">Audience Expectations</a>
-- <a href="#selfcheck">Self-check questions</a>
-- <a href="#design_layout">Course design</a>
+* <a href="#instructor">Instructors</a>
+* <a href="#audience">Audience Expectations</a>
+* <a href="#selfcheck">Self-check questions</a>
+* <a href="#design_layout">Course design</a>
 
 <div style="page-break-after: always;"></div>
 
@@ -188,6 +188,7 @@ We will address you as experienced field technicians who:
 * Review [well-known conditions](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html)
 * Review [known problems and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html) before installing.
 * Review [recently fixed issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
+* An overview of [C5.5 features and changes](http://blog.cloudera.com/blog/2015/11/cloudera-enterprise-5-5-is-now-generally-available).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -241,7 +242,7 @@ Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parce
     * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
     * Internalizes [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
 * See the latest [User Guide](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
-* Automating a cloud deployments is not part of this boot camp.
+* Automating a cloud deployment is not part of this boot camp.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1558,13 +1559,12 @@ Complete *one* of the following labs:<p>
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Current Version & Resources
+## <center> HUE Versions & Resources
 
-* HUE 3.7 released in October, 2014
-* Your self-help resource site: [gethue.com](http://gethue.com)
-* Several walk-throughs [available on Vimeo](http://vimeo.com/search?q=gethue)
-* These are short/compressed 
-* Provides the front end for [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
+* HUE 3.9 [released](http://gethue.com/category/release/) in August, 2015
+* Lots of learning resources on [gethue.com](http://gethue.com)
+* Several walk-throughs are [available on Vimeo](https://vimeo.com/gethue)
+* HUE is the front end for [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
 
 ---
 <div style="page-break-after: always;"></div>
