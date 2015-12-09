@@ -934,7 +934,7 @@ Adds cache locality to NN reports<p>
     * Currently running queries
     * Resources available (only memory is checked at present)
     * Current queue length
-* The local impalad decides, using cached global data
+* The local <code>impalad</code> decides, using cached global data
     * Given possible delays, admission control is soft
 * Favors keeping tasks alive over maintaining headroom
     * Work to improve this area is ongoing
@@ -949,11 +949,9 @@ Adds cache locality to NN reports<p>
     * Apply opportunistic processing to improve utilization
     * The trick is balancing low-latency and batch processing tasks
 * Effort is ongoing to improve resource estimation
-* One project: a <strong>L</strong>ow-<strong>L</strong>atency <strong>A</strong>pplication <strong>MA</strong>ster ([LLAMA](http://cloudera.github.io/llama/)) for Impala
-    * Released on CDH5 as a beta component
-    * Goal: to run all Impala queries using one ApplicationMaster
-        * Cache resources, minimize interaction with RM
-    * Like YARN for CDH4, not production-ready
+* One project: <strong>L</strong>ow-<strong>L</strong>atency <strong>A</strong>pplication <strong>MA</strong>ster ([LLAMA](http://cloudera.github.io/llama/)) for Impala.
+    * Released on CDH5 as a beta component, deprecated with C5.5
+    * Goal: Route all Impala queries through one YARN AM
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1276,9 +1274,20 @@ Enter an object type in the search bar
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Lab
-## <center> (Optional) Add CM to a CDH Cluster<p>
+## <center> Adding CM to a CDH Cluster<p>
 
-Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters).
+Suppose a customer has a 20-node, unmanaged CDH cluster in production. They give you the following requirements:
+
+* We must attach CM to a running CDH cluster that is not Kerberized.
+* Please outline in ten steps or less the flow of technical work that must be done.
+* Please indicate when or how often a cluster restart is required.
+
+You may work in a team on this exercise. When you submit your response, include the following:
+* The members of your group (four members maximum)
+* A copy of your team's response
+
+
+<!-- Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters). -->
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1289,7 +1298,7 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 * Create a new CM user <code>minotaur</code> in your cluster
 * Assign <code>minotaur</code> the Configurator role
 * Create a dashboard for <code>minotaur</code> with four charts of your choice
-* 
+* Submit your CM url along with <code>minotaur</code> password to the instructors.
 
 ---
 <div style="page-break-after: always;"></div>
