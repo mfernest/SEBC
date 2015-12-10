@@ -1346,7 +1346,8 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 
 ## <center> Active Directory Integration </center>
 
-* Cloudera recommends a [one-way cross-realm trust to customer's AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
+* Cloudera recommends Direct-to-AD integration as preferred practice.
+* The alternative is a [one-way cross-realm trust to AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
     * Requires MIT Kerberos realm in Hadoop cluster
     * Avoids adding principals to AD 
 * Common sticking points
