@@ -15,10 +15,10 @@
 # <center> Monday PM: Introductions/Installation </center>
 ## <center> Introductions & Overview
 
-* <a href="#instructor">Instructors</a>
-* <a href="#audience">Audience Expectations</a>
-* <a href="#selfcheck">Self-check questions</a>
-* <a href="#design_layout">Course design</a>
+- <a href="#instructor">Instructors</a>
+- <a href="#audience">Audience Expectations</a>
+- <a href="#selfcheck">Self-check questions</a>
+- <a href="#design_layout">Course design</a>
 
 <div style="page-break-after: always;"></div>
 
@@ -188,7 +188,6 @@ We will address you as experienced field technicians who:
 * Review [well-known conditions](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html)
 * Review [known problems and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html) before installing.
 * Review [recently fixed issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
-* An overview of [C5.5 features and changes](http://blog.cloudera.com/blog/2015/11/cloudera-enterprise-5-5-is-now-generally-available).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -242,7 +241,7 @@ Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parce
     * Supports [Amazon VPC](http://aws.amazon.com/vpc/)
     * Internalizes [Cloudera's AWS Reference Architecture](http://www.cloudera.com/content/cloudera/en/resources/library/whitepaper/cloudera-enterprise-reference-architecture-for-aws-deployments.html)
 * See the latest [User Guide](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-director/latest/PDF/cloudera-director.pdf)
-* Automating a cloud deployment is not part of this boot camp.
+* Automating a cloud deployments is not part of this boot camp.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -934,7 +933,7 @@ Adds cache locality to NN reports<p>
     * Currently running queries
     * Resources available (only memory is checked at present)
     * Current queue length
-* The local <code>impalad</code> decides, using cached global data
+* The local impalad decides, using cached global data
     * Given possible delays, admission control is soft
 * Favors keeping tasks alive over maintaining headroom
     * Work to improve this area is ongoing
@@ -949,9 +948,11 @@ Adds cache locality to NN reports<p>
     * Apply opportunistic processing to improve utilization
     * The trick is balancing low-latency and batch processing tasks
 * Effort is ongoing to improve resource estimation
-* One project: <strong>L</strong>ow-<strong>L</strong>atency <strong>A</strong>pplication <strong>MA</strong>ster ([LLAMA](http://cloudera.github.io/llama/)) for Impala.
-    * Released on CDH5 as a beta component, deprecated with C5.5
-    * Goal: Route all Impala queries through one YARN AM
+* One project: a <strong>L</strong>ow-<strong>L</strong>atency <strong>A</strong>pplication <strong>MA</strong>ster ([LLAMA](http://cloudera.github.io/llama/)) for Impala
+    * Released on CDH5 as a beta component
+    * Goal: to run all Impala queries using one ApplicationMaster
+        * Cache resources, minimize interaction with RM
+    * Like YARN for CDH4, not production-ready
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1274,20 +1275,9 @@ Enter an object type in the search bar
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Lab
-## <center> Adding CM to a CDH Cluster<p>
+## <center> (Optional) Add CM to a CDH Cluster<p>
 
-Suppose a customer has a 20-node, unmanaged CDH cluster in production. They give you the following requirements:
-
-* We must attach CM to a running CDH cluster that is not Kerberized.
-* Please outline in ten steps or less the flow of technical work that must be done.
-* Please indicate when or how often a cluster restart is required.
-
-You may work in a team on this exercise. When you submit your response, include the following:
-* The members of your group (four members maximum)
-* A copy of your team's response
-
-
-<!-- Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters). -->
+Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters).
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1298,7 +1288,7 @@ You may work in a team on this exercise. When you submit your response, include 
 * Create a new CM user <code>minotaur</code> in your cluster
 * Assign <code>minotaur</code> the Configurator role
 * Create a dashboard for <code>minotaur</code> with four charts of your choice
-* Submit your CM url along with <code>minotaur</code> password to the instructors.
+* 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1317,18 +1307,20 @@ You may work in a team on this exercise. When you submit your response, include 
 
 ## <center> <a name="security_review">Quick basics overview</a>
 
-* Enterprise functional requirements
-    * Perimeter access
-        * Physical network, firewall, IP filtering
-        * Strong authentication
-    * Restricted visibility to data
-        * Proxy services (for client transparency), data encryption
-    * Controlled access
-        * File permissions and ACLs
-        * Object-level (database) permissions
-    * Restricted metadata visibility
-        * Auditing logs
-        * Lineage data
+* Perimeter
+    * Firewalls, iptables
+* Authentication & Authorization
+    * Strong authentication
+    * Granular access to HDFS files, Hive/Impala objects
+* Encryption
+    * Transport Layer Security (TLS)
+    * On-the-wire encryption
+    * Data at rest
+* Data Visibility
+    * Separation of concerns: storage management vs. data stewardship
+    * Anonymizing sensitive fields
+    * Auditing data practices without exposing content
+
 
 ---
 <div style="page-break-after: always;"></div>
@@ -1568,12 +1560,13 @@ Complete *one* of the following labs:<p>
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> HUE Versions & Resources
+## <center> Current Version & Resources
 
-* HUE 3.9 [released](http://gethue.com/category/release/) in August, 2015
-* Lots of learning resources on [gethue.com](http://gethue.com)
-* Several walk-throughs are [available on Vimeo](https://vimeo.com/gethue)
-* HUE is the front end for [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
+* HUE 3.7 released in October, 2014
+* Your self-help resource site: [gethue.com](http://gethue.com)
+* Several walk-throughs [available on Vimeo](http://vimeo.com/search?q=gethue)
+* These are short/compressed 
+* Provides the front end for [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
 
 ---
 <div style="page-break-after: always;"></div>
