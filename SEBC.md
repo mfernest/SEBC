@@ -1853,53 +1853,56 @@ volume. (Contributed by Arpit Agarwal)</code>
 # <center> Challenges
 
 * Overview: Build a cluster and secure it
-* You will document your progress by email the same way you have all week.
+* You will document your progress by email the same way you have all week
     * mfernest@cloudera.com
-* Submit each challenge result before you start the next one.
-* If you brick your cluster, notify us first by email, then tell us.
-* Be sure to respond to every instructor request for a clarification.
+    * scottgriz@cloudera.com
+* Submit a challenge result as soon as it is completed.
+* If you break your cluster and cannot recover it, notify us by email first, then tell us.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Before You Begin
+## <center> Do not start the challenges yet!
 
-* Start an email chain with the subject line: <code>[Your Name] - Boot Camp Challenges</code>
-    * List your EC2 instances by public DNS name in the body
-    * Specify which instance will host Cloudera Manager
-    * Show the output of <code>uptime</code> and <code>hadoop fs -ls /</code> on this instance
-    * Screen shot or text capture -- make sure I can see which node the commands have been run on!
-* Create a Linux user account <code>booter</code> on all nodes with a UID of 1999.
-    * List the <code>/etc/passwd</code> once this account has been added.
-* Do NOT begin the challenges before submitting this information!
+* Write an email with the subject line: <code>[Your Name] - Boot Camp Challenges</code>
+    * List your EC2 instances by **public DNS name** 
+* Specify which instance you will use for Cloudera Manager
+    * List the output from the command <code>hadoop fs -ls /</code> on this instance
+* Create a Linux user account <code>milosz</code> on all nodes with a UID of 1999.
+
+* Once you have submitted this email, you may start the challenges
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 1 - Install a MySQL server for CM
 
-* Install a MySQL 5.6 server
-    * It may not be placed on the same instance that will run CM
-* Install MySQL client as a package on all instances.
-* Install the JDBC connector correctly on all nodes 
-* Create databases in MySQL for the CM Management Services and Hive Metastore **only**
-* Submit the following in email:
-    * The host name of the instance with MySQL server installed
-    * The output of <code>SHOW DATABASES;</code> on that instance
-    * A directory listing showing the MySQL connector is correctly installed
+* Install a MySQL 5.5 server
+    * Use any node **except** the one that will host Cloudera Manager
+* Install the MySQL client and JDBC connector on all nodes
+* Create the following databases **only**
+    * All CM Management Services 
+    * Hive Metastore
+* Once the mysql server is running, email the following information:
+    * The output of the command <code>mysql --version</code>
+    * The output of the following MySQL statement:
+          <code>SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';</code> 
+    * The output of the statement <code>SHOW DATABASES;</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 2 - Install Cloudera Manager
 
-* Install the Cloudera Manager package repository on the selected node
-* Install Cloudera Manager 5.3.0
-* Create a CM account with the name Boss and the password Michael. 
-    * Give this account the Full Administrator role
-* Submit the following as inline text in an email (no attachements necessary):
-    * The URL for your CM login page
-    * The listing for the <code>/var/log/cloudera-scm-server</code> directory
+* Install the package repository for Cloudera Manager **5.4.8**
+* Install Cloudera Manager
+* Create a CM account with the following attributes:
+    * Account name: <code>Overlord</code>
+    * Password <code>singapore</code>
+    * Role: Full Administrator role
+* Submit the following information before starting Challenge 3
+    * The output of the command <code>java -version</code>
+    * The URL to your CM login page
     * The output of CM API endpoint <code>api/v10/cm/deployment</code>
 
 ---
@@ -1907,74 +1910,78 @@ volume. (Contributed by Arpit Agarwal)</code>
 
 ## <center> Challenge 3 - Install CDH
 
-* Create a Linux account <code>newbie</code> with UID 2001 on all nodes
-* Install CDH 5.3.0
-* Enable **only** these services: ZooKeeper, HDFS, YARN and Hive 
-* Name your cluster using your first name
-* Create the HDFS directory <code>/user/newbie</code>
-* Submit the following as directed:
+* Install CDH **5.4.8**
+* Enable these services **only**
+    * ZooKeeper
+    * HDFS
+    * YARN
+    * Hive 
+* Name your cluster after you
+* Create an HDFS directory <code>/user/milosz</code>
+    * Make <code>milosz</code> the owner of this directory 
+* Submit the following information before starting Challenge 4:
     * The output of CM API endpoint <code>api/v10/cm/deployment</code>
-    * Text file: Output of <code>hdfs dfs -ls /user</code>
+    * The output of the command <code>hdfs dfs -ls /user</code>
+    * A list of tables in the <code>scm</code> database
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 4 - Testing
 
-* Tune YARN using your own calculations or the worksheet I sent you
-* Run the following tests on a node that is not running CM or MySQL
-    * <code>hdparm -t</code> on the node's volume(s)
-    * <code>dd if=/dev/zero bs=1M count=1024 </code>
-* Use <code>teragen</code> to create a file of 51,200,000 records 
-    * Use <code>time(1)</code> to record the job duration
-    * Make the default mapper count double the number of DataNodes
-    * Write the results to <code>/user/newbie</code> in HDFS
-* Use <code>terasort</code> on the resulting output
-    * Make sure to get the duration of the process
+* Switch the user account <code>milosz</code>
+* Run <code>teragen</code> to create 51,200,000 records 
+    * Use the <code>time(1)</code> command to get the job duration
+    * Use two mappers for every worker node in your cluster
+    * Write the output to the <code>/user/milosz</code> directory
+* Run <code>terasort</code> on the output
+    * Use <code>time</code> again to record the duration of this job
 * Submit the following:
-    * Text file: The command and results of your <code>hdparm</code> and <code>dd</code> tests
-    * As a screen capture: The <code>terasort</code> and <code>teragen</code> commands you used 
-    * Command output for <code>hdfs dfs -ls /user/newbie</code>
+    * The complete <code>teragen</code> and <code>terasort</code> commands you used
+    * The result of the <code>time</code> command for each job
+    * The output for the command <code>hdfs dfs -ls /user/milosz</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 5 - Kerberize the cluster
 
-* Install/configure a KDC for the realm <code>FEYNMAN.FCE</code>
-* Create a principal for your <code>newbie</code> login.
-* Enable Kerberos via CM
-* Run the Hadoop <code>pi</code> test program as <code>newbie</code>. 
+* Install/configure a KDC with the realm <code>SEBC.SIN</code>
+* Create a user principal for the <code>milosz</code> account
+* Kerberize your CDH services
+* Run the Hadoop <code>pi</code> test program as <code>milosz</code>
 * Submit the following:
-    * The <code>kinit</code> and <code>klist</code> output for authenticating with <code>newbie</code>.
-    * Text file: The <code>kdc.conf</code> file
-    * Screen shot: The <code>Credentials</code> tab from <code>Administration -> Kerberos</code>
+    * The <code>kinit</code> command you used to authenticate <code>milosz</code>
+    * The <code>klist</code> output showing <code>milosz</code> has a valid renewable ticket
+    * The full text of your <code>kdc.conf</code> file
+    * The list of principals in your KDC
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - Configure Hue
+## <center> Challenge 6 - Enable Impala
 
-* Create a Hue service instance through CM
-    * Configure it to use your MySQL server instead of <code>sqlite3</code>
-    * Configure Hue so the Impala GUI is not available
-* Submit the following in email:
-    * A HUE screen shot to show the Impala GUI is not available
-    * Attach the file <code>hue.ini</code> 
-     
-* <strong>EMAIL WHAT YOU HAVE NO LATER THAN 11:55 AM, PDT</strong>
+* Add the Impala service to your cluster
+* Deploy an Impalad role on every instance that hosts a DataNode role
+* Add Kerberos configuration for this service
+* Submit the following:
+    * A list of the Impala service principals in your KDC
+    * A screen capture of the Instances tab for Impala in CM
 
-* Please complete the course survey: <code>http://tinyurl.com/fce-bc-survey</code>
+---
+<div style="page-break-after: always;"></div>
 
-* <strong>In one last email</strong>: I want you to evaluate, in
-your own words, a) the value of this course to you; and b) your own
-readiness. Please write whatever you think is appropriate, but
-include with your note:
-    * How much longer would you need to finish the challenges
-    (assuming you didn't)?
-    * Which section of this course helped you the most? Which helped the least?
-    * Which aspect of this course did you like the most? The least?
-    * What other resources could you use to improve your skills (training, practice time, mentoring)?
+## <center> Completing Course Feedback
+
+* Emails sent after 11:55am (local time) are not included in the challenge evaluation. 
+* After you submit your last challenge, complete [this survey](http://tinyurl.com/fce-bc-survey)
+* Start a new email with the subject line: **[Your Name]: SEBC
+Feedback**. Include the following:
+    * Describe your boot camp experience. Was it useful, difficult, challenging?
+    * If you had three more hours today, could you finish all six challenges? If not, what else do you need to prepare?
+    * Which topic taught you the most? Which one taught you the least?
+    * What aspect of this course did you like the most? The least?
+    * What other resources do you need to prepare for a production install? 
 
 ---
 <div style="page-break-after: always;"></div>
