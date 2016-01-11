@@ -6,13 +6,12 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> December 7-11, 2015 </center>
-## <center> Singapore, Singapore </center>
+## <center> January 11-15, 2016 </center>
+## <center> Palo Alto, California </center>
 
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Monday PM: Introductions/Installation </center>
 ## <center> Introductions & Overview
 
 - <a href="#instructor">Instructors</a>
@@ -28,8 +27,8 @@
 
 * Michael Ernest (Senior Partner Sales Engineer)
     * mfernest@cloudera.com
-* Scott Grzybowski (Senior Solutions Consultant)
-    * scottgriz@cloudera.com
+* Peter Whitney (Solutions Architect)
+    * pwhitney@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
@@ -107,8 +106,8 @@ We will address you as experienced field technicians who:
 * Six challenge stages
 * Stages are marked Complete, Incomplete, or Did Not Submit
 * How you communicate is part of the test!
-    * Noting problems you encountered, if any.
-    * How you isolate the problem 
-    * How you compensated for or fixed the problem
+    * Noting a problem you encountered, if any.
+    * How you isolated that problem 
+    * How you compensated for or fixed that problem
 
 

@@ -6,8 +6,8 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> December 7-11, 2015 </center>
-## <center> Singapore, Singapore </center>
+## <center> January 11-15, 2016 </center>
+## <center> Palo Alto, California </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -28,8 +28,8 @@
 
 * Michael Ernest (Senior Partner Sales Engineer)
     * mfernest@cloudera.com
-* Scott Grzybowski (Senior Solutions Consultant)
-    * scottgriz@cloudera.com
+* Peter Whitney (Solutions Architect)
+    * pwhitney@cloudera.com
 
 ---
 <div style="page-break-after: always;"></div>
