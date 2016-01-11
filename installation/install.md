@@ -29,7 +29,7 @@
 
 ## <center> Cloudera Manager architecture
 
-<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.jpg"> </center>
+<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> </center>
 
 ---
 <div style="page-break-after: always;"></div>
