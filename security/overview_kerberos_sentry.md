@@ -6,7 +6,6 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Wednesday PM
 # <center> <a name="cdh_security_section"/>CDH Security
 
 * <a href="#security_review">Quick basics overview</a>

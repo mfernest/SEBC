@@ -6,7 +6,6 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Wednesday AM
 # <center> <a name="cm_monitor_customize_section"/>CM Monitoring & Customizing
 
 * <a href="#cm_overview">CM's vocabulary</a>
