@@ -6,24 +6,22 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Friday AM
 # <center> Challenges
 
 * Overview: Build a cluster and secure it
-* You will document your progress by email the same way you have all week
+* You will document progress in to GitHub as you have practiced all week
+* Notify your instructors by email each time you complete a challenge
     * mfernest@cloudera.com
-    * scottgriz@cloudera.com
-* Submit a challenge result as soon as it is completed.
-* If you break your cluster and cannot recover it, notify us by email first, then tell us.
+    * pwhitney@cloudera.com
+* You can add work to a challenge after notification
+* If you break your cluster or a problem breaks your brain, let us know.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Do not start the challenges yet!
+## <center> Before you begin
 
-* Write an email with the subject line: <code>[Your Name] - Boot Camp Challenges</code>
-    * List your EC2 instances by **public DNS name** 
-* Specify which instance you will use for Cloudera Manager
+* Specify which EC2 instance you will use for Cloudera Manager
     * List the output from the command <code>hadoop fs -ls /</code> on this instance
 * Create a Linux user account <code>milosz</code> on all nodes with a UID of 1999.
 

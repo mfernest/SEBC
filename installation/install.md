@@ -5,7 +5,6 @@
 
 ---
 
-## <center> Monday PM
 ## <center> <a name="cm_cdh_installation_section"/>Cloudera Manager & CDH Installation
 
 * <a href="#install_methods">Installation Methods</a>

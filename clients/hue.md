@@ -6,7 +6,6 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Thursday AM
 # <center> <a name="hue_services_admin_section"/>HUE Services & Administration
 
 * <a href="#hue_design_goals">HUE Design and Goals</a>
@@ -32,7 +31,7 @@
 
 ## <center> Current Version & Resources
 
-* HUE 3.7 released in October, 2014
+* HUE 3.9 released in August, 2015
 * Your self-help resource site: [gethue.com](http://gethue.com)
 * Several walk-throughs [available on Vimeo](http://vimeo.com/search?q=gethue)
 * These are short/compressed 

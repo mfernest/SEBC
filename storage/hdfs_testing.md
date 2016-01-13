@@ -6,7 +6,6 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Tuesday AM
 # <center> <a name="hdfs_section"/>HDFS<p>
 
 * Review and reinforcement
