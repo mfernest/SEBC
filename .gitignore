@@ -1,2 +1,4 @@
 # Ignore source materials
 *.pdf
+# Ignore scratch notes
+*.notes
