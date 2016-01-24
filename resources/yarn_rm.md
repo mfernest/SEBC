@@ -6,36 +6,24 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Tuesday PM
 # <center> <a name="yarn_rm_section"/>YARN & RM
 
-* <a href="#mrv1_review">MRv1 Design</a>
 * <a href="#mrv2_review">YARN/MRv2 Design</a>
 * <a href="#YARN_overview">What YARN Does</a>
 * <a href="#migrating_mrv1_mrv2">Migrating from MRv1 to YARN</a>
 * <a href="#RM_overview">Resource Management Overview</a>
 
 ---
-<div style="page-break-after: always;"></div>
-
-## <center> <a name="mrv1_review"/> MRv1 Design
-
-### <center> Graphic overview
-
-<center><img src="http://www.ibm.com/developerworks/library/bd-yarn-intro/fig01.png"/></center>
-
----
 <div style="page-break-after:always;"></div>
 
-## <center> MRv1: Roles & Pain Points
+## <center> MapReduce as a service: Roles & Pain Points
 
 * JobTracker manages scheduling, TaskTrackers, job status, and recent history
 * TaskTrackers set a number of <i>slots</i> that are map- or reduce-specific
-    * Slot count factors include cores, spindles, and workload -- art and science
-    * Under-utilization is hard to avoid
-    * Over-utilization can lead you down a difficult path
-* At ~4k TaskTrackers, JobTracker allegedly becomes a bottleneck
-* You can overrun JT cache with too many fast-failing jobs
+    * Estimating slot count factors in cores, spindles, workload -- and experience
+    * Under-utilizing the cluster is common
+* With ~4k TaskTrackers, JobTracker (allegedly) becomes a bottleneck
+* You can overrun JobTracker cache with many fast-failing jobs
 
 ---
 <div style="page-break-after: always;"></div>

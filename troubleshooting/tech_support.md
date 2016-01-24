@@ -6,7 +6,6 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Thursday PM
 # <center> <a name="troubleshooting_practices_section"/>Troubleshooting
 
 * <a href="#troubleshooting_philosophy">Cloudera's Partner Philosophy</a>
