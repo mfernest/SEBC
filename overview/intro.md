@@ -14,26 +14,26 @@
 
 ## <center> Introductions & Overview
 
-- <a href="#instructor">Instructors</a>
-- <a href="#audience">Audience Expectations</a>
+- <a href="#instructor">Instructors & Students</a>
+- <a href="#audience">Audience Assumptions</a>
 - <a href="#design_layout">Course design</a>
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="instructor"/> Instructors
+## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
     * mfernest@cloudera.com / mfernest
 * David Beech (Senior Solutions Architect)
     * dbeech@cloudera.com / dbeech
 * Give us a brief introduction
-    * Email us your GitHub handle too
+    * And email your GitHub handle to us
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="audience"/> Audience
+## <center> <a name="audience"/> Audience Assumptions
 
 We will address you as experienced Hadoop technicians who:
 
@@ -43,24 +43,24 @@ We will address you as experienced Hadoop technicians who:
     * Experience with a distributed application environment
 * Can complete labs by objective without step-by-step scripts
     * We focus on practicing skills and finding flaws in documentation
-* Know Linux and its common CLI tools well
-    * These labs have eaten and will eat non-technical attendees
+* Are proficient with common Linux CLI tools 
+    * These labs have eaten students who did not have these skills
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="course_objectives"/a> Course Objectives
 
-* Prepare you to install CM/CDH clusters for production
-* Evaluate your field readiness by Cloudera field staff
-* Identify practices for ongoing development
+* Prepare you to install CM/CDH clusters in production environments
+* Have Cloudera field staff evaluate your field readiness 
+* Identify next steps to continue your skills development
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="design_layout"/a>Course Plan
 
-* Seven topics
+* Seven general topics with specific, up-to-date content
     * <a href="../installation/install.md">Installation</a>
     * <a href="../storage/hdfs_testing.md">Storage</a>
     * <a href="../resources/yarn_rm.md">Resource Management</a>
@@ -72,7 +72,7 @@ We will address you as experienced Hadoop technicians who:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="discussion_format"/> Daily Format
+## <center> <a name="discussion_format"/> Day-to-day Format
 
 * Mornings: Four hours for discussion and lab
     * Includes the lunch hour as you wish
@@ -86,7 +86,7 @@ We will address you as experienced Hadoop technicians who:
 
 * Six challenge stages over three hours
     * Install and secure a cluster 
-* We will use the last challenge set as preparation
+* The previous delivery's challenges are available for review
 
 ---
 <div style="page-break-after: always;"></div>
@@ -94,7 +94,7 @@ We will address you as experienced Hadoop technicians who:
 ## <center> <a name="scored_labs"/> Submitting Work
 
 * All work is submitted via GitHub
-    * You'll fork an existing repo and build on it
+    * You'll fork an existing repo and add to it
     * We'll review Git/GitHub tools later today
     * All submissions in plain-text, Markdown, and/or PNG screenshots
 * Each lab/challenge is scored Complete, Incomplete, or Did Not Submit
