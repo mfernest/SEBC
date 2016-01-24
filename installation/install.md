@@ -9,7 +9,7 @@
 
 * <a href="#install_methods">Installation Methods</a>
 * <a href="#parcels">Understanding Parcels</a>
-* <a href="#db_setup">Installing an external database</a>
+* <a href="#db_setup">Embedded vs. external database</a>
 * <a href="#cm_cdh_key_points">Supplmental CM/DH Points</a>
 * <a href="#cm_ui_overview">Cloudera Manager UI Overview</a>
 
@@ -18,10 +18,12 @@
 
 ## <center> <a name="install_methods"/> CM/CDH Installation
 
-* <a href="#cm_install_paths">Documented paths</a>
-* <a href="#cm_install_milestones">Using installation milestones</a>
-* <a href="#cm_install_logging">Logging milestones</a>
-* <a href="#word_on_cloudera_director">Cloudera Director</a>
+* We use Cloudera  Manager to:
+    * Manage host systems
+    * Create host clusters and deploy services
+    * Track and adjust service properties
+    * Automate tasks such as HA NameNode, Active Directory integration
+    * Monitor hosts and services via agent processes
 
 ---
 <div style="page-break-after: always;"></div>
@@ -36,48 +38,50 @@
 ## <center> <a name="cm_install_paths"/>Installation paths
 
 * [Path A: One-stop binary installer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
-    * For short-term, admin-lite clusters (pilots, POCs, dev)
-    * Uses "embedded" PostgreSQL database server
-* [Path B: You install CM, CM installs CDH](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
-    * Long-term or production-ready cluster
-    * External database server (Oracle, MySQL, PostgreSQL)
+    * Used for short-term, throwaway projects 
+    * Embedded PostgreSQL server 
+* [Path B: Install CM, CM deploys CDH](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
+    * Production clusters
+    * Supports Oracle, MySQL, and PostgreSQL servers
+    * Installs CDH with Linux packages or [Parcels](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_parcels.html)
 * [Path C: Tarballs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
-    * No root/sudo access 
-    * Complements other deployment tools
-    * Cloudera Manager not required
+    * Privileged access is not available
+    * Other deployment tools will be used
+    * Integration with CM not important
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> <a name="cm_install_logging"/>CM Installation Milestones with Path A []()
+
+* Linux configuration/prechecks
+* Install package repositories for database server and Cloudera Manager
+* Install Oracle JDK package
+* Install database server
+* Install Cloudera Manager
+* Add hosts, then deploy cluster
+
+* The install engineer prepares for an engagement by reviewing:
+    * [Well-known issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html)
+    * [Ongoing problems and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html)
+    * [Recently closed JIRAs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_install_milestones"/> Path B Steps []()
 
-0. Verify supported platform and appropriate settings
+0. Review hardware, OS, disk, and network/kernel settings
 1. Install Oracle JDK
-    * Included with Cloudera Manager package repo
-2. Install a [DB server supported by Cloudera Manager](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
+    * Cloudera Manager package repo includes it
+    * OpenJDK not (yet) supported by Cloudera
+2. Install/configure [DB server](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
     * Used by Management Services: Service Monitor, Host Monitor, Navigator, etc.
     * CDH services backed by db: Hive Metastore, Oozie, Hue 
-3. Install the CM Server package
-    * Omit the embedded database package
+3. Install the CM server and agent packages
 4. Distribute CM agent software (by hand or with CM)
 5. Distribute CDH (packages or parcels)
 6. Deploy CDH services<p>
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> <a name="cm_install_logging"/>CM Installation Milestones []()
-
-* Linux configuration/prechecks
-* Install package repositories for database server and Cloudera Manager
-* Install Oracle JDK package
-* Install/configure/initialize database server
-* Install/configure/initialize Cloudera Manager
-* Add hosts, then deploy cluster
-
-* Review [well-known conditions](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html)
-* Review [known problems and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html) before installing.
-* Review [recently fixed issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -86,13 +90,13 @@
 
 Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F) used to:
 
-* Bundle services of one CDH release
-* Work around Linux packaging requirements
-    * Non-privileged location: <code>/opt/cloudera/parcels</code>
-    * Multiple parcel versions can coexist 
-    * Making a local parcels repo is straightforward
-* Encapsulate CM integration hooks (Custom Service Descriptors)
-* Minimizes upgrade and downgrade windows 
+* Bundle all Cloudera-supported Hadoop components into one distribution 
+* Simpler than Linux packaging 
+    * Written to non-privileged location: <code>/opt/cloudera/parcels</code>
+    * No dependency or other package-conflict issues
+    * Easy to create/maintain a local parcels repo 
+* Integrates services with CM via Custom Service Descriptors (CSDs)
+* Mitigates upgrade downtime
 
 ---
 <div style="page-break-after: always;"></div>
@@ -106,7 +110,7 @@ Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parce
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Parcels Lifecycle and Administrivia
+## <center> Parcels Lifecycle 
 
 * Lifecycle actions
     * Download
@@ -145,35 +149,21 @@ Parcels are [CM-specific packages](https://github.com/cloudera/cm_ext/wiki/Parce
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_service_dbs"/>[Service Databases](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html) 
+## <center> <a name="cm_service_dbs"/>[Databases and Other Stores](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html) 
 
-The following services require a database:
+Many services use a backing store other than logs:
 
-* Management Services
-    * Reports Manager
-    * Navigator Audit & Metadata Servers
-* CDH Services
+* Management Services (one set per CM instance)
+    * Reports Manager (aka <code>rman</code>)
+    * Navigator Audit & Metadata Servers (not covered this week)
+    * Activity Monitor (<code>amon</code>) is used by the MapReduce service only
+    * Host and Service Monitors implement [LevelDB](https://github.com/google/leveldb) 
+* CDH Services 
     * Hive Metastore
     * Sentry 
     * [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1)
-    * [HUE](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) 
-
-*The Host and Service Monitors use [LevelDB](https://github.com/google/leveldb).
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> <a name="cm_embedded_db"/> CM's embedded database</a> 
-
-The PostgreSQL server bundled with CM is not production-oriented.
-We support Oracle, MySQL, and PostgreSQL as external servers.
-
-* Some people install with Path A because fast means awesome.
-* You can migrate to an external database later, but:
-    * It's tedious
-    * It forces service restarts
-    * It trades a little savings up front for a lot of extra work later on
-* Some customers silo all database creation -- this is ok.
+    * [Hue](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) 
+    * Sqoop2 (PostgreSQL only)
 
 ---
 <div style="page-break-after: always;"></div>
