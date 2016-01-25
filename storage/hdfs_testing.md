@@ -13,24 +13,40 @@
     * <a href="#hdfs_benchmarking">Benchmarking</a>
     * <a href="#namenode_web_ui">NameNode Web UI</a>
     * <a href="#using_safemode">What safemode does</a>
-* <a href="#hdfs_c5">HDFS for C5</a>    
+* <a href="#hdfs_c5">HDFS & C5</a>    
 
 ---
 <div style="page-break-after: always;"></div>
 
+## <center>A Note on Service Deployment</center>
+
+* Plan on relocating services as clusters grow
+* Cloudera Professional Services uses four role types to guide service placement and other concerns 
+    * Master: Dispatching and supervisory processes
+        * HDFS NameNode, YARN ResourceManager, HBaseMaster
+    * Worker: Task executors
+        * DataNode, NodeManager, HBase RegionServer
+    * Edge: Client access, data ingestion
+        * HUE, Flume, Sqoop, client gateways, NFS gateways
+    * Utility: Administration, management services
+        * Cloudera Manager, database server
+* Deployment scheme varies with cluster size
+    * Few nodes: master & workers combined, utility & edge roles combined 
+    * Many nodes: masters and works separated, dedicated utility & edge node(s)
+    * You may see different hardware types for each role
+        * Fewer disks, RAID volumes on master nodes
+        * More RAM and spindles on worker nodes
+
+---
+<div style="page-break-after: always;"></div>
+
+
 ## <center> <a name="hdfs_namenode_ha"/> NameNode HA
 
-* CM 5 supports a [NameNode HA wizard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
-    * {HDFS service} -> Actions -> Enable High Availability
-    * [Locating the Journal Quorum Managers](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html?scroll=cmug_topic_5_12_1_unique_1)
-    * [Understanding Zookeeper's role](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
-* You may want to relocate services as a cluster grows
-* Best practices vary with cluster size
-    * Few nodes: master & workers combined, utility & edge roles combined 
-    * Many nodes: dedicated roles per host
-    * You may have hardware designed for each role
-        * Fewer disks, RAID on master nodes
-        * RAM, many spindles on worker nodes
+* CM 5 offers a [NameNode HA wizard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
+    * In CML *{HDFS service} -> Actions -> Enable High Availability*
+    * You'll need to [place the Journal Quorum Managers](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html?scroll=cmug_topic_5_12_1_unique_1)
+    * You should [understand Zookeeper's role in maintaining state] (https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -52,34 +68,9 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="namenode_web_ui"/> NameNode Web UI
-
-* Use [Vijay Thakorlal's breakdown/annotation article](http://vijayjt.blogspot.com/2013/02/hadoop-namenode-web-interface.html) if you're not familiar
-    * Significant changes from earlier Hadoop releases
-    * You should know it well
-* SNN's web UI port: 50090
-    * One place to find the Hadoop version in use
-    * Use when the NameNode itself is very busy
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> <a name="using_safemode"/>A note on safemode
-
-* Entered while fsimage is reloaded 
-    * Write requests will be delayed or refused
-    * Read requests are OK
-* The NN may take 30 seconds or more before leaving safemode
-    * If at least one cycle of replays takes place
-* Safemode can used to suspend all writes during maintenance
-    * <code>hadoop dfsadmin -safemode</code>
-
----
-<div style="page-break-after: always;"></div>
-
 ## <center> <a name="hdfs_c5"/> C5 Goals for HDFS
 
-The strategic goals for C5:
+Strategic storage goals for C5:
 
 * Take advantage of larger RAM complements
 * Perform faster backups
@@ -216,7 +207,7 @@ Adds cache locality to NN reports<p>
 
 ## <center> <a name="nfs_gateway"/> NFS Gateway
 
-* NFSv3 service to HDFS
+* NFSv3 service ported to HDFS
     * Useful for file browsing and transfers
     * Alternative to webHDFS or httpfs
 * Any NFS-capable HDFS client can be a gateway
@@ -231,8 +222,8 @@ Adds cache locality to NN reports<p>
 ### <center>HDFS Labs Overview
 
 * Replicate data to a classmate's cluster 
-* Use teragen and terasort
-* Enable NameNode HA
+* Use teragen and terasort to smoke-test your cluster
+* Configure NameNode HA
 * Snapshot, delete, and recover a file
 
 ---
@@ -240,34 +231,35 @@ Adds cache locality to NN reports<p>
 
 ## <center> HDFS Lab: Replicate to another cluster
 
-* Choose a replication partner in class
-* Configure a replication directory for your lab partner
-* Teragen a ~400MB file 
-    * Replicate to the directory your partner made for you
-* Email a screenshot showing the received files exist on your system
-    * You can use thre HDFS File Browser in Cloudera Manager if you wish
+* Choose a partner in class
+* Create a replication directory named after your partner's GitHub name
+* Let each partner teragen 1 GB of records
+* Replicate your partner's teragen file to the directory your made for them 
+* Using the HDFS Browser in Cloudera Manager, get a screenshot that shows your partner's file
+    * Name this file <code>storage/0_<partnerGitHub>_<yourGitHub>.png</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> HDFS Lab: Test HDFS performance
 
-* Use the steps outlined in [Michael Noll's blog](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/) as a guide.
-* Run terasort twice
-    * Use the <code>time</code> command to capture each run
-    * Use <code>terasort</code> on the file you created in the last lab
-    * Use <code>terasort</code> on the file replicated to your HDFS
-* Email the results of these runs; be sure to include the <code>time</code> results.
-    * Please omit the task completion percentages from the output.
+* Run terasort three times
+    * Use the <code>time</code> command to capture each run's duration
+    * Use the file you created with <code>teragen</code> in the last lab
+    * To use one directory target for all three runs, remember to delete the previous output
+* Record the output nd duration of these jobs in the file <code>storage/1_terasort_tests.txt</code> 
+    * You can remove the percentage milestones to shorten the file
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> HDFS Lab: Enable HDFS HA
 
-* Use the CM Wizard to enable HA
-* Capture/email your HDFS service main page when complete 
-* Add an <code>instructor</code> user in CM 
-    * Assign the Operator role to this user
-    * Use the password <code>cloudera</code>
-* Email the URL of your CM instance when this account is ready
+* Use the Cloudera Manager wizard to enable HA
+    * Once configured, get a screenshot of the HDFS Configuration tab
+        * Name the file <code>storage/2_HDFS_HA.png</code> 
+* Add an <code>instructor</code> to your CM users
+    * Assign the <code>Operator</code> role to this user
+    * Assign the password <code>cloudera</code> to this user
+    * Get a screenshot that shows both CM users and their roles; name the file <code>storage/3_CM_users.png</code>
+* Email the instructors once you have completed these labs.
