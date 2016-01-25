@@ -246,7 +246,7 @@ Add your answers to the file <code>resources/0_YarnCalcs.txt</code> in your repo
 * Run the script 
     * Your highest value can max out the cluster to demonstrate resource enforcement 
 * Add the following to your repository's <code>resources/</code> directory
-    * The completed version of your script (overwriting the initial one)
-    * The output of your slowest run in 2_YARNslow.txt
-    * The output of your fastest run in 3_YARNfast.txt
-* Email the instructors when you have completed all labs
+    * The completed version of your script (overwrite the initial one)
+    * The output of your slowest run in <code>2_YARNslow.txt</code>
+    * The output of your fastest run in <code>3_YARNfast.txt</code>
+* Email the instructors when you have completed these labs
