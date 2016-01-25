@@ -322,8 +322,8 @@ Email both instructor(s) with your chosen plan **before** you start.
     * [Latest CDH4 release](http://archive.cloudera.com/cdh4/parcels/latest)
     * Standalone components (such as Accumulo or Kafka)
 * Follow the [documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_create_local_parcel_repo.html).
-* Set the new repository in CM
-* Capture this change in a screenshot. Name it <code>4_local_repo.png</code> and move it to your installation folder.
+* Set the new repository location in Cloudera Manager
+* Capture this change in a screenshot and move it to <code>installation/4_local_repo.png</code> 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -334,6 +334,7 @@ Email both instructor(s) with your chosen plan **before** you start.
 * If you are interested in learning about automated installs:
     * Fork/clone [Justin Hayes' auto-deployment work](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
     * Follow instructions, including validation test of the install, as given in the README
+* No submissions are needed for this lab, but add any notes you wish to keep.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -346,7 +347,7 @@ Email both instructor(s) with your chosen plan **before** you start.
 * CDH has no dependencies on Cloudera Manager. There are however features in CM that are not part of upstream Hadoop.
 * CM has a REST API
     * Each API version is a superset of all prior versions
-    * Try <code>http://<i>your_cm_host</i>:7180/api/version</code> on your CM server
+    * Try <code>http://<i>your_cm_host</i>:7180/api/version</code> in your browser
     * Note some recent  endpoints won't apply to 4.x CDH releases
-        * You can Browse the [CM API here](http://cloudera.github.io/cm_api/)
+        * You can browse the [CM API here] (http://cloudera.github.io/cm_api/)
 
