@@ -303,7 +303,7 @@ Email both instructor(s) with your chosen plan **before** you start.
 * Use the Data Hub Edition 
 * Install CDH using parcels
 * Rename your cluster to your GitHub name
-* Enable the Coreset of CDH services **only** is you are using <code>m3.large</code> instances. 
+* Enable the Coreset of CDH services **only** if you are using <code>m3.large</code> instances. 
 * Assign three ZooKeeper instances, not one.
 * Take a screenshot of your CM home page 
     * Rename the file to <code>3_cm_installed.png</code> and add it to your <code>installation/</code> directory.

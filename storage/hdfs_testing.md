@@ -33,6 +33,7 @@
 * Deployment scheme varies with cluster size
     * Few nodes: master & workers combined, utility & edge roles combined 
     * Many nodes: masters and works separated, dedicated utility & edge node(s)
+    * Many nodes: masters and workers separated, dedicated utility & edge node(s)
     * You may see different hardware types for each role
         * Fewer disks, RAID volumes on master nodes
         * More RAM and spindles on worker nodes
