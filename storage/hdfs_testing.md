@@ -127,7 +127,7 @@ Adds cache locality to NN reports<p>
 
 ## <center> Directory caching: Implementation<p>
 
-<center><img src="https://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/images/caching.png" height="325" width="400"></center>
+<center><img src="http://www.cloudera.com/documentation/enterprise/latest/images/caching.png" height="325" width="400"></center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -151,27 +151,28 @@ Adds cache locality to NN reports<p>
 
 ## <center> Directory caching: Other notes
 
-* [Documentation](https://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_hdfs_caching.html)
-* The next question: how do we balance memory demand?
-    * Queries with [NRT expectations](http://stackoverflow.com/questions/5267231/what-is-the-definition-of-realtime-near-realtime-and-batch-give-examples-of-ea)
-    * MR jobs favoring parallel efficiency, low cost, simple scheduling
-    * We'll dig deeper this afternoon in the <a href="#yarn_rm">YARN RM</a> section
+* [Caching documentation is here] (http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_hdfs_caching.html)
+* The follow-on question: how do we balance memory demand between this and other memory-hungry features? 
+    * MR jobs favor parallel efficiency, low cost, simple scheduling
+    * Query users have ["NRT" expectations](http://stackoverflow.com/questions/5267231/what-is-the-definition-of-realtime-near-realtime-and-batch-give-examples-of-ea)
+    * We'll detail this subject when we discuss YARN and resource management
     
 ---     
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="scr_and_zcr"/> Notes on SCR and ZCR
+## <center> <a name="scr_and_zcr"/> Technical Notes on SCR and ZCR
 
-* Short-circuit Read
-    * [HDFS-2246](https://issues.apache.org/jira/browse/HDFS-2246): Lets a client read the local DataNode's process map
-    * Uses [file descriptor passing](http://poincare.matf.bg.ac.rs/~ivana/courses/tos/sistemi_knjige/pomocno/apue/APUE/0201433079/ch17lev1sec4.html)
-    * [Configurable via CM or hdfs-site.xml file](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_hdfs_short_circuit_reads.html) 
+* General advice: take time to map key upstream features to their [JIRAs] (https://issues.apache.org/jira)
+* [Short-circuit Reads] (https://issues.apache.org/jira/browse/HDFS-2246)
+    * Lets a client examine the local DataNode's process map for data blocks in system cache
+    * Uses [file descriptor passing](http://poincare.matf.bg.ac.rs/~ivana/courses/tos/sistemi_knjige/pomocno/apue/APUE/0201433079/ch17lev1sec4.html) 
+    * [Configurable via CM](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_hdfs_short_circuit_reads.html) 
 * Zero-copy Read
     * [Uses mmap() to read system page$](https://issues.apache.org/jira/browse/HDFS-4953)
     * Client implements the [ZCR API](https://issues.apache.org/jira/browse/HDFS-5191) 
 * On the roadmap
     * Write caching: [HDFS-5851](https://issues.apache.org/jira/browse/HDFS-5851)
-    * Proposed: dynamic caching based on workload/hints
+    * Proposed enhancement: dynamic caching based on workload/hints
 
 ---    
 <div style="page-break-after: always;"></div>
@@ -185,8 +186,8 @@ Adds cache locality to NN reports<p>
     * Deleted files may be retrieved from a version folder
     * Similar to .Trash concept, but no expiration
     * Subdirectories are included
-* [Apache page on the CLI](http://archive.cloudera.com/cdh5/cdh/5/hadoop/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html) 
-* Using [Cloudera Manager](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-2-x/topics/cm_bdr_managing_hdfs_snapshots.html) -- requires active trial or Enterprise license
+* [Apache docs on the CLI](http://archive.cloudera.com/cdh5/cdh/5/hadoop/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html) 
+* [Snapshots using Cloudera Manager] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_bdr_snapshot_intro.html) requires an active trial or Enterprise license
 
 ---
 <div style="page-break-after: always;"></div>
@@ -233,7 +234,7 @@ Adds cache locality to NN reports<p>
 
 * Choose a partner in class
 * Create a replication directory named after your partner's GitHub name
-* Let each partner teragen 1 GB of records
+* teragen 1 GB of records
 * Replicate your partner's teragen file to the directory your made for them 
 * Using the HDFS Browser in Cloudera Manager, get a screenshot that shows your partner's file
     * Name this file <code>storage/0_<partnerGitHub>_<yourGitHub>.png</code>
@@ -243,12 +244,14 @@ Adds cache locality to NN reports<p>
 
 ## <center> HDFS Lab: Test HDFS performance
 
-* Run terasort three times
+* Run <code>terasort</code> twice
     * Use the <code>time</code> command to capture each run's duration
-    * Use the file you created with <code>teragen</code> in the last lab
-    * To use one directory target for all three runs, remember to delete the previous output
-* Record the output nd duration of these jobs in the file <code>storage/1_terasort_tests.txt</code> 
-    * You can remove the percentage milestones to shorten the file
+    * Use the file you created with <code>teragen</code> in the previous lab
+    * To use one directory for all runs, remember to delete the previous job's output
+* Enable HDFS Short Circuit Reads, and run one more <code>terasort</code>
+* Record the output and duration of all jobs
+    * Replace all map/reduce percentage output lines in each job with one line that reads [###Job Progress###]
+    * Place all this in the file <code>storage/1_terasort_tests.txt</code> 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -263,3 +266,4 @@ Adds cache locality to NN reports<p>
     * Assign the password <code>cloudera</code> to this user
     * Get a screenshot that shows both CM users and their roles; name the file <code>storage/3_CM_users.png</code>
 * Email the instructors once you have completed these labs.
+
