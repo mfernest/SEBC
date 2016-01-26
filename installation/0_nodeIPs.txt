@@ -1,0 +1,6 @@
+public name 	Public IP
+ec2-54-93-223-102.eu-central-1.compute.amazonaws.com	54.93.223.102
+ec2-54-93-77-174.eu-central-1.compute.amazonaws.com	54.93.77.174
+ ec2-54-93-223-51.eu-central-1.compute.amazonaws.com	54.93.223.51
+ec2-54-93-223-95.eu-central-1.compute.amazonaws.com	54.93.223.95
+ec2-54-93-223-103.eu-central-1.compute.amazonaws.com	54.93.223.103

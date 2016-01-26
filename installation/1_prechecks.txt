@@ -1,0 +1,135 @@
+Check 1: OS
+[centos@ip-172-31-10-31 ~]$ cat /etc/*-release
+CentOS release 6.7 (Final)
+CentOS release 6.7 (Final)
+CentOS release 6.7 (Final)
+
+Check 1 END: OK
+
+
+Check 2: Space
+[centos@ip-172-31-10-31 ~]$ df -k
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/xvda1      32895856 1023864  30194684   4% /
+tmpfs            7648804       0   7648804   0% /dev/shm
+/dev/xvdb       20511356   44992  19417788   1% /hadoop
+/dev/xvdc       38696416  180236  36550512   1% /mnt
+Check 2 END: OK
+
+Check 3: Check vm.swappiness on all your nodes
+[centos@ip-172-31-10-31 ~]$ sudo sysctl -w vm.swappiness=1
+vm.swappiness = 1
+
+
+Check 4: 
+# /etc/fstab
+# Created by anaconda on Wed Oct  7 12:03:19 2015
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+UUID=3ef558b6-efb6-42c6-a2c4-246c28e3f389 /                       ext4    defaults        1 1
+tmpfs                   /dev/shm                tmpfs   defaults,noatime        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults,noatime        0 0
+proc                    /proc                   proc    defaults,noatime        0 0
+/dev/xvdb               /hadoop                 ext4    defaults,noatime        0 2
+/dev/xvdc       /mnt    auto    defaults,noatime,nofail,comment=cloudconfig     0       2
+[centos@ip-172-31-10-31 ~]$ sudo mount -oremount /dev/shm
+[centos@ip-172-31-10-31 ~]$ sudo mount -oremount /hadoop
+[centos@ip-172-31-10-31 ~]$ sudo mount -oremount /mnt
+
+
+Check 5: Set reservec space to 0
+sudo tune2fs -m 0 /dev/xvdc
+
+Check 6: Set the user limits to maximum file descriptors and processes
+[centos@ip-172-31-10-32 /]$ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 59684
+max locked memory       (kbytes, -l) 64
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 10240
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 1024
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+
+Check 7:
+Modified the /etc/hosts fiels on all the servers using private IPs
+172.31.10.32    jk1
+172.31.10.28    jk2
+172.31.10.29    jk3
+172.31.10.30    jk4
+172.31.10.31    jk5
+
+Check 8:
+Check name resolution:
+sudo yum install bind-utils (If nslookup command is missing)
+
+ping on all the servers is running with script :/hadoop/checks/ping_server.sh
+PING jk1 (172.31.10.32) 56(84) bytes of data.
+64 bytes from jk1 (172.31.10.32): icmp_seq=1 ttl=64 time=0.015 ms
+64 bytes from jk1 (172.31.10.32): icmp_seq=2 ttl=64 time=0.027 ms
+64 bytes from jk1 (172.31.10.32): icmp_seq=3 ttl=64 time=0.024 ms
+--- jk1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2116ms
+rtt min/avg/max/mdev = 0.015/0.022/0.027/0.005 ms
+PING jk2 (172.31.10.28) 56(84) bytes of data.
+64 bytes from jk2 (172.31.10.28): icmp_seq=1 ttl=64 time=0.333 ms
+64 bytes from jk2 (172.31.10.28): icmp_seq=2 ttl=64 time=0.209 ms
+64 bytes from jk2 (172.31.10.28): icmp_seq=3 ttl=64 time=0.262 ms
+--- jk2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2077ms
+rtt min/avg/max/mdev = 0.209/0.268/0.333/0.050 ms
+PING jk3 (172.31.10.29) 56(84) bytes of data.
+64 bytes from jk3 (172.31.10.29): icmp_seq=1 ttl=64 time=0.281 ms
+64 bytes from jk3 (172.31.10.29): icmp_seq=2 ttl=64 time=0.332 ms
+64 bytes from jk3 (172.31.10.29): icmp_seq=3 ttl=64 time=0.318 ms
+--- jk3 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2056ms
+rtt min/avg/max/mdev = 0.281/0.310/0.332/0.025 ms
+PING jk4 (172.31.10.30) 56(84) bytes of data.
+64 bytes from jk4 (172.31.10.30): icmp_seq=1 ttl=64 time=0.283 ms
+64 bytes from jk4 (172.31.10.30): icmp_seq=2 ttl=64 time=0.276 ms
+c64 bytes from jk4 (172.31.10.30): icmp_seq=3 ttl=64 time=0.271 ms
+--- jk4 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2876ms
+rtt min/avg/max/mdev = 0.271/0.276/0.283/0.019 ms
+PING jk5 (172.31.10.31) 56(84) bytes of data.
+64 bytes from jk5 (172.31.10.31): icmp_seq=1 ttl=64 time=0.276 ms
+64 bytes from jk5 (172.31.10.31): icmp_seq=2 ttl=64 time=0.314 ms
+--- jk5 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1353ms
+rtt min/avg/max/mdev = 0.276/0.295/0.314/0.019 ms
+
+
+
+Check Ulimit:
+/etc/sysctl.conf   [added line] fs.file-max = 131072
+/etc/security/limits.conf [added] *          soft     nproc          131072
+*          hard     nproc          131072
+*          soft     nofile         131072
+*          hard     nofile         131072
+                                                           
+/etc/security/limits.d/90-nproc.conf [added] *          soft     nproc          131072
+*          hard     nproc          131072
+*          soft     nofile         131072
+*          hard     nofile         131072
+
+
+
+
+
+
+
+
+
+
