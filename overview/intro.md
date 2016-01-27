@@ -6,108 +6,99 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> January 11-15, 2016 </center>
-## <center> Palo Alto, California </center>
+## <center> January 25-29, 2016 </center>
+## <center> Paris, France </center>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Introductions & Overview
 
-- <a href="#instructor">Instructors</a>
-- <a href="#audience">Audience Expectations</a>
-- <a href="#selfcheck">Self-check questions</a>
+- <a href="#instructor">Instructors & Students</a>
+- <a href="#audience">Audience Assumptions</a>
 - <a href="#design_layout">Course design</a>
 
-<div style="page-break-after: always;"></div>
-
----
-
-## <center> <a name="instructor"/> Instructors
-
-* Michael Ernest (Senior Partner Sales Engineer)
-    * mfernest@cloudera.com
-* Peter Whitney (Solutions Architect)
-    * pwhitney@cloudera.com
-
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="audience"/> Audience
+## <center> <a name="instructor"/> Instructors & Students
 
-We will address you as experienced field technicians who:
+* Michael Ernest (Senior Learning Architect)
+    * mfernest@cloudera.com / mfernest
+* David Beech (Senior Solutions Architect)
+    * dbeech@cloudera.com / dbeech
+* Give us a brief introduction
+    * And email your GitHub handle to us
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> <a name="audience"/> Audience Assumptions
+
+We will address you as experienced Hadoop technicians who:
 
 * Have attended Cloudera's Hadoop for Administrators Course
+    * For fundamental vocabulary and practices
 * Have installed CDH on multi-node clusters before
+    * Experience with a distributed application environment
 * Can complete labs by objective without step-by-step scripts
-* Are proficient with Linux and common CLI tools
-* Are familiar with Cloudera's public-facing documentation
+    * We focus on practicing skills and finding flaws in documentation
+* Are proficient with common Linux CLI tools 
+    * These labs have eaten students who did not have these skills
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="design_layout"/a>Course Design
+## <center> <a name="course_objectives"/a> Course Objectives
 
-* <a href="#sections_timing">Sections & Timing</a>
-* <a href="#discussion_format">Discussion Format</a>
-* <a href="#scored_labs">Scored Labs</a>
-* <a href="#scored_challenges">Scored Challenges</a>
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> <a name="course_objectives"/a> Objectives
-
-* Prepare you for CM/CDH cluster installation work
-* Provide you with feedback on your readiness
-* Identify areas for further study and practice
+* Prepare you to install CM/CDH clusters in production environments
+* Have Cloudera field staff evaluate your field readiness 
+* Identify next steps to continue your skills development
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="sections_timing"/> Sections & Timing
+## <center> <a name="design_layout"/a>Course Plan
 
-* Seven key topics 
-    * <a href="#cm_cdh_installation_section">CM/CDH installation</a>
-    * <a href="#hdfs_section">HDFS features</a>
-    * <a href="#yarn_rm_section">YARN & Resource Management</a>
-    * <a href="#cm_monitor_customize_section">CM Monitoring & Customizing</a>
-    * <a href="#cdh_security_section">Enterprise Security</a>
-    * <a href="#hue_services_admin_section">HUE Services & Administration</a>
-    * <a href="#troubleshooting_practices_section">Troubleshooting Resources</a>
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> <a name="discussion_format"/> Class Format
-
-* Mornings: Two hours discussion, 1-2 hours lab
-    * You can use the lunch hour when needed
-* Afternoon: Three hours discussion, 1-2 hours lab
-    * Instructors may stop at 6pm
+* Seven general topics with specific, up-to-date content
+    * <a href="../installation/install.md">Installation</a>
+    * <a href="../storage/hdfs_testing.md">Storage</a>
+    * <a href="../resources/yarn_rm.md">Resource Management</a>
+    * <a href="../enterprise/cm.md">Using Cloudera Manager</a>
+    * <a href="../security/overview_kerberos_sentry.md">Enterprise Security</a>
+    * <a href="../clients/hue.md">Supporting Hadoop Clients</a>
+    * <a href="../troubleshooting/tech_support.md">Technical Resources</a>
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="scored_labs"/> Submitting lab work for review 
+## <center> <a name="discussion_format"/> Day-to-day Format
 
-* We expect you to submit lab work for review
-    * We use timestamps and spot checks to track progress
-    * We may ask you to describe your method or process
-* We evaluate this work with competence in mind
-    * Treat every submission as work product
-    * Communicate clearly
+* Mornings: Four hours for discussion and lab
+    * Includes the lunch hour as you wish
+* Afternoon: Five hours for discussion and lab
+    * Includes one hour after 5pm as you wish
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scored_challenges"/> Friday Morning: Challenges []()
 
-* Six challenge stages
-* Stages are marked Complete, Incomplete, or Did Not Submit
-* How you communicate is part of the test!
-    * Noting a problem you encountered, if any.
-    * How you isolated that problem 
-    * How you compensated for or fixed that problem
+* Six challenge stages over three hours
+    * Install and secure a cluster 
+* The previous delivery's challenges are available for review
 
+---
+<div style="page-break-after: always;"></div>
 
+## <center> <a name="scored_labs"/> Submitting Work
+
+* All work is submitted via GitHub
+    * You'll fork an existing repo and add to it
+    * We'll review Git/GitHub tools later today
+    * All submissions in plain-text, Markdown, and/or PNG screenshots
+* Each lab/challenge is scored Complete, Incomplete, or Did Not Submit
+* Each candidate is scored Pass, Provisional Pass, or No Pass
+* We evaluate lab and challenges with competence in mind
+    * Address each requested element as if to a customer
+    * Documenting submissions is the best way to exceed expectations

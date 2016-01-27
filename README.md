@@ -1,10 +1,10 @@
 # <center>SEBC Courseware
 
 This repository holds the course materials for Cloudera's Services
-Enablement Boot Camp (SEBC). Each student is added as a collaborator
-on their first day of attendance. Once student evaluations are
-processed, all collaborators are removed to prevent changes that
-could result in lost work.
+Enablement Boot Camp (SEBC).
+
+Each student is added as collaborator on their first day of attendance. Once student evaluations have
+been processed, all collaborators are removed to prevent changes that could result in lost work.
 
 Consider forking this repository and cloning it immediately. If
 you'd like to propose a change upstream, please consult with your
