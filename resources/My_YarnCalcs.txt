@@ -1,0 +1,50 @@
+Applying formula:
+mapreduce.job.maps = 4
+
+MIN(yarn.nodemanager.resource.memory-mb[E1] / mapreduce.map.memory.mb[E2], 
+    yarn.nodemanager.resource.cpu-vcores[E3] / mapreduce.map.cpu.vcores[E4],  
+    number of physical drives[E5] x workload factor[E6]) x number of worker nodes[E7]
+
+[E1]: yarn.nodemanager.resource.memory-mb=8
+      16-3(Os)-1(DataNode)-1(CMA)-Task overhead(16-1-1)*0.2)
+
+[E2]: mapreduce.map.memory.mb = 1
+      Could increase this value to 2
+
+[E3]: yarn.nodemanager.resource.cpu-vcores = My result would -1 but I will use 1
+      4-2(OS)-1(NodeManager)-1(DataNode)-1(CMA)
+
+[E4]: mapreduce.map.cpu.vcores = 1
+
+[E5]: number of physical drives = 1
+
+[E6]: workload factor = 2
+
+[E7]: number of worker nodes = 4
+MIN(8/1;1/1;1*2) * 4 = 1 * 4 = 4
+___________________________________________________________________________________________
+mapreduce.job.reduces = 4
+
+MIN(yarn.nodemanager.resource.memory-mb[E1] / mapreduce.reduce.memory.mb[E2], 
+    yarn.nodemanager.resource.cpu-vcores[E3] / mapreduce.reduce.cpu.vcores[E4],
+     # of physical drives[E5] x workload factor[E6]) x # of worker nodes[E7]
+
+
+[E1]: yarn.nodemanager.resource.memory-mb=8
+      16-3(Os)-1(DataNode)-1(CMA)-Task overhead(16-1-1)*0.2)
+
+[E2]: mapreduce.reduce.memory.mb = 2
+      twice the value of mapreduce.map.memory.mb
+
+[E3]: yarn.nodemanager.resource.cpu-vcores = My result would -1 but I will use 1
+      4-2(OS)-1(NodeManager)-1(DataNode)-1(CMA)
+
+[E4]: mapreduce.reduce.cpu.vcores = 1
+
+[E5]: number of physical drives = 1
+
+[E6]: workload factor = 2
+
+[E7]: number of worker nodes = 4
+MIN(8/2;1/1;1*2) * 4 = 1 * 4 = 4
+

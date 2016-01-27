@@ -1,0 +1,49 @@
+1 How much RAM should be allocated per impalad process, at least?
+
+At least 16 GB RAM for an Impalad process.
+
+___________________________________________________________________________________________
+2 What percentage of RAM should be earmarked for the OS and system services?
+
+10-20% of RAM for Linux and its daemon service.
+
+
+___________________________________________________________________________________________
+3 Under what condition(s) would you factor two cores per spindle into your calculations?
+
+WHEN 2*(nb of physical disks used for DataNode Storage) < ((total vcores) - (nb of reserved vcores for non-YARN use))
+
+At a maximum we can use 2 cores per spindle.
+___________________________________________________________________________________________
+Assume a cluster with 20 vcores, 128 GB RAM, and 10 spindles on each of eight worker nodes.
+Using the Container Formula given in Table 8, calculate an appropriate value for mapreduce.jobs.maps
+List each factor and value leading to your result
+map.reduce.job.maps=112
+
+Applying formula:
+MIN(yarn.nodemanager.resource.memory-mb[E1] / mapreduce.map.memory.mb[E2], 
+    yarn.nodemanager.resource.cpu-vcores[E3] / mapreduce.map.cpu.vcores[E4],  
+    number of physical drives[E5] x workload factor[E6]) x number of worker nodes[E7]
+
+[E1]: yarn.nodemanager.resource.memory-mb=68
+      128-25(Os)-1(DataNode)-16(Impalad)-1(CMA)-Task overhead(128-1-16-1)*0.2)
+
+[E2]: mapreduce.map.memory.mb = 1
+      Could increase this value to 2
+
+[E3]: yarn.nodemanager.resource.cpu-vcores = 14
+      20-2(OS)-1(NodeManager)-1(DataNode)-1(Impalad)-1(CMA)
+
+[E4]: mapreduce.map.cpu.vcores = 1
+
+[E5]: number of physical drives = 10
+
+[E6]: workload factor = 2
+
+[E7]: number of worker nodes = 8
+MIN(68/1;14/1;10*2) * 8 = 14 * 8 = 112
+
+
+
+
+

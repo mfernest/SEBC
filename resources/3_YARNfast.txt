@@ -1,0 +1,13 @@
+
+
+start running Map: 2 RED: 2 Container: 512
+Start running teragen:
+
+real    0m15.373s
+user    0m6.115s
+sys     0m0.346s
+start running terasort
+
+real    0m22.710s
+user    0m7.116s
+sys     0m0.335s
