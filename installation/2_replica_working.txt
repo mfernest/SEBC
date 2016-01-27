@@ -1,3 +1,4 @@
+
 mysql> SHOW SLAVE STATUS\G
 *************************** 1. row ***************************
                Slave_IO_State: Waiting for master to send event

@@ -1,3 +1,4 @@
+
 Check 1: OS
 [centos@ip-172-31-10-31 ~]$ cat /etc/*-release
 CentOS release 6.7 (Final)
