@@ -7,11 +7,7 @@
 
 * <a href="#security_review">Quick basics overview</a>
 * <a href="#security_authentication">Strong Authentication</a>
-<<<<<<< HEAD
 * <a href="#security_authorization">Better Authorization</a>
-=======
-* <a href="#security_authorization">Fine-grained Authorization</a>
->>>>>>> 51a285bb994baf12725e1394aee6d4da65b99dce
 * <a href="#security_encryption">Encryption</a>
 * <a href="#security_visibility">Auditing &amp; Visibility</a>
 * <a href="#security_cm_configuration">CM-based Configuration</a>
@@ -65,11 +61,7 @@
 * Cloudera recommends Direct-to-AD integration as preferred practice.
 * The alternative is a [one-way cross-realm trust to AD](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_sg_hadoop_security_active_directory_integrate.html)
     * Requires MIT Kerberos realm in Hadoop cluster
-<<<<<<< HEAD
-    * Avoids adding principals to AD
-=======
     * Avoids adding service principals to AD
->>>>>>> 51a285bb994baf12725e1394aee6d4da65b99dce
 * Common sticking points
     * Admin reluctance(!)
     * Version / feature incompatibility
@@ -127,22 +119,13 @@
 
 ## <center> [Apache Sentry Basics](http://blog.cloudera.com/blog/2013/07/with-sentry-cloudera-fills-hadoops-enterprise-security-gap/) </center>
 
-<<<<<<< HEAD
 * Cloudera project moved to Apache incubating
 * Supports authorization for database objects
     * Objects: server, database, table, view, URI
     * Authorizations: <code>SELECT</code>, <code>INSERT</code>, <code>ALL</code>
 * Supports [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/) and Impala
 * Sentry policy is defined by 1:1 mappings
-=======
-* Designed for access control at the database object level
-    * Objects: server, database, table, view, column, URI
-    * Privileges: `SELECT`, `INSERT`, `ALL`
-* Now an [incubating Apache project](http://sentry.apache.org/)
-    * Useful resources located on Cloudera sites for now
-* Support for Hive (via [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/)), Impala and Search (Solr) out of the box
 * Sentry policy is defined by mappings
->>>>>>> 51a285bb994baf12725e1394aee6d4da65b99dce
     * Local/LDAP groups -> Sentry roles
     * Sentry roles -> database object, privileges
     * Global settings file -> per-database file
@@ -167,19 +150,12 @@
     * Cloudera Search integration is a workaround
 * Service Provider interfaces for persisting policies to a store
     * Support for file storage to HDFS or local filesystem
-<<<<<<< HEAD
-* The policy engine grants access based on the group, the object(s) wanted and the permission type (<code>SELECT</code>, <code>INSERT</code>)
-* Consider the [example here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH4/4.6.0/CDH4-Security-Guide/cdh4sg_Sentry.html?scroll=concept_iw1_5dp_wk_unique_1)
-* You can also watch this [short video](http://vimeo.com/79936560)
-<!-- can also throw in my own "Notes on Configuring Sentry" as a handout -->
-=======
 * The policy engine grants/revokes access
     * Rules applied to user, the objects requested and the necessary permission
 * Sentry / HDFS Synchronization
     * Automatically adds ACLs to match permission grants in Sentry
 * A fully-formed [config example is here](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_sg_sentry.html#concept_iw1_5dp_wk_unique_1)
 * You can watch a short [video overview here](http://vimeo.com/79936560)
->>>>>>> 51a285bb994baf12725e1394aee6d4da65b99dce
 
 ---
 <div style="page-break-after: always;"></div>
@@ -194,46 +170,18 @@
 ## <center> [Sentry as a Service](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_sentry_service.html)
 
 * Relational model and storage
-<<<<<<< HEAD
 * Introduced in C5.1
 * Uses a database to store policies
 * CDH supports migrating file-based authorization
     * <code>sentry --command config-tool --policyIni *policy_file* --import</code>
 * Impala & Hive must use the same provider (db or file)
 * Cloudera Search can only use the file provider
-=======
-* Introduced in CDH 5.1.0/CM 5.1.0
-* Can leverage CM database server
-* CDH supports migration to database from file-based policies
-* CLI version: <code>sentry --command config-tool --policyIni *policy_file* --import</code>
-* Mutually exclusive with file-based provider
-* Cannot use Sentry service in parallel with File-based configuration
-* However, the service can be enabled for Hive only or Impala only
-* Allows Impala privileges to evolve separately rather than inherit from Hive
->>>>>>> 51a285bb994baf12725e1394aee6d4da65b99dce
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="security_encryption">Encryption in transit </a></center>
 
-<<<<<<< HEAD
-* Also called [in-flight encryption](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
-* Used HTTP-based communications
-* Based on digital certificates, private key stores
-* Support includes MR shuffling, Web UI, HDFS data and fsimage transfers
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> Encryption at rest
-
-* First, there was [Project Rhino](http://blog.cloudera.com/blog/2014/06/project-rhino-goal-at-rest-encryption/) sponsored by Intel
-* Now called Transparent Encryption for HDFS
-* Per-user key used to encrypt data on write, decrypt on read
-    * Apache supports Java key store out of the box
-    * Cloudera offers Key Trustee Server, more robust providers
-=======
 [Network ("in-flight") encryption](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
 * For communication between web services (HTTPS)
   * Digital certificates, private key stores
@@ -271,7 +219,6 @@ Other requirements
   * e.g. show all failed access attempts
 * Redaction of sensitive information
   * Separation of duties
->>>>>>> 51a285bb994baf12725e1394aee6d4da65b99dce
 
 ---
 <div style="page-break-after: always;"></div>
@@ -328,10 +275,5 @@ If you're comfortable with AD, this may take an hour. If not, maybe 2-3 hours. L
 
 Complete *one* of the following labs:<p>
 
-<<<<<<< HEAD
-* [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
-* [Sentry as a Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
-=======
 * [Sentry Policy File Configuration](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_sg_sentry.html)
 * [Sentry as a Service Configuration (new in CDH 5.1)](http://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_service_config.html)
->>>>>>> 51a285bb994baf12725e1394aee6d4da65b99dce
