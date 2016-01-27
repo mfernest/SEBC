@@ -170,9 +170,8 @@
 * CDH supports migration to database from file-based policies
 * CLI version: <code>sentry --command config-tool --policyIni *policy_file* --import</code>
 * Mutually exclusive with file-based provider
-* Cannot use Sentry service in parallel with File-based configuration
-* However, the service can be enabled for Hive only or Impala only
-* Allows Impala privileges to evolve separately rather than inherit from Hive
+  * It is not possible to use the Sentry Service **and** the Sentry policy file method together for controlling access to a single component, like Hive or Impala. 
+* Search (Solr) is only compatible with Sentry policy files and cannot use the Sentry Service. 
 
 ---
 <div style="page-break-after: always;"></div>
