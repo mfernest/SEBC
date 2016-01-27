@@ -321,7 +321,7 @@ Email both instructor(s) with your chosen plan **before** you start.
     * [Latest CDH5 release](http://archive.cloudera.com/cdh5/parcels/latest)
     * [Latest CDH4 release](http://archive.cloudera.com/cdh4/parcels/latest)
     * Standalone components (such as Accumulo or Kafka)
-* Follow the [documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_create_local_parcel_repo.html).
+* Follow the [documentation] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_create_local_parcel_repo.html)
 * Set the new repository location in Cloudera Manager
 * Capture this change in a screenshot and move it to <code>installation/4_local_repo.png</code> 
 
