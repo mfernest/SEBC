@@ -41,10 +41,10 @@
 ## <center> <a name="security_authentication"/>Strong Authentication/Kerberos</a>
 
 * ["Hadoop in Secure Mode"](http://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-common/SecureMode.html) lists four areas of authentication concern. All of them depend on Kerberos, directly or indirectly
-    * Users
-    * Hadoop services
-    * Web consoles
-    * Data confidentiality
+  * Users
+  * Hadoop services
+  * Web consoles
+  * Data confidentiality
 
 * Linux supports [MIT Kerberos](http://web.mit.edu/kerberos/)
     * See your [Hadoop for Administrators](http://university.cloudera.com/course/administrator) notes for an overview
@@ -158,7 +158,6 @@
     * Automatically adds ACLs to match permission grants in Sentry
 * A fully-formed [config example is here](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_sg_sentry.html#concept_iw1_5dp_wk_unique_1)
 * You can watch a short [video overview here](http://vimeo.com/79936560)
-<!-- can also throw in my own "Notes on Configuring Sentry" as a handout -->
 
 ---
 <div style="page-break-after: always;"></div>
