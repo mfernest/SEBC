@@ -3,13 +3,10 @@
 <!-- set a:hover text-decoration to underline -->
 <!-- http://forums.markdownpad.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
 
----
-<div style="page-break-after: always;"></div>
-
 # <center> <a name="cdh_security_section"/>CDH Security
 
 * <a href="#security_review">Quick basics overview</a>
-* <a href="#security_authentication">Strong Authentication</a> 
+* <a href="#security_authentication">Strong Authentication</a>
 * <a href="#security_authorization">Better Authorization</a>
 * <a href="#security_encryption">Encryption</a>
 * <a href="#security_cm_configuration">CM-based Configuration</a>
@@ -61,7 +58,7 @@
 * Cloudera recommends Direct-to-AD integration as preferred practice.
 * The alternative is a [one-way cross-realm trust to AD](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_hadoop_security_active_directory_integrate.html)
     * Requires MIT Kerberos realm in Hadoop cluster
-    * Avoids adding principals to AD 
+    * Avoids adding principals to AD
 * Common sticking points
     * Misremembered details
     * Undocumented changes/updates
@@ -78,7 +75,7 @@
 * Suported encryption types are disjoint
 
 * To trace Kerberos & Hadoop
-    * <code>export KRB5_TRACE=/dev/stderr</code> 
+    * <code>export KRB5_TRACE=/dev/stderr</code>
     * Include <code>-Dsun.security.krb5.debug=true</code> in <code>HADOOP_OPTS</code> (& export it )
     * <code>export HADOOP_ROOT_LOGGER="DEBUG,console"</code>
 
@@ -93,8 +90,8 @@
     * Can provide permissions for a restricted list of users and groups
 * [Apache Sentry (incubating)](https://sentry.incubator.apache.org/)
     * Database servers need files for storage, managed by admins
-    * Authorizations needed for database objects may be disjoint 
-    
+    * Authorizations needed for database objects may be disjoint
+
 ---
 <div style="page-break-after: always;"></div>
 
@@ -116,12 +113,11 @@
 
 ## <center> [Apache Sentry Basics](http://blog.cloudera.com/blog/2013/07/with-sentry-cloudera-fills-hadoops-enterprise-security-gap/) </center>
 
-* Designed for access control at the [database] object level
+* Cloudera project moved to Apache incubating
+* Supports authorization for database objects
     * Objects: server, database, table, view, URI
-    * Privileges: SELECT, INSERT, ALL
-* Now an [incubating Apache project]
-    * Useful resources located on Cloudera sites for now
-* Support for Hive (via [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/)) and Impala out of the box
+    * Authorizations: <code>SELECT</code>, <code>INSERT</code>, <code>ALL</code>
+* Supports [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/) and Impala
 * Sentry policy is defined by 1:1 mappings
     * Local/LDAP groups -> Sentry roles
     * Sentry roles -> database object, privileges
@@ -142,15 +138,15 @@
 
 ## <center> Sentry Design Notes
 
-* Client-side interfaces for binding to the policy engine
-    * Hooks for impalad and HiveServer2 supply the hooks
+* Each service has to bind to a policy engine
+    * Currently <code>impalad</code> and HiveServer2 have hooks
+    * Cloudera Search integration is a workaround
 * Service Provider interfaces for persisting policies to a store
     * Support for file storage to HDFS or local filesystem
-* The policy engine grants/revokes access
-    * Rules applied to user, the objects requested and the necessary permission
-* A fully-formed [config example is here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH4/4.6.0/CDH4-Security-Guide/cdh4sg_Sentry.html?scroll=concept_iw1_5dp_wk_unique_1)
-* You can watch a short [video overview here](http://vimeo.com/79936560)
-<!-- can also throw in my own "Notes on Configuring Sentry" as a handout
+* The policy engine grants access based on the group, the object(s) wanted and the permission type (<code>SELECT</code>, <code>INSERT</code>)
+* Consider the [example here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH4/4.6.0/CDH4-Security-Guide/cdh4sg_Sentry.html?scroll=concept_iw1_5dp_wk_unique_1)
+* You can also watch this [short video](http://vimeo.com/79936560)
+<!-- can also throw in my own "Notes on Configuring Sentry" as a handout -->
 
 ---
 <div style="page-break-after: always;"></div>
@@ -164,36 +160,34 @@
 
 ## <center> [Sentry as a Service](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_sentry_service.html)
 
-* Relational model and storage 
-* Introduced in CDH 5.1.0/CM 5.1.0
-* Can leverage CM database server
-* CDH supports migration to database from file-based policies
-* CLI version: <code>sentry --command config-tool --policyIni *policy_file* --import</code>
-* Mutually exclusive with file-based provider
-* Cannot use Sentry service in parallel with File-based configuration
-* However, the service can be enabled for Hive only or Impala only
-* Allows Impala privileges to evolve separately rather than inherit from Hive
+* Relational model and storage
+* Introduced in C5.1
+* Uses a database to store policies
+* CDH supports migrating file-based authorization
+    * <code>sentry --command config-tool --policyIni *policy_file* --import</code>
+* Impala & Hive must use the same provider (db or file)
+* Cloudera Search can only use the file provider
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="security_encryption">Encryption</a></center>
+## <center> <a name="security_encryption">Encryption in transit </a></center>
 
-* [Network ("in-flight") encryption](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
-* For HTTP-based communications among services
-* RPC support already in place
-* Digital certificates, private key stores
+* Also called [in-flight encryption](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
+* Used HTTP-based communications
+* Based on digital certificates, private key stores
 * Support includes MR shuffling, Web UI, HDFS data and fsimage transfers
-* At-rest encryption
-* [Project Rhino](http://blog.cloudera.com/blog/2014/06/project-rhino-goal-at-rest-encryption/), originally driven by Intel
-* Encryption/decryption that is transparent to Hadoop applications
-* Need: Key-based protection
-* Need: Minimal performance cost [HDFS-10693](https://issues.apache.org/jira/browse/HADOOP-10693)
-* [HDFS extended attributes](http://blog.cloudera.com/blog/2014/06/why-extended-attributes-are-coming-to-hdfs/) for client transparency
-* Originated as a hook for 
-* [HDFS-2006](https://issues.apache.org/jira/browse/HDFS-2006)
-* Descriptive properties for files and directories
-* Parameters for function-specific clients
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Encryption at rest
+
+* First, there was [Project Rhino](http://blog.cloudera.com/blog/2014/06/project-rhino-goal-at-rest-encryption/) sponsored by Intel
+* Now called Transparent Encryption for HDFS
+* Per-user key used to encrypt data on write, decrypt on read
+    * Apache supports Java key store out of the box
+    * Cloudera offers Key Trustee Server, more robust providers
 
 ---
 <div style="page-break-after: always;"></div>
@@ -214,17 +208,26 @@
 ## <center> Security Lab
 ## <center> [Enabling Kerberos with CM](http://www.cloudera.com/content/cloudera/en/documentation/cloudera-manager/v5-1-x/Configuring-Hadoop-Security-with-Cloudera-Manager/cm5chs_s4_kerb_wizard.html)
 
-* Find the wizard in CM and follow it.
-* Use the links given with this presentation to answer the wizard
+* Start the CM Kerberos wizard and review the prerequisites.
+* Create an MIT KDC
+* Create a Linux account with your GitHub name
+* Once your integration works, add these files in <code>security/</code>:
+    * <code>/etc/krb5.conf</code>
+    * <code>/var/kerberos/krb5kdc/kdc.conf</code>
+    * <code>/var/kerberos/krb5kdc/kadm.acl</code>
+* Create a file <code>kinit.md</code> that includes:
+    * A <code>kinit</code> command to authenticate your Linux user
+    * A <code>klist</code> command and output
+* Create a file <code>cm_creds.png</code> that shows the principals CM has created
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Optional challenge - Test-driven setup
-## <center>[JDBC Connections in a Kerberised Cluster](http://blog.cloudera.com/blog/2014/05/how-to-configure-jdbc-connections-in-secure-apache-hadoop-environments/)</center>
+## <center>[JDBC Connections in a Kerberized Cluster](http://blog.cloudera.com/blog/2014/05/how-to-configure-jdbc-connections-in-secure-apache-hadoop-environments/)</center>
 
-* There's more work to this lab. If you choose to do it, you will:
-* Ignore the section on setting up CDH 5 (you've done that)
+* There's a lot work in this lab. If you choose to do it, be sure to:
+* Ignore the steps to set up CDH 5 (already done)
 * Test client connectivity with JDBC
 * Set up and integrate an Active Directory instance
 * Test with a secured client connection
@@ -232,9 +235,7 @@
 * Add a Sentry configuration to the mix
 * Test client connection again
 
-If you're familiar with AD already, this may take an hour. Let your
-instructor know if you will attempt this lab instead of the shorter
-one. There's no need to do both unless you want the practice.
+If you're comfortable with AD, this may take an hour. If not, maybe 2-3 hours. Let your instructors know if you want to attempt this lab.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -245,5 +246,3 @@ Complete *one* of the following labs:<p>
 
 * [Sentry Policy File Configuration](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry.html)
 * [Sentry as a Service Configuration (new in CDH 5.1)](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Security-Guide/cdh5sg_sentry_service.html)
-
-
