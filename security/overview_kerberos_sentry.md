@@ -119,17 +119,18 @@
 
 ## <center> [Apache Sentry Basics](http://blog.cloudera.com/blog/2013/07/with-sentry-cloudera-fills-hadoops-enterprise-security-gap/) </center>
 
-* Cloudera project moved to Apache incubating
+* Originally a Cloudera project, now [Apache incubating](http://sentry.apache.org/)
+    * Some useful docs are not yet migrated to ASF
 * Supports authorization for database objects
     * Objects: server, database, table, view, URI
     * Authorizations: <code>SELECT</code>, <code>INSERT</code>, <code>ALL</code>
-* Supports [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/) and Impala
-* Sentry policy is defined by 1:1 mappings
+* A Sentry policy is defined by mapping a role to a privilege
+    * A group (LDAP or Linux) is then assigned to an Sentry role
+    * Users can be added or removed from the group as necessary
+* Supports Hive (through [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/)), Impala and Search (Solr) out of the box
 * Sentry policy is defined by mappings
     * Local/LDAP groups -> Sentry roles
     * Sentry roles -> database object, privileges
-    * Global settings file -> per-database file
-        * For mapping to multiple databases with disjoint policies
 
 ---
 <div style="page-break-after: always;"></div>
@@ -228,7 +229,7 @@ Other requirements
 * Know the [network ports that CDH and third-party software use](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_ports_cdh5.html)
 * Set up a dedicated Kerberos Domain Controller
 * KRB5 MIT [instructions are here](http://web.mit.edu/Kerberos/krb5-1.8/krb5-1.8.6/doc/krb5-install.html#Realm-Configuration-Decisions)
-* Cloudera [slightly higher-level instructions are here](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_authentication.html)
+* Cloudera [slightly higher-level instructions are here](https://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_intro_kerb.html)
 * Or you can use [RedHat's documentation](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
 * Make sure your KDC allows *renewable tickets*
 * Create a KDC account for the Cloudera Manager user
@@ -237,19 +238,20 @@ Other requirements
 <div style="page-break-after: always;"></div>
 
 ## <center> Security Lab
-## <center> [Enabling Kerberos with CM](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_s4_kerb_wizard.html)
+## <center> Integrating Kerberos with Cloudera Manager
 
-* Start the CM Kerberos wizard and review the prerequisites.
-* Create an MIT KDC
+* Plan one: follow the [documentation here](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_s4_kerb_wizard.html)
+* Plan two: Launch the Kerberos wizard and complete the checklist.
+* Set up an MIT KDC
 * Create a Linux account with your GitHub name
-* Once your integration works, add these files in <code>security/</code>:
+* Once your integration succeeds, add these files to your <code>security/</code> folder:
     * <code>/etc/krb5.conf</code>
     * <code>/var/kerberos/krb5kdc/kdc.conf</code>
     * <code>/var/kerberos/krb5kdc/kadm.acl</code>
 * Create a file <code>kinit.md</code> that includes:
-    * A <code>kinit</code> command to authenticate your Linux user
-    * A <code>klist</code> command and output
-* Create a file <code>cm_creds.png</code> that shows the principals CM has created
+    * The <code>kinit</code> command you use to authenticate your user
+    * The output from <code>klist</code> showing your credentials
+* Create a file <code>cm_creds.png</code> that shows the principals CM generated
 
 ---
 <div style="page-break-after: always;"></div>
