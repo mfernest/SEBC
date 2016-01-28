@@ -119,17 +119,18 @@
 
 ## <center> [Apache Sentry Basics](http://blog.cloudera.com/blog/2013/07/with-sentry-cloudera-fills-hadoops-enterprise-security-gap/) </center>
 
-* Designed for access control at the database object level
-    * Objects: server, database, table, view, column, URI
-    * Privileges: `SELECT`, `INSERT`, `ALL`
-* Now an [incubating Apache project](http://sentry.apache.org/)
-    * Useful resources located on Cloudera sites for now
-* Support for Hive (via [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/)), Impala and Search (Solr) out of the box
+* Originally a Cloudera project, now [Apache incubating](http://sentry.apache.org/)
+    * Some useful docs are not yet migrated to ASF
+* Supports authorization for database objects
+    * Objects: server, database, table, view, URI
+    * Authorizations: <code>SELECT</code>, <code>INSERT</code>, <code>ALL</code>
+* A Sentry policy is defined by mapping a role to a privilege
+    * A group (LDAP or Linux) is then assigned to an Sentry role
+    * Users can be added or removed from the group as necessary
+* Supports Hive (through [HiveServer2](http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/)), Impala and Search (Solr) out of the box
 * Sentry policy is defined by mappings
     * Local/LDAP groups -> Sentry roles
     * Sentry roles -> database object, privileges
-    * Global settings file -> per-database file
-        * For mapping to multiple databases with disjoint policies
 
 ---
 <div style="page-break-after: always;"></div>
@@ -182,21 +183,22 @@
 
 ## <center> <a name="security_encryption">Encryption in transit </a></center>
 
-* Also called [in-flight encryption](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
-* Used HTTP-based communications
-* Based on digital certificates, private key stores
+[Network ("in-flight") encryption](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
+* For communication between web services (HTTPS)
+  * Digital certificates, private key stores
+* HDFS Block data transfer
+  * `dfs.encrypt.data.transfer` (very slow - not recommended for now)
+* RPC support already in place
 * Support includes MR shuffling, Web UI, HDFS data and fsimage transfers
 
----
-<div style="page-break-after: always;"></div>
-
-## <center> Encryption at rest
-
-* First, there was [Project Rhino](http://blog.cloudera.com/blog/2014/06/project-rhino-goal-at-rest-encryption/) sponsored by Intel
-* Now called Transparent Encryption for HDFS
-* Per-user key used to encrypt data on write, decrypt on read
-    * Apache supports Java key store out of the box
-    * Cloudera offers Key Trustee Server, more robust providers
+At-rest encryption
+* Encryption/decryption that is transparent to Hadoop applications
+* Need: Key-based protection
+* Need: Minimal performance cost
+  * AES-NI on recent Intel CPUs.
+* Navigator Encrypt
+  * Block device encryption at OS level
+* HDFS Transparent Data Encryption
   * Encryption Zones
   * Key Management Server (KMS)
 * Key Trustee
@@ -245,7 +247,7 @@ Other requirements
 * Once your integration succeeds, add these files to your <code>security/</code> folder:
     * <code>/etc/krb5.conf</code>
     * <code>/var/kerberos/krb5kdc/kdc.conf</code>
-    * <code>/var/kerberos/krb5kdc/kadm.acl</code>
+    * <code>/var/kerberos/krb5kdc/kadm5.acl</code>
 * Create a file <code>kinit.md</code> that includes:
     * The <code>kinit</code> command you use to authenticate your user
     * The output from <code>klist</code> showing your credentials
