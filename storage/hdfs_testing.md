@@ -259,7 +259,7 @@ Adds cache locality to NN reports<p>
 ## <center> HDFS Lab: Enable HDFS HA
 
 * Use the Cloudera Manager wizard to enable HA
-    * Once configured, get a screenshot of the HDFS Configuration tab
+    * Once configured, get a screenshot of the HDFS Instances tab
         * Name the file <code>storage/2_HDFS_HA.png</code> 
 * Add an <code>instructor</code> to your CM users
     * Assign the <code>Operator</code> role to this user

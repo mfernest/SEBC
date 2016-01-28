@@ -68,8 +68,8 @@
 * [Philip Zeyliger's blog article on CM's design and operation](http://blog.cloudera.com/blog/2013/07/how-does-cloudera-manager-work/)  
 * CM uses [service descriptors](http://cloudera.github.io/cm_api/docs/cm-concepts/) that evolve as new features emerge
     * [Primer for CM 4](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_primer.html)
-    * [Primer for CM 5](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_primer.html)
-* For deep-divers: compare the CM API [4.7](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_api.html) (v5), with [5.x](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_api.html), (v6, v7)
+    * [Primer for CM 5](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_intro_api.html)
+* For deep-divers: compare the API for [4.7](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_api.html) (v5), with [5.x](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_api.html), (v6, v7)
 * Colloquial terms
     * Canary: a test to determine a running service is functional
     * Safety valve: used to override/correct   
@@ -285,5 +285,5 @@ Enter an object type in the search bar
 * Browse or <code>curl</code> the endpoint ../api/v2/cm/deployment. Store the result in <code>enterprise/2_cluster_deployment.md</code>
 * Use the [tutorial for v10 of the API](http://cloudera.github.io/cm_api/apidocs/v10/tutorial.html) to orient yourself with it.
 * Devise <code>curl</code> commands that stop and start your Hive service. Devise another to determine if the service is fully stopped. Put these commands and their output in the file <code>enterprise/3_api_hive_state.txt</code>
-* For bonus points, write a script <code>enterprise/hive_restart.sh</code> that automates using the commands you wrote.
-* For double bonus points, write this program in Python or Java. Save it to <code>enterprise/hive_restart.[py|java]</code> as appropriate.
+* For bonus points, write a script <code>enterprise/4_hive_restart.sh</code> that automates using the commands you wrote.
+* For double bonus points, write this program in Python or Java. Save it to <code>enterprise/5_hive_restart.[py|java]</code> as appropriate.
