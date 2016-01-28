@@ -54,7 +54,7 @@
 ## <center> <a name="hue_query_editors">Query Support</a>
 
 * [Beeswax editor demo](http://demo.gethue.com/beeswax/#query)
-    * Uses HiveServer2; Beeline is deprecated
+    * Uses HiveServer2; Beeswaxd (Hue's own Hive query service) is deprecated.
 * Supports [Impala load-balancing](http://gethue.com/hadoop-tutorial-how-to-distribute-impala-query-load/)
 * Multiple [query editors](http://gethue.com/hadoop-tutorial-how-to-distribute-impala-query-load/)
     * MySQL, Oracle,, PostgreSQL, sqlite3
