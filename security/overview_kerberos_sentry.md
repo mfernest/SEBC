@@ -247,7 +247,7 @@ Other requirements
 * Once your integration succeeds, add these files to your <code>security/</code> folder:
     * <code>/etc/krb5.conf</code>
     * <code>/var/kerberos/krb5kdc/kdc.conf</code>
-    * <code>/var/kerberos/krb5kdc/kadm.acl</code>
+    * <code>/var/kerberos/krb5kdc/kadm5.acl</code>
 * Create a file <code>kinit.md</code> that includes:
     * The <code>kinit</code> command you use to authenticate your user
     * The output from <code>klist</code> showing your credentials

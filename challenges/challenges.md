@@ -6,153 +6,149 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - January 15, 2016 - Palo Alto, CA
+# <center> Challenges - January 29, 2016 - Paris, France
 
-* Overview: You will build a CM-managed CDH cluster and secure it
-* You will document progress in your repo folder <code>challenges</code>
-and push to GitHub
-* For all command-line captures requested, make sure you show which machine
-did the work -- a shell prompt containing the hostname, or <code>uname</code> output, will suffice.
-* Notify both instructors by email each time you finish a challenge
-    * mfernest@cloudera.com
-    * pwhitney@cloudera.com
-* It's ok to add work to a challenge if you forget something.
-* If you break your cluster or your brain, let us know -- don't tough it out!
-* Remember to push changes to your GitHub repo.
+* Overview
+    * Build a CM-managed CDH cluster and secure it
+* Submit all text results in plain-text or Markdown format
+* Submit all screenshots in PNG format
+* We will use GitHub Issues to mark challenge milestones
+    * You can update any challenge at any time if needed
+* If you brick your cluster or get stuck for more than 20 minutes, tell an instructor
+* Update your GitHub repo before starting the next challenge.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Before you begin
 
-* You should already have five nodes running a Cloudera-supported OS.
-    * Record both the Linux OS version and AMI you chose.
-    * Get the output from the <code>uptime</code> command on all nodes -- the uptime should be < 60 minutes.
-* Use the first node for hosting utility and edge roles only.
-* Show the output of the command <code>hadoop fs -ls /</code> on the last node in your group.
-* Create two Linux user accounts: <code>rickman</code> and <code>bowie</code>
-    * Show the <code>/etc/passwd</code> entries for both accounts from all five nodes
-* Put the results of all these tests in one file called <code>prechallenge.txt</code>
-    * Please do not submit Word documents or other formats requiring a specific editor/viewer.
+* You should have 4-5 nodes running on a Cloudera-supported OS.
+    * Document the OS version, AMI, and AWS region you're using.
+    * Show the result of `uptime` on your utility node. It should be < 60 minutes.
+* You can put master roles on your utility node if you have four nodes
+* Run `hadoop fs -ls /user` on any other node.
+* Create Linux user accounts called `plenum` and `riser`
+    * Show the `/etc/passwd` entries for both accounts
+* Store the output in `0_setup.txt`
+* Push this work to your GitHub repo
+* Create the Issue `Challenges underway`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1 - Install a MySQL server for CM
+## <center> Challenge 1 - Install a MySQL server
 
-* Install a MySQL 5.x server on the utility node
-* Install the MySQL client and JDBC connector software on all nodes
+* Install a MySQL 5.5 server on your utility node
+* Install the MySQL client package and JDBC connector on all nodes
 * Create databases for
-    * Management Services 
+    * Management Services
     * Hive Metastore
-* Once the <code>mysqld</code> process is operational, capture the following:
-    * The output of <code>mysql --version</code>
-    * The output of
-          <code>SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';</code> 
-    * The output of the statement <code>SHOW DATABASES;</code>
-* Submit these results in a file called <code>challenge01.txt</code>
+    * Oozie
+    * Hue
+* Once `mysqld` is running, capture the following:
+    * The output of `mysql --version`
+    * The output of `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
+    * The output of `SHOW DATABASES;`
+* Put these results in `0_challenge.txt`
+* Push this work to your GitHub repo
+* Create the Issue `MySQL enabled`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 2 - Install Cloudera Manager
 
-* Install a package repository suitable for the latest Cloudera Manager release
-* Install Cloudera Manager; put all five nodes under its control
-* Create a CM account with the following attributes:
-    * Account name: <code>Severus</code>
-    * Password <code>DarkArts</code>
-    * Role: Full Administrator 
-* Change the role of the <code>admin</code> account to Operator
+* Install a package repository for Cloudera Manager 5.5.0
+* Install and configure Cloudera Manager. Don't start it yet.
 * Submit the following:
-    * The configuration file for your Cloudera Manager repo
-    * The output from <code>java -version</code> on your utility node, in a file called <code>java_version_2.txt</code>
-    * A screenshot that shows the CM users and their role assignments
-    * The result of the CM API call <code>api/v10/cm/deployment</code>, in a file called <code>deployment_2.txt</code>
-* Be sure to push your work to your GitHub repo.
+    * The contents of `/etc/yum.repos.d/cloudera-manager.repo` in `1_cm_repo.txt`
+    * The output from `grep export /etc/default/cloudera-scm-server` in `2_cm_exports.txt`
+    * The output from `ls /usr/share/java` in `3_connector.txt`
+* Push this work to your GitHub repo
+* Create the Issue `CM installed`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 3 - Install CDH
 
-* Install CDH **5.4.8**
-* Enable these services **only**
-    * ZooKeeper
-    * HDFS
-    * YARN
-    * Hive 
-    * Hue
-* Name your cluster after your Cloudera GitHub handle
-* Create an HDFS directory <code>/user/bowie</code>
-    * Make <code>bowie</code> the owner of this directory 
-* Submit the following information:
-    * The output of CM API endpoint <code>api/v10/cm/deployment</code> in a file called <code>deployment_3.txt</code>
-    * The output from <code>hdfs dfs -ls /user</code> in a file called <code>hdfs_3.txt</code>
-    * A list of tables for the <code>scm</code> database in a file called <code>tables_3.txt</code>
+* Start Cloudera Manager
+* Install CDH 5.5.0
+* Install the Coreset of services + Spark
+* Rename your cluster using your GitHub handle
+* Create user directories in HDFS for each account created above
+* Submit the following:
+    * The CM API call `api/v10/cm/deployment` in `4_deployment.md`
+    * The output from `hdfs dfs -ls /user` in `5_user_directories.txt`
+    * The tables in your Reports Manager database in `6_rman_tables.txt`
+    * A screenshot of the CM home page in `7_cluster_health.png`
+* Push this work to your GitHub repo
+* Create the Issue `CDH installed`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 4 - Testing
+## <center> Challenge 4 - HDFS Testing
 
-* Set up the account <code>rickman</code> with an HDFS directory
-* Use <code>teragen</code> to create 51,200,000 records 
-    * Use the <code>time(1)</code> command to track the job duration
-    * Use eight mappers only
-    * Write the output to <code>/user/rickman</code> 
-* Run <code>terasort</code> on the teragenerated file
-    * Use <code>time</code> to record the duration of this job
+* As user `plenum`, use `teragen` to generate 51,200,000 records.
+    * Set the block size 64 MB
+    * Use `time` to capture job duration
+    * Set the mapper count to double the worker nodes
+    * Name the target directory `tgen`
 * Submit the following:
-    * The full commands you used for <code>teragen</code> and
-    <code>terasort</code> in a file called <code>commands_4.txt</code>
-    * The console output of each job, minus the map and reduce
-    percent progress lines, in a file called <code>outputs_4.txt</code>
-    * The output for the command <code>hdfs dfs -ls /user/rickman</code>
+    * The full command in `8_teragen_job.txt`
+    * Add the console output, without the progress lines
+    * Also add the command `hdfs dfs -ls tgen` and output
+* Push this work to your GitHub repo
+* Create the Issue `HDFS Tested`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 5 - Kerberize the cluster
 
-* Set up an MIT KDC with the realm <code>FCEBC.YOURFIRSTNAME</code>
-* Create a user principal for both <code>rickman</code> and <code>bowie</code> 
-* Kerberize your cluster
-* Run the Hadoop <code>pi</code> test program as <code>bowie</code>
-* Run the Hadoop <code>pi</code> test program again, but as <code>rickman</code>
+* Create a Kerberos realm `[YOUR_GITHUBNAME].SEBC`
+* Create a user principal for `riser`
+* Kerberize the cluster
+* Run the `pi` test program as `riser`
+* Run `pi` again using `plenum`
 * Submit the following:
-    * The <code>kinit</code> command you used to authenticate both users in a file called <code>kinit_5.txt</code>
-    * The <code>klist</code> output showing <code>rickman</code> has a renewable ticket
-    * Your <code>kdc.conf</code> file
-    * The list of user principals in your KDC in a file called <code>principals_5.txt</code>
+    * `9_kdc.conf` and `9_kadm5.acl`
+    * The output of both `pi` commands in `9_pi.txt`
+    * The `kinit` command for `riser` in `9_riser.txt`
+    * Add the `klist` output for `riser`
+    * A list of user principals in `9_principals.txt`
+* Push this work to your GitHub repo
+* Create the Issue `Cluster Kerberized`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - Add a Hue instance
+## <center> Challenge 6 - Fun with the CM API
 
-* Add a second Hue service to your cluster
-* Take a screenshot that shows both Hue services are green.
-
+* Use the API to list
+    * The services running on your cluster
+    * The configuration of your HDFS service
+    * A usage report for your YARN service
+* List the commands and output in `A_cm_api.txt`
+* Push this work to your GitHub repo
+* Create the Issue `API Tests Complete`
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Once time is called...
 
-* Make one last push to your GitHub repo. Any work included after 11:25am (local time) is not evaluated, but we will look at it. 
-* Complete [this quick survey](http://tinyurl.com/fce-bc-survey)
+* Make one last push.
+* Complete [this quick survey](https://docs.google.com/forms/d/1cFfvTHKz8TEYZgkkZSQFAYtULxsuc-S1qE2kiDFSrBo/viewform)
 
 * Provide feedback on the course in a file called
-<code>feedback_final.txt</code>. You will not receive feedback
-from us if we don't get feedback from you! Answer the following:
-    * Describe your overall boot camp experience. Was it useful, difficult, challenging? 
-    * Could you finish all six challenges, with your current skills,
-    today? If so, how many more hours would you need? If not, what
-    further training or practice would you need before you could
-    do all the work in one day?
-    * Which topic taught you the most? Which topic taught you the least?
+`feedback_final.txt`. Feedback
+on your course work is contingent on this feedback. Please include the following:
+    * Summarizing your overall boot camp experience. Was it useful, difficult, challenging? How so?
+    * How long would it take, right now, for you to finish all six challenges? What more skills wold you need to complete the challenge, if any?
+    * In which topic are you least familiar? In which topic are you most familiar?
     * What topic did you enjoy the most? The least?
-    * How long before you think you're ready to install a production cluster on your own?
+    * How long do you think you'd to prepare for an installation engagement on your own?
 
 ---
 <div style="page-break-after: always;"></div>
