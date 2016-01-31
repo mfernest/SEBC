@@ -206,6 +206,9 @@
 * Cloudera [slightly higher-level instructions are here](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Configuring-Hadoop-Security-with-Cloudera-Manager/cm5chs_authentication_cm.html)
 * Or you can use [RedHat's documentation](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
 * Make sure your KDC allows renewable tickets
+  * Please note that Kerberos tickets are not renewable by default in the most Linux distributions (see [RHEL docs](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/Configuring_Domains-Setting_up_Kerberos_Authentication.html)). It is recommended to configure renewable tickets **before** Kerberos database is initialized. However, if you modify appropriate parameters after KDB was created, the possible solutions are as follows:
+    1. change the maxlife for the (all) user(s) and krbtgt/REALM principal with `modprinc` command, or 
+    2. destroy KDB and create new one after configuration has been modified to support renewable tickets. 
 * Create a KDC account for the Cloudera Manager user
 
 ---
