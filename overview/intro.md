@@ -6,8 +6,8 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> January 25-29, 2016 </center>
-## <center> Paris, France </center>
+## <center> March 21-25, 2016 </center>
+## <center> Palo Alto, California </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -25,10 +25,9 @@
 
 * Michael Ernest (Senior Learning Architect)
     * mfernest@cloudera.com / mfernest
-* David Beech (Senior Solutions Architect)
-    * dbeech@cloudera.com / dbeech
+* Peter Whitney (Solutions Architect)
+    * pnwhitney@cloudera.com 
 * Give us a brief introduction
-    * And email your GitHub handle to us
 
 ---
 <div style="page-break-after: always;"></div>
