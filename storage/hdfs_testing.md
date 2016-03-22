@@ -252,7 +252,7 @@ Adds cache locality to NN reports<p>
 * Enable HDFS Short Circuit Reads, and run one more <code>terasort</code>
 * Record the output and duration of all jobs
     * Replace all map/reduce percentage output lines in each job with one line that reads [###Job Progress###]
-    * Place all this in the file <code>storage/1_terasort_tests.txt</code> 
+    * Place all this in the file <code>storage/1_terasort_tests.md</code> 
 
 ---
 <div style="page-break-after: always;"></div>

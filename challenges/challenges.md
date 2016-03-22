@@ -29,7 +29,7 @@
 * Run `hadoop fs -ls /user` on any other node.
 * Create Linux user accounts called `plenum` and `riser`
     * Show the `/etc/passwd` entries for both accounts
-* Store the output in `0_setup.txt`
+* Store the output in `0_setup.md`
 * Push this work to your GitHub repo
 * Create the Issue `Challenges underway`
 
@@ -49,7 +49,7 @@
     * The output of `mysql --version`
     * The output of `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
     * The output of `SHOW DATABASES;`
-* Put these results in `0_challenge.txt`
+* Put these results in `0_challenge.md`
 * Push this work to your GitHub repo
 * Create the Issue `MySQL enabled`
 
@@ -61,9 +61,9 @@
 * Install a package repository for Cloudera Manager 5.5.0
 * Install and configure Cloudera Manager. Don't start it yet.
 * Submit the following:
-    * The contents of `/etc/yum.repos.d/cloudera-manager.repo` in `1_cm_repo.txt`
-    * The output from `grep export /etc/default/cloudera-scm-server` in `2_cm_exports.txt`
-    * The output from `ls /usr/share/java` in `3_connector.txt`
+    * The contents of `/etc/yum.repos.d/cloudera-manager.repo` in `1_cm_repo.md`
+    * The output from `grep export /etc/default/cloudera-scm-server` in `2_cm_exports.md`
+    * The output from `ls /usr/share/java` in `3_connector.md`
 * Push this work to your GitHub repo
 * Create the Issue `CM installed`
 
@@ -79,8 +79,8 @@
 * Create user directories in HDFS for each account created above
 * Submit the following:
     * The CM API call `api/v10/cm/deployment` in `4_deployment.md`
-    * The output from `hdfs dfs -ls /user` in `5_user_directories.txt`
-    * The tables in your Reports Manager database in `6_rman_tables.txt`
+    * The output from `hdfs dfs -ls /user` in `5_user_directories.md`
+    * The tables in your Reports Manager database in `6_rman_tables.md`
     * A screenshot of the CM home page in `7_cluster_health.png`
 * Push this work to your GitHub repo
 * Create the Issue `CDH installed`
@@ -96,7 +96,7 @@
     * Set the mapper count to double the worker nodes
     * Name the target directory `tgen`
 * Submit the following:
-    * The full command in `8_teragen_job.txt`
+    * The full command in `8_teragen_job.md`
     * Add the console output, without the progress lines
     * Also add the command `hdfs dfs -ls tgen` and output
 * Push this work to your GitHub repo
@@ -114,10 +114,10 @@
 * Run `pi` again using `plenum`
 * Submit the following:
     * `9_kdc.conf` and `9_kadm5.acl`
-    * The output of both `pi` commands in `9_pi.txt`
-    * The `kinit` command for `riser` in `9_riser.txt`
+    * The output of both `pi` commands in `9_pi.md`
+    * The `kinit` command for `riser` in `9_riser.md`
     * Add the `klist` output for `riser`
-    * A list of user principals in `9_principals.txt`
+    * A list of user principals in `9_principals.md`
 * Push this work to your GitHub repo
 * Create the Issue `Cluster Kerberized`
 
@@ -130,7 +130,7 @@
     * The services running on your cluster
     * The configuration of your HDFS service
     * A usage report for your YARN service
-* List the commands and output in `A_cm_api.txt`
+* List the commands and output in `A_cm_api.md`
 * Push this work to your GitHub repo
 * Create the Issue `API Tests Complete`
 
@@ -143,7 +143,7 @@
 * Complete [this quick survey](https://docs.google.com/forms/d/1cFfvTHKz8TEYZgkkZSQFAYtULxsuc-S1qE2kiDFSrBo/viewform)
 
 * Provide feedback on the course in a file called
-`feedback_final.txt`. Feedback
+`feedback_final.md`. Feedback
 on your course work is contingent on this feedback. Please include the following:
     * Summarizing your overall boot camp experience. Was it useful, difficult, challenging? How so?
     * How long would it take, right now, for you to finish all six challenges? What more skills wold you need to complete the challenge, if any?
