@@ -6,139 +6,150 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Friday AM
-# <center> Challenges
+# <center> Challenges - January 29, 2016 - Paris, France
 
-* Overview: Build a cluster and secure it
-* You will document your progress by email the same way you have all week
-    * mfernest@cloudera.com
-    * scottgriz@cloudera.com
-* Submit a challenge result as soon as it is completed.
-* If you break your cluster and cannot recover it, notify us by email first, then tell us.
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> Do not start the challenges yet!
-
-* Write an email with the subject line: <code>[Your Name] - Boot Camp Challenges</code>
-    * List your EC2 instances by **public DNS name** 
-* Specify which instance you will use for Cloudera Manager
-    * List the output from the command <code>hadoop fs -ls /</code> on this instance
-* Create a Linux user account <code>milosz</code> on all nodes with a UID of 1999.
-
-* Once you have submitted this email, you may start the challenges
+* Overview
+    * Build a CM-managed CDH cluster and secure it
+* Submit all text results in plain-text or Markdown format
+* Submit all screenshots in PNG format
+* We will use GitHub Issues to mark challenge milestones
+    * You can update any challenge at any time if needed
+* If you brick your cluster or get stuck for more than 20 minutes, tell an instructor
+* Update your GitHub repo before starting the next challenge.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1 - Install a MySQL server for CM
+## <center> Before you begin
 
-* Install a MySQL 5.5 server
-    * Use any node **except** the one that will host Cloudera Manager
-* Install the MySQL client and JDBC connector on all nodes
-* Create the following databases **only**
-    * All CM Management Services 
+* You should have 4-5 nodes running on a Cloudera-supported OS.
+    * Document the OS version, AMI, and AWS region you're using.
+    * Show the result of `uptime` on your utility node. It should be < 60 minutes.
+* You can put master roles on your utility node if you have four nodes
+* Run `hadoop fs -ls /user` on any other node.
+* Create Linux user accounts called `plenum` and `riser`
+    * Show the `/etc/passwd` entries for both accounts
+* Store the output in `0_setup.txt`
+* Push this work to your GitHub repo
+* Create the Issue `Challenges underway`
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Challenge 1 - Install a MySQL server
+
+* Install a MySQL 5.5 server on your utility node
+* Install the MySQL client package and JDBC connector on all nodes
+* Create databases for
+    * Management Services
     * Hive Metastore
-* Once the mysql server is running, email the following information:
-    * The output of the command <code>mysql --version</code>
-    * The output of the following MySQL statement:
-          <code>SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';</code> 
-    * The output of the statement <code>SHOW DATABASES;</code>
+    * Oozie
+    * Hue
+* Once `mysqld` is running, capture the following:
+    * The output of `mysql --version`
+    * The output of `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
+    * The output of `SHOW DATABASES;`
+* Put these results in `0_challenge.txt`
+* Push this work to your GitHub repo
+* Create the Issue `MySQL enabled`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 2 - Install Cloudera Manager
 
-* Install the package repository for Cloudera Manager **5.4.8**
-* Install Cloudera Manager
-* Create a CM account with the following attributes:
-    * Account name: <code>Overlord</code>
-    * Password <code>singapore</code>
-    * Role: Full Administrator role
-* Submit the following information before starting Challenge 3
-    * The output of the command <code>java -version</code>
-    * The URL to your CM login page
-    * The output of CM API endpoint <code>api/v10/cm/deployment</code>
+* Install a package repository for Cloudera Manager 5.5.0
+* Install and configure Cloudera Manager. Don't start it yet.
+* Submit the following:
+    * The contents of `/etc/yum.repos.d/cloudera-manager.repo` in `1_cm_repo.txt`
+    * The output from `grep export /etc/default/cloudera-scm-server` in `2_cm_exports.txt`
+    * The output from `ls /usr/share/java` in `3_connector.txt`
+* Push this work to your GitHub repo
+* Create the Issue `CM installed`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 3 - Install CDH
 
-* Install CDH **5.4.8**
-* Enable these services **only**
-    * ZooKeeper
-    * HDFS
-    * YARN
-    * Hive 
-* Name your cluster after you
-* Create an HDFS directory <code>/user/milosz</code>
-    * Make <code>milosz</code> the owner of this directory 
-* Submit the following information before starting Challenge 4:
-    * The output of CM API endpoint <code>api/v10/cm/deployment</code>
-    * The output of the command <code>hdfs dfs -ls /user</code>
-    * A list of tables in the <code>scm</code> database
+* Start Cloudera Manager
+* Install CDH 5.5.0
+* Install the Coreset of services + Spark
+* Rename your cluster using your GitHub handle
+* Create user directories in HDFS for each account created above
+* Submit the following:
+    * The CM API call `api/v10/cm/deployment` in `4_deployment.md`
+    * The output from `hdfs dfs -ls /user` in `5_user_directories.txt`
+    * The tables in your Reports Manager database in `6_rman_tables.txt`
+    * A screenshot of the CM home page in `7_cluster_health.png`
+* Push this work to your GitHub repo
+* Create the Issue `CDH installed`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 4 - Testing
+## <center> Challenge 4 - HDFS Testing
 
-* Switch the user account <code>milosz</code>
-* Run <code>teragen</code> to create 51,200,000 records 
-    * Use the <code>time(1)</code> command to get the job duration
-    * Use two mappers for every worker node in your cluster
-    * Write the output to the <code>/user/milosz</code> directory
-* Run <code>terasort</code> on the output
-    * Use <code>time</code> again to record the duration of this job
+* As user `plenum`, use `teragen` to generate 51,200,000 records.
+    * Set the block size 64 MB
+    * Use `time` to capture job duration
+    * Set the mapper count to double the worker nodes
+    * Name the target directory `tgen`
 * Submit the following:
-    * The complete <code>teragen</code> and <code>terasort</code> commands you used
-    * The result of the <code>time</code> command for each job
-    * The output for the command <code>hdfs dfs -ls /user/milosz</code>
+    * The full command in `8_teragen_job.txt`
+    * Add the console output, without the progress lines
+    * Also add the command `hdfs dfs -ls tgen` and output
+* Push this work to your GitHub repo
+* Create the Issue `HDFS Tested`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Challenge 5 - Kerberize the cluster
 
-* Install/configure a KDC with the realm <code>SEBC.SIN</code>
-* Create a user principal for the <code>milosz</code> account
-* Kerberize your CDH services
-* Run the Hadoop <code>pi</code> test program as <code>milosz</code>
+* Create a Kerberos realm `[YOUR_GITHUBNAME].SEBC`
+* Create a user principal for `riser`
+* Kerberize the cluster
+* Run the `pi` test program as `riser`
+* Run `pi` again using `plenum`
 * Submit the following:
-    * The <code>kinit</code> command you used to authenticate <code>milosz</code>
-    * The <code>klist</code> output showing <code>milosz</code> has a valid renewable ticket
-    * The full text of your <code>kdc.conf</code> file
-    * The list of principals in your KDC
+    * `9_kdc.conf` and `9_kadm5.acl`
+    * The output of both `pi` commands in `9_pi.txt`
+    * The `kinit` command for `riser` in `9_riser.txt`
+    * Add the `klist` output for `riser`
+    * A list of user principals in `9_principals.txt`
+* Push this work to your GitHub repo
+* Create the Issue `Cluster Kerberized`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - Enable Impala
+## <center> Challenge 6 - Fun with the CM API
 
-* Add the Impala service to your cluster
-* Deploy an Impalad role on every instance that hosts a DataNode role
-* Add Kerberos configuration for this service
-* Submit the following:
-    * A list of the Impala service principals in your KDC
-    * A screen capture of the Instances tab for Impala in CM
+* Use the API to list
+    * The services running on your cluster
+    * The configuration of your HDFS service
+    * A usage report for your YARN service
+* List the commands and output in `A_cm_api.txt`
+* Push this work to your GitHub repo
+* Create the Issue `API Tests Complete`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Completing Course Feedback
+## <center> Once time is called...
 
-* Emails sent after 11:55am (local time) are not included in the challenge evaluation. 
-* After you submit your last challenge, complete [this survey](http://tinyurl.com/fce-bc-survey)
-* Start a new email with the subject line: **[Your Name]: SEBC
-Feedback**. Include the following:
-    * Describe your boot camp experience. Was it useful, difficult, challenging?
-    * If you had three more hours today, could you finish all six challenges? If not, what else do you need to prepare?
-    * Which topic taught you the most? Which one taught you the least?
-    * What aspect of this course did you like the most? The least?
-    * What other resources do you need to prepare for a production install? 
+* Make one last push.
+* Complete [this quick survey](https://docs.google.com/forms/d/1cFfvTHKz8TEYZgkkZSQFAYtULxsuc-S1qE2kiDFSrBo/viewform)
+
+* Provide feedback on the course in a file called
+`feedback_final.txt`. Feedback
+on your course work is contingent on this feedback. Please include the following:
+    * Summarizing your overall boot camp experience. Was it useful, difficult, challenging? How so?
+    * How long would it take, right now, for you to finish all six challenges? What more skills wold you need to complete the challenge, if any?
+    * In which topic are you least familiar? In which topic are you most familiar?
+    * What topic did you enjoy the most? The least?
+    * How long do you think you'd to prepare for an installation engagement on your own?
 
 ---
 <div style="page-break-after: always;"></div>

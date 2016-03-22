@@ -6,7 +6,6 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Wednesday AM
 # <center> <a name="cm_monitor_customize_section"/>CM Monitoring & Customizing
 
 * <a href="#cm_overview">CM's vocabulary</a>
@@ -18,14 +17,14 @@
 * <a href="#cm_health_checks">Health checks</a>
 * <a href="#cm_charting_time_series">Charting time-series data</a>
 * <a href="#cm_property_settings">Managing property settings</a>
-* <a href="#cm_api_sampler">Sample CM API calls</a> 
+* <a href="#cm_api_sampler">Sample CM API calls</a>
 
 <!-- material to add
 
 * Wizards include
     * Express Install
     * Add Service/Role
-    * Upgrade CM and CDH 
+    * Upgrade CM and CDH
     * Enable HA (NameNode, JobTracker, Oozie, YARN RM)
 * Some useful ones are buried here and there
     * <code><i>Service</i>->Instances->Add Role Instances->View By Host</code> (button)
@@ -67,10 +66,10 @@
 ## <center> Notes on Cloudera Manager vocabulary<p>
 
 * [Philip Zeyliger's blog article on CM's design and operation](http://blog.cloudera.com/blog/2013/07/how-does-cloudera-manager-work/)  
-* CM uses [service descriptors](http://cloudera.github.io/cm_api/docs/cm-concepts/) that evolve as new features emerge 
-    * [Primer for CM 4](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_primer.html) 
-    * [Primer for CM 5](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_primer.html)
-* For deep-divers: compare the CM API [4.7](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_api.html) (v5), with [5.x](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_api.html), (v6, v7)
+* CM uses [service descriptors](http://cloudera.github.io/cm_api/docs/cm-concepts/) that evolve as new features emerge
+    * [Primer for CM 4](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_primer.html)
+    * [Primer for CM 5](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_intro_api.html)
+* For deep-divers: compare the API for [4.7](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_api.html) (v5), with [5.x](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_api.html), (v6, v7)
 * Colloquial terms
     * Canary: a test to determine a running service is functional
     * Safety valve: used to override/correct   
@@ -132,9 +131,9 @@ Enter an object type in the search bar
 
 * Home -> All Recent Commands
     * Up to 250 current/finished commands per display
-    * Reports context (service), command status, start and finish times. 
+    * Reports context (service), command status, start and finish times.
 * Use the Audits tab to find past events
-    * Available in home, service, role, and host instance pages 
+    * Available in home, service, role, and host instance pages
     * Time range filter from last 30m to last 30d (as of CM 5.1)
     * [Several other filters available](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_audits.html)
 * Logs can also be downloaded
@@ -156,7 +155,7 @@ Enter an object type in the search bar
     * Impala Queries
         * Memory cache thresholds
     * Alerts
-    * Log Events 
+    * Log Events
 
 ---
 <div style="page-break-after: always;"></div>
@@ -198,7 +197,7 @@ Enter an object type in the search bar
 * Chart builder and dashboard editor: CM -> Charts
     * [Documentation, CDH 5.1.1](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_chart_time_series_data.html)
     * A set of charts is called a [view](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.7.1/Cloudera-Manager-Diagnostics-Guide/cmdg_views.html) in 4.x, a [dashboard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_dashboards.html) in 5.x
-* [Metric aggregations](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_metric_aggregation.html) 
+* [Metric aggregations](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_metric_aggregation.html)
     * metric + timestamp pair + aggregating functions (min, max, avg, and stddev)
     * Sampling interval is determined by the monitor (Service or Host)
 * Some 'cross-entity' aggregations provided
@@ -255,23 +254,15 @@ Enter an object type in the search bar
 
 ## <center> CM Monitoring Lab
 
-<strong> Use the search feature to answer these questions </strong>
+<strong> Use the search feature to answer these questions. Put the questions and their answers in a file <code>enterprise/0_CM_treasure_hunt.txt</code> </strong>
 
 * What is ubertask optimization?
-* What is the default port for a Parcels proxy server?
-* Where in CM is the Kerberos Security Realm value maintained? Which service hosts the enabling property for Kerberos authentication?
-* Where in CM's UI is the Enable Kerberos wizard located? 
-* What is the property query for charting CPU utilization by Hue?
-* List the three roles that comprise the Hive service
-* T/F: The Enable Kerberos Wizard can install an MIT KDC for you, but not an Active Directory instance.
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> CM Lab
-## <center> (Optional) Add CM to a CDH Cluster<p>
-
-Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServices/Deploying+Cloudera+Manager+on+un-managed+CDH+clusters).
+* Where in CM is the Kerberos Security Realm value displayed?
+* Which CDH service(s) host a property for enabling Kerberos authentication?
+* How do you upgrade the CM agents?
+* Give the tsquery statement used to chart Hue CPU utilization?
+* List all the roles that make up the Hive service.
+* List the prerequisite steps necessary to integrating Cloudera Manager with a Kerberos MIT KDC.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -281,6 +272,18 @@ Follow the [instructions here](https://wiki.cloudera.com/display/FieldTechServic
 
 * Create a new CM user <code>minotaur</code> in your cluster
 * Assign <code>minotaur</code> the Configurator role
-* Create a dashboard for <code>minotaur</code> with four charts of your choice
-* 
+* Create a dashboard for <code>minotaur</code> using  four existing charts  
+* Put a screenshot of the finished dashboard in the file <code>enterprise/1_user_dashboard.png</code>
 
+---
+<div style="page-break-after: always;"></div>
+
+
+## <center> CM Lab
+## <center> Fun with the API
+
+* Browse or <code>curl</code> the endpoint ../api/v2/cm/deployment. Store the result in <code>enterprise/2_cluster_deployment.md</code>
+* Use the [tutorial for v10 of the API](http://cloudera.github.io/cm_api/apidocs/v10/tutorial.html) to orient yourself with it.
+* Devise <code>curl</code> commands that stop and start your Hive service. Devise another to determine if the service is fully stopped. Put these commands and their output in the file <code>enterprise/3_api_hive_state.txt</code>
+* For bonus points, write a script <code>enterprise/4_hive_restart.sh</code> that automates using the commands you wrote.
+* For double bonus points, write this program in Python or Java. Save it to <code>enterprise/5_hive_restart.[py|java]</code> as appropriate.
