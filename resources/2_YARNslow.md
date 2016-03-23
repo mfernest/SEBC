@@ -1,0 +1,9 @@
+mapreduce.job.maps: 8
+mapreduce.job.reduces: 8
+mapreduce.map.memory.mb: 1536
+mapreduce.map.java.opts.max.heap: 1228
+mapreduce.reduce.memory.mb: 1536
+mapreduce.reduce.java.opts.max.heap: 1228
+real    22m20.034s
+user    0m12.411s
+sys     0m0.651s
