@@ -1,9 +1,14 @@
-[ec2-user@ip-172-31-51-34 ~]$ sudo sysctl vm                                                .swappiness=1  
+Swappiness
+```
+[ec2-user@ip-172-31-51-34 ~]$ sudo sysctl vm.swappiness=1  
 vm.swappiness = 1  
-[ec2-user@ip-172-31-51-34 ~]$ cat /proc/sys/                                                vm/swappiness  
+[ec2-user@ip-172-31-51-34 ~]$ cat /proc/sys/vm/swappiness  
 1  
+```
 
-[root@ip-172-31-51-34 ~]# mount -o remount,n                                                oatime /
+noatime
+```
+[root@ip-172-31-51-34 ~]# mount -o remount,noatime /
 
 [root@ip-172-31-51-34 ~]# cat /etc/fstab
 
@@ -19,17 +24,21 @@ tmpfs                   /dev/shm                tmpfs   defaults        0 0
 devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
 sysfs                   /sys                    sysfs   defaults        0 0
 proc                    /proc                   proc    defaults        0 0
-
-
+```
+Zero reserve space for non-root volumes
+```
 [root@ip-172-31-51-38 ~]# tune2fs -m 0 /dev/xvda1
 tune2fs 1.41.12 (17-May-2010)
 Setting reserved blocks percentage to 0% (0 blocks)
+```
 
 ##################
 /etc/security/limits.conf
 /etc/security/limits.d/limits
 ##################
 
+Enable `nscd` and `ntpd`
+```
 yum install nscd
 [root@ip-172-31-51-38 security]# service nscd start
 Starting nscd:                                             [  OK  ]
@@ -40,6 +49,4 @@ Starting ntpd:                                             [  OK  ]
 [root@ip-172-31-51-38 security]# chkconfig nscd on
 [root@ip-172-31-51-38 security]# chkconfig ntpd on
 
-
-
-
+```
