@@ -9,7 +9,7 @@ At least 16 GB RAM for an Impalad process
 <strong>List each factor and value leading to your result</strong>  
 
 
-|test            |  test        |         test                                           |
+|Resource        |  RAM         |    Reasoning                                           |
 | ---------------|--------------|--------------------------------------------------------|
 |total           | 1,048,576 MB |     128 GB * 8 worker nodes                            |  
 |OS              |   209,715 MB |     128 GB * 8 * 20%                                   |  
