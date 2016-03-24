@@ -25,6 +25,9 @@ Assume half as much task overhead
 
 min(15 vcores, 2*10 spindles) = 15
 
-mapreduce.job.maps = min(yarn.nodemanager.resource.memory-mb / mapreduce.map.memory.mb,  
+mapreduce.job.maps = number of worker node * min(  
+yarn.nodemanager.resource.memory-mb / mapreduce.map.memory.mb,  
 yarn.nodemanager.resource.cpu-vcores / mapreduce.map.cpu.vcores,  
-number of physical drives x workload factor) x number of worker node  
+number of physical drives x workload factor)
+
+In this example, that is 8*min(84, 15, 20) = 8*15 = <strong>120</strong>
