@@ -9,7 +9,7 @@ At least 16 GB RAM for an Impalad process
 <strong>List each factor and value leading to your result</strong>  
 
 
-
+'''
 total            1,048,576 MB      128 GB * 8 worker nodes  
 OS                 209,715 MB      128 GB * 8 * 20%  
 HDFS Datanode        8,129 MB    1,024 MB * 8  
@@ -17,4 +17,4 @@ Overhead           419,432 MB   52,429 MB * 8 estimated for non-Apache Hadoop se
 Impala Daemon      130,784 MB   16,348 MB * 8  
 CM Agent             8,129 MB    1,024 MB * 8  
     Yarn Containers    272,387 MB   34,048 MB * 8 Total - other processes  
-
+'''
