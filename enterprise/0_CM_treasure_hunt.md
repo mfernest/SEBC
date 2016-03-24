@@ -17,6 +17,10 @@ HDFS, SOLR, HBase, Zookeeper, Yarn
 <strong>Give the tsquery statement used to chart Hue CPU utilization?</strong>  
 
 <strong>List all the roles that make up the Hive service.</strong>  
+Hive Gateway  
+Hive Metastore Server  
+HiveServer2  
+Hive WebHCat server
 
 <strong>List the prerequisite steps necessary to integrating Cloudera   
 Manager with a Kerberos MIT KDC.</strong>   
