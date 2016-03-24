@@ -18,16 +18,7 @@ Spent 2870ms computing partitions.
 16/03/24 18:02:42 INFO mapreduce.Job: The url to track the job: http://ip-172-31-51-35.ec2.internal:8088/proxy/application_1458844022803_0059/  
 16/03/24 18:02:42 INFO mapreduce.Job: Running job: job_1458844022803_0059  
 16/03/24 18:02:50 INFO mapreduce.Job: Job job_1458844022803_0059 running in uber mode : false  
-16/03/24 18:02:50 INFO mapreduce.Job:  map 0% reduce 0%  
-16/03/24 18:02:59 INFO mapreduce.Job:  map 13% reduce 0%  
-16/03/24 18:03:04 INFO mapreduce.Job:  map 38% reduce 0%  
-16/03/24 18:03:05 INFO mapreduce.Job:  map 63% reduce 0%  
-16/03/24 18:03:09 INFO mapreduce.Job:  map 75% reduce 0%  
-16/03/24 18:03:13 INFO mapreduce.Job:  map 88% reduce 0%  
-16/03/24 18:03:14 INFO mapreduce.Job:  map 100% reduce 0%  
-16/03/24 18:03:23 INFO mapreduce.Job:  map 100% reduce 17%  
-16/03/24 18:03:25 INFO mapreduce.Job:  map 100% reduce 83%  
-16/03/24 18:03:31 INFO mapreduce.Job:  map 100% reduce 100%  
+[### JOB PROGRESS###]  
 16/03/24 18:03:31 INFO mapreduce.Job: Job job_1458844022803_0059 completed successfully  
 16/03/24 18:03:31 INFO mapreduce.Job: Counters: 50  
         File System Counters  
