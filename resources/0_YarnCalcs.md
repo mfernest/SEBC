@@ -23,3 +23,8 @@ Assume half as much task overhead
 |CM Agent        | 1       |   1,024 MB | 
 |Yarn Containers |15 (20-5)|  86,465 MB |  
 
+min(15 vcores, 2*10 spindles) = 15
+
+mapreduce.job.maps = min(yarn.nodemanager.resource.memory-mb / mapreduce.map.memory.mb,  
+yarn.nodemanager.resource.cpu-vcores / mapreduce.map.cpu.vcores,  
+number of physical drives x workload factor) x number of worker node  
