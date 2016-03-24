@@ -18,3 +18,7 @@ At least 16 GB RAM for an Impalad process
 |CM Agent             8,129 MB    1,024 MB * 8|  
 |Yarn Containers    272,387 MB   34,048 MB * 8 Total - other processes|  
 
+| Day     | Meal    | Price |
+| --------|---------|-------|
+| Monday  | pasta   | $6    |
+| Tuesday | chicken | $8    |
