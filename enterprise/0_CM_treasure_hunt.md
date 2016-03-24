@@ -20,3 +20,7 @@ HDFS, SOLR, HBase, Zookeeper, Yarn
 
 <strong>List the prerequisite steps necessary to integrating Cloudera   
 Manager with a Kerberos MIT KDC.</strong>   
+Set up a working KC  
+The KDC should be configued to have non-zero ticket lifetime and renewal lifetime   
+OpenLDAP Libraries must be installed to use AD and skerberos client libraries must be on all hosts  
+CM need an account that has permissions to create other accounts in the KDC  
