@@ -4,8 +4,10 @@ Uberization reduces the amount of overhead for small MapReduce jobs by
 having them run in the Application Master's jvm.  
   
 <strong>Where in CM is the Kerberos Security Realm value displayed?</strong>  
-  
-  
+Administration > Settings  
+Status: non-default  
+Scope: settings  
+Category: Kerberos  
   
 <strong>Which CDH service(s) host a property for enabling Kerberos authentication?</strong>  
 
