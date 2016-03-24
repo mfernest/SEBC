@@ -16,12 +16,13 @@ Assume half as much task overhead
 |Resource        |V Cores  |  RAM       |
 | ---------------|---------|------------|
 |total           | 20      | 131,072 MB |  
-|OS              | 2       |  26,214 MB |  
+|OS              | 1       |  26,214 MB |  
+|Yarn Nodemgr    | 1       |       0 MB |  
 |HDFS Datanode   | 1       |   1,024 MB |
 |Overhead        | 0       |  26,214 MB |  
 |Impala Daemon   | 1       |  16,348 MB |
 |CM Agent        | 1       |   1,024 MB | 
-|Yarn Containers |15 (20-5)|  86,465 MB |  
+|Yarn Containers |15 (20-5)|  60,248 MB |  
 
 min(15 vcores, 2*10 spindles) = 15
 
@@ -30,4 +31,4 @@ yarn.nodemanager.resource.memory-mb / mapreduce.map.memory.mb,
 yarn.nodemanager.resource.cpu-vcores / mapreduce.map.cpu.vcores,  
 number of physical drives x workload factor)
 
-In this example, that is 8xmin(86, 15, 20) = 8x15 = <strong>120</strong>
+In this example, that is 8xmin(60, 15, 20) = 8x15 = <strong>120</strong>
