@@ -15,6 +15,7 @@ HDFS, SOLR, HBase, Zookeeper, Yarn
 <strong>How do you upgrade the CM agents?</strong>  
 
 <strong>Give the tsquery statement used to chart Hue CPU utilization?</strong>  
+select cpu_system_rate + cpu_user_rate where category=ROLE and serviceName=$SERVICENAME  
 
 <strong>List all the roles that make up the Hive service.</strong>  
 Hive Gateway  
