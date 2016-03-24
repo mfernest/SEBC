@@ -12,7 +12,9 @@ Category: Kerberos
 <strong>Which CDH service(s) host a property for enabling Kerberos authentication?</strong>  
 HDFS, SOLR, HBase, Zookeeper, Yarn  
   
-<strong>How do you upgrade the CM agents?</strong>  
+<strong>How do you upgrade the CM agents?</strong> 
+Re-run the Upgrade Wizard on CM and select "Yes, I would like  
+to upgrade the Cloudera Manager Agent packages now"  
 
 <strong>Give the tsquery statement used to chart Hue CPU utilization?</strong>  
 select cpu_system_rate + cpu_user_rate where category=ROLE and serviceName=$SERVICENAME  
