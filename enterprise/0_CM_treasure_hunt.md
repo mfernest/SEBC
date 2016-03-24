@@ -10,7 +10,8 @@ Scope: settings
 Category: Kerberos  
   
 <strong>Which CDH service(s) host a property for enabling Kerberos authentication?</strong>  
-
+HDFS, SOLR, HBase, Zookeeper, Yarn  
+  
 <strong>How do you upgrade the CM agents?</strong>  
 
 <strong>Give the tsquery statement used to chart Hue CPU utilization?</strong>  
