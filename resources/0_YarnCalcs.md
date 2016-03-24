@@ -20,5 +20,9 @@ At least 16 GB RAM for an Impalad process
 
 | Day     | Meal    | Price |
 | --------|---------|-------|
+| total   | pasta   | $6    |
+| OS      | chicken | $8    |
+| Monday  | pasta   | $6    |
+| Tuesday | chicken | $8    |
 | Monday  | pasta   | $6    |
 | Tuesday | chicken | $8    |
