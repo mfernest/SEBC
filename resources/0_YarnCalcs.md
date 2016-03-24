@@ -3,27 +3,23 @@ At least 16 GB RAM for an Impalad process
 <strong>What percentage of RAM should be earmarked for the OS and system services?</strong>  
 10-20% of RAM for Linux and its daemon services  
 <strong>Under what condition(s) would you factor two cores per spindle into your calculations?</strong>  
+The node manager is allocated the lesser of total_vcores - non_yarn_vcores OR 2x phys_disks for DataNode.  
+The will be factored in when the second of those two is the lesser.
 
 <strong>Assume a cluster with 20 vcores, 128 GB RAM, and 10 spindles on each of eight worker nodes</strong>  
 <strong>Using the Container Formula given in Table 8, calculate an appropriate value for mapreduce.jobs.maps</strong>  
 <strong>List each factor and value leading to your result</strong>  
 
 
-|Resource        |  RAM         |    Reasoning                                           |
-| ---------------|--------------|--------------------------------------------------------|
-|total           | 1,048,576 MB |     128 GB * 8 worker nodes                            |  
-|OS              |   209,715 MB |     128 GB * 8 * 20%                                   |  
-|HDFS Datanode   |     8,129 MB |   1,024 MB * 8                                         |
-|Overhead        |   419,432 MB |  52,429 MB * 8 estimated for non-Apache Hadoop services|  
-|Impala Daemon   |   130,784 MB |  16,348 MB * 8                                         |
-|CM Agent        |     8,129 MB |   1,024 MB * 8                                         |  
-|Yarn Containers |   272,387 MB |  34,048 MB * 8 Total - other processes                 |  
+Assume half as much task overhead  
 
-| Day     | Meal    | Price |
-| --------|---------|-------|
-| total   | pasta   | $6    |
-| OS      | chicken | $8    |
-| Monday  | pasta   | $6    |
-| Tuesday | chicken | $8    |
-| Monday  | pasta   | $6    |
-| Tuesday | chicken | $8    |
+|Resource        |V Cores  |  RAM       |
+| ---------------|---------|------------|
+|total           | 20      | 131,072 MB |  
+|OS              | 2       |  26,214 MB |  
+|HDFS Datanode   | 1       |   1,024 MB |
+|Overhead        | 0       |  26,214 MB |  
+|Impala Daemon   | 1       |  16,348 MB |
+|CM Agent        | 1       |   1,024 MB | 
+|Yarn Containers |15 (20-5)|  86,465 MB |  
+
