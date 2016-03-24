@@ -30,4 +30,4 @@ yarn.nodemanager.resource.memory-mb / mapreduce.map.memory.mb,
 yarn.nodemanager.resource.cpu-vcores / mapreduce.map.cpu.vcores,  
 number of physical drives x workload factor)
 
-In this example, that is 8xmin(84, 15, 20) = 8x15 = <strong>120</strong>
+In this example, that is 8xmin(86, 15, 20) = 8x15 = <strong>120</strong>
