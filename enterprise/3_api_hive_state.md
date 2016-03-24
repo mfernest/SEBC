@@ -42,4 +42,4 @@ ________________________________________
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current  
                                  Dload  Upload   Total   Spent    Left  Speed  
 106   854    0   854    0     0   2929      0 --:--:-- --:--:-- --:--:--  2944  
-  "serviceState" : "STARTED",  
+  "serviceState" : "STOPPING",  
