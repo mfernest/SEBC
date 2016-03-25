@@ -201,8 +201,8 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 ## <center> CM Install Labs - Path B Installation Overview
 
-* Add your nodes' public IPs to <code>installation/0_nodeIPs.txt</code>
-* Document your configuration checks in 1_preinstall.txt</a>
+* Add your nodes' public IPs to <code>installation/0_nodeIPs.md</code>
+* Document your configuration checks in 1_preinstall.md</a>
     * For bonus points, script it as a TDD exercise
 * Install a MySQL server and replica
 * Install the latest versions of CM & CDH
@@ -223,7 +223,7 @@ current value of each property covered. Show the command you used
 to correct a value if needed, followed by the first command again
 to show the change.
 
-Capture this work in the file <code>installation/1_prechecks.txt</code>.
+Capture this work in the file <code>installation/1_prechecks.md</code>.
 Although you will check each node in your cluster, you only have
 to report the work for one of them.
 
@@ -286,7 +286,7 @@ Email both instructor(s) with your chosen plan **before** you start.
     a. <code>mysql> **START SLAVE;**</code><br>
     b. <code>mysql> **SHOW SLAVE STATUS \G**</code><br>
     c. If successful, the <code>Slave_IO_State</code> field will read <code>Waiting for master to send event</code><br>
-    d. Once successful, capture this output and store it in <code>installation/2_replica_working.txt</code><br>
+    d. Once successful, capture this output and store it in <code>installation/2_replica_working.md</code><br>
     e. If unsuccessful, review your log (<code>/var/log/mysqld.log</code>) for errors. If stuck, consult with a colleague or instructor.<p>
 
 ---

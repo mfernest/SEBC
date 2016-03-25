@@ -1,5 +1,7 @@
 ## <center>
 
+[Hive SQL Syntax for Use with Sentry](https://www.cloudera.com/documentation/enterprise/latest/topics/sg_hive_sql.html)
+
 * Create/use a Linux account that is not a Hadoop service.
     * Create a Kerberos credential for this account as well.
 * Add this account to the `sentry.service.admin.group` property
@@ -27,9 +29,11 @@
     * `0: jdbc:hive2://localhost:10000/default> CREATE ROLE role2;`
 * Grant privileges on all tables to a new role:
     * `0: jdbc:hive2://localhost:10000/default> GRANT SELECT ON DATABASE default TO ROLE role1;`
+    * `0: jdbc:hive2://localhost:10000/default> GRANT ROLE role1 TO GROUP group1;`
 * Constrain privileges on role2, allowing only read (SELECT) on default.sample07:
     * `0: jdbc:hive2://localhost:10000/default> REVOKE ALL ON DATABASE default FROM ROLE role2;`
     * `0: jdbc:hive2://localhost:10000/default> GRANT SELECT ON default.sample_07 TO ROLE role2;`
+    * `0: jdbc:hive2://localhost:10000/default> GRANT ROLE role2 TO GROUP group2;`
 * Authenticate user1 via Kerberos, access beeline, and list tables
     * `$ kinit user1`
     * `$ beeline`

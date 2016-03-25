@@ -254,7 +254,7 @@ Enter an object type in the search bar
 
 ## <center> CM Monitoring Lab
 
-<strong> Use the search feature to answer these questions. Put the questions and their answers in a file <code>enterprise/0_CM_treasure_hunt.txt</code> </strong>
+<strong> Use the search feature to answer these questions. Put the questions and their answers in a file <code>enterprise/0_CM_treasure_hunt.md</code> </strong>
 
 * What is ubertask optimization?
 * Where in CM is the Kerberos Security Realm value displayed?
@@ -284,6 +284,6 @@ Enter an object type in the search bar
 
 * Browse or <code>curl</code> the endpoint ../api/v2/cm/deployment. Store the result in <code>enterprise/2_cluster_deployment.md</code>
 * Use the [tutorial for v10 of the API](http://cloudera.github.io/cm_api/apidocs/v10/tutorial.html) to orient yourself with it.
-* Devise <code>curl</code> commands that stop and start your Hive service. Devise another to determine if the service is fully stopped. Put these commands and their output in the file <code>enterprise/3_api_hive_state.txt</code>
+* Devise <code>curl</code> commands that stop and start your Hive service. Devise another to determine if the service is fully stopped. Put these commands and their output in the file <code>enterprise/3_api_hive_state.md</code>
 * For bonus points, write a script <code>enterprise/4_hive_restart.sh</code> that automates using the commands you wrote.
 * For double bonus points, write this program in Python or Java. Save it to <code>enterprise/5_hive_restart.[py|java]</code> as appropriate.

@@ -215,7 +215,7 @@
         * Using the Container Formula given in Table 8, calculate an appropriate value for <code>mapreduce.jobs.maps</code>
         * List each factor and value leading to your result
 
-Add your answers to the file <code>resources/0_YarnCalcs.txt</code> in your repository
+Add your answers to the file <code>resources/0_YarnCalcs.md</code> in your repository
 
 ---
 <div style="page-break-after: always;"></div>
@@ -247,6 +247,6 @@ Add your answers to the file <code>resources/0_YarnCalcs.txt</code> in your repo
     * Your highest value can max out the cluster to demonstrate resource enforcement 
 * Add the following to your repository's <code>resources/</code> directory
     * The completed version of your script (overwrite the initial one)
-    * The output of your slowest run in <code>2_YARNslow.txt</code>
-    * The output of your fastest run in <code>3_YARNfast.txt</code>
+    * The output of your slowest run in <code>2_YARNslow.md</code>
+    * The output of your fastest run in <code>3_YARNfast.md</code>
 * Email the instructors when you have completed these labs
