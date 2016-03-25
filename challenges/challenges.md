@@ -13,7 +13,8 @@
 * All text output will go in Markdown files
     * Formatting for readability counts!
 * Submit screenshots in PNG format
-* If you brick your cluster or get stuck for more than 20 minutes, tell an instructor
+* If you brick your cluster or get stuck for more than 20 minutes, tell Pete or me
+* You may talk or research online all you want, but do not submit someone else's work as yours.
 * Always push to your GitHub repo before starting a new challenge.
 
 ---
@@ -24,18 +25,19 @@
 * Create the Issue `Challenges underway`
     * Add it to the `Challenges` milestone
     * Label it `Started`
-* Use the file `0_setup.md` for the following info
-    * List the OS version, AMI, and AWS region of your nodes
-    * List the node that will host Cloudera Manager server
-* Run the `uptime` command on your CM Server node
-    * The session should be < 60 minutes old
-* Run `hadoop fs -ls /user` on any other node.
+* Use the file `0_setup.md` to store the following 
+    * The OS version, AMI, and AWS region of your nodes
+    * The node that will host Cloudera Manager server
+* The command and output of `uptime` on your CM Server node
+    * This session should be < 60 minutes old
+* Run `hadoop fs -ls /user` on any other node in the cluster
     * Run `df -h` on the same node
-* Create the following Linux user accounts 
+* Create the following Linux user accounts for all nodes
     * User `statler` with a UID of `2001`
     * User `waldorf` with a UID of `2002`
-* List the `/etc/passwd` entries for both accounts 
+* List the `/etc/passwd` entries for both accounts from one node
 * Commit and push to your GitHub repo when done
+* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -60,6 +62,7 @@
     * The statement and output of `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
     * The statement and output of `SHOW DATABASES;`
 * Push this work to your GitHub repo
+* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -76,6 +79,7 @@
     * The command and output from `grep export /etc/default/cloudera-scm-server` in `2_cm_exports.md`
     * The output from `ls /usr/share/java` in `2_connector.md`
 * Push this work to your GitHub repo
+* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -97,6 +101,7 @@
     * A screenshot of the CM home page in `3_cluster_health.png`
         * If any services are not green, explain why in the Issue 
 * Push this work to your GitHub repo
+* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -114,6 +119,7 @@
     * The full command you used 
     * The command and output of `hdfs dfs -ls tgen` 
 * Push this work to your GitHub repo
+* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -137,6 +143,7 @@
     * A proper `kinit` and `klist` result for a Hive principal in `5_hive.md`
     * The `klist` command and output for `waldorf` in `5_waldorf.md`
 * Push this work to your GitHub repo
+* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -151,6 +158,7 @@
     * The HDFS service configuration `6_HDFS.md`
     * A usage report for YARN in `6_YARN.md`
 * Push this work to your GitHub repo
+* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
