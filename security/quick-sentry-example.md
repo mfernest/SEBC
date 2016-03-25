@@ -12,6 +12,7 @@
 * Create a Sentry authorization that maps to a group including the Linux account.
     * `CREATE ROLE admin_role;`
     * `GRANT ALL ON SERVER server1 TO ROLE admin_role;`
+    * `GRANT ROLE admin_role TO GROUP Linux_user_group;`
     * `SHOW TABLES;`
 * This last statement should now return all tables defined under `server1`
 * To test permission granularity, create additional users/groups on all cluster hosts
