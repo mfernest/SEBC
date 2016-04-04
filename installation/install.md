@@ -19,11 +19,10 @@
 ## <center> <a name="install_methods"/> CM/CDH Installation
 
 * We use Cloudera  Manager to:
-    * Manage host systems
-    * Create host clusters and deploy services
-    * Track and adjust service properties
-    * Automate tasks such as HA NameNode, Active Directory integration
-    * Monitor hosts and services via agent processes
+    * Monitor host status (via an agent process)
+    * Organize CDH clusters, deploy services
+    * Set and observe service configuration
+    * Automate common tasks: HA NameNode, Kerberos integration
 
 ---
 <div style="page-break-after: always;"></div>
@@ -39,29 +38,29 @@
 
 * [Path A: One-stop binary installer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
     * Used for short-term, throwaway projects 
-    * Embedded PostgreSQL server 
-* [Path B: Install CM, CM deploys CDH](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
-    * Production clusters
+    * Embedded, hard-configured PostgreSQL server 
+* [Path B: Install CM and database manually](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
+    * Any cluster meant to run more than 3-6 months
     * Supports Oracle, MySQL, and PostgreSQL servers
-    * Installs CDH with Linux packages or [Parcels](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_parcels.html)
+    * Can deploy CDH with Linux packages or [Parcels](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_parcels.html)
 * [Path C: Tarballs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
-    * Privileged access is not available
-    * Other deployment tools will be used
-    * Integration with CM not important
+    * Useful if privileged access is not available
+    * Let other deployment tools drive
+    * Don't need Cloudera Manager
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_install_logging"/>CM Installation Milestones with Path A []()
 
-* Linux configuration/prechecks
-* Install package repositories for database server and Cloudera Manager
-* Install Oracle JDK package
-* Install database server
+* Essential Linux configuration checks (e.g., SELinux disabled)
+* Install package repositories for PostgreSQL and Cloudera Manager
+* Install Oracle JDK 
+* Install PostgreSQL
 * Install Cloudera Manager
-* Add hosts, then deploy cluster
+* Add hosts, deploy cluster -- most choices made for you
 
-* Field engineers typically prepare for an install engagement by reviewing:
+* We typically prepare for an install engagement by reviewing:
     * [Well-known issues](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_troubleshooting.html)
     * [Ongoing problems and workarounds](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_known_issues.html)
     * [Recently closed JIRAs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_rn_fixed_issues.html) too.
@@ -73,14 +72,14 @@
 
 0. Review hardware, OS, disk, and network/kernel settings
 1. Install Oracle JDK
-    * Included with Cloudera Manager's package repo 
-    * OpenJDK is not supported by Cloudera
+    * Included in Cloudera Manager's package repo 
+    * OpenJDK is not (yet?) supported by Cloudera
 2. Install [database server](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
 3. Install the CM server and agent packages
-    * Add JDBC database connector to all nodes
-4. Distribute CM agent software 
-5. Distribute CDH (with packages or parcels)
-6. Deploy and enable services<p>
+    * MySQL requires a JDBC database connector
+4. Install process distributes agent software 
+5. Also distributes CDH (packages or parcels)
+6. Deploys and enables services<p>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -138,7 +137,7 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 * Management Services (one CM instance)
     * Reports Manager (aka <code>rman</code>)
     * Navigator Audit & Metadata Servers (not covered this week)
-    * Activity Monitor (<code>amon</code>) is used by the MapReduce service only
+    * Activity Monitor (<code>amon</code>) is only used by the MapReduce service 
     * Host and Service Monitors implement [LevelDB](https://github.com/google/leveldb) 
 * CDH Services 
     * Hive Metastore
@@ -152,12 +151,11 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 ## <center> <a name="cm_replicate_db"/> MySQL Replication for HA </a></p>
 
-* Several prerequisites to configure Cloudera Manager for active-passive HA
+* Configuring Cloudera Manager for active-passive HA is non-trivial
     * Load balancer(s) that can proxy multiple ports
-    * An HA network store for Management Services
-    * Heartbeat package for fail-fast detection
-    * Database server configured for HA
-        * We'll [install MySQL and replicate the server](http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html) 
+    * An independent, HA store for Management Services
+    * Mechanism for fail-fast detection
+* We'll [install MySQL and replicate the server](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html) 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -171,41 +169,40 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 ## <center> CM Install Labs - *Before* You Start
 
-* Verify you have been added as a Collaborator to the SEBC repo
-    * Fork the repo to your own GitHub Account
+* Fork the repo to your own GitHub Account
     * In the Settings tab of your fork, enable the Issues feature
     * Add instructors as Collaborators (mfernest, dbeech)
     * Each lab section tells you what to submit and how
     * Clone your repo to your laptop
-* Submit work in plain text, Markdown, or PNG for screen captures
-    * Please do not operate directly on the upstream repo
+* Submit work in Markdown docs or PNG files 
+    * Issue Pull Requests to the upstream repo for errors, typos
+* Create an Issue in your repo called `Installation Lab`
+     * Add it to the `Labs` milestone
+     * Assign the label `Started`
+* Use this Issue for all matters related to completing the lab
+    * For example, add the `question` label if you're stuck or unclear on steps
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM Install Lab - AWS
+## <center> CM Install Lab - Cloudcat
 
-* You should already have an AWS account and have practiced creating EC2 nodes.
-    * If not, [there's a lot of work ahead of you](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html). 
-* Create 4-5 EC2 nodes
+* You should already have a Cloudcat account 
+* Create five EC2 nodes
     * <code>m3.xlarge</code> instances are good; <code>m3.large</code> are adequate
-    * Don't get spot instances
-    * Use five nodes if you want a separate instance for Cloudera Manager and client access
+    * Don't use spot instances
+    * Use one instance for Cloudera Manager and edge/gateway roles
     * Be sure to use a [Cloudera-supported OS](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html), preferably CentOS.
-    * You can AWS Marketplace [to find a proper AMI](https://aws.amazon.com/marketplace/pp/B00IOYDTV6) 
-    * [Get all the free volume space you can](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html)
-    * Keep security constraints to a bare minimum
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Labs - Path B Installation Overview
 
-* Add your nodes' public IPs to <code>installation/0_nodeIPs.md</code>
-* Document your configuration checks in 1_preinstall.md</a>
-    * For bonus points, script it as a TDD exercise
+* Add your node names & IP addresses to `installation/0_nodeIPs.md`
+* Document your configuration checks in `installation/1_preinstall.md`
 * Install a MySQL server and replica
-* Install the latest versions of CM & CDH
+* Install the latest available releases of CM & CDH
 * <a href="#parcels_repo_lab">Bonus: create a Parcels repository</a>
 
 ---
@@ -215,42 +212,47 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 ## <center> <a name="linux_config_lab"/>Linux Configuration Checks
 
 The checklist below is culled from this [overview of critical
-settings] (http://tiny.cloudera.com/7steps). It is a small part of
-a typical pre-engagement checklist.
+settings] (http://tiny.cloudera.com/7steps). It is a very small
+part of a typical pre-engagement checklist.
 
 Follow the steps below. In each case, use a command to show the
 current value of each property covered. Show the command you used
 to correct a value if needed, followed by the first command again
 to show the change.
 
-Capture this work in the file <code>installation/1_prechecks.md</code>.
-Although you will check each node in your cluster, you only have
-to report the work for one of them.
+Capture this work in the file `installation/1_prechecks.md`.  Check
+each node in your cluster, but you only need to report the results
+on one of them.
 
-1. Check <code>vm.swappiness</code> on all your nodes
-    * Set the value to <code>1</code> if necessary
-2. Set <code>noatime</code> on any non-root volumes you have
-3. Set the reserve space on any non-root volumes to 0
+1. Check `vm.swappiness` on all your nodes
+    * Set the value to `1` if necessary
+2. Set `noatime` on any non-root volumes you have
+3. Set the reserve space on any non-root volumes to `0`
 4. Set the user limits to maximum file descriptors and processes
 5. Test forward and reverse host lookups for correct resolution
 6. Enable the <code>nscd</code> service
-7. Enable the <code>ntpd</code> service
+7. Enable the <code>ntpd</code> service<br>
+
+Comment on your lab issue that pre-checks are complete.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM Install Lab
+## <center> MySQL Installation Lab
 ## <center> <a name="mysql_replication_lab"/>Configure MySQL with a replica server
 
 Choose one of these plans to follow:
 
 **Plan One**: follow the steps [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cm_ig_mysql.html?scroll=cmig_topic_5_5#cmig_topic_5_5_1_unique_1).<br>
 **Plan Two**: Follow the steps given below<br>
-**Plan Three**: Freestyle it
+**Plan Three**: You're a MySQL expert; freestyle it
 
-Email both instructor(s) with your chosen plan **before** you start.
+Comment on your Issue which plan you intend to follow
 
-**Details of Plan Two**
+---
+<div style="page-break-after: always;"></div>
+
+## <center> MySQL installation - Plan Two Detail
 
 1. Install the following MySQL 5.5 packages
     * <code>mysql</code> on all nodes
@@ -297,17 +299,17 @@ Email both instructor(s) with your chosen plan **before** you start.
 
 [The full rundown is here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html?scroll=cmig_topic_6_6). Ensure the following settings:
 
-* Do not use single user mode when asked
+* Do not apply Single User Mode. Do not. Don't do it.
 * Use only Cloudera's standard repositories
-* Ignore all wizard steps marked "(Optional)"
-* Use the Data Hub Edition 
+* Ignore all wizard steps marked "(Optional)" in the docs
+* Install the Data Hub Edition 
 * Install CDH using parcels
 * Rename your cluster to your GitHub name
-* Enable the Coreset of CDH services **only** if you are using <code>m3.large</code> instances. 
-* Assign three ZooKeeper instances, not one.
-* Take a screenshot of your CM home page 
-    * Rename the file to <code>3_cm_installed.png</code> and add it to your <code>installation/</code> directory.
-* Email your instructors with the URL for your CM server
+* Enable the `Coreset` of CDH services if you have `m3.large` instances. 
+* Deploy three ZooKeeper instances.
+* Once you have a healthy cluster, take a screenshot of your home page 
+    * Name the file `installation/3_cm_installed.png`.
+* Mark your Issue 'submitted' if you won't attempt the Bonus lab.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -323,18 +325,18 @@ Email both instructor(s) with your chosen plan **before** you start.
     * Standalone components (such as Accumulo or Kafka)
 * Follow the [documentation] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_create_local_parcel_repo.html)
 * Set the new repository location in Cloudera Manager
-* Capture this change in a screenshot and move it to <code>installation/4_local_repo.png</code> 
+* Capture this setting in a screenshot and save it to `installation/4_local_repo.png` 
+* Mark your Issue `submitted`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Cluster install: Bonus Material
-## <center> <a name="scripted_install_lab"/>Auto-deploy CM
+## <center> <a name="scripted_install_lab"/>Auto-deployment
 
-* If you are interested in learning about automated installs:
-    * Fork/clone [Justin Hayes' auto-deployment work](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
-    * Follow instructions, including validation test of the install, as given in the README
-* No submissions are needed for this lab, but add any notes you wish to keep.
+* If you are interested in learning about automating installs:
+    * Fork/clone [Justin Hayes' auto-deploy project](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
+* No submissions are needed.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -347,7 +349,7 @@ Email both instructor(s) with your chosen plan **before** you start.
 * CDH has no dependencies on Cloudera Manager. There are however features in CM that are not part of upstream Hadoop.
 * CM has a REST API
     * Each API version is a superset of all prior versions
-    * Try <code>http://<i>your_cm_host</i>:7180/api/version</code> in your browser
-    * Note some recent  endpoints won't apply to 4.x CDH releases
+    * Try `http://<i>your_cm_host</i>:7180/api/version` in your browser
+    * Some endpoints won't work on 4.x CDH deployments
         * You can browse the [CM API here] (http://cloudera.github.io/cm_api/)
 
