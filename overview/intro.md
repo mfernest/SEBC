@@ -5,8 +5,8 @@
 
 ---
 
-# <center> Cloudera Services Enablement Boot Camp </center>
-## <center> March 21-25, 2016 </center>
+# <center> Cloudera New Hire Boot Camp </center>
+## <center> April 4-8, 2016 </center>
 ## <center> Palo Alto, California </center>
 
 ---
@@ -24,35 +24,33 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
-    * mfernest@cloudera.com / mfernest
 * Peter Whitney (Solutions Architect)
-    * pnwhitney@cloudera.com 
-* Give us a brief introduction
+* Once around the room:
+    * Name
+    * Region & role
+    * If present last week, most interesting thing you heard/saw
+    * If you're new this week, favorite hobby or pasttime
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="audience"/> Audience Assumptions
 
-We will address you as experienced Hadoop technicians who:
+The course material assumes you have:
 
-* Have attended Cloudera's Hadoop for Administrators Course
-    * For fundamental vocabulary and practices
-* Have installed CDH on multi-node clusters before
-    * Experience with a distributed application environment
-* Can complete labs by objective without step-by-step scripts
-    * We focus on practicing skills and finding flaws in documentation
-* Are proficient with common Linux CLI tools 
-    * These labs have eaten students who did not have these skills
+* Attended Cloudera's Hadoop for Administrators Course
+* Certified as a Hadoop Administrator
+* Installed/operated CDH on multi-node clusters before
+* Worked extensively with a Linux/Unix platform or two
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="course_objectives"/a> Course Objectives
 
-* Prepare you to install CM/CDH clusters in production environments
-* Have Cloudera field staff evaluate your field readiness 
-* Identify next steps to continue your skills development
+* Prepare you to install CM/CDH clusters for production 
+* Allow senior staff to evaluate your readiness 
+* Identify next steps for continued skills development
 
 ---
 <div style="page-break-after: always;"></div>
@@ -73,10 +71,9 @@ We will address you as experienced Hadoop technicians who:
 
 ## <center> <a name="discussion_format"/> Day-to-day Format
 
-* Mornings: Four hours for discussion and lab
-    * Includes the lunch hour as you wish
-* Afternoon: Five hours for discussion and lab
-    * Includes one hour after 5pm as you wish
+* Presentations by Product Managers & Directors
+* Topic overview -- mostly notes and links
+* Extensive lab work
 
 ---
 <div style="page-break-after: always;"></div>
@@ -85,7 +82,7 @@ We will address you as experienced Hadoop technicians who:
 
 * Six challenge stages over three hours
     * Install and secure a cluster 
-* The previous delivery's challenges are available for review
+* The previous challenge will be available for review
 
 ---
 <div style="page-break-after: always;"></div>
@@ -95,9 +92,9 @@ We will address you as experienced Hadoop technicians who:
 * All work is submitted via GitHub
     * You'll fork an existing repo and add to it
     * We'll review Git/GitHub tools later today
-    * All submissions in plain-text, Markdown, and/or PNG screenshots
+    * All submissions in Markdown, and/or PNG screenshots
 * Each lab/challenge is scored Complete, Incomplete, or Did Not Submit
 * Each candidate is scored Pass, Provisional Pass, or No Pass
 * We evaluate lab and challenges with competence in mind
-    * Address each requested element as if to a customer
-    * Documenting submissions is the best way to exceed expectations
+    * How would you present your results to a customer?
+    * Want to exceed expectations? Document well.
