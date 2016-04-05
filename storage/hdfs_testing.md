@@ -247,6 +247,7 @@ Adds cache locality to NN reports<p>
 
 ## <center> HDFS Lab: Test HDFS performance
 
+* Disable Short Circuit Reads in Cloudera Manager
 * Run `terasort` twice
     * Use the `time` command to capture each run's duration
     * Use the file you created with `teragen` in the previous lab
