@@ -66,7 +66,6 @@
     * A Hue database called `huey`
 * Capture the following to your file:
     * The command and output for `mysql --version`
-    * The command and output for `
     * The statement and output for `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
     * The statement and output for `SELECT user, host FROM mysql.user`
     * The statement and output of `SHOW DATABASES;`
