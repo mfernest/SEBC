@@ -6,15 +6,15 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - March 25, 2016 - Palo Alto, California
+# <center> Challenges - April 8, 2016 - Palo Alto, California
 
 * Overview
     * Build a CM-managed CDH cluster and secure it
-* All text output will go in Markdown files
-    * Formatting for readability counts!
+* Put all text output to Markdown or other Markdown-like format
+    * Readability counts!
 * Submit screenshots in PNG format
-* If you brick your cluster or get stuck for more than 20 minutes, tell Pete or me
-* You may talk or research online all you want, but do not submit someone else's work as yours.
+* If you brick your cluster or get stuck, tell Pete or me. Don't be brave and quiet.
+* Consult with each other and research online all you want, but submit your own work.
 * Always push to your GitHub repo before starting a new challenge.
 
 ---
@@ -22,44 +22,53 @@
 
 ## <center> Challenge Setup (Required)
 
-* Create the Issue `Challenges underway`
-    * Add it to the `Challenges` milestone
+* Create the Issue `Challenges Setup`
+    * Add it to your `Challenges` milestone
     * Label it `Started`
-* Use the file `0_setup.md` to store the following 
-    * The OS version, AMI, and AWS region of your nodes
-    * The node that will host Cloudera Manager server
+* Use the file `0_setup.md` to store the following:
+    * The OS version you're using
+    * The AMI you're using
+    * The AWS region your nodes are in
+    * The FQDN of the node that will host Cloudera Manager server
 * The command and output of `uptime` on your CM Server node
-    * This session should be < 60 minutes old
-* Run `hadoop fs -ls /user` on any other node in the cluster
-    * Run `df -h` on the same node
-* Create the following Linux user accounts for all nodes
-    * User `statler` with a UID of `2001`
-    * User `waldorf` with a UID of `2002`
-* List the `/etc/passwd` entries for both accounts from one node
-* Commit and push to your GitHub repo when done
+    * This session should be less than 60 minutes old
+* Run `hadoop checknative` on any node that will not host CM
+* Run `ls /etc/yum.repos.d` on the node that will host MySQL
+    * This node may not be the same as the CM node
+* Create the following Linux entities on all nodes
+    * User `sebastian` with a UID of `2200`
+    * User `ernie` with a UID of `2300`
+    * Create the group `parks` and make `sebastian` a member of it
+    * Create the group `duckies` and make `ernie` a member of it
+* List the `/etc/passwd` entries for `sebastian` and `ernie`
+* List the `/etc/group` entries for `parks` and `duckies`
+* Push changes to your GitHub repo when you're done
 * Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1 - Install a MySQL server
+## <center> Challenge 1: Install a MySQL server
 
-* Create the Issue `MySQL enabled`
+* Create the Issue `Install MySQL`
     * Add it to the `Challenges` milestone
-    * Label it `Started`
-* Use the file `1_mysql.md` for any text output required
-* Install a MySQL 5.6 server
-    * It must be on a separate node from Cloudera Manager server
+    * Label it `started`
+* Use the file `1_mysql.md` for any output required below
+* Install a MySQL 5.5.x server using a YUM repository
+    * Place it on the node you chose in the setup challenge.
+    * Capture the output of `yum repolist enabled`
 * Install the MySQL client package and JDBC connector on all nodes
-* Create databases for
-    * Management Services, but not Navigator
-    * Hive Metastore
-    * Oozie
-    * Hue
-* Once `mysqld` is running, capture the following:
-    * The hostname running your  MySQL server
+* Create:
+    * A Cloudera Manager database called `scm` 
+    * A Reports Manager database called `repman`
+    * A Hive Metastore database called `HMS`
+    * An Oozie database called `works`
+    * A Hue database called `huey`
+* Capture the following to your file:
     * The command and output for `mysql --version`
-    * The statement and output of `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
+    * The command and output for `
+    * The statement and output for `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
+    * The statement and output for `SELECT user, host FROM mysql.user`
     * The statement and output of `SHOW DATABASES;`
 * Push this work to your GitHub repo
 * Add the label `review` to the Issue
@@ -67,17 +76,17 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 2 - Install Cloudera Manager
+## <center> Challenge 2: Install Cloudera Manager
 
-* Create the Issue `CM installed`
+* Create the Issue `Install CM`
     * Add it to the `Challenges` milestone
-    * Label it `Started`
-* Install a package repository for Cloudera Manager 5.5.3
-* Install and configure, but do not start, Cloudera Manager
+    * Label it `started`
+* Install a package repository for Cloudera Manager 5.6.0
+* Get Cloudera Manager up and running; do not login to the console yet
 * Submit the following:
-    * The contents of `/etc/yum.repos.d/cloudera-manager.repo` in `2_cm_repo.md`
-    * The command and output from `grep export /etc/default/cloudera-scm-server` in `2_cm_exports.md`
-    * The output from `ls /usr/share/java` in `2_connector.md`
+    * The invocation you used for `scm_prepare_database.sh` and the output
+    * A list of tables in the `scm` database
+    * The result of `SELECT SERVICE_TYPE FROM SERVICES\G` in this database
 * Push this work to your GitHub repo
 * Add the label `review` to the Issue
 
@@ -86,20 +95,20 @@
 
 ## <center> Challenge 3 - Install CDH
 
-* Create the Issue `CDH installed`
+* Create the Issue `Install CDH`
     * Add it to the `Challenges` milestone
-    * Label it `Started`
-* Start Cloudera Manager
-* Install CDH 5.5.1
+    * Label it `started`
+* Login to Cloudera Manager
+* Install CDH 5.5.3
 * Install the Coreset + Spark
-* Name your cluster using your GitHub handle
-* Create user directories in HDFS for `statler` and `waldorf`
+* Rename your cluster using your GitHub handle
+* Create user directories in HDFS for `sebastian` and `ernie`
 * Submit the following:
-    * The CM API call `api/v10/cm/deployment` in `3_deployment.md`
+    * The result of `SELECT SERVICE_TYPE FROM SERVICES\G` in the `scm` database in `3_services.md`
+    * The command and output for `hadoop checknative` using any node in `3_checknative.md`
     * The output from `hdfs dfs -ls /user` in `3_user_directories.md`
-    * The tables in your Reports Manager database in `3_rman_tables.md`
-    * A screenshot of the CM home page in `3_cluster_health.png`
-        * If any services are not green, explain why in the Issue 
+    * A capture of the HDFS service page in `3_cluster_health.png`
+* Login to the HUE console and install the Hive sample data
 * Push this work to your GitHub repo
 * Add the label `review` to the Issue
 
@@ -110,54 +119,60 @@
 
 * Create the Issue `HDFS Tested`
     * Add it to the `Challenges` milestone
-    * Label it `Started`
-* As user `statler`, use `teragen` to generate 51,200,000 records.
-    * Set the block size to 32 MB
+    * Label it `tarted`
+* As user `ernie`, use `teragen` to generate 51,200,000 records.
+    * Set the block size to 16 MB
     * Use the `time` command to capture the job's duration
     * Name the target directory `tgen`
 * Submit the following in `4_teragen_command.md`
-    * The full command you used 
-    * The command and output of `hdfs dfs -ls tgen` 
+    * The `teragen` invocation you used to create this file
+    * The command and output of `hdfs dfs -ls /user/ernie/tgen` 
 * Push this work to your GitHub repo
 * Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 5 - Configure TLS and Kerberize the cluster
+## <center> Challenge 5 - Kerberize the cluster
 
-* Create the Issue `Cluster Secured`
+* Create the Issue `Kerberize cluster`
     * Add it to the `Challenges` milestone
-    * Label it `Started`
-* Configure your cluster with TLS Level 1 security
-    * Put the contents of one agent config file in `5_agent_tls.md`
-    * Put a CM screenshot showing TLS Level 1 is enabled in `5_cm_tls.md`
-* Create a Kerberos realm named after your GitHub handle + .SEBC 
-* Create a Kerberos principal for `waldorf` 
+    * Label it `started`
+* Configure a Kerberos realm named `ERNIE4.PREZ`
+* Create a Kerberos principal for `sebastian` and `ernie`
 * Kerberize the cluster
-* Run the `pi` test program as `waldorf`
-    * Store the command and output in `5_pi.md`
-* Run the `pi` program with as the user `statler`
+* Run the `terasort` program as `ernie` on `/user/ernie/tgen`
+    * Store the command and output in `5_terasort.md`
+* Run the `pi` program as the user `sebastian`
     * Add the command and output to `5_pi.md`
 * Also submit:
-    * A proper `kinit` and `klist` result for a Hive principal in `5_hive.md`
-    * The `klist` command and output for `waldorf` in `5_waldorf.md`
+    * The `klist` command and output for `sebastian` in `5_sebastian.md`
+    * A list of principals from your Kerberos database in `5_principals.md`
 * Push this work to your GitHub repo
 * Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - CM API 
+## <center> Challenge 6 - Configure Sentry
 
-* Create the Issue `API Tests`
+* Create the Issue `Configure Sentry`
     * Add it to the `Challenges` milestone
-    * Label it `Started`
-* Using the API, store the command and output for:
-    * Running cluster services in `6_services.md`
-    * The HDFS service configuration `6_HDFS.md`
-    * A usage report for YARN in `6_YARN.md`
-* Push this work to your GitHub repo
+    * Label it `started`
+* Install and configure Sentry
+* Give Sentry admin rights to `sebastian`
+* Login as the `hive` service principal using `beeline` and authenticate as `sebastian`
+    * Create a `sentrylord` role with all rights to the `server1` instance
+        * Map the `parks` group to this role
+    * Create a role called `overlord` with `SELECT` privileges to the Hive Metastore
+        * Map the `duckies` group to this role
+* Exit from the `beeline` interface
+* In the file `6_prediction.md`, list the Hive tables currently available that `ernie` should be able to see
+    * Commit this file to your repo with the comment "My prediction"
+* Login to the `beeline` interface again; authenticate as `ernie`
+    * Put the statement and results for `SHOW TABLES;` in the file `6_results.md`
+    * Commit this file to your repo with the comment "My outcome"
+* Push all work to your GitHub repo
 * Add the label `review` to the Issue
 
 ---
