@@ -231,14 +231,14 @@ Other requirements
 * KRB5 MIT [instructions are here](http://web.mit.edu/Kerberos/krb5-1.8/krb5-1.8.6/doc/krb5-install.html#Realm-Configuration-Decisions)
 * Cloudera [slightly higher-level instructions are here](https://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_intro_kerb.html)
 * Or you can use [RedHat's documentation](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
-<<<<<<< HEAD
 * Make sure your KDC allows *renewable tickets*
 =======
 * Make sure your KDC allows renewable tickets
-  * Please note that Kerberos tickets are not renewable by default in the most Linux distributions (see [RHEL docs](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/Configuring_Domains-Setting_up_Kerberos_Authentication.html)). It is recommended to configure renewable tickets **before** Kerberos database is initialized. However, if you modify appropriate parameters after KDB was created, the possible solutions are as follows:
-    1. change the maxlife for the (all) user(s) and krbtgt/REALM principal with `modprinc` command, or 
-    2. destroy KDB and create new one after configuration has been modified to support renewable tickets. 
->>>>>>> 1cdfd6323ded4416db2f0fc5842de0205fd667dd
+  * Kerberos tickets are not renewable by default in many Linux distributions (see [RHEL docs](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/Configuring_Domains-Setting_up_Kerberos_Authentication.html)). 
+  * Configure renewable tickets **before** Kerberos database is initialized.
+  * If you modify these parameters after initialization, you can:
+    1. Change the maxlife for all principals (`krbtgt/REALM` too) with `modprinc`, or 
+    2. Destroy the KDB and remake it. 
 * Create a KDC account for the Cloudera Manager user
 
 ---
