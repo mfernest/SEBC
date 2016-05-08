@@ -1,22 +1,23 @@
-# <center>Field New Hire Boot Camp 
+# <center>Field New Hire Boot Camp
 
-This repository holds the course materials for Cloudera`s Field
-New Hire Boot Camp. If you're taking the course, please fork this repo. 
+This repository holds the course materials for Cloudera's Services
+Enablement Boot Camp. If you can read this file, you can fork this repo;
+please do so now.
 
-On your copy, make the following changes:
+On your fork, please make the following changes:
 * Under `Settings -> Collaborators`, add your instructors.
     * This setting gives us direct access to your work.
 * Under `Settings -> Options`, find the `Features` box. Enable `Issues`.
-    * You will log all your work as individual Issues.
-* Click the `Issues` tab and then the `Milestones button`.
-    * Create the milestones `Labs` and `Challenges`
-    * You can also set deadlines for Thursday (April 7) and Friday (April 8) if you like.
+    * We'll use this feature to track your work progress
+* Click the `Issues` tab and the `Milestones` button
+    * Create two milestones: `Labs` and `Challenges`
+    * You can set their deadlines for Thursday (May 12) and Friday (May 13) if you like.
 * Click the `Labels` button and edit your labels as follows:
     * Change `bug` to `lab bug`
     * Change `duplicate` to `started`
-    * Change `enhancement` to `submitted`
-    * Change `help wanted` to `reviewed`
-    * Change `invalid` to `blocked`
+    * Change `enhancement` to `finished`
+    * Change `help wanted` to `graded`
+    * Change `invalid` to `stuck`
     * Change `wontfix` to `incomplete`; set color to yellow (`#fbca04`).
     * Leave `question` as is
 

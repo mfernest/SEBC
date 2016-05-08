@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Cloudera New Hire Boot Camp </center>
-## <center> April 4-8, 2016 </center>
-## <center> Palo Alto, California </center>
+# <center> Cloudera Services Enablement Boot Camp </center>
+## <center> May 9-13, 2016 </center>
+## <center> Sydney, Australia </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,12 +24,11 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
-* Peter Whitney (Solutions Architect)
-* Once around the room:
+* Carlo Piva (Solutions Architect)
+* Please introduce yourselves:
     * Name
-    * Region & role
-    * If present last week, most interesting thing you heard/saw
-    * If you're new this week, favorite hobby or pasttime
+    * Company & Role
+    * Your experience with Hadoop to date
 
 ---
 <div style="page-break-after: always;"></div>
@@ -48,8 +47,8 @@ The course material assumes you have:
 
 ## <center> <a name="course_objectives"/a> Course Objectives
 
-* Prepare you to install CM/CDH clusters for production 
-* Allow senior staff to evaluate your readiness 
+* Prepare you to install CM/CDH clusters for production
+* Allow senior staff to evaluate your readiness
 * Identify next steps for continued skills development
 
 ---
@@ -69,19 +68,10 @@ The course material assumes you have:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="discussion_format"/> Day-to-day Format
-
-* Presentations by Product Managers & Directors
-* Topic overview -- mostly notes and links
-* Extensive lab work
-
----
-<div style="page-break-after: always;"></div>
-
 ## <center> <a name="scored_challenges"/> Friday Morning: Challenges []()
 
 * Six challenge stages over three hours
-    * Install and secure a cluster 
+    * Install and secure a cluster
 * The previous challenge will be available for review
 
 ---
@@ -89,12 +79,12 @@ The course material assumes you have:
 
 ## <center> <a name="scored_labs"/> Submitting Work
 
-* All work is submitted via GitHub
-    * You'll fork an existing repo and add to it
+* All work is submitted to your GitHub fork
+    * Add your instructors as Collaborators
     * We'll review Git/GitHub tools later today
-    * All submissions in Markdown, and/or PNG screenshots
+    * Create all submissions in Markdown or PNG screenshots
 * Each lab/challenge is scored Complete, Incomplete, or Did Not Submit
 * Each candidate is scored Pass, Provisional Pass, or No Pass
-* We evaluate lab and challenges with competence in mind
+* We evaluate lab and challenges with competence & professionalism in mind
     * How would you present your results to a customer?
-    * Want to exceed expectations? Document well.
+    * Documenting your progress well counts!
