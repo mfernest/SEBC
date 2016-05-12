@@ -17,15 +17,7 @@ Spent 1046ms computing partitions.
 16/05/12 13:13:58 INFO mapreduce.Job: The url to track the job: http://rhel-cdh-server01.g55lab.aus.hp.com:8088/proxy/application_1463005900169_0006/
 16/05/12 13:13:58 INFO mapreduce.Job: Running job: job_1463005900169_0006
 16/05/12 13:14:06 INFO mapreduce.Job: Job job_1463005900169_0006 running in uber mode : false
-16/05/12 13:14:06 INFO mapreduce.Job:  map 0% reduce 0%
-16/05/12 13:14:18 INFO mapreduce.Job:  map 29% reduce 0%
-16/05/12 13:14:19 INFO mapreduce.Job:  map 58% reduce 0%
-16/05/12 13:14:20 INFO mapreduce.Job:  map 92% reduce 0%
-16/05/12 13:14:21 INFO mapreduce.Job:  map 100% reduce 0%
-16/05/12 13:14:32 INFO mapreduce.Job:  map 100% reduce 25%
-16/05/12 13:14:34 INFO mapreduce.Job:  map 100% reduce 50%
-16/05/12 13:14:35 INFO mapreduce.Job:  map 100% reduce 88%
-16/05/12 13:14:36 INFO mapreduce.Job:  map 100% reduce 100%
+[### JOB PROGRESS##]
 16/05/12 13:14:36 INFO mapreduce.Job: Job job_1463005900169_0006 completed successfully
 16/05/12 13:14:36 INFO mapreduce.Job: Counters: 49
         File System Counters
@@ -108,15 +100,7 @@ Spent 836ms computing partitions.
 16/05/12 13:18:40 INFO mapreduce.Job: The url to track the job: http://rhel-cdh-server01.g55lab.aus.hp.com:8088/proxy/application_1463005900169_0007/
 16/05/12 13:18:40 INFO mapreduce.Job: Running job: job_1463005900169_0007
 16/05/12 13:18:49 INFO mapreduce.Job: Job job_1463005900169_0007 running in uber mode : false
-16/05/12 13:18:49 INFO mapreduce.Job:  map 0% reduce 0%
-16/05/12 13:19:01 INFO mapreduce.Job:  map 38% reduce 0%
-16/05/12 13:19:02 INFO mapreduce.Job:  map 58% reduce 0%
-16/05/12 13:19:03 INFO mapreduce.Job:  map 96% reduce 0%
-16/05/12 13:19:04 INFO mapreduce.Job:  map 100% reduce 0%
-16/05/12 13:19:15 INFO mapreduce.Job:  map 100% reduce 25%
-16/05/12 13:19:16 INFO mapreduce.Job:  map 100% reduce 62%
-16/05/12 13:19:17 INFO mapreduce.Job:  map 100% reduce 99%
-16/05/12 13:19:18 INFO mapreduce.Job:  map 100% reduce 100%
+[### JOB PROGRESS##]
 16/05/12 13:19:18 INFO mapreduce.Job: Job job_1463005900169_0007 completed successfully
 16/05/12 13:19:18 INFO mapreduce.Job: Counters: 49
         File System Counters
@@ -179,3 +163,5 @@ Spent 836ms computing partitions.
 real    0m42.241s
 **user    0m7.992s
 sys     0m0.293s**
+
+**less user and sys time**
