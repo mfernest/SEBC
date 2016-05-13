@@ -207,7 +207,11 @@
 
 ## <center> YARN/RM Lab: Doing the Math
 
-* [Use this document](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cdh_ig_yarn_tuning.html) to answer the following:
+* [Use the documentation]
+http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_yarn_tuning.html
+(http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cdh_ig_yarn_tuning.html)
+
+ to answer the following:
     * How much RAM should be allocated per <code>impalad</code> process, at least?
     * What percentage of RAM should be earmarked for the OS and system services?
     * Under what condition(s) would you factor two cores per spindle into your calculations?

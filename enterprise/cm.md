@@ -25,7 +25,7 @@
     * Express Install
     * Add Service/Role
     * Upgrade CM and CDH
-    * Enable HA (NameNode, JobTracker, Oozie, YARN RM)
+    * Enable HA (NameNode, Oozie, YARN RM)
 * Some useful ones are buried here and there
     * <code><i>Service</i>->Instances->Add Role Instances->View By Host</code> (button)
 
@@ -44,9 +44,8 @@
 ## <center> Cloudera Manager Server Implementation
 
 * Written in Java
-* Not open sourced
-    * Extensions, client APIs, etc., [available here](https://github.com/cloudera)
-* Management and monitoring -- **not** a traditional cluster console
+* Not open source
+    * Extensions & client APIs are [available here](https://github.com/cloudera)
 
 ---
 <div style="page-break-after: always;"></div>
