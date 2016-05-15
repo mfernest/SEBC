@@ -6,8 +6,8 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> May 9-13, 2016 </center>
-## <center> Sydney, Australia </center>
+## <center> May 16-20, 2016 </center>
+## <center> Shanghai, China </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,7 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
-* Carlo Piva (Solutions Architect)
+* Jianzhong Chen (Senior Solutions Architect)
 * Please introduce yourselves:
     * Name
     * Company & Role

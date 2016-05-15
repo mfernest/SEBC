@@ -277,12 +277,17 @@ Enter an object type in the search bar
 ---
 <div style="page-break-after: always;"></div>
 
-
 ## <center> CM Lab
 ## <center> Fun with the API
 
 * Browse or <code>curl</code> the endpoint ../api/v2/cm/deployment. Store the result in <code>enterprise/2_cluster_deployment.md</code>
-* Use the [tutorial for v10 of the API](http://cloudera.github.io/cm_api/apidocs/v10/tutorial.html) to orient yourself with it.
+* Use the [tutorial for v12 of the API](http://cloudera.github.io/cm_api/apidocs/v12/tutorial.html) to orient yourself with it.
 * Devise <code>curl</code> commands that stop and start your Hive service. Devise another to determine if the service is fully stopped. Put these commands and their output in the file <code>enterprise/3_api_hive_state.md</code>
 * For bonus points, write a script <code>enterprise/4_hive_restart.sh</code> that automates using the commands you wrote.
-* For double bonus points, write this program in Python or Java. Save it to <code>enterprise/5_hive_restart.[py|java]</code> as appropriate.
+* For a bonus lab, create a program in Python or Java called <code>enterprise/5_hive_restart.[py|java]</code> that will restart the Hive service.
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> CM Lab
+## <center> Fun with the API

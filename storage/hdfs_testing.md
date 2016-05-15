@@ -17,26 +17,35 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center>First Notes on Service Deployment</center>
+## <center>Notes on Service Deployment</center>
 
-* Plan on relocating services as clusters grow
-* Cloudera PS use four role models to guide service placement and other concerns 
-    * Master: Controlling and supervisory processes
+* Plan to relocate services as more nodes are added
+* Cloudera uses four role models to guide service placement 
+    * Master nodes control executive and supervisory processes
         * HDFS NameNode, YARN ResourceManager, HBaseMaster
         * Impala Catalog Server & StateStore
-    * Worker: Task executors
+    * Worker nodes provide storage and processing resources
         * DataNode, NodeManager, HBase RegionServer
+        * Impala daemons
     * Edge: Client access, data ingestion
-        * HUE, Flume, Sqoop, client gateways, NFS gateways
-        * For some, a security partition
-    * Utility: Administration, management services
-        * Cloudera Manager, database server
-* Deployment schemes address cluster size and growth plan
-    * ~10 nodes: master & workers combined, utility & edge roles combined 
-    * 20-80 nodes: masters and works separated, dedicated utility & edge node(s)
-    * 100+ nodes: masters and workers separated, dedicated utility & edge node(s)
-    * Different hardware for each role
-        * Fewer disks, RAID volumes on master nodes
+        * HUE, Oozie
+        * Flume, Sqoop
+        * May be secured from internal cluster services
+    * Utility: Administration
+        * Cloudera Manager and management services
+        * Database server (MySQL, PostgreSQL, Oracle)
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center>Node count also influences the architecture
+
+* With fewer nodes, some roles can be combined 
+    * <10 nodes: master & workers combined, utility & edge roles combined 
+    * 20-80 nodes: masters and workers separated, dedicated utility & edge node
+    * 100+ nodes: more utility, master, and edge machines depending on use case
+    * More nodes -> differentiated hardware for each role
+        * Four disks, RAID OS volume on master nodes
         * More RAM and spindles on worker nodes
         * VMs for edge/utility roles
 
@@ -56,7 +65,7 @@
 
 ## <center> <a name="hdfs_benchmarking"/> Benchmarking
 
-* For installation, we really mean smoke test
+* We test after installation for hardware and network problems
 * Common tools used in the field
     * [TeraSort Suite: teragen, terasort, teravalidate](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite)
     * A few use [TestDFSIO](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio)
@@ -234,13 +243,18 @@ Adds cache locality to NN reports<p>
 
 ## <center> HDFS Lab: Replicate to another cluster
 
+Note: actual data replication will only occur on AWS only if the
+two clusters are in the same Availability Zone. You will probably
+not transfer data to your partner's cluster, but you can still get
+the job to start.
+
 * Choose a partner in class
 * Create a source directory using your GitHub handle
 * Create a target directory using your partner's GitHub handle
 * Use `teragen` to create 1 GB of records
-* Replicate your partner's file to your target directory your made for them 
-* Using the HDFS Browser in Cloudera Manager, get a screenshot that shows your partner's file
-    * Name this file `storage/0_partnerGitHub_yourGitHub.png`
+* Try replicating your partner's file to the target directory your made for them 
+* Using the HDFS Browser, get a screenshot that shows your partner's target directory
+    * Name this file `storage/labs/0_partnerGitHub_yourGitHub.png`
 
 ---
 <div style="page-break-after: always;"></div>
@@ -255,7 +269,7 @@ Adds cache locality to NN reports<p>
 * Enable HDFS Short Circuit Reads, and run one more `terasort`
 * Record the output and duration of all jobs
     * Replace all map/reduce percentage output lines in each job with one line that reads [###Job Progress###]
-    * Place all this in the file `storage/1_terasort_tests.md` 
+    * Place all this in the file `storage/labs/1_terasort_tests.md` 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -265,9 +279,9 @@ Adds cache locality to NN reports<p>
 * Use the Cloudera Manager wizard to enable HA
     * Once configured, get a screenshot of the HDFS Instances tab
         * Name the file `storage/2_HDFS_HA.png` 
-* Add a CM user named after your GitHub handle
+* Add a CM user and name it with your GitHub handle
     * Assign the `Full Administrator` role to this user
     * Assign the password `cloudera` to this user
-    * Assign the 'admin' user to the `Limited Operator` role
-    * Get a screenshot that shows both CM users and their roles; name the file <code>storage/3_CM_users.png</code>
+    * Re-assign the 'admin' user to the `Limited Operator` role
+    * Take a screenshot of your users page; save it to <code>storage/labs/3_CM_users.png</code>
 * Email the instructors once you have completed these labs.
