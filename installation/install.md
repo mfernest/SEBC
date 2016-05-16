@@ -1,4 +1,4 @@
-<!-- CSS work goes here for the time being -->
+`<!-- CSS work goes here for the time being -->
 <!-- set a:link text-decoration to none -->
 <!-- set a:hover text-decoration to underline -->
 <!-- http://forums.markdownpad.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
@@ -171,7 +171,7 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 * Fork the repo to your own GitHub Account
     * In the Settings tab of your fork, enable the Issues feature
-    * Add instructors as Collaborators (mfernest, dbeech)
+    * Add instructors as Collaborators (`mfernest`, `centiteo`)
     * Each lab section tells you what to submit and how
     * Clone your repo to your laptop
 * Submit work in Markdown docs or PNG files 
@@ -185,9 +185,9 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM Install Lab - Cloudcat
+## <center> CM Install Lab - VM instances
 
-* You should already have a Cloudcat account 
+* You should already have a AWS, GCE or other cloud provider account 
 * Create five EC2 nodes
     * <code>m3.xlarge</code> instances are good; <code>m3.large</code> are adequate
     * Don't use spot instances
