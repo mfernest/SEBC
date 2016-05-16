@@ -253,11 +253,12 @@ even if you get the job to start.
     * Use the `time` command to record the job duration
 * Run the `terasort` command against this file twice
     * Use the `time` command to capture each run's duration
-    * Disable HDFS Short Circuit Reads for the first run
-    * Restore HDFS Short Circuit Reads for the second run
-* Record the output and duration of both jobs
-    * Replace the map/reduce task percentage lines with one line that reads [===Job Progress===]
-    * Store and document these outputs in `storage/labs/1_terasort_tests.md` 
+    * Create a cache pool and directive for the teragen output before the first run
+* Record your work, including:
+    * The `teragen` command you used to create your test file
+    * The commands you used to configure HDFS caching
+    * The `time` output for each job run
+* Store and comment on these outputs in `storage/labs/1_terasort_tests.md` 
 
 ---
 <div style="page-break-after: always;"></div>
