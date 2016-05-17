@@ -19,35 +19,28 @@
 
 ## <center>Notes on Service Deployment</center>
 
-* Plan to relocate services as more nodes are added
-* Cloudera uses four role models to guide service placement 
+* [Practical advice on field deployment](http://blog.cloudera.com/blog/2015/01/how-to-deploy-apache-hadoop-clusters-like-a-boss/)
+* Design principles for deployment 
+    * Separation of concerns
+    * Preparing for security
+* Cloudera uses four role types to guide deployment 
+    * Utility nodes for cluster administration
     * Master nodes control executive and supervisory processes
-        * HDFS NameNode, YARN ResourceManager, HBaseMaster
-        * Impala Catalog Server & StateStore
     * Worker nodes provide storage and processing resources
-        * DataNode, NodeManager, HBase RegionServer
-        * Impala daemons
     * Edge: Client access, data ingestion
-        * HUE, Oozie
-        * Flume, Sqoop
-        * May be secured from internal cluster services
-    * Utility: Administration
-        * Cloudera Manager and management services
-        * Database server (MySQL, PostgreSQL, Oracle)
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center>Node count also influences the architecture
+## <center>Node count alters the architecture
 
-* With fewer nodes, some roles can be combined 
-    * <10 nodes: master & workers combined, utility & edge roles combined 
-    * 20-80 nodes: masters and workers separated, dedicated utility & edge node
-    * 100+ nodes: more utility, master, and edge machines depending on use case
-    * More nodes -> differentiated hardware for each role
-        * Four disks, RAID OS volume on master nodes
-        * More RAM and spindles on worker nodes
-        * VMs for edge/utility roles
+* <10 nodes: combine master & workers, utility & edge roles 
+* 20-100 nodes: masters and workers separated, dedicated utility & edge node
+* 100+ nodes: more utility, master, and edge machines depending on use case
+* As roles separate, focus on differences in resources
+    * Four disks, RAID OS volume on master nodes
+    * More RAM and spindles on worker nodes
+    * VMs for edge/utility roles
 
 ---
 <div style="page-break-after: always;"></div>
@@ -56,35 +49,29 @@
 ## <center> <a name="hdfs_namenode_ha"/> NameNode HA
 
 * CM 5 offers a [NameNode HA wizard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
-    * In CML *{HDFS service} -> Actions -> Enable High Availability*
-    * You'll need to [place the Journal Quorum Managers](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html?scroll=cmug_topic_5_12_1_unique_1)
-    * You should [understand Zookeeper's role in maintaining state] (https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
+    * `HDFS -> Actions -> Enable High Availability`
+    * [Place the Journal Quorum Managers](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_hag_hdfs_ha_enabling.html#cmug_topic_5_12_1)
+    * [Understand Zookeeper's role] (https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_benchmarking"/> Benchmarking
 
-* We test after installation for hardware and network problems
+* Following installation, we test for hardware and network problems
 * Common tools used in the field
     * [TeraSort Suite: teragen, terasort, teravalidate](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite)
     * A few use [TestDFSIO](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio)
-* For more robust performance testing    
-    * [<strong>S</strong>tatistical <strong>W</strong>orkload <strong>I</strong>njector for <strong>M</strong>apReduce](https://github.com/SWIMProjectUCB/SWIM/wiki) (SWIM)    
-    * Used by Cloudera's Partner Engineering
-    * Not a ready-to-deploy field tool
-* Consider testing the NameNode first: [nnbench](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#namenode-benchmark-nnbench)
-
-[Michael G. Noll's blog post](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/) reviews many of these tools (not SWIM).
+* Consider testing the NameNode too: [nnbench](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#namenode-benchmark-nnbench)
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_c5"/> C5 Goals for HDFS
 
-Strategic storage goals for C5:
+Strategy for storage in C5:
 
-* Take advantage of larger RAM complements
+* Plan for larger RAM complements
 * Perform faster backups
 * Provide more data recovery options
 * Provide more client access options
@@ -112,11 +99,11 @@ Strategic storage goals for C5:
 
 ## <center> Problem: Performance on Repeated Queries
 
-* The NameNode relates file paths to block locations on DataNodes
-    * Locality is based on disk storage [not in-memory cache](https://issues.apache.org/jira/browse/HDFS-4949)
-    * Repeat queries could pay disk I/O cost up to number of data replicas
-    * Not significant to MapReduce jobs
-    * [Impala](http://impala.io/) and other NRT use cases will feel it.
+* The NameNode links file paths to block locations on the DataNodes
+    * Locality is defined by [local disk storage only](https://issues.apache.org/jira/browse/HDFS-4949)
+* A repeated query might pay the same disk I/O cost as the first query
+    * Not a big cost to MapReduce jobs
+    * For near real-time use cases, it is expensive
     
 ---
 <div style="page-break-after: always;"></div>
@@ -125,11 +112,11 @@ Strategic storage goals for C5:
     
 Adds cache locality to NN reports<p>
 
-* Specify to the NN a HDFS file/directory you want cached
-* The DN receives a cache command and pulls the data into memory
-    * Will cache block copies up to the replica limit
-    * Stored off-heap: no impact on DataNode GC
-* A cache-local client such as impalad can exploit this <a href="#scr_and_zcr">programmatically</a>
+* You can specify an HDFS file/directory you want cached
+* The affected DataNodes receive the cache instruction on read
+    * Blocks are then cached up to the file's replica limit
+    * In-memory storage is off-heap: no heavy impact on DataNodes
+* A data-local client, such as `impalad`, can further exploit locality
     * Short-circuit read (SCR) API
     * Zero-copy read (ZCR) API
 
@@ -145,17 +132,16 @@ Adds cache locality to NN reports<p>
 
 ## <center> Directory caching: Roles and responsibilities
 
-* HDFS admin
-    1. Create a cache pool (used to enforce quotas)
-    2. Assigns directive(s)
-    3. CLI: <code># sudo -u hdfs hdfs cacheadmin ...</code>
-    4. Can add/modify/remove cache pools & directives, list stats
+* HDFS admin `hdfs cacheadmin` command
+    * Create a cache pool (needed to enforce quotas)
+    * Assign directives (paths to cache)
+    * List statistics on hit rate, memory consumed, etc.
+    * Amend pools & directives as needed
 * DataNodes
-    1. Maps blocks to system memory as requested
-    2. Report cached state to NameNode
+    * Track blocks in system memory 
+    * Report cache state to NameNode
 * Job client
-    1. Queries NN for DNs with cached blocks
-    2. Uses Zero Copy Read (ZCR) or Short Circuit Read (SCR) API 
+    * Queries NN for DNs with cached blocks
 
 ---
 <div style="page-break-after: always;"></div>
@@ -163,10 +149,10 @@ Adds cache locality to NN reports<p>
 ## <center> Directory caching: Other notes
 
 * [Caching documentation is here] (http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_hdfs_caching.html)
-* The follow-on question: how do we balance memory demand between this and other memory-hungry features? 
-    * MR jobs favor parallel efficiency, low cost, simple scheduling
-    * Query users have ["NRT" expectations](http://stackoverflow.com/questions/5267231/what-is-the-definition-of-realtime-near-realtime-and-batch-give-examples-of-ea)
-    * We'll detail this subject when we discuss YARN and resource management
+* We do have to balance memory demand for caching with other memory-based features
+    * Impala users have ["NRT" expectations](http://stackoverflow.com/questions/5267231/what-is-the-definition-of-realtime-near-realtime-and-batch-give-examples-of-ea)
+    * So do HBase and Search applications
+    * We'll discuss this further with YARN and resource management
     
 ---     
 <div style="page-break-after: always;"></div>
@@ -175,56 +161,52 @@ Adds cache locality to NN reports<p>
 
 * General advice: take time to map key upstream features to their [JIRAs] (https://issues.apache.org/jira)
 * [Short-circuit Reads] (https://issues.apache.org/jira/browse/HDFS-2246)
-    * Lets a client examine the local DataNode's process map for data blocks in system cache
-    * Uses [file descriptor passing](http://poincare.matf.bg.ac.rs/~ivana/courses/tos/sistemi_knjige/pomocno/apue/APUE/0201433079/ch17lev1sec4.html) 
-    * [Configurable via CM](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_hdfs_short_circuit_reads.html) 
-* Zero-copy Read
-    * [Uses mmap() to read system page$](https://issues.apache.org/jira/browse/HDFS-4953)
-    * Client implements the [ZCR API](https://issues.apache.org/jira/browse/HDFS-5191) 
-* On the roadmap
+    * Clients can examine a DataNode's process map to find cached blocks
+    * Based on [file descriptor passing](http://poincare.matf.bg.ac.rs/~ivana/courses/tos/sistemi_knjige/pomocno/apue/APUE/0201433079/ch17lev1sec4.html), AKA short-circuit reads.
+    * [Enabled in CM by default](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_hdfs_short_circuit_reads.html) 
+* There is also zero-copy Read
+    * [Uses `mmap()` to read system page$](https://issues.apache.org/jira/browse/HDFS-4953)
+    * Clients can implement the [API](https://issues.apache.org/jira/browse/HDFS-5191) 
+* Other JIRAs on the roadmap
     * Write caching: [HDFS-5851](https://issues.apache.org/jira/browse/HDFS-5851)
-    * Proposed enhancement: dynamic caching based on workload/hints
 
 ---    
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_dir_snapshots"/> HDFS Snapshots
 
-* Capabilities
-    * Lets user with write permissions retrieve a deleted file
-    * Lets users track additions to a directory over time
-    * Uses [copy-on-write](http://en.wikipedia.org/wiki/Copy-on-write) to associate NN directories with DN block locations + timestamp 
+* Users with write permissions on a directory may retrieve a deleted file
+    * Easy to track changes to a directory over time
+    * Employs [copy-on-write](http://en.wikipedia.org/wiki/Copy-on-write) technique to track with DN block location + timestamp 
     * Deleted files may be retrieved from a version folder
-    * Similar to .Trash concept, but no expiration
-    * Subdirectories are included
+    * Like `.Trash` foldeir without a time-based expiration
 * [Apache docs on the CLI](http://archive.cloudera.com/cdh5/cdh/5/hadoop/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html) 
-* [Snapshots using Cloudera Manager] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_bdr_snapshot_intro.html) requires an active trial or Enterprise license
+* [Using snapshots in Cloudera Manager] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_bdr_snapshot_intro.html) requires an active trial or Enterprise license
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_backups"/> HDFS Backups
 
-* Top-level tab in CM home page
-    * AKA Cloudera Enterprise BDR (Backup and Data Recovery)
-* Centralized configuration, monitors, alerts
-    * Includes snapshots & replication
-    * Files or directory-based
-    * Executes a distCp job
-    * Preserves file attributes
-* Secure clusters will not back up to or receive backups from unsecured clusters
+* In Cloudera Manager, called BDR (Backup and Data Recovery)
+* Central services for managing backups and replications
+    * Configuration, monitoring, alerting
+    * Uses snapshot & replication features
+    * Executes `distCp` jobs
+    * Will preserves file attributes and other metadata
  
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="nfs_gateway"/> NFS Gateway
 
-* It's just Linux NFSv3 ported to HDFS
-    * Useful for file browsing and NAS transfers
+* Linux NFSv3 service ported to HDFS
+    * Supports Windows-based browsing, file transfers 
     * Alternative to webHDFS or httpfs
-* Any NFS-capable HDFS client can be a gateway
-* Properties kept in `hdfs-site.xml`
-* Depends on OS rpcbind/portmapper services: [HDFS-4763](https://issues.apache.org/jira/browse/HDFS-4763)
+* Any NFS-capable HDFS client can be an NFS gateway
+* Properties configured in `hdfs-site.xml`
+* Relies on Linux rpcbind/portmapper services
+    * See [HDFS-4763](https://issues.apache.org/jira/browse/HDFS-4763)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -233,43 +215,50 @@ Adds cache locality to NN reports<p>
 
 ### <center>HDFS Labs Overview
 
-* Replicate data to a classmate's cluster 
-* Use `teragen` and `terasort` to smoke-test your cluster
-* Configure NameNode HA
-* Snapshot, delete, and recover a file
+* Before you start, create an Issue called Storage labs
+    * Add the Lab milestone
+    * Label the issue as `Started`
+    * Assign yourself to the Issue
+* The following labs will have you:
+    * Replicate data to another cluster
+    * Use `teragen` and `terasort` to benchmark performance
+    * Enable HA for the NameNode
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> HDFS Lab: Replicate to another cluster
 
-Note: actual data replication will only occur on AWS only if the
-two clusters are in the same Availability Zone. You will probably
-not transfer data to your partner's cluster, but you can still get
-the job to start.
+Note: actual data replication in the cloud depends on two clusters
+that are local to each other. If your partner's cluster is remote
+to your, you may not transfer any data from your partner's cluster,
+even if you get the job to start.
 
 * Choose a partner in class
-* Create a source directory using your GitHub handle
-* Create a target directory using your partner's GitHub handle
-* Use `teragen` to create 1 GB of records
-* Try replicating your partner's file to the target directory your made for them 
-* Using the HDFS Browser, get a screenshot that shows your partner's target directory
-    * Name this file `storage/labs/0_partnerGitHub_yourGitHub.png`
+* Name a source directory using your GitHub handle
+* Name a target directory using your partner's GitHub handle
+* Use `teragen` to create a 500 MB file
+* Replicate your partner's file to the target directory you made for them 
+* Using the HDFS Browser in Cloudera Manager
+    * Get a screenshot that lists your partner's target directory
+    * Store this image in `storage/labs/0_partnerGitHub_yourGitHub.png`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> HDFS Lab: Test HDFS performance
 
-* Disable Short Circuit Reads in Cloudera Manager
-* Run `terasort` twice
+* Create a ~10 GB file using `teragen`
+    * Set the block size to 32 MB for this file
+    * Use the `time` command to record the job duration
+* Run the `terasort` command against this file twice
     * Use the `time` command to capture each run's duration
-    * Use the file you created with `teragen` in the previous lab
-    * To use one directory for all runs, remember to delete the previous job's output
-* Enable HDFS Short Circuit Reads, and run one more `terasort`
-* Record the output and duration of all jobs
-    * Replace all map/reduce percentage output lines in each job with one line that reads [###Job Progress###]
-    * Place all this in the file `storage/labs/1_terasort_tests.md` 
+    * Create a cache pool and directive for the teragen output before the first run
+* Record your work, including:
+    * The `teragen` command you used to create your test file
+    * The commands you used to configure HDFS caching
+    * The `time` output for each job run
+* Store and comment on these outputs in `storage/labs/1_terasort_tests.md` 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -283,5 +272,4 @@ the job to start.
     * Assign the `Full Administrator` role to this user
     * Assign the password `cloudera` to this user
     * Re-assign the 'admin' user to the `Limited Operator` role
-    * Take a screenshot of your users page; save it to <code>storage/labs/3_CM_users.png</code>
-* Email the instructors once you have completed these labs.
+    * Take a screenshot of your users page; save it to `storage/labs/3_CM_users.png`
