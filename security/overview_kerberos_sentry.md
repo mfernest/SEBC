@@ -175,12 +175,12 @@
 
 ## <center> <a name="security_encryption">In-flight Encryption </a></center>
 
-* [Described here](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
-* For communication between web services (HTTPS)
-* Uses X.509 certificates for server authentication
-* Can encrypt block data transfers, but it's expensive
-  * `dfs.encrypt.data.transfer`
-* Supports RPC data out of the box
+* How-to is [documented here](http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/)
+* Supports communication between web services (HTTPS)
+* Uses `X.509` certificates for verifying server identity
+* Can encrypt block data in transit, but it's expensive
+  * See `dfs.encrypt.data.transfer` property
+* Support for RPC data out of the box
 * Available support for:
   * MR shuffling
   * HTTP-based UIs
@@ -191,13 +191,14 @@
 
 ## <center>At-rest encryption</center>
 
-* Transparent to Hadoop applications
-  * Uses a key-based cipher scheme
-  * Performance cost can be mitigated with AES-NI chips
+* Must be transparent to Hadoop clients and services
+  * Requires creation of an _encryption zone_
+  * Each file is encrypted using a Data Encryption Key (DEK)
 * HDFS Transparent Data Encryption
-  * Encryption Zones
-  * Key Trustee (KTS) & Key Management Server (KMS)
-* Navigator Encrypt supports Linux device or file encryption
+  * Physically separating key storage and data storage offers maximum protection
+  * Imagine someone gets hold of a decommissioned DataNode
+  * Key Trustee (KTS) & Key Management Server (KMS) provide off-cluster storage
+* Navigator Encrypt supports Linux volume or file encryption
 
 ---
 <div style="page-break-after: always;"></div>
@@ -256,23 +257,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Optional challenge - Test-driven setup
-## <center>[JDBC Connections in a Kerberized Cluster](http://blog.cloudera.com/blog/2014/05/how-to-configure-jdbc-connections-in-secure-apache-hadoop-environments/)</center>
-
-* There's a lot of work in this lab:
-    * Testing client connectivity with JDBC
-    * Setting up an Active Directory instance
-    * Testing with a secured client connection
-    * Enabling Kerberos for your cluster
-    * Adding a Sentry configuration
-    * Testing the client connection one more time
-
-This process will probably take two hours. Tell your instructors if you want to try this lab.
-
----
-<div style="page-break-after: always;"></div>
-
 ## <center> Sentry Lab 
 
 * Install [Sentry as a Service](http://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_service_config.html)
-* Follow the Sentry tutorial in `./quick-sentry-example.md`
+* Follow the Sentry tutorial in `./quick-sentry-tutorial.md`
