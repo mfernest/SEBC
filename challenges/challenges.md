@@ -6,44 +6,41 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - April 8, 2016 - Palo Alto, California
+# <center> Challenges - May 20, 2016 - Shanghai, China
 
 * Overview
     * Build a CM-managed CDH cluster and secure it
-* Put all text output to Markdown or other Markdown-like format
-    * Readability counts!
-* Submit screenshots in PNG format
-* If you brick your cluster or get stuck, tell Pete or me. Don't be brave and quiet.
-* Consult with each other and research online all you want, but submit your own work.
-* Always push to your GitHub repo before starting a new challenge.
+* Place all lab work in your `challenges` folder
+    * Put all text output to Markdown or other Markdown-like format
+    * Submit screenshots in PNG format
+    * Indicate which one has your results if it is not the master branch
+* If you kill your cluster or get stuck:
+    * Notify the instructor
+    * Create an Issue and document the problem thoroughly: include screenshots
+* You may discuss the challenges with each other and research online, but submit only your own work.
+* Push changes to your GitHub repo after each challenge -- don't wait until the end!
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge Setup (Required)
+## <center> Challenge Setup
 
 * Create the Issue `Challenges Setup`
     * Add it to your `Challenges` milestone
-    * Label it `Started`
-* Use the file `0_setup.md` to store the following:
-    * The OS version you're using
-    * The AMI you're using
-    * The AWS region your nodes are in
-    * The FQDN of the node that will host Cloudera Manager server
-* The command and output of `uptime` on your CM Server node
-    * This session should be less than 60 minutes old
-* Run `hadoop checknative` on any node that will not host CM
-* Run `ls /etc/yum.repos.d` on the node that will host MySQL
-    * This node may not be the same as the CM node
-* Create the following Linux entities on all nodes
-    * User `sebastian` with a UID of `2200`
-    * User `ernie` with a UID of `2300`
-    * Create the group `parks` and make `sebastian` a member of it
-    * Create the group `duckies` and make `ernie` a member of it
-* List the `/etc/passwd` entries for `sebastian` and `ernie`
-* List the `/etc/group` entries for `parks` and `duckies`
-* Push changes to your GitHub repo when you're done
-* Add the label `review` to the Issue
+* Use the file `challenges/labs/0_setup.md` to store all the information requested below:
+    * Your OS type and version 
+    * Your AMI (or other image identifier)
+    * The output of `uptime` on one node
+* Indicate the node that will host MySQL
+    * Run `ls /etc/yum.repos.d` on this node
+* Add the following Linux accounts to all nodes
+    * User `yaoming` with a UID of `2200`
+    * User `jetli` with a UID of `2300`
+    * Create the group `shangai` and add `yaoming` 
+    * Create the group `beijing` and add `jetli` 
+* List the `/etc/passwd` entries for `yaoming` and `jetli`
+* List the `/etc/group` entries for `shangai` and `beijing`
+* Push this work to your GitHub repo 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -52,25 +49,21 @@
 
 * Create the Issue `Install MySQL`
     * Add it to the `Challenges` milestone
-    * Label it `started`
-* Use the file `1_mysql.md` for any output required below
-* Install a MySQL 5.5.x server using a YUM repository
-    * Place it on the node you chose in the setup challenge.
+* Use the file `challenges/labs/1_mysql.md` for all output required below
+* Install a MySQL 5.6.x server using a YUM repository
+    * Use the node chose in the previous challenge
     * Capture the output of `yum repolist enabled`
 * Install the MySQL client package and JDBC connector on all nodes
-* Create:
-    * A Cloudera Manager database called `scm` 
-    * A Reports Manager database called `repman`
-    * A Hive Metastore database called `HMS`
-    * An Oozie database called `works`
-    * A Hue database called `huey`
-* Capture the following to your file:
+* Create the following databases
+    * For Cloudera Manager: `scm` 
+    * For the Reports Manager: `rman`
+    * For Hive Metastore: `hivey`
+    * For Oozie: `oozie``
+    * For Hue: `huey`
+* Add the following information to your work file:
     * The command and output for `mysql --version`
-    * The statement and output for `SELECT * FROM information_schema.user_privileges WHERE privilege_type = 'usage';`
-    * The statement and output for `SELECT user, host FROM mysql.user`
     * The statement and output of `SHOW DATABASES;`
 * Push this work to your GitHub repo
-* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -79,15 +72,14 @@
 
 * Create the Issue `Install CM`
     * Add it to the `Challenges` milestone
-    * Label it `started`
+* Use the file `challenges/labs/2_cm.md` for the output required below
+* Indicate which node will host Cloudera Manager
+    * It _cannot_ be the same node as MySQL
 * Install a package repository for Cloudera Manager 5.6.0
-* Get Cloudera Manager up and running; do not login to the console yet
-* Submit the following:
-    * The invocation you used for `scm_prepare_database.sh` and the output
-    * A list of tables in the `scm` database
-    * The result of `SELECT SERVICE_TYPE FROM SERVICES\G` in this database
+    * Copy the repo file contents to your work file
+* Configure and start Cloudera Manager 
+    * Copy the content of the `db.properties` file to your work file
 * Push this work to your GitHub repo
-* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -96,20 +88,17 @@
 
 * Create the Issue `Install CDH`
     * Add it to the `Challenges` milestone
-    * Label it `started`
-* Login to Cloudera Manager
-* Install CDH 5.5.3
-* Install the Coreset + Spark
+* Install CDH 5.6.x
+* Install the Coreset only
 * Rename your cluster using your GitHub handle
-* Create user directories in HDFS for `sebastian` and `ernie`
+* Create user directories in HDFS for `yaoming` and `jetli`
 * Submit the following:
-    * The result of `SELECT SERVICE_TYPE FROM SERVICES\G` in the `scm` database in `3_services.md`
-    * The command and output for `hadoop checknative` using any node in `3_checknative.md`
-    * The output from `hdfs dfs -ls /user` in `3_user_directories.md`
-    * A capture of the HDFS service page in `3_cluster_health.png`
+    * The output for `hdfs dfs -ls /user` in `challenges/labs/3_user_directories.md`
+    * The output for `hadoop classpath` in `challenges/labs/3_hadoop_classpath.md`
+    * The output for the CM API call that lists the full deployment of your cluster in `challenges/labs/3_deployment.json.md`
 * Login to the HUE console and install the Hive sample data
+    * Save a screenshot of your Hue home page to `challenges/labs/3_hue_installed.md`
 * Push this work to your GitHub repo
-* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -118,16 +107,15 @@
 
 * Create the Issue `HDFS Tested`
     * Add it to the `Challenges` milestone
-    * Label it `tarted`
-* As user `ernie`, use `teragen` to generate 51,200,000 records.
-    * Set the block size to 16 MB
-    * Use the `time` command to capture the job's duration
-    * Name the target directory `tgen`
+* As user `jetli`, use `teragen` to generate 51,200,000 records.
+    * Set the block size to 32 MB
+    * Use the `time` command to capture job duration
+    * Use the target directory `tgen32`
 * Submit the following in `4_teragen_command.md`
-    * The `teragen` invocation you used to create this file
-    * The command and output of `hdfs dfs -ls /user/ernie/tgen` 
+    * The full `teragen` command line you used 
+    * The command and output of `hdfs dfs -ls /user/jetli/tgen32`
+    * Indicate how many blocks were created to store this file
 * Push this work to your GitHub repo
-* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -136,19 +124,20 @@
 
 * Create the Issue `Kerberize cluster`
     * Add it to the `Challenges` milestone
-    * Label it `started`
-* Configure a Kerberos realm named `ERNIE4.PREZ`
-* Create a Kerberos principal for `sebastian` and `ernie`
-* Kerberize the cluster
-* Run the `terasort` program as `ernie` on `/user/ernie/tgen`
-    * Store the command and output in `5_terasort.md`
-* Run the `pi` program as the user `sebastian`
+* Configure a Kerberos server on the same machoine as MySQL
+    * Name the realm using your GitHub handle in capital letters.
+    * Example: `MFERNEST.SHG`
+* Create Kerberos principals for `yaoming` and `jetli`
+* Integrate Cloudera Manager with the Kerberos server
+* Run the `terasort` program as `jetli` using `/user/jetli/tgen32`
+    * Store the command and job output in `5_terasort.md`
+* Run the Hadoop `pi` program as the user `yaoming`
     * Add the command and output to `5_pi.md`
-* Also submit:
-    * The `klist` command and output for `sebastian` in `5_sebastian.md`
-    * A list of principals from your Kerberos database in `5_principals.md`
+* Submit:
+    * The configuration files in `/var/kerberos/krb5kdc/' 
+    * Add a `.md` to the full file name
+    * Example: `5_kdc.conf.md`
 * Push this work to your GitHub repo
-* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
@@ -157,27 +146,23 @@
 
 * Create the Issue `Configure Sentry`
     * Add it to the `Challenges` milestone
-    * Label it `started`
 * Install and configure Sentry
-* Give Sentry admin rights to `sebastian`
-* Login as the `hive` service principal using `beeline` and authenticate as `sebastian`
-    * Create a `sentrylord` role with all rights to the `server1` instance
-        * Map the `parks` group to this role
-    * Create a role called `overlord` with `SELECT` privileges to the Hive Metastore
-        * Map the `duckies` group to this role
-* Exit from the `beeline` interface
-* In the file `6_prediction.md`, list the Hive tables currently available that `ernie` should be able to see
-    * Commit this file to your repo with the comment "My prediction"
-* Login to the `beeline` interface again; authenticate as `ernie`
-    * Put the statement and results for `SHOW TABLES;` in the file `6_results.md`
+* Make `yaoming` a Sentry administrator
+* Login to `beeline` and authenticate as `yaoming`
+    * Create a `sentrylord` role to have all rights to the `default` database
+        * Map the `shangai` group to this role
+    * Create an `overlord` role to have `SELECT` privileges all the Hive sample tables
+        * Map the `beijing` group to this role
+* In the file `6_prediction.md`, list the Hive tables that `jetli` should be able to see
+* Login to `beeline` as `jetli`
+    * Put the results for `SHOW TABLES;` in the file `6_results.md`
     * Commit this file to your repo with the comment "My outcome"
 * Push all work to your GitHub repo
-* Add the label `review` to the Issue
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Once time is called...
+## <center> Once your are finished or time is called
 
 * Push any last changes you have made
 * Complete [this quick survey](https://docs.google.com/forms/d/1cFfvTHKz8TEYZgkkZSQFAYtULxsuc-S1qE2kiDFSrBo/viewform)
@@ -187,6 +172,7 @@ evaluation without this file! Please include the following:
     * Which topic was least familiar to you? Which topic was most familiar?
     * What topic did you enjoy the most? Which topic was least helpful to you?
     * How long do you need to prepare for a solo installation engagement?
+* It has been a pleasure working with you this week! Safe travels home.
 
 ---
 <div style="page-break-after: always;"></div>
