@@ -169,30 +169,29 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 ## <center> CM Install Labs - *Before* You Start
 
-* Fork the repo to your own GitHub Account
-    * In the Settings tab of your fork, enable the Issues feature
-    * Add instructors as Collaborators (`mfernest`, `centiteo`)
-    * Each lab section tells you what to submit and how
-    * Clone your repo to your laptop
-* Submit work in Markdown docs or PNG files
-    * Issue Pull Requests to the upstream repo for errors, typos
+* Create a private repo in your GitHub account
+    * In the Settings tab, enable the Issues feature
+    * Add instructors as Collaborators (`mfernest`, `rafaelarana`)
+    * Each lab section describes what you must submit and how
+* Submit all work as Markdown docs or PNG files
+    * At a minimum, submit all text in code style
 * Create an Issue in your repo called `Installation Lab`
      * Add it to the `Labs` milestone
      * Assign the label `Started`
-* Use this Issue for all matters related to completing the lab
-    * For example, add the `question` label if you're stuck or unclear on steps
+* Use each Issue to track your progress, describe problems, document solutions
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM Install Lab - VM instances
+## <center> CM Install Lab 
 
-* You should already have a AWS, GCE or other cloud provider account
+* You can AWS, GCE, or some other Hadoop-friendly cloud provider 
 * Create five EC2 nodes
-    * <code>m3.xlarge</code> instances are good; <code>m3.large</code> are adequate
-    * Don't use spot instances
-    * Use one instance for Cloudera Manager and edge/gateway roles
-    * Be sure to use a [Cloudera-supported OS](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html), preferably CentOS.
+    * <code>m3.xlarge</code> instances are good 
+    * <code>m3.large</code> are a little small but will suffice.
+    * Do not use spot or preemptible instances
+    * One instance will host Cloudera Manager services and some edge roles
+    * Use a [Cloudera-supported OS](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -226,26 +225,26 @@ on one of them.
 
 1. Check `vm.swappiness` on all your nodes
     * Set the value to `1` if necessary
-2. Set `noatime` on any non-root volumes you have
-3. Set the reserve space on any non-root volumes to `0`
+2. Set `noatime` of any non-root volumes you have
+3. Set the reserve space of any non-root volumes to `0`
 4. Set the user limits to maximum file descriptors and processes
 5. Test forward and reverse host lookups for correct resolution
-6. Enable the <code>nscd</code> service
-7. Enable the <code>ntpd</code> service<br>
+6. Verify/enable the <code>nscd</code> service
+7. Verify/enable the <code>ntpd</code> service<br>
 
 Comment on your lab issue that pre-checks are complete.
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> MySQL Installation Lab
+## <center> MySQL/MariaDB Installation Lab
 ## <center> <a name="mysql_replication_lab"/>Configure MySQL with a replica server
 
 Choose one of these plans to follow:
 
-**Plan One**: follow the steps [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cm_ig_mysql.html?scroll=cmig_topic_5_5#cmig_topic_5_5_1_unique_1).<br>
-**Plan Two**: Follow the steps given below<br>
-**Plan Three**: You're a MySQL expert; freestyle it
+**Plan One**: Use the steps [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cm_ig_mysql.html?scroll=cmig_topic_5_5#cmig_topic_5_5_1_unique_1).<br>
+**Plan Two**: Use the steps given below<br>
+**Plan Three**: If your a database server expert, do your thing.
 
 Comment on your Issue which plan you intend to follow
 
@@ -295,7 +294,7 @@ Comment on your Issue which plan you intend to follow
 <div style="page-break-after: always;"></div>
 
 ## <center> CM/CDH Install Lab
-## <center> Path B using Cloudera 5.5.x
+## <center> Path B using Cloudera 5.7.0
 
 [The full rundown is here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html?scroll=cmig_topic_6_6). Ensure the following settings:
 

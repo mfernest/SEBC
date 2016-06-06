@@ -1,4 +1,4 @@
-# <center>Field New Hire Boot Camp
+# <center>Services Enablement Boot Camp 
 
 This repository holds the course materials for Cloudera's Services
 Enablement Boot Camp. 

@@ -6,8 +6,8 @@
 ---
 
 # <center> Cloudera Services Enablement Boot Camp </center>
-## <center> May 16-20, 2016 </center>
-## <center> Shanghai, China </center>
+## <center> June 6-10, 2016 </center>
+## <center> London, UK </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,7 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
-* Jianzhong Chen (Senior Solutions Architect)
+* Rafael Arana (Senior Solutions Architect)
 * Please introduce yourselves:
     * Name
     * Company & Role
@@ -40,7 +40,7 @@ The course material assumes you have:
 * Attended Cloudera's Hadoop for Administrators Course
 * Certified as a Hadoop Administrator
 * Installed/operated CDH on multi-node clusters before
-* Worked extensively with a Linux/Unix platform or two
+* Worked extensively with a Linux/Unix platform (or two)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -48,8 +48,8 @@ The course material assumes you have:
 ## <center> <a name="course_objectives"/a> Course Objectives
 
 * Prepare you to install CM/CDH clusters for production
-* Allow senior staff to evaluate your readiness
-* Identify next steps for continued skills development
+* Evaluate your readiness for engagements
+* Identify next steps for skills development
 
 ---
 <div style="page-break-after: always;"></div>
@@ -83,8 +83,8 @@ The course material assumes you have:
     * Add your instructors as Collaborators
     * We'll review Git/GitHub tools later today
     * Create all submissions in Markdown or PNG screenshots
-* Each lab/challenge is scored Complete, Incomplete, or Did Not Submit
-* Each candidate is scored Pass, Provisional Pass, or No Pass
-* We evaluate lab and challenges with competence & professionalism in mind
-    * How would you present your results to a customer?
-    * Documenting your progress well counts!
+* Each lab/challenge is scored `Complete`, `Incomplete`, or `Did Not Submit`
+* Each candidate is scored `Pass`, `Provisional Pass`, or `No Pass`
+* We evaluate lab and challenges for competence & professionalism 
+    * Present your lab/challenge results as you would to a customer
+    * Document your progress, not just your results.
