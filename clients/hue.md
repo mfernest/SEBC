@@ -19,7 +19,7 @@
 ## <center> <a name="hue_design_goals">HUE Design & Goals</a>
 
 * Customizable service portal
-    * [RainStor Embraces HUE](http://rainstor.com/rainstor-embraces-hue/)
+    * Customer success story: [RainStor Embraces HUE](http://rainstor.com/rainstor-embraces-hue/)
 * Three client authentication modes
 * Graphical browsing and reporting
 * Application UIs
@@ -32,10 +32,11 @@
 ## <center> Current Version & Resources
 
 * HUE 3.9 released in August, 2015
-* Apache licensed, broad vendor adoption
+    * Apache licensed (but not an ASF project)
+    * Ported to HDP, MapR, Pivotal, IBM Big Insights
 * [Online demo available](http://demo.gethue.com/)
-* Supports [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
-* Blogs on recent developments: [gethue.com](http://gethue.com)
+* Drives [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
+* Active blogging on new developments: [gethue.com](http://gethue.com)
 * Some [screencasts available](http://vimeo.com/search?q=gethue)
 
 ---

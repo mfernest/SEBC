@@ -8,7 +8,6 @@
 
 # <center> <a name="troubleshooting_practices_section"/>Troubleshooting
 
-* <a href="#troubleshooting_philosophy">Cloudera's Partner Philosophy</a>
 * <a href="#troubleshooting_enabling_partners">Enabling field partners</a>
 * <a href="#troubleshooting_docs_assistance">Using documentation, getting assistance</a>
 * <a href="#troubleshooting_problems_bugs_issues">Defining problems, bugs, and customer issues</a>
@@ -18,24 +17,11 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="troubleshooting_philosophy"/> Cloudera's Partner Training Philosophy </center>
-
-* The mantra: we need partners to win
-* The program, on the other hand: slowly forming
-* Cloudera University training is user, not field-partner oriented 
-* This is the third delivery for field training.
-* We're learning how best to share our field knowledge and resources
-* Feedback helps: how can we support you in the field?
-* Which resources can contribute most to your success?
-
----
-<div style="page-break-after: always;"></div>
-
 ## <center> <a name="troubleshooting_enabling_partners"> General Resources to Have</a>
 
 * [ASF account for reporting/reviewing bugs](https://issues.apache.org/jira/secure/Dashboard.jspa)
 * [Cloudera Connect - partner portal](http://www.cloudera.com/content/cloudera/en/partners.html)
-* [Github account](https://github.com/)
+* Most of our consultants use [Github](https://github.com/) to share code.
 
 <!-- Other partner resources I'm not aware of --> 
 

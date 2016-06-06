@@ -19,13 +19,13 @@
 ## <center> The MapReduce service: Roles & Pain Points
 
 * JobTracker responsibilities
-    * Schedules jobs
-    * Monitors TaskTrackers
-    * Updates jobs status
-    * Caches recent job history
-* TaskTrackers declare some number of mapper and/or reducer <i>slots</i> 
-    * Getting the slot count right is based on cores, spindles, workload, and experience
-    * Fully utilizing cluster resources for execution is problematic
+    * Schedule client jobs
+    * Monitor TaskTrackers
+    * Update jobs status
+    * Cache recent job history
+* TaskTrackers responsbilities
+    * Support a configured number of mapper and reducer <i>slots</i> 
+    * Slot count is based cores, spindles, workload estimates
 * At ~4k TaskTrackers, it is claimed the JobTracker becomes a bottleneck
 * JobTracker history cache can be overwhlemed by many fast-failing jobs
 
@@ -43,16 +43,19 @@
 
 ## <center> MRv2: Roles
 
-* Resource Manager (RM)
+* Resource Manager
     * Supervises NodeManagers, schedules jobs
-    * Default port 8088
-* NodeManager
+    * Limits resource consumption across all running jobs
+* Node Manager
     * Launches/manages containers
     * Updates the Resource Manager 
-* A container is a resource-configurable execution context
-* Application Master (AM)
-    * A container that controls a specific job
-    * Example: <code>org.apache.hadoop.mapreduce.v2.app.MRAppMaster</code>
+* Container
+    * Execution context for a job
+    * Unlike a slot, can be sized per job
+* Application Master
+    * A container used to control one job
+    * Includes job framework type
+        * Example: <code>org.apache.hadoop.mapreduce.v2.app.MRAppMaster</code>
 * JobHistory Server
     * Logs job status info from NodeManagers
     * Default port: 19888
@@ -78,13 +81,13 @@
 
 ## <center> <a name="YARN_overview"/>What YARN Changes
 
-* YARN supercedes the MRv1 JobTracker and TaskTrackers
-* Each MRv2 AM instance controls one job 
-    * The Application Master (AM) schedules, executes, supervises, and gets resources for its jobs
+* YARN replaces the MRv1 JobTracker and TaskTrackers
+    * Cloudera Manager permits only one to run
+* The Application Master (AM) schedules, executes, supervises, and gets resources for its jobs
 * YARN = <strong>Y</strong>et <strong>A</strong>nother <strong>R</strong>esource <strong>N</strong>egotiator
     * Abstracts resource controls from the execution framework
-    * Allows support for engines such as Spark 
-    * The [NextGenMapReduce page](http://wiki.apache.org/hadoop/NextGenMapReduce) offers rationale for YARN
+    * Allows other engines, such as Spark 
+* The [NextGenMapReduce page](http://wiki.apache.org/hadoop/NextGenMapReduce) offers rationale for YARN
 
 ---
 <div style="page-break-after: always;"></div>
@@ -207,50 +210,43 @@
 
 ## <center> YARN/RM Lab: Doing the Math
 
-* [Use the documentation]
-http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_yarn_tuning.html
-(http://www.cloudera.com/content/cloudera/en/documentation/core/v5-3-x/topics/cdh_ig_yarn_tuning.html)
+* Review the [YARN tuning guide](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_yarn_tuning.html)
 
- to answer the following:
-    * How much RAM should be allocated per <code>impalad</code> process, at least?
-    * What percentage of RAM should be earmarked for the OS and system services?
-    * Under what condition(s) would you factor two cores per spindle into your calculations?
-    * Assume a cluster with 20 vcores, 128 GB RAM, and 10 spindles on each of eight worker nodes.
-        * Using the Container Formula given in Table 8, calculate an appropriate value for <code>mapreduce.jobs.maps</code>
-        * List each factor and value leading to your result
-
-Add your answers to the file <code>resources/0_YarnCalcs.md</code> in your repository
+* Given a cluster with 20 vcores, 128 GB RAM, and 12 spindles each on ten worker nodes:
+    * Calculate the estimated value for <code>mapreduce.jobs.maps</code>
+    * Copy the worksheet with your values into <code>resources/labs/0_YarnCalcs.xlsx</code> 
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> YARN/RM Lab: Static Service Pools
 
-* In CM, navigate by menu: Clusters->YARN Applications or by service: YARN(MR2 Included) -> Applications
-    * Click the Charts tab and capture the page.
-* Navigate to Clusters -> Static Service Pools
-    * Allocate 25% to HDFS and 75% to YARN and click Continue
+* In CM, navigate to YARN Applications 
+    * Click the `Charts` tab and take a screenshot.
+* Navigate to Static Service Pools
+    * Allocate 25% to HDFS and 75% to YARN; click Continue
     * On the Step 2 of 4 page, review the sections and proposed values
     * Complete the wizard: redeploy client configurations and restart the cluster
     * Capture the Step 1 of 4 page after the restart
-* Add the screenshot to your repo with the file name <code>resources/1_static_pools.png</code>
+* Add the screenshot to your repo with the file name <code>resources/labs/1_static_pools.png</code>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> YARN/RM Lab: Tuning for YARN
 
-* Now you can calculate YARN settings for your EC2 cluster and test them
+* Testing YARN settings for your cluster
 
-* Review the file <code>resources/YARNtest.sh</code> in your course repository
-* Copy this script to any non-worker node in your cluster
-    * Add code to print out the default value of each job property mentioned in the script
-    * Set the loop parameters to reflect your calculations along with higher and lower values
-    * Add the <code>time(1)</code> command to show duration for each job
+* Review the file <code>resources/tools/YARNtest.sh</code> in your course repository
+* You will run this script on your Cloudera Manager node
+    * First, modify it to run correctly
+    * Make it print the tested parameter values with each run
+    * Use the loop parameters to include your calculations along with higher and lower values
+    * Use the <code>time(1)</code> command to show client time for each job
 * Run the script 
-    * Your highest value can max out the cluster to demonstrate resource enforcement 
+    * You can let your highest resource request demand too much from the cluster 
 * Add the following to your repository's <code>resources/</code> directory
-    * The completed version of your script (overwrite the initial one)
-    * The output of your slowest run in <code>2_YARNslow.md</code>
-    * The output of your fastest run in <code>3_YARNfast.md</code>
-* Email the instructors when you have completed these labs
+    * Your improved version of the script (overwrite the existing one)
+    * The output of your slowest run in <code>labs/2_YARNslow.md</code>
+    * The output of your fastest run in <code>labs/3_YARNfast.md</code>
+* Set your Issue to `submitted` when this lab is complete.

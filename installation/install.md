@@ -1,4 +1,4 @@
-<!-- CSS work goes here for the time being -->
+`<!-- CSS work goes here for the time being -->
 <!-- set a:link text-decoration to none -->
 <!-- set a:hover text-decoration to underline -->
 <!-- http://forums.markdownpad.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
@@ -37,8 +37,8 @@
 ## <center> <a name="cm_install_paths"/>Installation paths
 
 * [Path A: One-stop binary installer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
-    * Used for short-term, throwaway projects 
-    * Embedded, hard-configured PostgreSQL server 
+    * Used for short-term, throwaway projects
+    * Embedded, hard-configured PostgreSQL server
 * [Path B: Install CM and database manually](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
     * Any cluster meant to run more than 3-6 months
     * Supports Oracle, MySQL, and PostgreSQL servers
@@ -55,7 +55,7 @@
 
 * Essential Linux configuration checks (e.g., SELinux disabled)
 * Install package repositories for PostgreSQL and Cloudera Manager
-* Install Oracle JDK 
+* Install Oracle JDK
 * Install PostgreSQL
 * Install Cloudera Manager
 * Add hosts, deploy cluster -- most choices made for you
@@ -72,12 +72,12 @@
 
 0. Review hardware, OS, disk, and network/kernel settings
 1. Install Oracle JDK
-    * Included in Cloudera Manager's package repo 
+    * Included in Cloudera Manager's package repo
     * OpenJDK is not (yet?) supported by Cloudera
 2. Install [database server](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
 3. Install the CM server and agent packages
     * MySQL requires a JDBC database connector
-4. Install process distributes agent software 
+4. Install process distributes agent software
 5. Also distributes CDH (packages or parcels)
 6. Deploys and enables services<p>
 
@@ -88,14 +88,14 @@
 
 Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parcels:-What-and-Why%3F)
 
-* Bundle Cloudera's supported Hadoop components into one distribution 
+* Bundle Cloudera's supported Hadoop components into one distribution
     * With supplementary parcels for some components
 * Simpler than managing Linux packages
     * Default location requires no privileges: <code>/opt/cloudera/parcels</code>
-    * Easy to create and maintain a local parcels repo 
+    * Easy to create and maintain a local parcels repo
 * Components bind to CM through [Custom Service Descriptors] (https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
 * Tarball with [manifest and layout rules](https://github.com/cloudera/cm_ext/wiki/Building-a-parcel)
-    * List of contents kept in <code>meta/parcel.json</code> 
+    * List of contents kept in <code>meta/parcel.json</code>
     * Client download checks via a <code>manifest.json</code> file kept by server
 
 ---
@@ -103,14 +103,14 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 ## <center> Parcel Lifecycle</p>
 
-<center> <img src="http://blog.cloudera.com/wp-content/uploads/2013/05/parcels1.png"> </center> 
+<center> <img src="http://blog.cloudera.com/wp-content/uploads/2013/05/parcels1.png"> </center>
 
 * [How to manage parcels](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_parcels.html)
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Parcels Lifecycle 
+## <center> Parcels Lifecycle
 
 * Lifecycle actions
     * Download
@@ -132,18 +132,18 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_service_dbs"/>[Databases and Other Stores](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html) 
+## <center> <a name="cm_service_dbs"/>[Databases and Other Stores](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html)
 
 * Management Services (one CM instance)
     * Reports Manager (aka <code>rman</code>)
     * Navigator Audit & Metadata Servers (not covered this week)
-    * Activity Monitor (<code>amon</code>) is only used by the MapReduce service 
-    * Host and Service Monitors implement [LevelDB](https://github.com/google/leveldb) 
-* CDH Services 
+    * Activity Monitor (<code>amon</code>) is only used by the MapReduce service
+    * Host and Service Monitors implement [LevelDB](https://github.com/google/leveldb)
+* CDH Services
     * Hive Metastore
-    * Sentry 
+    * Sentry
     * [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1)
-    * [Hue](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1) 
+    * [Hue](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1)
     * Sqoop2 (Derby and PostgreSQL only)
 
 ---
@@ -155,14 +155,14 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
     * Load balancer(s) that can proxy multiple ports
     * An independent, HA store for Management Services
     * Mechanism for fail-fast detection
-* We'll [install MySQL and replicate the server](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html) 
+* We'll [install MySQL and replicate the server](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html)
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_ui_overview"/>Path A Install Demo 
+## <center> <a name="cm_ui_overview"/>Path A Install Screen
 
-<center> <img src="CM5_Installer_Screen.png"/>
+<center> <img src="png/CM5_Installer_Screen.png"/>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -171,10 +171,10 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 * Fork the repo to your own GitHub Account
     * In the Settings tab of your fork, enable the Issues feature
-    * Add instructors as Collaborators (mfernest, dbeech)
+    * Add instructors as Collaborators (`mfernest`, `centiteo`)
     * Each lab section tells you what to submit and how
     * Clone your repo to your laptop
-* Submit work in Markdown docs or PNG files 
+* Submit work in Markdown docs or PNG files
     * Issue Pull Requests to the upstream repo for errors, typos
 * Create an Issue in your repo called `Installation Lab`
      * Add it to the `Labs` milestone
@@ -185,9 +185,9 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM Install Lab - Cloudcat
+## <center> CM Install Lab - VM instances
 
-* You should already have a Cloudcat account 
+* You should already have a AWS, GCE or other cloud provider account
 * Create five EC2 nodes
     * <code>m3.xlarge</code> instances are good; <code>m3.large</code> are adequate
     * Don't use spot instances
@@ -254,7 +254,7 @@ Comment on your Issue which plan you intend to follow
 
 ## <center> MySQL installation - Plan Two Detail
 
-1. Install the following MySQL 5.5 packages
+1. Install these MySQL 5.5 packages
     * <code>mysql</code> on all nodes
     * <code>mysql-server</code> on the server and replica nodes
     * Download and copy [the JDBC
@@ -302,12 +302,12 @@ Comment on your Issue which plan you intend to follow
 * Do not apply Single User Mode. Do not. Don't do it.
 * Use only Cloudera's standard repositories
 * Ignore all wizard steps marked "(Optional)" in the docs
-* Install the Data Hub Edition 
+* Install the Data Hub Edition
 * Install CDH using parcels
 * Rename your cluster to your GitHub name
-* Enable the `Coreset` of CDH services if you have `m3.large` instances. 
+* Enable the `Coreset` of CDH services if you have `m3.large` instances.
 * Deploy three ZooKeeper instances.
-* Once you have a healthy cluster, take a screenshot of your home page 
+* Once you have a healthy cluster, take a screenshot of your home page
     * Name the file `installation/3_cm_installed.png`.
 * Mark your Issue 'submitted' if you won't attempt the Bonus lab.
 
@@ -325,7 +325,7 @@ Comment on your Issue which plan you intend to follow
     * Standalone components (such as Accumulo or Kafka)
 * Follow the [documentation] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_create_local_parcel_repo.html)
 * Set the new repository location in Cloudera Manager
-* Capture this setting in a screenshot and save it to `installation/4_local_repo.png` 
+* Capture this setting in a screenshot and save it to `installation/4_local_repo.png`
 * Mark your Issue `submitted`
 
 ---
@@ -343,13 +343,11 @@ Comment on your Issue which plan you intend to follow
 
 ## <center> <a name="cm_cdh_key_points"/> Summary Points
 
-* The CM release may be any later version than the CDH release
-    * Several customers use CM 5.x to monitor CDH 4.x clusters
-* Configuring CM HA is [publicly documented as of Cloudera 5.4](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
-* CDH has no dependencies on Cloudera Manager. There are however features in CM that are not part of upstream Hadoop.
+* For a depiction of the install paths, see `installation/tools/InstallGuide.pdf`
+* CM HA configuration is [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
+* CDH does **not** depend on Cloudera Manager to run.
 * CM has a REST API
     * Each API version is a superset of all prior versions
     * Try `http://<i>your_cm_host</i>:7180/api/version` in your browser
     * Some endpoints won't work on 4.x CDH deployments
-        * You can browse the [CM API here] (http://cloudera.github.io/cm_api/)
-
+        * CM API [is documented here](http://cloudera.github.io/cm_api/)

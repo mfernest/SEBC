@@ -20,7 +20,6 @@
 * <a href="#cm_api_sampler">Sample CM API calls</a>
 
 <!-- material to add
-
 * Wizards include
     * Express Install
     * Add Service/Role
@@ -28,7 +27,6 @@
     * Enable HA (NameNode, Oozie, YARN RM)
 * Some useful ones are buried here and there
     * <code><i>Service</i>->Instances->Add Role Instances->View By Host</code> (button)
-
 -->
 
 ---
@@ -44,8 +42,9 @@
 ## <center> Cloudera Manager Server Implementation
 
 * Written in Java
-* Not open source
-    * Extensions & client APIs are [available here](https://github.com/cloudera)
+* Hooks & client APIs [are available](https://github.com/cloudera)
+* Database preparation scripts: `/usr/share/cmf/schema`
+* Command-line parameters: `/etc/default/cloudera-scm-server`
 
 ---
 <div style="page-break-after: always;"></div>
@@ -53,10 +52,10 @@
 ## <center> Cloudera Manager Agent Implementation</center>
 
 * Written in Python
-* Configuration file: <code>/etc/cloudera-scm-agent/config.ini</code>
-* Resources: <code>/usr/lib64/cmf/agent</code>
-* Process control: <code>/var/run/cloudera-scm-agent</code>
-    * Config files that operate on services live in <code>process/</code>
+* Configuration file: `/etc/cloudera-scm-agent/config.ini`
+* Resources: `/usr/lib64/cmf/agent`
+* Process control: `/var/run/cloudera-scm-agent`
+    * Config files for CDH services are under `process/`
 * Uses [supervisord](http://supervisord.org/) for process control
 
 ---
@@ -69,9 +68,9 @@
     * [Primer for CM 4](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_primer.html)
     * [Primer for CM 5](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_intro_api.html)
 * For deep-divers: compare the API for [4.7](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_api.html) (v5), with [5.x](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_api.html), (v6, v7)
-* Colloquial terms
-    * Canary: a test to determine a running service is functional
-    * Safety valve: used to override/correct   
+* Example terms
+    * Canary: a smoke test
+    * Safety valve: window for additional service properties
 
 ---
 <div style="page-break-after: always;"></div>
@@ -79,22 +78,21 @@
 ## <center> <a name="cm_search_bar"/> CM Search Bar Features
 
 * Search bar in the upper right expands when selected
-* The "/" hotkey lists searches by rank
-    * Type-ahead feature: try "/sq" vs. "sq"
-* Entering a property name returns a config link
-    * Try "dfs.datanode.max.xciever"
-    * Try "Transceiver"
-* The Configuration tab for each service hosts a context-limited search bar
-    * Go to the Flume service's Configuration tab and type "Solr"
-* Notice the search results are <i>typed</i>
-    * Roadmap: adding FAQs, KB articles to search
+* The "/" hotkey forces whole-term match; otherwise partial-word
+    * Try `/sq` vs. `sq`
+* Searching a property name returns a config link
+    * Try `dfs.datanode.max.xciever`
+    * Then try `Transceiver`
+* Use the Configuration tab for any service for a context-limited search
+    * Go to the HDFS Configuration tab and type `locked`
+* Notice each search result has a <i>type</i>
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> Global search types
 
-* Most types are searchable
+* CM types are also searchable
     * chart*
     * command
     * config*
@@ -114,14 +112,10 @@ Enter an object type in the search bar
 * Administration -> Users
     * Adding users recommended to differentiate admins
     * Supports role-based access limits
-* CM 5.4x supports 10 roles, including:
-    * Administrator
-    * Configurator
-    * Operator
-    * Limited Operator
-    * Read-Only
-* CM: Administration -> Users -> Add Users button
-    * Select a role to get a description of its scope
+* CM 5.7 supports 11 roles
+* `Administration -> Users -> Add Users` button
+    * Select a role to see a description of its scope
+    * Privileges per role are show in documentation
 
 ---
 <div style="page-break-after: always;"></div>
@@ -142,7 +136,7 @@ Enter an object type in the search bar
 
 ## <center> <a name="cm_monitors"/>Monitoring services and resources</a>
 
-* Type "monitor" in any Configuration tab search bar
+* Type `monitor` in the Configuration tab search of any service
 * [Eight general types ](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_monitoring_settings.html)
     * [Health for services, roles](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_service_monitoring.html)
     * [Resource management](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_resource_management_monitoring.html)
@@ -253,15 +247,15 @@ Enter an object type in the search bar
 
 ## <center> CM Monitoring Lab
 
-<strong> Use the search feature to answer these questions. Put the questions and their answers in a file <code>enterprise/0_CM_treasure_hunt.md</code> </strong>
+_Use CM to answer the following questions. For some questions, search will help you. Watch out for trick questions! (Some of these questions have been asked by customers.)  Put the questions and their answers in the file_ `enterprise/labs/0_CM_treasure_hunt.md`
 
 * What is ubertask optimization?
 * Where in CM is the Kerberos Security Realm value displayed?
 * Which CDH service(s) host a property for enabling Kerberos authentication?
 * How do you upgrade the CM agents?
-* Give the tsquery statement used to chart Hue CPU utilization?
-* List all the roles that make up the Hive service.
-* List the prerequisite steps necessary to integrating Cloudera Manager with a Kerberos MIT KDC.
+* Give the `tsquery` statement used to chart Hue's CPU utilization?
+* Name all the roles that make up the Hive service
+* What steps must be compelted before integrating Cloudera Manager with Kerberos?
 
 ---
 <div style="page-break-after: always;"></div>
@@ -269,20 +263,24 @@ Enter an object type in the search bar
 ## <center> CM Lab
 ## <center> Create a Custom Dashboard
 
-* Create a new CM user <code>minotaur</code> in your cluster
-* Assign <code>minotaur</code> the Configurator role
-* Create a dashboard for <code>minotaur</code> using  four existing charts  
-* Put a screenshot of the finished dashboard in the file <code>enterprise/1_user_dashboard.png</code>
+* Create a new CM user `minotaur` in your cluster
+* Assign the Configurator role  to `minotaur`
+* Create a dashboard for `minotaur` and add any four charts  
+* Put a screenshot of the new dashboard in the file `enterprise/labs/1_user_dashboard.png`
 
 ---
 <div style="page-break-after: always;"></div>
 
-
 ## <center> CM Lab
-## <center> Fun with the API
+## <center> Use the API to restart a service
 
-* Browse or <code>curl</code> the endpoint ../api/v2/cm/deployment. Store the result in <code>enterprise/2_cluster_deployment.md</code>
-* Use the [tutorial for v10 of the API](http://cloudera.github.io/cm_api/apidocs/v10/tutorial.html) to orient yourself with it.
-* Devise <code>curl</code> commands that stop and start your Hive service. Devise another to determine if the service is fully stopped. Put these commands and their output in the file <code>enterprise/3_api_hive_state.md</code>
-* For bonus points, write a script <code>enterprise/4_hive_restart.sh</code> that automates using the commands you wrote.
-* For double bonus points, write this program in Python or Java. Save it to <code>enterprise/5_hive_restart.[py|java]</code> as appropriate.
+* Browse or use `curl` on the endpoint `./api/v2/cm/deployment`
+  * Store the output in `enterprise/labs/2_cluster_deployment.md`
+* Follow the [tutorial for API v12](http://cloudera.github.io/cm_api/apidocs/v12/tutorial.html)
+* Write `curl` statements that stop, start, and check the current state of your Hive service.
+  * Add these statements and their output to `enterprise/labs/3_api_hive_state.md`
+* Bonus: write a script `enterprise/labs/4_hive_restart.sh` to correctly restart Hive. The script should not try to start Hive until it has been stopped.
+  * Or you can create the program in Python or Java. Name the file `enterprise/labs/5_hive_restart.[py|java]` as appropriate.
+
+---
+<div style="page-break-after: always;"></div>
