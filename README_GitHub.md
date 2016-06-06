@@ -7,19 +7,20 @@ than completely refreshing it.
 
 In GitHub vocabulary, a fork is just a clone of one GitHub repository
 to another. A fork does not have all the same capabilities of a
-clone, however, such as pulling from the source. To make it easy to
-accept these updates, clone your GitHub repository to your local computer.
+clone, however, such as pulling from the source. To make it easy
+to accept these updates, clone your GitHub repository to your local
+computer.
 
 Do not make lab and challenge updates directly to your GitHub
-repository. Instead, make all changes to your clone; push them to
-your repository when they are ready. It will be easier to manage
-the state of your clone and your repo if you confine the changes
-to the clone.
+repository. Make all changes to your clone and push them to your
+repository when they are ready.
 
-To accept changes from the master repo cleanly, you will want to
-pull those changes directly to your clone, merge them with your
-existing files, then push the changes to your repo. [The process
-is described here](https://help.github.com/articles/syncing-a-fork/).
+To accept changes from the master repo:
+* Pull those changes to your clone
+* Merge them with your existing files 
+* Push the changes to your repo 
+
+Use the process [described here](https://help.github.com/articles/syncing-a-fork/) if you need a guide.
 
 ---
 
@@ -65,7 +66,7 @@ a carefully-prepared environment.
 
 ---
 
-## Ok, but why use GitHub?
+## Ok, but why should I have to use GitHub?
 
 In short, so we can create a dialog for your learning.
 
