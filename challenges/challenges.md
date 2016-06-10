@@ -88,7 +88,7 @@
 ## <center> Challenge 3 - Install CDH
 
 * Create the Issue `Install CDH`
-* Install CDH 5.1.1
+* Install CDH 5.3.1
 * Install the Coreset only
 * Name your cluster using your GitHub handle
 * Use the file `challenges/labs/3_cm.md` for the output required below
