@@ -27,7 +27,7 @@
 ## <center> Challenge Setup
 
 * Create the Issue `Challenges Setup`
-* Add thr requested information below to `challenges/labs/0_setup.md`:
+* Add the requested information below to `challenges/labs/0_setup.md`:
     * Your OS release info source (e.g., `/etc/redhat-release`) and its contents
     * The command and output for `yum repolist enabled`
 * The public FQDN of the node that will host your MySQL server
@@ -35,8 +35,8 @@
 * Add the following Linux accounts to all nodes
     * User `cameron` with a UID of `2500`
     * User `johnson` with a UID of `2501`
-    * Create the group `leave` and add `johnson` 
-    * Create the group `remain` and add `cameron` 
+    * Create the group `leave` and add `johnson` to it
+    * Create the group `remain` and add `cameron` to it
 * List the `/etc/passwd` entries for `cameron` and `johnson`
 * List the `/etc/group` entries for `leave` and `remain`
 * Push this work to your GitHub repo 
@@ -58,7 +58,7 @@
     * For Cloudera Manager: `scm` 
     * For the Reports Manager: `rman`
     * For Hive Metastore: `HMS` (all upper case)
-    * For Oozie: `oozie``
+    * For Oozie: `oozie`
     * For Hue: `HUE` (all upper case)
 * Also add the following 
     * The command and output for `mysql --version`
@@ -77,9 +77,9 @@
 * Configure a Cloudera Manager package repository for the latest 5.5.x release
     * List the repo file name and contents in your file
 * Configure and start Cloudera Manager 
-    * The maximum permanent generation space for Cloudera Manager server is ______.
-    * 
 * Complete and list the following statements in your file:
+    * The permanent generation space allocated to the CM server is _________.
+    * The CM file `db.properties` is created by _________.
 * Push this work to your GitHub repo
 
 ---
@@ -88,7 +88,6 @@
 ## <center> Challenge 3 - Install CDH
 
 * Create the Issue `Install CDH`
-    * Add it to the `Challenges` milestone
 * Install CDH 5.1.1
 * Install the Coreset only
 * Name your cluster using your GitHub handle
@@ -125,13 +124,12 @@
 ## <center> Challenge 5 - Kerberize the cluster
 
 * Create the Issue `Kerberize cluster`
-    * Add it to the `Challenges` milestone
 * Put a Kerberos server on the node hosting Cloudera Manager
     * Your realm will be your GitHub handle in uppercase, followed by `.UK`
     * Example: `MFERNEST.UK`
 * Create Kerberos principals for `cameron` and `johnson`
 * Integrate Cloudera Manager with the Kerberos server
-* Run the `terasort` program as `cameron` using `/user/cameron/tgen32`
+* Run the `terasort` program as `cameron` using `/user/cameron/tgen48`
     * Store the command and job output in `challenges/labs/5_terasort.md`
 * Run the Hadoop `pi` program as the user `johnson`
     * Add the command and output to `challenges/labs/5_pi.md`
@@ -150,7 +148,6 @@
 ## <center> Challenge 6 - Configure Sentry
 
 * Create the Issue `Configure Sentry`
-    * Add it to the `Challenges` milestone
 * Install and configure Sentry
 * Make `johnson` a Sentry administrator
 * Login to `beeline` 
@@ -179,8 +176,8 @@ unfinished without this content.
     * Which topic did you feel was most instructive? Which topic was least helpful to you?
     * How long do you think you'll need to be ready to install a production cluster by yourself? What more do you need to work on?
 * It has been a pleasure working with you this week! Safe travels home.
-    * mfernest@cloudera.com
-    * rafael.arana@cloudera.com
+    * `mfernest@cloudera.com`
+    * `rafael.arana@cloudera.com`
 
 ---
 <div style="page-break-after: always;"></div>
