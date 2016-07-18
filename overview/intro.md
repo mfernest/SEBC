@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Cloudera Services Enablement Boot Camp </center>
-## <center> June 6-10, 2016 </center>
-## <center> London, UK </center>
+# <center> Cloudera Field Boot Camp </center>
+## <center> July 18-22, 2016 </center>
+## <center> Palo Alto, CA </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,10 +24,9 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
-* Rafael Arana (Senior Solutions Architect)
 * Please introduce yourselves:
     * Name
-    * Company & Role
+    * Region & Role
     * Your experience with Hadoop to date
 
 ---
@@ -80,7 +79,7 @@ The course material assumes you have:
 ## <center> <a name="scored_labs"/> Submitting Work
 
 * All work is submitted to your GitHub fork
-    * Add your instructors as Collaborators
+    * Add your instructor as a Collaborator
     * We'll review Git/GitHub tools later today
     * Create all submissions in Markdown or PNG screenshots
 * Each lab/challenge is scored `Complete`, `Incomplete`, or `Did Not Submit`
