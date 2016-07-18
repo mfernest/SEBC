@@ -1,4 +1,4 @@
-`<!-- CSS work goes here for the time being -->
+<!-- CSS work goes here for the time being -->
 <!-- set a:link text-decoration to none -->
 <!-- set a:hover text-decoration to underline -->
 <!-- http://forums.markdownpad.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
@@ -171,7 +171,7 @@ Parcels are [CM-dedicated packages](https://github.com/cloudera/cm_ext/wiki/Parc
 
 * Create a private repo in your GitHub account
     * In the Settings tab, enable the Issues feature
-    * Add instructors as Collaborators (`mfernest`, `rafaelarana`)
+    * Add instructors as Collaborators (`mfernest`)
     * Each lab section describes what you must submit and how
 * Submit all work as Markdown docs or PNG files
     * At a minimum, submit all text in code style
