@@ -27,7 +27,7 @@
     * Utility nodes for cluster administration
     * Master nodes control executive and supervisory processes
     * Worker nodes provide storage and processing resources
-    * Edge: Client access, data ingestion
+    * Edge: Client access, data ingestion, security perimeter
 
 ---
 <div style="page-break-after: always;"></div>
