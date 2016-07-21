@@ -31,7 +31,7 @@
 
 ## <center> Current Version & Resources
 
-* HUE 3.9 released in August, 2015
+* HUE 3.10 released in May, 2016
     * Apache licensed (but not an ASF project)
     * Ported to HDP, MapR, Pivotal, IBM Big Insights
 * [Online demo available](http://demo.gethue.com/)
