@@ -177,7 +177,6 @@ unfinished without this content.
     * How long do you think you'll need to be ready to install a production cluster by yourself? What more do you need to work on?
 * It has been a pleasure working with you this week! Safe travels home.
     * `mfernest@cloudera.com`
-    * `rafael.arana@cloudera.com`
 
 ---
 <div style="page-break-after: always;"></div>
