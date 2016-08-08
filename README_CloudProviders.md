@@ -1,15 +1,14 @@
 ## Why use a cloudera provider for training?
 
 This week's training is a classic use case for the cloud. Over the
-course of a week, we'll create two clusters, one for the labs, and
-one for the Friday challenges. You can spin them up quickly -- even
-faster with automation tools such as Cloudera Director -- and destroy
-them even faster. 
+course of a week, you'll create two clusters: one for your labs, and
+one for your Friday challenges. You can spin them up and destroy them
+quickly -- even faster with automation tools such as Cloudera Director --
+and destroy them even faster.
 
-Using the cloud also means you do not have to physically attend the
-systems you are using. It also means we do not have to prepare a
-room with sufficient hardware to run clusters on-premise. It also
-means you can work on your labs outside the classroom if you prefer.
+Using the cloud also means you do not have to prepare a
+room with sufficient hardware to run clusters on-premise. More to the point
+for you, you can work on labs without staying in the classroom.
 
 ---
 
@@ -26,15 +25,15 @@ Whatever platform you choose for class, the following conditions must hold:
 
 * The instructors(s) can access your cluster
     * It cannot be blocked from outside access
-    * It canno violate your provider's security policies to do so
+    * It cannot violate your provider's security policies to do so
 * Outbound access to the internet is not forbidden
     * You will download various packages from online sources
 * The service provides OS platforms that are required by Cloudera
 
-For training purposes, I recommend you use RHEL/Centos 6.5 or later.
-Please avoid 7.x versions unless you know the platform well. There
+For training demonstrations, I will use RHEL/Centos 6.5 or later.
+Please avoid using any Linux version you don't know the platform well. There
 are substantive changes in RHEL/CentOS 7.x that are not yet accounted
-for in this training, and still only partially accounted for in
+for in this training, for example, and are not completely covered in
 Cloudera's documentation.
 
 ---
@@ -53,4 +52,3 @@ with AWS include:
 * [Relaxing security](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) for testing
 
 ---
-

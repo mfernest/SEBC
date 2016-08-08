@@ -1,25 +1,15 @@
 ## Notes on Cloudera documentation
 
 * Cloudera documentation is [available online](http://www.cloudera.com/documentation.html) in HTML and PDF format.
-* The site has changed substantially with the C5.7.0 release
+* The site made big changes with the C5.7.0 release
 
 I recommend downloading the PDF form of these documents with every
-point release. For complex topics that span several pages, I find
-them easier to read. The HTML format can be difficult to follow
-correctly: there are, in many places:
-* Sections describing variations for each Linux distribution
-* Sections for using the command line or Cloudera Manager for one exercise
-* A variety of `(Optional)` components for long exercises
-
-I find it is easy to get distracted and forget the context of what
-you're following. If you're not careful to mark your place and keep
-notes on your progress, it's easy to follow instructions that don't
-apply to your platform, your chosen approach, or to follow optional
-elements you don't need.
+point release. They are usually easier to read and follow than the
+online format.
 
 For your convenience, I've linked to the latest version of each PDF
-below. You won't need many of them for the class, but they don't take much
-room on disk:
+below. You won't need most of them for class, but they don't take much
+room on disk and will come in handy often
 
 * [Introduction](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-introduction.pdf)
 * [Release Notes](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-releases.pdf)
