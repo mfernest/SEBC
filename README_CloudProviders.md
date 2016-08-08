@@ -1,4 +1,4 @@
-## Why use a cloudera provider for training?
+## Why use a cloud provider for training?
 
 This week's training is a classic use case for the cloud. Over the
 course of a week, you'll create two clusters: one for your labs, and
