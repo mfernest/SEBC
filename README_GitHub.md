@@ -2,25 +2,23 @@
 
 Throughout the week, your instructors may modify the course material
 to address typos or add new information. Unfortunately, there is
-no direct way to pass these changes to your forked repository, other
-than completely refreshing it.
+no way in GitHub to update a fork directly from its original.
 
-In GitHub vocabulary, a fork is just a clone of one GitHub repository
-to another. A fork does not have all the same capabilities of a
-clone, however, such as pulling from the source. To make it easy
-to accept these updates, clone your GitHub repository to your local
-computer.
+In GitHub lingo, a fork is just a clone of one GitHub repository
+to another. A fork does not have all the capabilities of a
+clone, however, such as being able to pull changes from the source.
 
-Do not make lab and challenge updates directly to your GitHub
-repository. Make all changes to your clone and push them to your
-repository when they are ready.
+**Do not** submit labs and challenges directly to your GitHub
+repository. Make the changes to your clone first, then push them to your
+repository.
 
-To accept changes from the master repo:
-* Pull those changes to your clone
-* Merge them with your existing files 
-* Push the changes to your repo 
+Your instructor may change the source and want you to accept them.
+To do this, you'll need to:
+* Pull these changes to your clone
+* Merge them with your existing files
+* Push the changes to your fork
 
-Use the process [described here](https://help.github.com/articles/syncing-a-fork/) if you need a guide.
+You can use the process [described here](https://help.github.com/articles/syncing-a-fork/) if you need a guide.
 
 ---
 
@@ -57,7 +55,7 @@ features -- is very high.
 To mitigate these risks, traditional course developers fix their
 courses and labs to a controlled environment. They will devise labs
 that are close to fool-proof, and provide a solution set
-to demonstrate the lab is correct. In the interests of time, 
+to demonstrate the lab is correct. In the interests of time,
 the student is also shown what exactly what to type or click.
 
 Such labs tend to prove that the software will work,
@@ -72,8 +70,6 @@ In short, so we can create a dialog for your learning.
 
 Using the mechanism for creating Issues, we then have a common medium for:
 * Citing errors or obsolete references in the course material (they do exist!)
-* Documenting your learning process, including failures 
-* Notifying collaborators of your progress 
+* Documenting your learning process, including failures
+* Notifying collaborators of your progress
 * Continuously updating the course material
-
-
