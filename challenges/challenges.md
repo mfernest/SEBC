@@ -6,7 +6,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - July 22, 2016 - Palo Alto, CA
+# <center> Challenges - August 11, 2016 - Palo Alto, CA
 
 * Overview
     * Build a CM-managed CDH cluster and secure it
