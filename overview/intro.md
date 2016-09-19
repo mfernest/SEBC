@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Cloudera Field Boot Camp </center>
-## <center> July 18-22, 2016 </center>
-## <center> Palo Alto, CA </center>
+# <center> Cloudera Services Enablement Boot Camp </center>
+## <center> September 19-23, 2016 </center>
+## <center> New York, NY </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,6 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
+* Michael Ridley (Senior Solutions Architect)
 * Please introduce yourselves:
     * Name
     * Region & Role
@@ -79,11 +80,12 @@ The course material assumes you have:
 ## <center> <a name="scored_labs"/> Submitting Work
 
 * All work is submitted to your GitHub fork
-    * Add your instructor as a Collaborator
+    * Add your instructors as Collaborators
     * We'll review Git/GitHub tools later today
-    * Create all submissions in Markdown or PNG screenshots
+    * Write all submissions in Markdown format or as PNG screenshots
 * Each lab/challenge is scored `Complete`, `Incomplete`, or `Did Not Submit`
 * Each candidate is scored `Pass`, `Provisional Pass`, or `No Pass`
-* We evaluate lab and challenges for competence & professionalism 
-    * Present your lab/challenge results as you would to a customer
-    * Document your progress, not just your results.
+* We evaluate your labs for
+    * Completing tasks thoroughly
+    * Documenting your progress
+    * Showing your work
