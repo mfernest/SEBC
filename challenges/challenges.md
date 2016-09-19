@@ -17,7 +17,7 @@
     * But submit only your own work
 * Push changes to your GitHub repo early and often -- don't wait until the end!
 * If you break your cluster or your cluster breaks you:
-    * Tell the instructor
+    * Tell an instructor
     * Review the work you have pushed to GitHub
     * Create a new Issue and describe what happened
 

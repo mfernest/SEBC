@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Cloudera Field Boot Camp </center>
-## <center> August 8-12, 2016 </center>
-## <center> Palo Alto, CA </center>
+# <center> Cloudera Services Enablement Boot Camp </center>
+## <center> September 19-23, 2016 </center>
+## <center> New York, NY </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,7 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
-* Vartika Singh (Solutions Architect)
+* Michael Ridley (Senior Solutions Architect)
 * Please introduce yourselves:
     * Name
     * Region & Role
