@@ -82,7 +82,7 @@ The course material assumes you have:
 * All work is submitted to your GitHub fork
     * Add your instructors as Collaborators
     * We'll review Git/GitHub tools later today
-    * Create all submissions in Markdown or PNG screenshots
+    * Write all submissions in Markdown format or as PNG screenshots
 * Each lab/challenge is scored `Complete`, `Incomplete`, or `Did Not Submit`
 * Each candidate is scored `Pass`, `Provisional Pass`, or `No Pass`
 * We evaluate your labs for
