@@ -245,7 +245,7 @@ In your Issue for this lab, indicate which plan you intend to follow.
 ## <center> MySQL installation - Plan Two Detail
 
 1. Get MySQL 5.5
-    * Use the repo [supported by MySQL](http://dev.mysql.com/downloads/mysql/5.5.html#downloads).
+    * Use the repo [supported by MySQL](http://dev.mysql.com/downloads/repo/yum/).
     * Install the <code>mysql</code> package on all nodes
     * Install <code>mysql-server</code> on the server and replica nodes
     * Download and copy [the JDBC connector](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-binary-installation.html) to all nodes. 
