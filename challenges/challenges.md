@@ -83,7 +83,7 @@
 * Assign the Issue to yourself and label it `started`
 * Use a different node to install Cloudera Manager
 * Configure the CM repo to install the `5.8.0` release
-    * List the command and contents of `/etc/yum/repos.d` in `challenges/labs/2_cm.d`
+    * List the command and contents of `/etc/yum.repos.d` in `challenges/labs/2_cm.d`
     * Copy the `cloudera-manager.repo` file to `challenges/labs/2_cloudera-manager.repo.md`
 * Configure Cloudera Manager
     * Copy the `db.properties` file to `challenges/labs/2_db.properties.md`
