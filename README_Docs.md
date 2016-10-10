@@ -7,6 +7,11 @@ I recommend downloading the PDF form of these documents with every
 point release. They are usually easier to read and follow than the
 online format.
 
+Bear in mind, these docs are also updated between point releases
+to address typos and errors in fact. Starting with the C5.8.0 release,
+changes in organization and substance are also taking place. At this time,
+no formal release notice is given with these updates.
+
 For your convenience, I've linked to the latest version of each PDF
 below. You won't need most of them for class, but they don't take much
 room on disk and will come in handy often

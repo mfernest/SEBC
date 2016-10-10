@@ -55,8 +55,8 @@
 
 * Conducts one Linux configuration check (SELinux disabled)
 * Installs package repos for
-   * Dedicated PostgreSQL
-   * Cloudera Manager (includes supported JDK)
+   * An embedded PostgreSQL server
+   * Cloudera Manager (includes supported version of the Oracle JDK)
 * Installs Oracle JDK, PostgreSQL, and CM
 * Adds hosts, deploys clusters
   * Many configurations are done for you
@@ -167,7 +167,7 @@ Parcels are [distribution modules specific to CM](https://github.com/cloudera/cm
 
 * Create a private repo in your GitHub account
     * In the Settings tab, enable the Issues feature
-    * Add instructors as Collaborators (`mfernest`, `vsingh`)
+    * Add instructors as Collaborators (`mfernest`, `drule`)
 * Submit work as Markdown docs or PNG files
     * At a minimum, use code style to present text output
 * Create an Issue in your repo called `Installation Lab`
@@ -205,17 +205,22 @@ Parcels are [distribution modules specific to CM](https://github.com/cloudera/cm
 ## <center> CM Install Lab
 ## <center> <a name="linux_config_lab"/>Linux Configuration Checks
 
-The checklist below is a brief list [of essential system settings](http://tiny.cloudera.com/7steps). A typical engagement checklist is much more detailed
+The checklist below is a brief list [of essential system
+settings](http://tiny.cloudera.com/7steps). A typical engagement
+checklist is much more detailed
 
-Review the checks below. In each case, use a command to show the current value of each property. Also show the command you used to modify any property as needed.
+Review the checks below. In each case, use a command to show the
+current value of each property. Also show the command you used to
+modify any property as needed.
 
-Capture this work in the file `installation/1_prechecks.md`.  Check each node, but report the results only one of them.
+Capture this work in the file `installation/1_prechecks.md`.  Check
+each node, but report the results only one of them.
 
 1. Check `vm.swappiness` on all your nodes
     * Set the value to `1` if necessary
-2. Set `noatime` on any non-root volumes you have
-3. Set the reserve space of any non-root volumes to `0`
-4. Set the user limits to maximum file descriptors and processes
+2. Check that `noatime` is set on any non-root volumes you have
+3. Check that the reserve space of any non-root volumes to `0`
+4. Check the user limits for maximum file descriptors and processes
 5. Test forward and reverse host lookups for correct resolution
 6. Verify/enable the <code>nscd</code> service
 7. Verify/enable the <code>ntpd</code> service<br>
@@ -239,16 +244,14 @@ In your Issue for this lab, indicate which plan you intend to follow.
 
 ## <center> MySQL installation - Plan Two Detail
 
-1. Install these MySQL 5.5 packages.
-    * <code>mysql</code> on all nodes
-    * <code>mysql-server</code> on the server and replica nodes
-    * Download and copy [the lastest MySQL JDBC
-    connector](http://dev.mysql.com/downloads/connector/j/5.1.html) to all nodes. Do **not** install the connector from a package.<p>
+1. Get MySQL 5.5
+    * Use the repo [supported by MySQL](http://dev.mysql.com/downloads/repo/yum/).
+    * Install the <code>mysql</code> package on all nodes
+    * Install <code>mysql-server</code> on the server and replica nodes
+    * Download and copy [the JDBC connector](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-binary-installation.html) to all nodes. 
 2. You should not need to edit your <code>/etc/my.cnf</code> file
-    * The starter file in this repo is for a MySQL 5.1.x example, and is incomplete. Don't use it.
-    * You will need to add certain settings to enable replication. Consult your MySQL documentation.<p>
-3. Run the <code>mysql_install_db</code> program as the <code>mysql</code> user on the master and replica nodes node before you start the <code>mysqld</code> service. This should create files with the correct permissions.<p>
-4. Start the <code>mysqld</code> service.
+    * Consult your MySQL documentation for enabling replication.<p>
+3. Start the <code>mysqld</code> service.
 4. Use <code>/usr/bin/mysql_secure_installation</code> to:<br>
     a. Set password protection for the server<br>
     b. Revoke permissions for anonymous users<br>
@@ -268,12 +271,12 @@ In your Issue for this lab, indicate which plan you intend to follow.
     c. Logout and dismiss the second session; remove the lock on the first with <code>mysql> **UNLOCK TABLES;**</code><p>
 7. Now log on to the replica. Use the following statements to coneect with the master:<br>
     <code>mysql> **CHANGE MASTER TO**<br> **MASTER_HOST='*master host*',**<br> **MASTER_USER='*replica user*',**<br> **MASTER_PASSWORD='*replica password*',**<br> **MASTER_LOG_FILE='*master file name*',**<br> **MASTER_LOG_POS=*master file offset*;**</code><p>
-8. Next, initiate slave operations and confirm sync up.<br>
+8. Next, initiate slave operations and confirm replication.<br>
     a. <code>mysql> **START SLAVE;**</code><br>
     b. <code>mysql> **SHOW SLAVE STATUS \G**</code><br>
     c. If successful, the <code>Slave_IO_State</code> field will read <code>Waiting for master to send event</code><br>
     d. Once successful, capture this output and store it in <code>installation/2_replica_working.md</code><br>
-    e. If unsuccessful, review your log (<code>/var/log/mysqld.log</code>) for errors. If stuck, consult with a colleague or instructor.<p>
+    e. Review your log (<code>/var/log/mysqld.log</code>) for errors. If stuck, consult with a colleague or instructor.<p>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -306,7 +309,7 @@ In your Issue for this lab, indicate which plan you intend to follow.
 * Default parcel links include:
     * [Latest CDH5 release](http://archive.cloudera.com/cdh5/parcels/latest)
     * [Latest CDH4 release](http://archive.cloudera.com/cdh4/parcels/latest)
-    * Standalone components (such as Accumulo or Kafka)
+    * Standalone components, such as Accumulo and Kafka
 * Follow the [documentation](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_create_local_parcel_repo.html)
 * Set the new repository location in Cloudera Manager
 * Capture this setting in a screenshot and save it to `installation/4_local_repo.png`
@@ -318,20 +321,20 @@ In your Issue for this lab, indicate which plan you intend to follow.
 ## <center> Cluster install: Bonus Material
 ## <center> <a name="scripted_install_lab"/>Auto-deployment
 
-* If you are interested in learning about automating installs:
+* If you are interested to learn about automating installs:
     * Fork/clone [Justin Hayes' auto-deploy project](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
-* No submissions are needed.
+* No submissions are needed; you can research this repository as you wish.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_cdh_key_points"/> Summary Points
 
-* For a depiction of the install paths, see `installation/tools/InstallGuide.pdf`
-* CM HA configuration is [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
-* CDH does **not** depend on Cloudera Manager to run.
+* There is a depiction of Cloudera's [classic install paths] in the tools/ subdirectory.
+* A complete CM HA configuration is [documented here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
+* Remember that CDH operation does **not** depend on Cloudera Manager.
 * CM has a REST API
     * Each API version is a superset of all prior versions
     * Try `http://<i>your_cm_host</i>:7180/api/version` in your browser
-    * Some endpoints won't work on 4.x CDH deployments
+    * Some endpoints won't work for 4.x CDH deployments
         * CM API [is documented here](http://cloudera.github.io/cm_api/)
