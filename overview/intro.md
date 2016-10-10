@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Cloudera Services Enablement Boot Camp </center>
-## <center> September 19-23, 2016 </center>
-## <center> New York, NY </center>
+# <center> FCE Boot Camp </center>
+## <center> October 10-14, 2016 </center>
+## <center> Palo Alto, CA </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,7 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect)
-* Michael Ridley (Senior Solutions Architect)
+* Daniel Rule (Senior Solutions Architect)
 * Please introduce yourselves:
     * Name
     * Region & Role
@@ -35,12 +35,13 @@
 
 ## <center> <a name="audience"/> Audience Assumptions
 
-The course material assumes you have:
+The course material assumes you have knowledge and experience
+sufficient to:
 
-* Attended Cloudera's Hadoop for Administrators Course
-* Certified as a Hadoop Administrator
-* Installed/operated CDH on multi-node clusters before
-* Worked extensively with a Linux/Unix platform (or two)
+* Complete all work in Cloudera's Hadoop for Administrators Course
+* Certify as a Hadoop Administrator
+* Install/operate CDH on a multi-node cluster 
+* Prepare a Linux platform for production use
 
 ---
 <div style="page-break-after: always;"></div>
@@ -82,10 +83,10 @@ The course material assumes you have:
 * All work is submitted to your GitHub fork
     * Add your instructors as Collaborators
     * We'll review Git/GitHub tools later today
-    * Write all submissions in Markdown format or as PNG screenshots
-* Each lab/challenge is scored `Complete`, `Incomplete`, or `Did Not Submit`
-* Each candidate is scored `Pass`, `Provisional Pass`, or `No Pass`
+    * Submit labs in Markdown or PNG screenshots as instructed
+* We score each lab/challenge as `Complete`, `Incomplete`, or `Did Not Submit`
+* The final evaluation is `Pass`, `Provisional Pass`, or `No Pass`
 * We evaluate your labs for
-    * Completing tasks thoroughly
-    * Documenting your progress
+    * Completing tasks as directed
+    * Documenting your progress on a regular basis
     * Showing your work

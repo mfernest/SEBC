@@ -48,9 +48,9 @@ These modifications will better suit this week's work:
 * Click the `Labels` button and edit your labels as follows:
     * Change `bug` to `labBug`
     * Change `duplicate` to `started`
-    * Change `enhancement` to `finished`
+    * Change `enhancement` to `submitted`
     * Change `help wanted` to `evaluated`
-    * Change `invalid` to 
+    * Leave `invalid` as is
     * Change `wontfix` to `incomplete`; set the label color to yellow (`#fbca04`).
     * Change `question` to `confused`
 
