@@ -123,7 +123,7 @@
 
 ## <center> <a name="RM_overview"/>Cluster Resource Management
 
-<p><i>sManaging cluster resources for all services is divided into three layers</i></p>
+<p><i>Managing cluster resources for all services is divided into three layers</i></p>
 
 1. <a href="#rm_service_isolation">Service-level isolation</a>
     * Sets minimum resources for all cluster services, including YARN
