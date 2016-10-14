@@ -82,13 +82,13 @@
 * Assign the Issue to yourself and label it `started`
 * Use a different node to install Cloudera Manager
 * Configure the CM repo to install the `5.8.1` release
-    * List the command and output of `ls /etc/yum.repos.d` in `challenges/labs/2_cm.d`
+    * List the command and output of `ls /etc/yum.repos.d` in `challenges/labs/2_cm.md`
     * Copy the `cloudera-manager.repo` file to `challenges/labs/2_cloudera-manager.repo.md`
 * Configure Cloudera Manager
     * Grant `scm` access to your MySQL server _only_ from the CM node
-    * Copy the `GRANT` statement you used to `challenges/labs/2_cm.d`
+    * Copy the `GRANT` statement you used to `challenges/labs/2_cm.md`
 * Start the Cloudera Manager server
-    * Copy the command `head -1 /var/log/cloudera-scm-server/cloudera-scm-server.log` and its output to `challenges/labs/2_cm.d`
+    * Copy the command `head -1 /var/log/cloudera-scm-server/cloudera-scm-server.log` and its output to `challenges/labs/2_cm.md`
     * Copy the command `grep "Started Jetty server" /var/log/cloudera-scm-server/cloudera-scm-server.log` and its output to the same file
     * Copy the `db.properties` file to `challenges/labs/2_db.properties.md`
 * Push to your GitHub repo and add the label 'finished` to the Issue
