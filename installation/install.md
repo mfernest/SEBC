@@ -10,7 +10,7 @@
 * <a href="#install_methods">Installation Methods</a>
 * <a href="#parcels">Understanding Parcels</a>
 * <a href="#db_setup">Embedded vs. external database</a>
-* <a href="#cm_cdh_key_points">Supplemental CM/DH Points</a>
+* <a href="#cm_cdh_key_points">Supplemental CM/CDH Points</a>
 * <a href="#cm_ui_overview">Cloudera Manager UI Overview</a>
 
 ---
@@ -123,7 +123,7 @@ Parcels are [distribution modules specific to CM](https://github.com/cloudera/cm
 
 ## <center> <a name="db_setup"/>Setting up the database
 
-* <a href="#cm_service_dbs">Management/CDH services that use a database</a>
+* <a href="#cm_service_dbs">Management, CDH services that use a database</a>
 * <a href="#cm_replicate_db">CM database replication for HA</a>
 
 ---
