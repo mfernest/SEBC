@@ -88,7 +88,7 @@
 
 ## <center> <a name="hue_search_console">Demos for Cloudera Search</a>
 
-* [Twitter Demo](http://demo.gethue.com/search/?collection=10000001)
+* [Twitter Demo](http://demo.gethue.com/search/?collection=13)
 * [Yelp Demo](http://demo.gethue.com/search/?collection=10000002)
 * [Logfiles Demo](http://demo.gethue.com/search/?collection=10000003)
 
