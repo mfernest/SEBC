@@ -97,10 +97,8 @@ Note: Apply #7 to **documenting your fix**, and adding it to the community's kno
 
 * Fork/review Jarcec Cecho's [gb-grep tool](https://github.com/jarcec/cmd-tools/blob/master/gb-grep)
     * Doesn't require branch-specific search
- <!-- Use Miklos Christine's [instructions on using Jarcec's script](
-https://wiki.cloudera.com/display/~mwc/Git+Find+Branch+given+a+Jira)) -->
-* Usage:
-    * <code>$ **git clone http://github.mtv.cloudera.com/CDH/hadoop</code>**
+* Example usage:
+    * <code>$ **git clone http://github.com/apache/hadoop.git</code>**
     * <code>$ **cd hadoop/</code>**
     * <code>$ **gb-grep "HDFS-7575"</code>**
 * Sample output line:
