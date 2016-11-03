@@ -10,7 +10,7 @@
 * <a href="#install_methods">Installation Methods</a>
 * <a href="#parcels">Understanding Parcels</a>
 * <a href="#db_setup">Embedded vs. external database</a>
-* <a href="#cm_cdh_key_points">Supplemental CM/DH Points</a>
+* <a href="#cm_cdh_key_points">Supplemental CM/CDH Points</a>
 * <a href="#cm_ui_overview">Cloudera Manager UI Overview</a>
 
 ---
@@ -55,8 +55,8 @@
 
 * Conducts one Linux configuration check (SELinux disabled)
 * Installs package repos for
-   * Dedicated PostgreSQL
-   * Cloudera Manager (includes supported JDK)
+   * An embedded PostgreSQL server
+   * Cloudera Manager (includes supported version of the Oracle JDK)
 * Installs Oracle JDK, PostgreSQL, and CM
 * Adds hosts, deploys clusters
   * Many configurations are done for you
@@ -123,7 +123,7 @@ Parcels are [distribution modules specific to CM](https://github.com/cloudera/cm
 
 ## <center> <a name="db_setup"/>Setting up the database
 
-* <a href="#cm_service_dbs">Management/CDH services that use a database</a>
+* <a href="#cm_service_dbs">Management, CDH services that use a database</a>
 * <a href="#cm_replicate_db">CM database replication for HA</a>
 
 ---
@@ -167,7 +167,7 @@ Parcels are [distribution modules specific to CM](https://github.com/cloudera/cm
 
 * Create a private repo in your GitHub account
     * In the Settings tab, enable the Issues feature
-    * Add instructors as Collaborators (`mfernest`, `mikeridley`)
+    * Add instructors as Collaborators (`mfernest`, `drule`)
 * Submit work as Markdown docs or PNG files
     * At a minimum, use code style to present text output
 * Create an Issue in your repo called `Installation Lab`

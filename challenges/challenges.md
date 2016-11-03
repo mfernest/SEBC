@@ -6,20 +6,20 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - September 23, 2016 - New York City, NY
+# <center> Challenges - October 14, 2016 - Palo Alto, CA
 
 * Overview
     * Build a CM-managed CDH cluster and secure it
 * Place your work in the `challenges/labs` folder
-    * Text output in Markdown (`.md`) files
-    * Screenshots in PNG format
-* You can talk with each other and research online
-    * But submit only your own work
+    * All text files should a Markdown (`.md`) extension
+    * Store all screenshots in PNG format
+* You can talk with each other and research questions online
+    * Submit your own work!
 * Push changes to your GitHub repo early and often -- don't wait until the end!
 * If you break your cluster or your cluster breaks you:
     * Tell an instructor
     * Review the work you have pushed to GitHub
-    * Create a new Issue and describe what happened
+    * Create a new Issue to describe what you think happened
 
 ---
 <div style="page-break-after: always;"></div>
@@ -28,22 +28,21 @@
 
 * Create the Issue `Challenges Setup`
 * Assign the Issue to yourself and label it `started`
-* Add the requested information below to `challenges/labs/0_setup.md`:
-    * The AWS region you're using for your nodes
-    * The AMI you're using for your nodes
-* The public IP of the node you will use to host your MySQL server
+* In the file `challenges/labs/0_setup.md`:
+    * List the region in which your instance were created
+    * List the CloudCat description of your chosen OS 
+    * Declare which node will host your MySQL server
     * The command and output for `ls /usr/java` on this node
 * Add the following Linux accounts to all nodes
-    * User `christie` with a UID of `2500`
-    * User `weiner` with a UID of `2501`
-    * Create the group `pictures` and add `weiner` to it
-    * Create the group `bridges` and add `christie` to it
-* List the `/etc/passwd` entries for `christie` and `weiner` in your setup file
-* List the `/etc/group` entries for `pictures` and `bridges` in your setup file
+    * User `kang` with a UID of `2500`
+    * User `kodos` with a UID of `2501`
+    * Create the group `destroy` and add `kodos` to it
+    * Create the group `enslave` and add `kang` to it
+* List the `/etc/passwd` entries for `kang` and `kodos` in your setup file
+* List the `/etc/group` entries for `destroy` and `enslave` in your setup file
 * Push this work to your GitHub repo
 * Add the label `finished` (or `submitted`) to your Issue
-* If you're sitting closest to the left wall, assign the Issue to `mridley`.
-* If you're sitting closest to the right wall, assign the Issue to `mfernest`.
+* Assign the Issue to `mfernest` and `drule`.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -52,21 +51,21 @@
 
 * Create the Issue `Install MySQL`
 * Assign the Issue to yourself and label it `started`
-* Install MySQL 5.5.x server using the YUM repository from `dev.mysql.com`
-    * Use the node you specified in the Setup exercise
-    * Copy `/etc/yum.repos.d/mysql-community.repo` to `challenges/labs/mysql-community.repo.md`
+* Install MySQL 5.6.x server on the node you declared in `0_setup.md`
+    * Use the YUM repository from `dev.mysql.com`
+    * Copy `/etc/yum.repos.d/mysql-community.repo` to `challenges/labs/1_mysql-community.repo.md`
 * On all cluster nodes:
-    * Install the MySQL client package
-    * Copy the MySQL JDBC connector to the appropriate directory
+    * Install the MySQL client package and the MySQL JDBC connector file.
 * Start the `mysqld` service
-* Create the following databases, but do not grant permissions for them yet
+* Delete the `test` database
+* Create the following databases
     * `scm`
     * `rman`
     * `hive`
     * `oozie`
     * `hue`
     * `sentry`
-* Add the following to `challenges/labs/1_mysql.md`
+* Add the following to the file `challenges/labs/1_mysql.md`
     * The command and output of `mysql --version`
     * The command and output for a list of databases in MySQL
     * The command and output for a list of grants in MySQL
@@ -82,18 +81,18 @@
 * Create the Issue `Install CM`
 * Assign the Issue to yourself and label it `started`
 * Use a different node to install Cloudera Manager
-* Configure the CM repo to install the `5.8.0` release
-    * List the command and contents of `/etc/yum/repos.d` in `challenges/labs/2_cm.d`
+* Configure the CM repo to install the `5.8.1` release
+    * List the command and output of `ls /etc/yum.repos.d` in `challenges/labs/2_cm.md`
     * Copy the `cloudera-manager.repo` file to `challenges/labs/2_cloudera-manager.repo.md`
 * Configure Cloudera Manager
-    * Copy the `db.properties` file to `challenges/labs/2_db.properties.md`
-    * Grant permission for CM to access MySQL _only_ from the CM node
-    * Copy the `GRANT` statement you use to `challenges/labs/2_cm.d`
+    * Grant `scm` access to your MySQL server _only_ from the CM node
+    * Copy the `GRANT` statement you used to `challenges/labs/2_cm.md`
 * Start the Cloudera Manager server
-    * Copy `head -1 /var/log/cloudera-scm-server/cloudera-scm-server.log` and its output to `challenges/labs/2_cm.d`
-    * Copy `grep "Started Jetty server" /var/log/cloudera-scm-server/cloudera-scm-server.log` and its output to the same file
-* Push this work to your GitHub repo and add the label 'finished` to the Issue
-* Assign the issue to the same instructor
+    * Copy the command `head -1 /var/log/cloudera-scm-server/cloudera-scm-server.log` and its output to `challenges/labs/2_cm.md`
+    * Copy the command `grep "Started Jetty server" /var/log/cloudera-scm-server/cloudera-scm-server.log` and its output to the same file
+    * Copy the `db.properties` file to `challenges/labs/2_db.properties.md`
+* Push to your GitHub repo and add the label 'finished` to the Issue
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -102,20 +101,17 @@
 
 * Create the Issue `Install CDH`
 * Assign the issue to yourself and label it `started`
-* Install the CDH 5.7.x; deploy the Coreset services only
-* When the screen for testing database connections appears, issue the `GRANT` statements you'll need
-    * Use `FLUSH PRIVILEGES;` to ensure they're loaded for testing
+* Install the CDH 5.8.0; deploy only Coreset services
 * Create the file `challenges/labs/3_cm.md`
     * Copy `SHOW GRANTS FOR <database>` and the output for `rman`, `hive`, and `oozie` into the file
-* Create user directories in HDFS for `christie` and `weiner`
-* Add the following to the file:
+* Create user directories in HDFS for `kang` and `kodos`
+* Add the following to `3_cm.md`:
     * Command and output for `hdfs dfs -ls /user`
-    * Command and output for `hadoop classpath`
-    * The first item output from the CM API call `../api/v13/hosts` using your browser
+    * The first item output from the CM API call `../api/v13/hosts` 
 * Login to the Hue console; install the Hive sample data
     * Get a screenshot of the Hue home page and save as `challenges/labs/3_hue_installed.png`
 * Push this work to your GitHub repo and label the Issue `finished`
-* Assign the issue to the same instructor
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -124,17 +120,17 @@
 
 * Create the Issue `HDFS Tested`
 * Assign the issue to yourself and label it `started`
-* As user `christie`, use `teragen` to generate a 51,200,000-record file
-    * Set the block size to 64 MB
+* As user `kang`, use `teragen` to generate a 51,200,000-record file
+    * Set the block size to 32 MB
     * Use the `time` command to capture job duration
     * Name the target directory `tgen64`
-* Put the following in a file named `challenges/labs/4_teragen.md`
-    * The full `teragen` command line you use
+* Put the following in the file `challenges/labs/4_teragen.md`
+    * The full `teragen` command you used
     * The output of the `time` command
-    * The command and output of `hdfs dfs -ls /user/christie/tgen64`
-    * Indicate many blocks were created to hold this file's data
+    * The command and output of `hdfs dfs -ls /user/kang/tgen64`
+    * Show how many blocks are used to hold this file's data
 * Push this work to your GitHub repo and label the Issue `finished`
-* Assign the issue to the same instructor
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -144,22 +140,22 @@
 * Create the Issue `Kerberize cluster`
 * Assign the issue to yourself and label it `started`
 * Install a Kerberos server on the same node as MySQL
-    * Your realm will be your GitHub handle in uppercase, followed by `.NYC`
-    * Example: `MFERNEST.NYC`
-* Create Kerberos principals for `christie` and `weiner` as well as `cloudera-scm`
+    * Your realm will be your GitHub handle in uppercase, followed by `.FNG`
+    * For example: `MFERNEST.FNG`
+* Create Kerberos principals for `kang`, `kodos`, and `cloudera-scm`
+    * Give `cloudera-scm` the privileges necessary to create principals and generate keytabs
 * Use Cloudera Manager to integrate Kerberos with the cluster
-* Run the `terasort` program as `christie` using `/user/christie/tgen64`
+* Run the `terasort` program as `kang` using `/user/kang/tgen64`
     * Store the command and job output in `challenges/labs/5_terasort.md`
-* Run the Hadoop `pi` program as the user `weiner`
+* Run the Hadoop `pi` program as the user `kodos`
     * Add the command and output to `challenges/labs/5_pi.md`
 * Also submit:
     * All the `kinit` and `klist` commands and output you used in `challenges/labs/5_kinit.md`
-    * A list of all principals in `challenges/labs/5_principals.md`
-    * The configuration files in `/var/kerberos/krb5kdc/' with these changes:
+    * The configuration files in `/var/kerberos/krb5kdc/', renamed as follows:
         * Prepend a `5_` and add `.md` to each file name
         * Example: `5_kdc.conf.md`
 * Push this work to your GitHub repo and label the Issue `finished`
-* Assign the issue to the same instructor
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -168,15 +164,15 @@
 
 * Create the Issue `Configure Sentry`
 * Install and configure Sentry
-* Make `weiner` a Sentry administrator
+* Make `kodos` a Sentry administrator
 * Login to `beeline`
-    * Create an `governor` role that has rights to the `default` database
-        * Map the `bridges` group to this role
-    * Create a `lawmaker` role that has `SELECT` privileges on all tables in `default`
-        * Map the `pictures` group to this role
-* Login to `beeline` as the principal for `christie`
+    * Create an `overlord` role that has rights to the `default` database
+        * Map the `enslave` group to this role
+    * Create an `invader` role that has `SELECT` privileges on all tables in `default`
+        * Map the `destroy` group to this role
+* Login to `beeline` as the principal for `kang`
     * List the result of `SHOW TABLES;` in `challenges/labs/6_results.md`
-* Login to `beeline` as the principal for `weiner`
+* Login to `beeline` as the principal for `kodos`
     * List the result of `SHOW TABLES;` in the same file
 * Push all work to your GitHub repo
 
@@ -194,8 +190,6 @@ Your challenges are not evaluated unless these questions are answered:
     * Which topic did you feel was most helpful? Which topic was not useful, if any?
     * How long before you are ready to to install a production cluster by yourself? What do you need to work on?
 * It has been a pleasure working with you this week! We hope your travel home is safe and comfortable.
-    * `mfernest@cloudera.com`
-    * `mridley@cloudera.com`
 
 ---
 <div style="page-break-after: always;"></div>

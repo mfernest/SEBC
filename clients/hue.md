@@ -88,7 +88,7 @@
 
 ## <center> <a name="hue_search_console">Demos for Cloudera Search</a>
 
-* [Twitter Demo](http://demo.gethue.com/search/?collection=10000001)
+* [Twitter Demo](http://demo.gethue.com/search/?collection=13)
 * [Yelp Demo](http://demo.gethue.com/search/?collection=10000002)
 * [Logfiles Demo](http://demo.gethue.com/search/?collection=10000003)
 
@@ -123,7 +123,7 @@
     * Make sure the account has the same UID/GID on all cluster nodes
 * [Follow this guide](http://gethue.com/hadoop-tutorial-how-to-integrate-unix-users-and-groups/)
 * Get a screenshot that shows this user is logged into Hue
-    * Name the file <code>client/0_unix_login.png</code>
+    * Name the file <code>client/labs/0_unix_login.png</code>
 
 ---
 <div style="page-break-after: always;"></div>

@@ -55,15 +55,14 @@
 
 ## <center> Active Directory Integration </center>
 
-* Cloudera recommends Direct-to-AD integration as preferred practice.
-* The alternative is a [one-way cross-realm trust to AD](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_sg_hadoop_security_active_directory_integrate.html)
-    * Requires MIT Kerberos realm in Hadoop cluster
-    * Avoids adding service principals to AD
+* Cloudera PS recommends Direct-to-AD integration as preferred practice.
+* The alternative: a [one-way cross-realm trust to AD](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_sg_hadoop_security_active_directory_integrate.html)
+    * Requires an MIT Kerberos implementation for the cluster
+    * Localizes creation of service principals and keytabs
 * Common sticking points
-    * Admin reluctance(!)
+    * Administrator reluctance
     * Version / feature incompatibility
-    * Misremembered details
-    * Other settings that "shouldn't be a problem"
+    * AD configurations that shouldn't be a problem
 
 ---
 <div style="page-break-after: always;"></div>
@@ -71,11 +70,11 @@
 ## <center> Common Direct-to-AD Issues </center>
 
 * Incorrect `/etc/krb5.conf` configuration
-    * Always test with `kinit` before integrating
+    * Test with `kinit` before integrating
 * Required encryption types aren't supported
     * Again, make sure `/etc/krb5.conf` is right
-    * Next, install or reinstall Unlimited Encryption Policy files
-* To get debugging information on the command line:
+    * Verify Unlimited Encryption Strength is enabled
+* To get debug information on the command line:
     * `export KRB5_TRACE=/dev/stderr`
     * `export HADOOP_OPTS="-Dsun.security.krb5.debug=true"`
     * `export HADOOP_ROOT_LOGGER="DEBUG,console"`

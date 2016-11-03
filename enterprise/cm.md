@@ -255,7 +255,7 @@ _Use CM to answer the following questions. For some questions, search will help 
 * How do you upgrade the CM agents?
 * Give the `tsquery` statement used to chart Hue's CPU utilization?
 * Name all the roles that make up the Hive service
-* What steps must be compelted before integrating Cloudera Manager with Kerberos?
+* What steps must be completed before integrating Cloudera Manager with Kerberos?
 
 ---
 <div style="page-break-after: always;"></div>
