@@ -152,7 +152,7 @@
 ## <center> <a name="rm_admission_control"/> Moderating YARN and Impala needs
 
 * [Throttle and queue control for Impala queries only](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/Impala/Installing-and-Using-Impala/ciiu_admission.html)
-* Enabled by default starting with Impala 1.3 
+* Enabled by default with Impala 1.3 and later
 * There are three documented models for sharing resources between Impala and YARN 
     1. Define minimum resources for YARN and Impala under contention (Static Service Pools)
     2. YARN defines a pool for Impala; Impala applies Admission Controls
@@ -161,22 +161,22 @@
     * A <i>configuration sets</i> is used to define a client group (e.g., prod, mktg, batch, queries)
     * Some <i>scheduling rules</i> inform the configuration set's policy
     * Pool resources may be governed by user permissions, query count, queue size, memory demand
-* In the CM UI, see *Cluster > ClusterName > Dynamic Resource Pools*
+* See *Cluster > ClusterName > Dynamic Resource Pools*
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> More on Admission Control </center>
 
-* Impala and YARN Uses the same pool definitions 
+* Impala and YARN use the same pool definitions 
 * Three decisions: execute, queue, or reject a query
 * Decision factors:
     * Currently running queries
     * Memory available
     * Current queue length
-* The local <code>impalad</code> decides based cached information about the cluster
-    * To compensate for potentially stale resource data, admission control is soft
-* Impala favors running one too many tasks over preserving headroom
+* Each local <code>impalad</code> decides how to act
+    * To compensate for stale data, admission control is soft
+* Impala favors running more tasks over preserving headroom
     * Work to improve this decision-making is ongoing
 
 ---
@@ -227,8 +227,8 @@
     * Allocate 25% to HDFS and 75% to YARN; click Continue
     * On the Step 2 of 4 page, review the sections and proposed values
     * Complete the wizard: redeploy client configurations and restart the cluster
-    * Capture the Step 1 of 4 page after the restart
-* Add the screenshot to your repo with the file name <code>resources/labs/1_static_pools.png</code>
+    * Capture the Step 2 of 4 page after the restart
+* Add this screenshot to your repo using the file name <code>resources/labs/1_static_pools.png</code>
 
 ---
 <div style="page-break-after: always;"></div>
