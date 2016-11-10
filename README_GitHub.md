@@ -1,66 +1,75 @@
 ## Accepting Changes to the Course Material
 
-Throughout the week, your instructors may modify the course material
-to address typos or add new information. Unfortunately, there is
-no way in GitHub to update a fork directly from its original.
+Your instructors may update the course material
+to address typos or other errors. To keep things simple, we'll send
+you the file(s) we want you to change by email. Replace the currrent file, add and commit the change, and all is good.
 
-In GitHub lingo, a fork is just a clone of one GitHub repository
-to another. A fork does not have all the capabilities of a
-clone, however, such as being able to pull changes from the source.
+**Do not** add new or changed files directly to your GitHub repository.
+Make the changes locally, then push them to your repository. This
+will avoid confusion over which repo is the most current. For our
+purposes, your GitHub repo should never be more current than your
+local one.
 
-**Do not** submit labs and challenges directly to your GitHub
-repository. Make the changes to your clone first, then push them to your
-repository.
+When one repository is used by many people, all of whom have local
+copies, it's a delicate job to maintain and distribute changes.
+We're going to avoid this complexity, but it's worth learning how
+a distributed version control system can be used to negotiate a
+variety of changes all at once. This practice starts with creating
+a clear process for keeping all interested users up to date by
+<i>syncing their forks</i>.
 
-Your instructor may change the source and want you to accept them.
-To do this, you'll need to:
-* Pull these changes to your clone
-* Merge them with your existing files
-* Push the changes to your fork
-
-You can use the process [described here](https://help.github.com/articles/syncing-a-fork/) if you need a guide.
+The process for doing this with GitHub is [described
+here](https://help.github.com/articles/syncing-a-fork/).
 
 ---
 
-## Why Use GitHub?
+## tl;dr: Why Use GitHub?
 
-You probably have not used a source-code control system with a
-training course before -- unless, of course, the course topic happens
-to be source-code control. We've designed to course to incorporate
-`git` and GitHub for a few reasons.
+You probably have not used a source-code control system with a training course before. We've incorporated
+`git` and GitHub into this one for a few reasons.
 
-One, PowerPoint slides seem to impede, not aid, hands-on skills acquisition. This
-course is not based in knowledge transfer. At the end of the week, the measures
-we care most about include:
-* Interpreting the existing technical documentation
-* Identifying tools and practices you are not proficient with
-* Letting things fail when they are incompletely or incorrectly configured
-* Providing ample time to learn from mistakes and try again
+The outcomes we care most about include:
+* Learning to follow existing technical documentation
+* Identifying unfamiliar tools and practices
+* Letting systems fail when they are configured improperly
+* Using mistakes and failures as learning points and teachable moments.
 
-Two, many PowerPoint slides often paraphrase or gloss a richer
-source of information.  We prefer to link to authoritative sources
-directly.  We do this because:
-* The underlying authority is transparent for each point
-* We can easily replace any authority with a more comprehensive or more recent one
-* We can notify the source of any errors we find
-* We can reduce the chance of creating error where none exists in the authority
+We think PowerPoint slides do not promote hands-on skills development
+and the journalling process we use very well. To track and document
+your progress, and even annotate the course material to your liking,
+we need a system that leaves the teaching content open to change
+and active note-taking.
 
-Three, formatting slides for presentation is a major cost in
-traditional course development. We are focused on skills acquisition
-on an ecosystem with dozens of evolving components, all moving at
-different rates of development. The potential for error: in software
-bugs, incorrect documentation, even dropping announcements of new
-features -- is very high.
+PowerPoint often force the author to paraphrase or gloss richer
+sources of information to fit one slide.  We would rather link to
+an existing source you can refer to when you need more context or
+information.  There are several benefits:
 
-To mitigate these risks, traditional course developers fix their
-courses and labs to a controlled environment. They will devise labs
-that are close to fool-proof, and provide a solution set
-to demonstrate the lab is correct. In the interests of time,
-the student is also shown what exactly what to type or click.
+* The source material remains transparent to the viewer
+* One source can be replaced with a more comprehensive or recent one easily
+* Errors can be traced to the source
+* Errors in interpreting the source are eliminated
 
-Such labs tend to prove that the software will work,
-but can easily avoid showing the software will be usable outside
-a carefully-prepared environment.
+In addition, slide formatting is a big cost in traditional course
+development. In a subject area focused on skills development in
+Hadoop -- an ecosystem with dozens of evolving components, all
+moving at different rates of development -- the half-life of that
+knowledge is short. Static course material has not only a potential
+for maintaining an error for a long time. It can also age out quickly
+where the refresh window of content development (say, 6-12 months)
+is a big multiple of a software release schedule (quarterly).
+
+To mitigate these risks, traditional course development will set
+the software release it covers and provide labs written in controlled
+environment. Labs may be vetted to a process that proves the labs
+work under a variety of failure scenarios. A solution set may be
+used both to prove lab integrity and make it possible for anyone
+to 'complete' them.  In the interests of time, the student may be
+guided carefully on what to type or click.
+
+These labs tend to show the software works as described. By design
+they may sidestep showing how the software can be applied to a
+reasonable use case that has not been factored into lab design.
 
 ---
 
@@ -69,6 +78,7 @@ a carefully-prepared environment.
 In short, so we can create a dialog for your learning.
 
 Using the mechanism for creating Issues, we then have a common medium for:
+
 * Citing errors or obsolete references in the course material (they do exist!)
 * Documenting your learning process, including failures
 * Notifying collaborators of your progress

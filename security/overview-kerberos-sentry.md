@@ -237,21 +237,56 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Security Lab
-## <center> Integrating Kerberos with Cloudera Manager
+## <center>Common misconceptions</center>
+
+* Your Kerberos realm name depends on your FQDN (it doesn't)
+* Kerberos realm names are resolved by DNS (they aren't)
+* The `/admin` suffix has admin privileges
+    * Only if you define them in `/var/kerberos/krb5kdc/kadm5.acl`
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Security Lab: Implement TLS Level 1 Security
+
+* This is a [straightforward procedure](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_config_tls_encr.html) 
+    * You do not have to generate certificates
+* Copy the `config.ini` file of the agent on any host to `security/labs/config.ini.md`
+    * Code-format the contents
+* Use a screen capture of CM to show TLS level 1 is enabled
+    * Put the capture in `security/labs/tls-level-one.png`
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Security Labs Preparation
+
+Before you start:
+
+* Create a Linux user named after your GitHub handle
+    * You'll use this account to test access to the cluster
+    * Make sure this account is present on all nodes with the same UID/GID
+* Load sample data for Hive/Impala
+    * Login to HUE using your GitHub name and the password `cloudera`
+    * The first login to Hue becomes the admin account 
+* Follow the setup wizard to load sample tables for Hive and Impala
+    * You'll need this data to support the Sentry lab
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Lab: Integrating Kerberos with Cloudera Manager
 
 * Plan one: follow the [documentation here](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_s4_kerb_wizard.html)
 * Plan two: Launch the Kerberos wizard and complete the checklist.
     * Set up an MIT KDC
-    * Create a Linux account with your GitHub name
 * Once integration is sucessful, add these files to `security/labs`:
-    * `/etc/krb5.conf`
-    * `/var/kerberos/krb5kdc/kdc.conf`
-    * `/var/kerberos/krb5kdc/kadm5.acl`
+    * `/etc/krb5.conf` as `krb5.conf.md`
+    * `/var/kerberos/krb5kdc/kdc.conf` as `kfc.conf.md`
+    * `/var/kerberos/krb5kdc/kadm5.acl` as `kadm5.acl.md`
 * Create a file `kinit.md` that includes:
-    * The `kinit` command you use to authenticate your user
-    * The output from `klist` showing your credentials
-* Create a file `cm_creds.png` that shows the service principals listed in CM
+    * The `kinit` command you use to authenticate your test user
+    * The output from a `klist` command listing your credentials and ticket lifetime
 
 ---
 <div style="page-break-after: always;"></div>
@@ -259,4 +294,5 @@
 ## <center> Sentry Lab 
 
 * Install [Sentry as a Service](http://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_service_config.html)
-* Follow the Sentry tutorial in `./quick-sentry-tutorial.md`
+* Follow this [Sentry tutorial](./quick-sentry-tutorial.md)
+
