@@ -1,28 +1,29 @@
 ## Notes on Cloudera documentation
 
 * Cloudera documentation is [available online](http://www.cloudera.com/documentation.html) in HTML and PDF format.
-* The site made big changes with the C5.7.0 release
+* The current release is C5.9
 
-I recommend downloading the PDF form of these documents with every
-point release. They are usually easier to read and follow than the
-online format.
+Consider downloading these documents in PDF format. They are 
+easier to read than the online HTML-based format.
 
-Bear in mind, these docs are also updated between point releases
-to address typos and errors in fact. Starting with the C5.8.0 release,
-changes in organization and substance are also taking place. At this time,
-no formal release notice is given with these updates.
+The docs may be updated between point releases to address typos and
+errors, but can also add new volumes or split materials to different
+volumes. There is currently no release notice that announces these
+updates.
 
-For your convenience, I've linked to the latest version of each PDF
-below. You won't need most of them for class, but they don't take much
-room on disk and will come in handy often
+The C5.9 release comes with thirteen different documents:
+
 
 * [Introduction](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-introduction.pdf)
-* [Release Notes](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-releases.pdf)
-* [Install and Upgrade Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-installation.pdf)
+* [Release Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-releases.pdf)
+* [Installation](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-installation.pdf)
+* [Upgrade]http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-upgrade.pdf()
+* [Quickstart Guides](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-quickstart.pdf)
 * [Adminstration](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-administration.pdf)
-* [Quickstart](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-quickstart.pdf)
 * [Data Management](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-datamgmt.pdf)
 * [Operation](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-operation.pdf)
 * [Security](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-security.pdf)
-* [Impala](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-impala.pdf)
-* [Search](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-search.pdf)
+* [Impala Guide](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-impala.pdf)
+* [Cloudera Search](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-search.pdf)
+* [Spark Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-spark.pdf)
+* [Hive Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-hive.pdf)
