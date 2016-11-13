@@ -8,10 +8,10 @@
 
 # <center> <a name="hdfs_section"/>HDFS<p>
 
-* Review and reinforcement
+* Cluster deployment guidelines
 * HDFS Basics
     * <a href="#hdfs_namenode_ha">NameNode HA</a>
-    * <a href="#hdfs_benchmarking">Benchmarking</a>
+    * <a href="#hdfs_smoke_testing">Smoke-testing a cluster</a>
     * <a href="#hdfs_c5">HDFS & C5</a>    
 
 ---
@@ -21,60 +21,60 @@
 
 * [Practical advice on field deployment](http://blog.cloudera.com/blog/2015/01/how-to-deploy-apache-hadoop-clusters-like-a-boss/)
 * Design principles for deployment
-    * Separation of concerns
-    * Preparing for security
+    * Separation of concerns (adminisration, end users, security integration)
+    * Planning for growth
 * Cloudera uses four role types to guide deployment
-    * Utility nodes for cluster administration
-    * Master nodes control executive and supervisory processes
-    * Worker nodes provide storage and processing resources
-    * Edge: Client access, data ingestion, security perimeter
+    * Utility: cluster administration, integration services
+    * Master: executive and supervisory processes
+    * Worker: storage and processing
+    * Edge: Client access, ingestion, security perimeter
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center>Node count alters the architecture
+## <center>Layout changes with node count 
 
-* <10 nodes: combine master & workers, utility & edge roles
-* 20-100 nodes: masters and workers separated, dedicated utility & edge node
-* 100+ nodes: more utility, master, and edge machines depending on use case
-* As roles separate, focus on differences in resources
-    * Four disks, RAID OS volume on master nodes
-    * More RAM and spindles on worker nodes
-    * VMs for edge/utility roles
+* 10 nodes or fewer: combine master & worker roles, utility & edge roles
+* 20-100 nodes: separate masters and workers, use dedicated utility & edge nodes
+* 100+ nodes: add utility, master, and edge roles according to use case
+* Once a machine is assigned to a role, adjust the resource requirements
+    * Master: four disks, mirror the OS volume 
+        * One disk for logging and other storage requirements
+        * One disk for Zookeeper*
+    * Worker: More disks and RAM 
+    * Edge/Utility: VMs or older hardware can be sufficient
 
 ---
 <div style="page-break-after: always;"></div>
-
 
 ## <center> <a name="hdfs_namenode_ha"/> NameNode HA
 
 * CM 5 offers a [NameNode HA wizard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
     * `HDFS -> Actions -> Enable High Availability`
-    * [Place the Journal Quorum Managers](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_hag_hdfs_ha_enabling.html#cmug_topic_5_12_1)
-    * [Understand Zookeeper's role] (https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
+    * [Locate the JournalNodes](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_hag_hdfs_ha_enabling.html#cmug_topic_5_12_1)
+    * [Know what the Quorum Journal Manager and Zookeeper do] (https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="hdfs_benchmarking"/> Benchmarking
+## <center> <a name="hdfs_smoke_testing"/> HDFS Smoke Testing
 
-* Following installation, we test for hardware and network problems
-* Common tools used in the field
-    * [TeraSort Suite: teragen, terasort, teravalidate](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite)
-    * A few use [TestDFSIO](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio)
-* Consider testing the NameNode too: [nnbench](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#namenode-benchmark-nnbench)
+* Following software installation, test hardware and network for failure
+* [The terasort suite](http://www.michael-noll.com/blog/2011/04/09/smoke-testing-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite) is ideal for this: easy to apply and simple to monitor.
+    * Some people recommend [TestDFSIO, nnbench, mrbench](http://www.michael-noll.com/blog/2011/04/09/smoke-testing-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio) -- you have choices.
+* Most important: corroborate performance with system tools, such as `iostat`.
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_c5"/> C5 Goals for HDFS
 
-Strategy for storage in C5:
+Strategy for storage use cases in C5:
 
-* Plan for larger RAM complements
-* Perform faster backups
-* Provide more data recovery options
-* Provide more client access options
+* Plan for systems with larger RAM complements
+* Customers need faster, more comprehensive backup tools
+* Customers want more data recovery options
+* Customers want more (open source) client access options
 
 ---
 <div style="page-break-after: always;"></div>
@@ -90,20 +90,22 @@ Strategy for storage in C5:
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_dir_caching"/> Directory caching: Use case
-### <center> Repeating a query (cache effect)
+### <center> Repeated joins on a small table (cache effect)
 
 <img src="http://blog.cloudera.com/wp-content/uploads/2014/08/hdfs-cache-f1.jpg">
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Problem: Performance on Repeated Queries
+## <center> Problem: Performance on Repeated Joins
 
-* The NameNode links file paths to block locations on the DataNodes
-    * Locality is defined by [local disk storage only](https://issues.apache.org/jira/browse/HDFS-4949)
-* A repeated query might pay the same disk I/O cost as the first query
-    * Not a big cost to MapReduce jobs
-    * For near real-time use cases, it is expensive
+* The NameNode links a file's path to block storage on the DataNodes
+    * Locality is therefore defined by [disk storage](https://issues.apache.org/jira/browse/HDFS-4949)
+    * This is sufficient for batch-processing architecture 
+    * Job setup and data shuffling costs cancel out efficient NRT retrieval
+* Consider repeated joins with a need for quick responses
+    * A repeated query could go to another DataNode 
+    * You'd like to prefer a node with in-memory 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -112,11 +114,13 @@ Strategy for storage in C5:
 
 Adds cache locality to NN reports<p>
 
-* You can specify an HDFS file/directory you want cached
-* The affected DataNodes receive the cache instruction on read
-    * Blocks are then cached up to the file's replica limit
+* An admin can specify an HDFS file/directory to be 'cached'
+    * Eviction policy is TTL-based
+    * No hit ratio metrics
+* DataNodes with associated blocks receive a cache-on-read instruction 
     * In-memory storage is off-heap: no heavy impact on DataNodes
-* A data-local client, such as `impalad`, can further exploit locality
+    * The admin can also limit the number of replicas for caching
+* Local clients, such as `impalad`, can read caches locally 
     * Short-circuit read (SCR) API
     * Zero-copy read (ZCR) API
 
@@ -130,18 +134,23 @@ Adds cache locality to NN reports<p>
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Directory caching: Roles and responsibilities
+## <center> Directory caching example
 
-* HDFS admin `hdfs cacheadmin` command
-    * Create a cache pool (needed to enforce quotas)
-    * Assign directives (paths to cache)
-    * List statistics on hit rate, memory consumed, etc.
-    * Amend pools & directives as needed
-* DataNodes
-    * Track blocks in system memory
-    * Report cache state to NameNode
-* Job client
-    * Queries NN for DNs with cached blocks
+```
+$ hadoop fs -put myfile /user/mfernest/commons
+$ sudo -u hdfs hdfs cacheadmin -addPool mfe
+Successfully added cache pool mfe.
+$ sudo -u hdfs cacheadmin -addDirective -path /user/mfernest/commons  -pool mfe
+Added cache directive 1
+$ sleep 180
+```
+DataNodes track blocks and report cache state to the NameNode
+```
+$ hdfs cacheadmin -listPools -stats mfe
+...
+$ hdfs dfsadmin -report
+...
+```
 
 ---
 <div style="page-break-after: always;"></div>
@@ -167,7 +176,7 @@ Adds cache locality to NN reports<p>
 * There is also zero-copy Read
     * [Uses `mmap()` to read system page$](https://issues.apache.org/jira/browse/HDFS-4953)
     * Clients can implement the [API](https://issues.apache.org/jira/browse/HDFS-5191)
-* Other JIRAs on the roadmap
+* Upstream JIRAs 
     * Write caching: [HDFS-5851](https://issues.apache.org/jira/browse/HDFS-5851)
 
 ---    
@@ -176,106 +185,94 @@ Adds cache locality to NN reports<p>
 ## <center> <a name="hdfs_dir_snapshots"/> HDFS Snapshots
 
 * Users with write permissions on a directory may retrieve a deleted file
-    * Easy to track changes to a directory over time
-    * Employs [copy-on-write](http://en.wikipedia.org/wiki/Copy-on-write) technique to track with DN block location + timestamp
-    * Deleted files may be retrieved from a version folder
-    * Like `.Trash` foldeir without a time-based expiration
+    * Track changes to a directory over time
+    * Execute backup on an static image
+    * A [copy-on-write](http://en.wikipedia.org/wiki/Copy-on-write) technique to associate each DN block with a timestamp
+    * Recover deleted files from a versioned folder
+    * Like `.Trash` folder but without an automatic purge
 * [Apache docs on the CLI](http://archive.cloudera.com/cdh5/cdh/5/hadoop/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html)
-* [Using snapshots in Cloudera Manager] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_bdr_snapshot_intro.html) requires an active trial or Enterprise license
+* [Using Cloudera Manager] (http://www.cloudera.com/documentation/enterprise/latest/topics/cm_bdr_snapshot_intro.html) requires an active trial or Enterprise license
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="hdfs_backups"/> HDFS Backups
 
-* In Cloudera Manager, called BDR (Backup and Data Recovery)
-* Central services for managing backups and replications
-    * Configuration, monitoring, alerting
-    * Uses snapshot & replication features
-    * Executes `distCp` jobs
-    * Will preserves file attributes and other metadata
+* Cloudera Manager offers BDR (Backup and Data Recovery) under license
+* Coordinated service for backups, snapshots, and replications
+    * Configuration, monitoring, alerting services
+    * Executes `distCp` jobs under the covers
+    * Also preserves file attributes and service metadata such as HMS
 
 ---
 <div style="page-break-after: always;"></div>
-
-## <center> <a name="nfs_gateway"/> NFS Gateway
-
-* Linux NFSv3 service ported to HDFS
-    * Supports Windows-based browsing, file transfers
-    * Alternative to webHDFS or httpfs
-* Any NFS-capable HDFS client can be an NFS gateway
-* Properties configured in `hdfs-site.xml`
-* Relies on Linux rpcbind/portmapper services
-    * See [HDFS-4763](https://issues.apache.org/jira/browse/HDFS-4763)
-
----
-<div style="page-break-after: always;"></div>
-
-## <center> HDFS Problems/Diagnoses/Solutions
 
 ### <center>HDFS Labs Overview
 
-* Before you start, create an Issue called Storage labs
+* Create an Issue called `Storage labs`
     * Add it to the Lab milestone
-    * Label the issue as `Started`
+    * Label the issue as `started`
     * Assign yourself to the Issue
-* The following labs will have you:
+* These labs will have you:
     * Replicate data to another cluster
     * Use `teragen` and `terasort` to benchmark performance
     * Test HDFS Snapshots
-    * Enable NameNode HA
+    * Enable NameNode HA configuration
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> HDFS Lab: Replicate to another cluster
 
-Note: actual data replication in the cloud depends on two clusters
-that are local to each other. If your partner's cluster is remote
-to your, you may not transfer any data from your partner's cluster,
-even if you get the job to start.
+Node: Data replication in the cloud depends on peers that can see each
+other's nodes.
 
 * Choose a partner in class
-* Name a source directory using your GitHub handle
-* Name a target directory using your partner's GitHub handle
+* Name a source directory after your GitHub handle
+* Name a target directory after your partner's GitHub handle
 * Use `teragen` to create a 500 MB file
-* Replicate your partner's file to the target directory you made for them
-* Using the HDFS Browser in Cloudera Manager
-    * Capture a screen that lists your partner's target directory
-    * Store this image in `storage/labs/0_partnerGitHub_yourGitHub.png`
+* Copy your partner's file to your target directory 
+    * Let one partner use `distCp` on the command line
+    * Let the other use BDR
+* Browse the results 
+    * Use `hdfs fsck <path> -files -blocks` on your source and target directories
+    * Copy the work for this lab into `storage/labs/0_replication.md`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> HDFS Lab: Test HDFS performance
 
+* Create an end-user Linux account named with your GitHub handle
+    * Create a home HDFS directory for this user as well
+    * Run the following exercises as this user
 * Create a 10 GB file using `teragen`
-    * Set the block size to 32 MB for this file
-    * Use the `time` command to record the job duration
-* Run the `terasort` command against this file twice
-    * Use the `time` command to capture each run's duration
-    * Create a cache pool and directive for the teragen output before the first run
-* Record your work, including:
-    * The `teragen` command you used to create your test file
-    * The commands you used to configure HDFS caching
-    * The `time` output for each job run
-* Store and comment on these outputs in `storage/labs/1_terasort_tests.md`
+    * Set the number of mappers to four
+    * Limit the block size to 32 MB 
+    * Land the result under your user's home directory
+    * Use the `time` command to report the job's duration
+* Run the `terasort` command on this file 
+    * Use the `time` command to report the job's duration
+    * Land the result under your user's home directory
+* Report your work in `storage/labs/1_terasort_tests.md`, including:
+    * The full `teragen` and `terasort` commands you used 
+    * The `time` result of each job 
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> HDFS Lab: Test HDFS Snapshots
 
-Show the command and output for each step below in `storage/labs/1_snapshot_test.md`.
+List the commands and output for each step below in `storage/labs/2_snapshot_test.md`.
 
-* Create a directory under `/tmp` using your GitHub account name; copy the ZIP file you received for this class into it.
-* Enable snapshots for this directory
+* Create a `precious` directory in HDFS; copy the ZIP course file into it.
+* Enable snapshots for `precious`
 * Create a snapshot called `sebc-hdfs-test`
-* Invoke a command to delete the directory
-* Invoke a command to delete the ZIP file
-* Restore the deleted file to the directory
+* Delete the directory
+* Delete the ZIP file
+* Restore the deleted file 
 
-* Capture the screen in the NameNode web UI that lists snapshots in `storage/labs/1_snapshot_list.md`.
+* Capture the NameNode web UI screen that lists snapshots in `storage/labs/2_snapshot_list.png`.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -284,9 +281,10 @@ Show the command and output for each step below in `storage/labs/1_snapshot_test
 
 * Use the Cloudera Manager wizard to enable HA
     * Once configured, get a screenshot of the HDFS Instances tab
-        * Name the file `storage/2_HDFS_HA.png`
+        * Name the file `storage/3_HDFS_HA.png`
 * Add a CM user and name it with your GitHub handle
     * Assign the `Full Administrator` role to this user
     * Assign the password `cloudera` to this user
-    * Re-assign the 'admin' user to the `Limited Operator` role
-    * Take a screenshot of your users page; save it to `storage/labs/3_CM_users.png`
+    * Re-assign the `admin` user to the `Limited Operator` role
+    * Take a screenshot of your users page; save it to `storage/labs/4_CM_users.png`
+    * In an Issue comment, post the URL to your Cloudera Manager instance
