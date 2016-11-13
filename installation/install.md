@@ -197,8 +197,8 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 
 ## <center> CM Install Lab
 
-* You can use AWS or another provider
-  * Clouderans should use CloudCat 
+* Let's agree on one AWS region and Availability Zone for the course.
+  * If you share a VPC with others in the room, that's also fine.
 * For AWS, create five `m3.xlarge` nodes
   * Do not use spot instances
 * For GCE, create five `n1-highmen-2` nodes
@@ -224,22 +224,23 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 ## <center> CM Install Lab
 ## <center> <a name="linux_config_lab"/>System Configuration Checks
 
-The list below is a brief checklist [of key system
-settings](http://tiny.cloudera.com/7steps). In a services engagement,
-Cloudera supplies a questionnaire and guide to an extensive list
-of checks and settings.
+In a professional services engagement, Cloudera walks a customer
+through a questionnaire and supplies a guide to verify hardware,
+networking, OS configuration, disk mounts, and other properties.
 
-In each case below, use a command to show the current value of each
-property on your CM host. If a value needs adjustment, also show
-the command you need to to modify the property or setting.
+Using the steps below, verify the settings of your instances. If
+necessary, modify them according to the instruction. In your
+documentation, show the commands used to observe each property. If
+you change it, list also the command you used to do so.
 
-Capture this work in the file `installation/1_preinstall.md`.  You
-should check each node, but only report the results for one of them.
+Capture this work in the file `installation/1_preinstall.md`. You
+only need to show results for one host.
 
 1. Check `vm.swappiness` on all your nodes
     * Set the value to `1` if necessary
 2. Show the mount attributes of all volumes
 3. Show the reserve space of any non-root, ext-based volumes
+4. Show that transparent hugepages is disabled
 4. Report the network interface attributes
 5. Show forward and reverse host lookups using `getent` and `nslookup`
 6. Verify the <code>nscd</code> service is running
@@ -256,9 +257,8 @@ Choose one of these plans to follow:
 * You can use the steps [documented here for
 MariaDB](http://www.cloudera.com/documentation/enterprise/latest/topics/install_cm_mariadb.html)
 or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_mysql.html).<br>
-* You can use the steps below as a checklist to keep on track. Note
-there are some additional instructions not included with the standard
-documentationr.
+* The steps below are MySQL-specific.
+  *  If you have chosen RHEL/CentOS 7.x, use MariaDB instead.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -303,10 +303,14 @@ documentationr.
 <div style="page-break-after: always;"></div>
 
 ## <center> CM/CDH Install Lab
-## <center> Path B install using Cloudera 5.9.0
+## <center> Path B install using Cloudera 5.8.2
 
 [The full rundown is
-here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html?scroll=cmig_topic_6_6).
+here](http://www.cloudera.com/documentation/enterprise/5-8-x/topics/cm_ig_install_path_b.html#concept_qyv_bt1_v5)
+
+Notice that you must locate the correct repo version. The default
+repo is the latest available version.
+
 Ensure you adhere to the following requirements:
 
 * Do not use Single User Mode. Do not. Don't do it.
@@ -348,7 +352,7 @@ until you complete the Bonus Lab.
 
 * If you are interested to learn about automating installs:
     * Fork/clone [Justin Hayes' auto-deploy project](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
-* No submissions are needed; you can research this repository as you wish.
+* No submissions are needed; you can browse this repository as you wish.
 
 ---
 <div style="page-break-after: always;"></div>
