@@ -272,15 +272,27 @@ _Use CM to answer the following questions. For some questions, search will help 
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Lab
-## <center> Use the API to restart a service
+## <center> Use the API 
 
 * Browse or use `curl` on the endpoint `./api/v2/cm/deployment`
   * Store the output in `enterprise/labs/2_cluster_deployment.md`
+  * Code-format this output for readability
 * Follow the [tutorial for API v12](http://cloudera.github.io/cm_api/apidocs/v12/tutorial.html)
 * Write `curl` statements that stop, start, and check the current state of your Hive service.
   * Add these statements and their output to `enterprise/labs/3_api_hive_state.md`
-* Bonus: write a script `enterprise/labs/4_hive_restart.sh` to correctly restart Hive. The script should not try to start Hive until it has been stopped.
-  * Or you can create the program in Python or Java. Name the file `enterprise/labs/5_hive_restart.[py|java]` as appropriate.
 
 ---
 <div style="page-break-after: always;"></div>
+
+## <center> CM Lab
+## <center> Upgrade Cloudera Manager
+
+* Upgrade to the latest available version
+  * Use the [documentation here](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ag_ug_cm5.html)
+* Use the API on the command line to:
+  * Report the latest available version of the API
+  * Report the CM version 
+  * List all CM users
+  * Report the database server in use by CM
+* Add these API calls and their output to `enterprise/labs/4_API_upgrade_calls.md`
+
