@@ -6,7 +6,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> <a name="yarn_rm_section"/>YARN & RM
+# <center> <a name="yarn_rm_section"/>Resource Management & YARN
 
 * <a href="#mrv2_review">YARN/MRv2 Design</a>
 * <a href="#YARN_overview">What YARN Does</a>
@@ -16,18 +16,17 @@
 ---
 <div style="page-break-after:always;"></div>
 
-## <center> The MapReduce service: Roles & Pain Points
+## <center> The MapReduce service (MRv1)
 
 * JobTracker responsibilities
-    * Schedule client jobs
-    * Monitor TaskTrackers
+    * Schedule jobs
+    * Monitor TaskTracker processes
     * Update jobs status
-    * Cache recent job history
-* TaskTrackers responsbilities
-    * Support a configured number of mapper and reducer <i>slots</i> 
-    * Slot count is based cores, spindles, workload estimates
-* At ~4k TaskTrackers, it is claimed the JobTracker becomes a bottleneck
-* JobTracker history cache can be overwhlemed by many fast-failing jobs
+    * Cache and serve recent job history
+* TaskTracker responsbilities
+    * Provide a pre-determined number of mapper and reducer slots
+    * Slots are child JVM processes
+    * Slot count per node is based on cores, "spindles", and <i>workload estimate</i>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -41,134 +40,119 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> MRv2: Roles
+## <center> YARN (MRv2 included): Roles
 
 * Resource Manager
-    * Supervises NodeManagers, schedules jobs
-    * Limits resource consumption across all running jobs
+  * Supervises NodeManagers, schedules jobs
+  * Limits resource consumption across all running jobs
+  * UI on port 8088
 * Node Manager
-    * Launches/manages containers
-    * Updates the Resource Manager 
+  * Launches/manages containers
+  * Updates the Resource Manager
+  * UI on port 8042
 * Container
-    * Execution context for a job
-    * Unlike a slot, can be sized per job
+  * Execution context for a job
+  * Unlike a slot, can be sized per job
 * Application Master
-    * A container used to control one job
-    * Includes job framework type
-        * Example: <code>org.apache.hadoop.mapreduce.v2.app.MRAppMaster</code>
-* JobHistory Server
-    * Logs job status info from NodeManagers
-    * Default port: 19888
+  * Control one job's tasks and resource requirements
+    * MapReduce: <code>org.apache.hadoop.mapreduce.v2.app.MRAppMaster</code>
+    * Spark: <code>org.apache.spark.deploy.yarn.applicationmaster</code>
+* JobHistory Server (built in, MapReduce only)
+  * UI port on 19888
+  * Spark has its own (UI port on 18088)
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> YARN Job Control (MR)
+## <center> YARN Job Control
 
-1. Client submits a job 
+1. Client submits a job
 2. RM identifies the appropriate AM and loads it
 3. AM requests data blocks via the NameNode
-4. AM also requests container resources via the RM
-5. RM returns a list of available containers to the AM
-6. AM requests containers (via their Node Manager) for mapping
-7. RM then invokes an auxiliary shuffle service 
-8. AM requests containers for reducing tasks
-9. The AM releases each container upon task completion and updates the RM 
+4. AM requests container/executor resources via the RM
+5. RM reports available resources
+6. AM asks NodeManagers for resources using RM access token
+9. AM releases each container upon task completion, notifies the RM
 10. RM updates the Job History server
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="YARN_overview"/>What YARN Changes
-
-* YARN replaces the MRv1 JobTracker and TaskTrackers
-    * Cloudera Manager permits only one to run
-* The Application Master (AM) schedules, executes, supervises, and gets resources for its jobs
-* YARN = <strong>Y</strong>et <strong>A</strong>nother <strong>R</strong>esource <strong>N</strong>egotiator
-    * Abstracts resource controls from the execution framework
-    * Allows other engines, such as Spark 
-* The [NextGenMapReduce page](http://wiki.apache.org/hadoop/NextGenMapReduce) offers rationale for YARN
-
----
-<div style="page-break-after: always;"></div>
-
-## <center>YARN over MRv1 or Spark Standalone</center>
+## <center>YARN vs. MRv1 or Spark Standalone</center>
 
 * Better resource scalability and utilization
-    * Especially for very large clusters
-* Better performance for well-known use cases
-    * A large cluster running many small jobs
-    * Isolating resources for MR and Spark 
-* The Holy Grail: one RM controlling all cluster processing
-    * RM HA is available
-    * Node labeling: dedicating hardware to specific tasks
-    * Custom, pluggable classifiers for auditing and reporting
+  * Especially for very large clusters
+* Better performance for certain, well-known use cases
+  * E.g., a large multitenant cluster running many small jobs
+  * Isolating resources for multiple engines
+  * Centralized logging
+* The Original Vision: one RM to cover all processing requirements
+  * RM HA is available
+* Multiple mutli-tenant models possible
+  * Node labeling: assigning specific tasks to specific hardware
+  * Custom, pluggable classifiers for auditing and reporting
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="migrating_mrv1_mrv2"/> Migrating from MRv1 to MRv2
+## <center> <a name="migrating_mrv1_mrv2"/> Migrating MRv1-oriented applications to MRv2
 
+* YARN is backward-compatible to MapReduce
+  * Doesn't mean MRv1 programs are YARN-aware
 * Read <a href="http://blog.cloudera.com/blog/2014/04/apache-hadoop-yarn-avoiding-6-time-consuming-gotchas/">Jeff Bean's blog post on common gotchas</a>, including:
-    * Changing from slots to container sizing is just one piece.
-    * Getting an [apples-to-apples performance comparison] (http://blog.cloudera.com/blog/2014/02/getting-mapreduce-2-up-to-speed/) is hard
-    * Calculating JVM heap requirements is different
-    * YARN has to log messages for any potential framework , not just MRv2
-        * Log messages are more generic
-    * [Too many fast-failing AMs can still bomb the service] (https://issues.apache.org/jira/browse/YARN-1913)
+    * Containers are not a drop-in replacement for slots
+    * Hard to make an [apples-to-apples performance comparison] (http://blog.cloudera.com/blog/2014/02/getting-mapreduce-2-up-to-speed/)
+    * JVM heap calculations are different
+    * The RM has one log for all process engines, not just MRv2
+        * Messages are more generic
 
 ---
 <div style="page-break-after: always;"></div>
 
+## <center> <a name="RM_overview"/>Resource Management for the Cluster
 
-## <center> <a name="RM_overview"/>Cluster Resource Management
-
-<p><i>Managing cluster resources for all services is divided into three layers</i></p>
+<p><i>Managing resources cluster-wide is divided into three areas</i></p>
 
 1. <a href="#rm_service_isolation">Service-level isolation</a>
     * Sets minimum resources for all cluster services, including YARN
     * E.g., HDFS, HBase, Impala, Search, MRv1
-2. <a href="#admission_control">Using Admission Controls</a>
+2. <a href="#admission_control">Admission Control for Impala</a>
     * Resource priority based on request, service type
-    * Same approach as the Impala service
-3. <a href="#dynamic_prioritization">Dynamic prioritization</a>
-    * Allocating resources per job by rule
+    * Prevent memory overruns
+3. <a href="#dynamic_prioritization">Dynamic Resource Pools for YARN</a>
+    * Weight resources among pools by scheduling rules
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="rm_service_isolation"/>Service-level Isolation (cgroups)
 
-* Sets a coarse, minimum percentage of resources per service
-    * Percentages are enforced under contention
-* Cloudera Manager uses [Linux Control Groups](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_cgroups.html), so controls are limited by OS support
-    * Could support CPU, memory, disk I/O, and network limits, if available
-    * *Cluster > ClusterName > Static Service Pools*
-    * [A hands-on intro to cgroups](http://riccomini.name/posts/hadoop/2013-06-14-yarn-with-cgroups/)
+* Assures each service a percentage of cluster resources
+  * Enforced under contention
+* Cloudera Manager implements this through [Linux Control Groups](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_cgroups.html)
+  * Resources controls are limited to Linux support
+  * Could support CPU, memory, disk I/O, and network limits, if available
+  * `Cluster > ClusterName > Static Service Pools`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="rm_admission_control"/> Moderating YARN and Impala needs
+## <center> <a name="rm_admission_control"/> Regulating YARN and Impala demands
 
-* [Throttle and queue control for Impala queries only](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/Impala/Installing-and-Using-Impala/ciiu_admission.html)
-* Enabled by default with Impala 1.3 and later
-* There are three documented models for sharing resources between Impala and YARN 
-    1. Define minimum resources for YARN and Impala under contention (Static Service Pools)
-    2. YARN defines a pool for Impala; Impala applies Admission Controls
-    3. YARN manages Impala through LLAMA (support dropped in CDH 5.6)
-* CM supports [Dynamic Resource Pools](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_resource_pools.html)
-    * A <i>configuration sets</i> is used to define a client group (e.g., prod, mktg, batch, queries)
-    * Some <i>scheduling rules</i> inform the configuration set's policy
-    * Pool resources may be governed by user permissions, query count, queue size, memory demand
-* See *Cluster > ClusterName > Dynamic Resource Pools*
+* [Admission control for Impala queries](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/Impala/Installing-and-Using-Impala/ciiu_admission.html)
+  * On by default for Impala 1.3 and later
+* Cloudera Manager supports [Dynamic Resource Pools](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_resource_pools.html)
+    * A <i>configuration set</i> is used to define a client group (e.g., prod, mktg, batch, queries)
+    * <i>Scheduling rules</i> inform the configuration set's policy
+    * Pool resources are determined by user permissions, query count, queue size, memory demand
+* See `Cluster > ClusterName > Dynamic Resource Pools`
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> More on Admission Control </center>
 
-* Impala and YARN use the same pool definitions 
+* Impala and YARN use the same pool definitions
 * Three decisions: execute, queue, or reject a query
 * Decision factors:
     * Currently running queries
@@ -182,7 +166,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="rm_dynamic_prioritization"/> A Word on Dynamic Prioritization 
+## <center> <a name="rm_dynamic_prioritization"/> A Word on Dynamic Prioritization
 
 * <strong>L</strong>ow-<strong>L</strong>atency <strong>A</strong>pplication <strong>MA</strong>ster ([LLAMA](http://cloudera.github.io/llama/)) for Impala
     * Released with CDH5 as a beta component
@@ -200,53 +184,71 @@
 
 ## <center> Current Practices for YARN & Impala
 
-* Keep alert to best practice updates
-    * Set and monitor Static Resource Pools to manage contention
-    * Use Admission Control with Impala to specify priorities and enforce limits
-* Advise customers the LLAMA experiment is over
+* Look in every minor release for best practice updates
+  * Set and monitor Static Resource Pools to limit hogging and prevent starvation
+  * Use Admission Control with Impala to cap number of concurrent queries
+* Notify customers that LLAMA is done
+  * No replacement on the roadmap
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> YARN/RM Lab: Doing the Math
 
-* Review the [YARN tuning guide](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_yarn_tuning.html)
+Cloudera's [public YARN
+guide](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_yarn_tuning.html)
+is too complicated to digest quickly. The spreadsheet from that
+guide is [in your git repository for review](tools/yarn-tuning-guide.xlsx).
 
-* Given a cluster with 20 vcores, 128 GB RAM, and 12 spindles each on ten worker nodes:
-    * Calculate the estimated value for <code>mapreduce.jobs.maps</code>
-    * Copy the worksheet with your values into <code>resources/labs/0_YarnCalcs.xlsx</code> 
+For this back-of-the-envelope exercise, we'll use a [simpler, less
+exacting form](tools/YARNCalcs.xlsx).
+* Numbers in blue quantify the hardware attributes of your cluster
+* Numbers in pink are calculated; see the formula for each cell
+* Numbers in black either:
+  * Quantify the need of a service
+  * Represent a reasonable default<p>
 
----
+Suppose you have a cluster with ten worker nodes. Each worker node has:
+* Twenty vcores
+* 128 GB RAM
+* Twelve disks for DataNode use<p>
+
+1. Plug the hardware numbers for your cluster into the spreadsheet
+2. Inspect the derived/default values. Adjust as necessary.
+  * For example, if memory for the OS is too high or low, adjust the cell formula.
+  * Explain any adjustments you make in `resources/labs/0_YARNCalcs.md`
+3. What criteria affects workload factor? What does a value of 1, 2, or 4 signify?
+  * Give your answers in the same file as step 2.
+4. Capture your finished worksheet as a screenshot to `resources/labs/1_YarnCalcs.png`
 <div style="page-break-after: always;"></div>
 
 ## <center> YARN/RM Lab: Static Service Pools
 
-* In CM, navigate to YARN Applications 
-    * Click the `Charts` tab and take a screenshot.
-* Navigate to Static Service Pools
-    * Allocate 25% to HDFS and 75% to YARN; click Continue
-    * On the Step 2 of 4 page, review the sections and proposed values
-    * Complete the wizard: redeploy client configurations and restart the cluster
-    * Capture the Step 2 of 4 page after the restart
-* Add this screenshot to your repo using the file name <code>resources/labs/1_static_pools.png</code>
-
+* Navigate to the Static Service Pools page
+  * Capture the Status and Service Usage sidebars to `resources/labs/2_service_usage.png`
+* On the Configuration tab, allocate 10% to HDFS and 90% to YARN
+  * If you installed other services such as HBase or Impala, delete them first
+  * Complete the wizard and restart your cluster
+* Confirm the settings after the restart
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> YARN/RM Lab: Tuning for YARN
 
-* Testing YARN settings for your cluster
+* In this lab you'll experiment with different work parameters to
+determine which version of a common job runs fastest.
 
-* Review the file <code>resources/tools/YARNtest.sh</code> in your course repository
-* You will run this script on your Cloudera Manager node
-    * First, modify it to run correctly
-    * Make it print the tested parameter values with each run
-    * Use the loop parameters to include your calculations along with higher and lower values
-    * Use the <code>time(1)</code> command to show client time for each job
-* Run the script 
-    * You can let your highest resource request demand too much from the cluster 
-* Add the following to your repository's <code>resources/</code> directory
-    * Your improved version of the script (overwrite the existing one)
-    * The output of your slowest run in <code>labs/2_YARNslow.md</code>
-    * The output of your fastest run in <code>labs/3_YARNfast.md</code>
-* Set your Issue to `submitted` when this lab is complete.
+* Review the file `tools/YARNtest.sh`
+* Run this script from your edge node
+    * Check it first: there are 1-2 things wrong with it
+    * Modify the script to echo the parameter values for each run
+    * Incorporate the `time` command to report how long each job takes to finish
+    * Change the mapper, reducer, and container memory parameters to emulate different resource demands
+* Run the script: your most demanding job should try to max out the cluster
+* Add the following to your `resources/labs` directory
+    * Your modified version of the script as `3_YARNtest.sh.md`
+    * The parameters used and times of your slowest and fastest runs in `4_YARN_results.md`
+* In CM, navigate to YARN Applications
+    * Select the `Charts` tab and take a screenshot.
+    * Save it to `resources/labs/5_YARN_Charts.png`
+* Set your Issue to `submitted` when it is finished.

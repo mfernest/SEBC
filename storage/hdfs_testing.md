@@ -148,7 +148,7 @@ DataNodes track blocks and report cache state to the NameNode
 ```
 $ hdfs cacheadmin -listPools -stats mfe
 ...
-$ hdfs dfsadmin -report
+$ sudo -u hdfs hdfs dfsadmin -report
 ...
 ```
 
