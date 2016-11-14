@@ -6,8 +6,8 @@
 ---
 
 # <center> FCE Boot Camp </center>
-## <center> October 10-14, 2016 </center>
-## <center> Palo Alto, CA </center>
+## <center> November 14-18, 2016 </center>
+## <center> Munich, Germany </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -23,8 +23,8 @@
 
 ## <center> <a name="instructor"/> Instructors & Students
 
-* Michael Ernest (Senior Learning Architect)
-* Daniel Rule (Senior Solutions Architect)
+* Michael Ernest (Senior Learning Architect) - mfernest
+* Jan Kunigk (Senior Solutions Architect) - jqnik
 * Please introduce yourselves:
     * Name
     * Region & Role
