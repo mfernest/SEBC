@@ -206,12 +206,12 @@ exacting form](tools/YARNCalcs.xlsx).
 * Numbers in pink are calculated; see the formula for each cell
 * Numbers in black either:
   * Quantify the need of a service
-  * Represent a reasonable default<p>
+  * Represent a reasonable default
 
 Suppose you have a cluster with ten worker nodes. Each worker node has:
 * Twenty vcores
 * 128 GB RAM
-* Twelve disks for DataNode use<p>
+* Twelve disks for DataNode use
 
 1. Plug the hardware numbers for your cluster into the spreadsheet
 2. Inspect the derived/default values. Adjust as necessary.
@@ -220,6 +220,8 @@ Suppose you have a cluster with ten worker nodes. Each worker node has:
 3. What criteria affects workload factor? What does a value of 1, 2, or 4 signify?
   * Give your answers in the same file as step 2.
 4. Capture your finished worksheet as a screenshot to `resources/labs/1_YarnCalcs.png`
+
+---
 <div style="page-break-after: always;"></div>
 
 ## <center> YARN/RM Lab: Static Service Pools
@@ -230,6 +232,7 @@ Suppose you have a cluster with ten worker nodes. Each worker node has:
   * If you installed other services such as HBase or Impala, delete them first
   * Complete the wizard and restart your cluster
 * Confirm the settings after the restart
+
 ---
 <div style="page-break-after: always;"></div>
 
