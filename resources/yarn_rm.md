@@ -213,12 +213,13 @@ Suppose you have a cluster with ten worker nodes. Each worker node has:
 * 128 GB RAM
 * Twelve disks for DataNode use
 
+Do the following:
 1. Plug the hardware numbers for your cluster into the spreadsheet
 2. Inspect the derived/default values. Adjust as necessary.
   * For example, if memory for the OS is too high or low, adjust the cell formula.
   * Explain any adjustments you make in `resources/labs/0_YARNCalcs.md`
 3. What criteria affects workload factor? What does a value of 1, 2, or 4 signify?
-  * Give your answers in the same file as step 2.
+  * Put your answers in the same file as step 2.
 4. Capture your finished worksheet as a screenshot to `resources/labs/1_YarnCalcs.png`
 
 ---
