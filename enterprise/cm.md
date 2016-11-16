@@ -23,9 +23,9 @@
 * Wizards include
     * Express Install
     * Add Service/Role
-    * Upgrade CM and CDH
+    * Upgrade CDH
     * Enable HA (NameNode, Oozie, YARN RM)
-* Some useful ones are buried here and there
+* Some useful things are less visible
     * <code><i>Service</i>->Instances->Add Role Instances->View By Host</code> (button)
 -->
 
@@ -42,9 +42,10 @@
 ## <center> Cloudera Manager Server Implementation
 
 * Written in Java
-* Hooks & client APIs [are available](https://github.com/cloudera)
-* Database preparation scripts: `/usr/share/cmf/schema`
-* Command-line parameters: `/etc/default/cloudera-scm-server`
+* Closed-source (even internally)
+  * Hooks & client APIs are [published here](https://github.com/cloudera)
+* Database initialization scripts: `/usr/share/cmf/schema`
+* Command-line start parameters: `/etc/default/cloudera-scm-server`
 
 ---
 <div style="page-break-after: always;"></div>
@@ -55,7 +56,7 @@
 * Configuration file: `/etc/cloudera-scm-agent/config.ini`
 * Resources: `/usr/lib64/cmf/agent`
 * Process control: `/var/run/cloudera-scm-agent`
-    * Config files for CDH services are under `process/`
+    * Configuration files for CDH services are located under `process/`
 * Uses [supervisord](http://supervisord.org/) for process control
 
 ---
@@ -64,13 +65,13 @@
 ## <center> Notes on Cloudera Manager vocabulary<p>
 
 * [Philip Zeyliger's blog article on CM's design and operation](http://blog.cloudera.com/blog/2013/07/how-does-cloudera-manager-work/)  
-* CM uses [service descriptors](http://cloudera.github.io/cm_api/docs/cm-concepts/) that evolve as new features emerge
+* CM uses [service descriptors](http://cloudera.github.io/cm_api/docs/cm-concepts/) that evolve as features are added
     * [Primer for CM 4](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_primer.html)
     * [Primer for CM 5](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_intro_api.html)
-* For deep-divers: compare the API for [4.7](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_api.html) (v5), with [5.x](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_api.html), (v6, v7)
+* You can compare the API for [4.7](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/latest/Cloudera-Manager-Introduction/cmi_api.html) (v5), with [5.x](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Introduction/cm5i_api.html), (v6, v7)
 * Example terms
-    * Canary: a smoke test
-    * Safety valve: window for additional service properties
+    * Canary: a smoke test for predictive failure
+    * Safety valve: edit window to hack in missing/misspelled configuration properties
 
 ---
 <div style="page-break-after: always;"></div>
@@ -78,14 +79,12 @@
 ## <center> <a name="cm_search_bar"/> CM Search Bar Features
 
 * Search bar in the upper right expands when selected
-* The "/" hotkey forces whole-term match; otherwise partial-word
-    * Try `/sq` vs. `sq`
-* Searching a property name returns a config link
+* Searching a property name (or colloquial term) returns a `config` link
     * Try `dfs.datanode.max.xciever`
     * Then try `Transceiver`
-* Use the Configuration tab for any service for a context-limited search
-    * Go to the HDFS Configuration tab and type `locked`
-* Notice each search result has a <i>type</i>
+* The Configuration tab for a service limits the search context
+    * Type `locked` into the HDFS Configuration search bar
+* Each search result has an object type
 
 ---
 <div style="page-break-after: always;"></div>
@@ -112,10 +111,10 @@ Enter an object type in the search bar
 * Administration -> Users
     * Adding users recommended to differentiate admins
     * Supports role-based access limits
-* CM 5.7 supports 11 roles
+* CM defines eleven roles
 * `Administration -> Users -> Add Users` button
     * Select a role to see a description of its scope
-    * Privileges per role are show in documentation
+    * Privileges per role are shown in documentation
 
 ---
 <div style="page-break-after: always;"></div>
@@ -127,8 +126,8 @@ Enter an object type in the search bar
     * Reports context (service), command status, start and finish times.
 * Use the Audits tab to find past events
     * Available in home, service, role, and host instance pages
-    * Time range filter from last 30m to last 30d (as of CM 5.1)
-    * [Several other filters available](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_audits.html)
+    * Time range filter from last 30m to last 30d 
+    * [Several filters available](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_audits.html)
 * Logs can also be downloaded
 
 ---
@@ -141,8 +140,6 @@ Enter an object type in the search bar
     * [Health for services, roles](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_service_monitoring.html)
     * [Resource management](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_resource_management_monitoring.html)
     * Directory free space
-    * (MRv1) Activity
-        * Includes job duration thresholds
     * YARN Applications
         * Visibility settings
     * Impala Queries
@@ -188,14 +185,14 @@ Enter an object type in the search bar
 * Charts are searchable by type or name
     * Try "canary duration"
 * Chart builder and dashboard editor: CM -> Charts
-    * [Documentation, CDH 5.1.1](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_chart_time_series_data.html)
-    * A set of charts is called a [view](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.7.1/Cloudera-Manager-Diagnostics-Guide/cmdg_views.html) in 4.x, a [dashboard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_dashboards.html) in 5.x
+    * [Documentation](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_chart_time_series_data.html)
+    * A user's collection of charts is a [view](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM4Ent/4.7.1/Cloudera-Manager-Diagnostics-Guide/cmdg_views.html) in 4.x, a [dashboard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_dashboards.html) in 5.x
 * [Metric aggregations](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Diagnostics-Guide/cm5dg_metric_aggregation.html)
-    * metric + timestamp pair + aggregating functions (min, max, avg, and stddev)
-    * Sampling interval is determined by the monitor (Service or Host)
-* Some 'cross-entity' aggregations provided
-    * Cross-entity examples: all datanodes in the cluster, all datanodes in one rack
-    * Aggregate examples: <code>fd_open_across_datanodes, total_fd_open_across_datanodes</code>
+    * metric-timestamp pair + aggregating function (min, max, avg, and stddev)
+    * Sampling interval is fixed by the monitor (Service or Host)
+* Some 'cross-entity' aggregations are available
+    * E.g., all datanodes in the cluster, all datanodes in one rack
+    * Aggregate version: <code>fd_open_across_datanodes, total_fd_open_across_datanodes</code>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -214,15 +211,16 @@ Enter an object type in the search bar
 
 ## <center> <a name="cm_api_sampler">Sample CM API calls</a>
 
-* Version-based tours: cloudera.github.io/cm_api/apidocs/v[4567]/tutorial.html
-    * Not a lot of variation from one to the next -- a good thing.
-* [Examples using curl](http://cloudera.github.io/cm_api/docs/quick-start/)
-* [Examples using Python](http://cloudera.github.io/cm_api/docs/python-client/)
-* [Example using Java](http://cloudera.github.io/cm_api/docs/java-client/)
+* Tutorials built per version
+  * [Version 13](http://cloudera.github.io/cm_api/apidocs/tutorial.html)
+* Plenty of examples
+  * [With curl](http://cloudera.github.io/cm_api/docs/quick-start/)
+  * [Using Python](http://cloudera.github.io/cm_api/docs/python-client/)
+  * [Java](http://cloudera.github.io/cm_api/docs/java-client/)
 * Mark Brooks's script for [listing cluster service ports](https://github.com/onefoursix/cm-get-ports)
-* Some often talked-about goals with the API
-    * Fully automated, client-driven CM/CDH install
-    * Dynamic multi-tenancy monitoring, utilization and tuning
+* Other long-range goals with the API
+    * Scripted CDH install
+    * Predictive multi-tenancy monitoring, utilization and tuning
     * The holy grail: [chargebacks](http://en.wikipedia.org/wiki/IT_chargeback_and_showback)
 
 ---
@@ -230,17 +228,14 @@ Enter an object type in the search bar
 
 ## <center> Note on [Custom Service Descriptors](https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
 
-* Cloudera uses parcels to bundle CDH and other software
-* We use CSDs to integrate software with Cloudera Manager's services
+* Cloudera uses parcels to simply adding services via CM 
+* CSDs integrate the software with Cloudera Manager's feature set
     * Monitoring and charting
-    * Resource management (cgroups)
-    * Service lifecycle controls
-    * Property configuration
-    * Host/role assignments
-* A customer may ask about using CSDs
-    * We do encourage adding third-party apps to HUE
-    * But CM features are admin-driven, not user-driven
-    * [One partner says they're useful](http://blog.cloudera.com/blog/2014/04/how-to-extend-cloudera-manager-with-custom-service-descriptors/) for supporting gateway/edge nodes
+    * Managing resources (Static Service Pools)
+    * Service lifecycle control
+    * Publishing service properties 
+    * Assigning services and roles to hosts 
+    * [Useful for creating gateway roles](http://blog.cloudera.com/blog/2014/04/how-to-extend-cloudera-manager-with-custom-service-descriptors/) 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -295,4 +290,3 @@ _Use CM to answer the following questions. For some questions, search will help 
   * List all CM users
   * Report the database server in use by CM
 * Add these API calls and their output to `enterprise/labs/4_API_upgrade_calls.md`
-
