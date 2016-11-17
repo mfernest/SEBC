@@ -192,7 +192,7 @@ Enter an object type in the search bar
     * Sampling interval is fixed by the monitor (Service or Host)
 * Some 'cross-entity' aggregations are available
     * E.g., all datanodes in the cluster, all datanodes in one rack
-    * Aggregate version: <code>fd_open_across_datanodes, total_fd_open_across_datanodes</code>
+    * Aggregate version: `fd_open_across_datanodes, total_fd_open_across_datanodes`
 
 ---
 <div style="page-break-after: always;"></div>
@@ -211,8 +211,9 @@ Enter an object type in the search bar
 
 ## <center> <a name="cm_api_sampler">Sample CM API calls</a>
 
-* Tutorials built per version
+* Tutorials available for each version
   * [Version 13](http://cloudera.github.io/cm_api/apidocs/tutorial.html)
+  * CM versions are [mapped to API versions here](http://cloudera.github.io/cm_api/docs/releases/)
 * Plenty of examples
   * [With curl](http://cloudera.github.io/cm_api/docs/quick-start/)
   * [Using Python](http://cloudera.github.io/cm_api/docs/python-client/)

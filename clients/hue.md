@@ -31,8 +31,8 @@
 
 ## <center> Current Version & Resources
 
-* HUE 3.10 released in May, 2016
-    * Apache licensed (but not an ASF project)
+* C5.9 ==> [Hue 3.11](http://gethue.com/category/3-11/)
+    * Apache-licensed, not an ASF project
     * Ported to HDP, MapR, Pivotal, IBM Big Insights
 * [Online demo available](http://demo.gethue.com/)
 * Drives [Cloudera Live](http://www.cloudera.com/content/cloudera/en/products-and-services/cloudera-live.html)
