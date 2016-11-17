@@ -195,6 +195,11 @@
 
 ## <center> YARN/RM Lab: Doing the Math
 
+---
+<div style="page-break-after: always;"></div>
+
+## <center> YARN/RM Lab: Doing the Math
+
 Cloudera's [public YARN
 guide](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_yarn_tuning.html)
 is too complicated to digest quickly. The spreadsheet from that
