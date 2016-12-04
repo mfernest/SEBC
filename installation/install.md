@@ -70,13 +70,13 @@ The Cloudera Manager server supports
 ## <center> <a name="cm_install_logging"/>Installation Milestones with Path A []()
 
 * Quits if SELinux is enabled 
-* Installs YUM repositories for [CM packages:](http://archive.cloudera.com/cm5/redhat/5/x86_64/cm/5/RPMS/x86_64/)
-   * Embedded database server
+* Installs YUM repos for [CM packages:](http://archive.cloudera.com/cm5/redhat/5/x86_64/cm/5/RPMS/x86_64/)
+   * Postgres server (dedicated version)
    * Oracle JDK
-   * Cloudera Manager 
+   * Cloudera Manager server and agents 
 * Installs the packages
 * Creates a cluster, deploys services on designated hosts
-  * Some "smart" configuration is done for you
+  * "Smart" configuration is done for you
 
 ---
 <div style="page-break-after: always;"></div>
@@ -85,7 +85,6 @@ The Cloudera Manager server supports
 
 * Careful review of hardware, OS, disk, and network/kernel settings
 * Install supported Oracle JDK
-    * Repo points to earliest-acceptable update
 * Install/configure [database server](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html?scroll=cmig_topic_5_2_unique_1#cmig_topic_5_1_unique_1)
   * Configure server to customer requirements
 * Create databases, connect the CM server to them
@@ -197,25 +196,26 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 
 ## <center> CM Install Lab
 
-* Let's agree on one AWS region and Availability Zone for the course.
-  * If you share a VPC with others in the room, that's also fine.
-* For AWS, create five `m3.xlarge` nodes
+* Use the same AWS region and Availability Zone as your neighbors
+* Create five `m3.xlarge` nodes
   * Do not use spot instances
+  * **Learn how to increase your volume space** The AWS default 8 GB.
 * For GCE, create five `n1-highmen-2` nodes
   * Do not use preemptible instances
-* Be sure to choose a [<strong>Cloudera-supported OS</strong>](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html)
+* Make sure your AMI uses a [<strong>Cloudera-supported OS</strong>](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html)
 * Use one instance for the Cloudera Manager server and 'edge' CDH services
-  * Edge services we will need include Hue and Oozie
+  * Edge services include Hue and Oozie
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Labs - Path B Installation Overview
 
-* Add your node names & IP addresses to `installation/0_nodeIPs.md`
+* List your node names & IP addresses in `installation/0_nodeIPs.md`
 * Document your system checks in `installation/1_preinstall.md`
 * Install a MySQL server and replica
-* Install the latest available release of CM & CDH
+* Install Cloudera Manager
+  * CM provides an installation wizard for CDH
 * <a href="#parcels_repo_lab">Bonus: create a Parcels repository</a>
 
 ---
@@ -224,9 +224,9 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 ## <center> CM Install Lab
 ## <center> <a name="linux_config_lab"/>System Configuration Checks
 
-In a professional services engagement, Cloudera walks a customer
-through a questionnaire and supplies a guide to verify hardware,
-networking, OS configuration, disk mounts, and other properties.
+Before a professional services engagement, Cloudera sends the
+customer a questionnaire to verify hardware, networking, OS
+configuration, disk mounts, and other properties.
 
 Using the steps below, verify the settings of your instances. If
 necessary, modify them according to the instruction. In your

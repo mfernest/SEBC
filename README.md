@@ -1,45 +1,41 @@
-# <center>Services Enablement Boot Camp
+# <center>Services Enablement Boot Camp 
+# <center> 
 
 This repository holds the course materials for Cloudera's Services
 Enablement Boot Camp.
 
-To follow the course and submit lab work, fork this repo (if you
-have direct access), then clone your fork to a local machine.  Edit
-your clone to add lab work, commit changes, and push to your fork
-on GitHub.
+If you've received this repo as a ZIP file via email, please follow
+the instructions that were included to initialize your repo.
 
-You may also receive this repository as a ZIP file, along with
-instructions on how to set things up.
-
-You have the option of making your GitHub repo Private or Public.
-It does not matter to the course which option you use.
+You can make your GitHub repo Private or Public.  It does not matter
+to the course which option you use.
 
 <strong>NOTE</strong>: GitHub lets you upload new files and edit
-existing files directly.  Please don't do this. Use your GitHub
-repo as a store for your published lab work. Several students have
-lost work by making changes against  their GitHub repo in lieu of
-keeping a local copy.
+them online. Don't do this. Use your GitHub repo as a destination
+for your published lab work. Make sure at all times that the most
+recent version of your work is on your laptop.
 
 Make your instructors Collaborators on your GitHub repo. This
-privilege lets them see the repo if it is private. A Collaborator
-can also edit files. If we do this, we'll write the changes to
-a branch and issue a Pull Request. You can review the PR and decide
-how to handle it.
+privilege lets them see the repo and create branches of revised
+content. If you're unfamiliar with git, we'll review the process
+of managing content as part of class.
 
-We will use GitHub Issues to track your lab progress. For each
-section, we'll ask you to create one Issue and use it to log your
-progress. We will also use GitHub Labels to show the state of your
-labs (e.g., started, submitted, evaluated) and Milestones to separate
-Issues into broad categories.
+We will use GitHub's Issues feature to track your progress. For
+each section, we'll ask you to create one Issue and use it to log
+your progress. We will use GitHub Labels to mark the state of
+each lab (e.g., started, submitted, evaluated). Finally, we'll use
+GitHub's Milestones to categorize your lab and challenge work. 
 
 In a large class, it may take time for an instructor to assist you.
-Include in your current Issue any information that helps define the
-problem or question you have. This could include copying an error
-message or stack trace to the Issue dialog, or capturing a screen
-that is confusing. This way you don't have to keep the details in
-mind and can pursue other exercises.
+If you have a problem in lab, describe in your current Issue what
+the problem is. This comment could include copying an error message
+or stack trace into the Issue dialog, or capturing a screen that
+shows your cluster's condition. This way you don't have to keep the
+details in mind until you get some help.
 
-In sum, make the following changes before you start lab work.
+Before you look at the content or start lab work, make the following
+changes to your GitHub repo settings:
+
 * Add your collaborators under `Settings -> Collaborators`.
 * Enable `Issues` under `Settings -> Options`. Click the `Features` box and check `Issues`.
 * Click the `Issues` tab and the `Milestones` button
