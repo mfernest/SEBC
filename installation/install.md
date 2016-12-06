@@ -214,8 +214,8 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 
 ## <center> CM Install Labs - Path B Installation Overview
 
-* List your node names & IP addresses in `installation/0_nodeIPs.md`
-* Document your system checks in `installation/1_preinstall.md`
+* List your node names & IP addresses in `labs/0_nodeIPs.md`
+* Document your system checks in `labs/1_preinstall.md`
 * Install a MySQL server and replica
 * Install Cloudera Manager
   * CM provides an installation wizard for CDH
@@ -236,7 +236,7 @@ necessary, modify them according to the instruction. In your
 documentation, show the commands used to observe each property. If
 you change it, list also the command you used to do so.
 
-Capture this work in the file `installation/1_preinstall.md`. You
+Capture this work in the file `labs/1_preinstall.md`. You
 only need to show results for one host.
 
 1. Check `vm.swappiness` on all your nodes
@@ -299,7 +299,7 @@ or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topi
     a. <code>mysql> **START SLAVE;**</code><br>
     b. <code>mysql> **SHOW SLAVE STATUS \G**</code><br>
     c. If successful, the <code>Slave_IO_State</code> field will read <code>Waiting for master to send event</code><br>
-    d. Once successful, capture this output and store it in <code>installation/2_replica_working.md</code><br>
+    d. Once successful, capture this output and store it in <code>labs/2_replica_working.md</code><br>
     e. Review your log (<code>/var/log/mysqld.log</code>) for errors. If stuck, consult with a colleague or instructor.<p>
 
 ---
@@ -326,7 +326,7 @@ Ensure you adhere to the following requirements:
 * Deploy three ZooKeeper instances.
     * CM prompts you to install one by default
 * Once you've renamed your cluster and it is healthy, take a screenshot of the home page
-    * Name the file `installation/3_cm_installed.png`.
+    * Name the file `labs/3_cm_installed.png`.
 * Mark your Issue 'submitted' now if your're done; otherwise wait
 until you complete the Bonus Lab.
 
@@ -344,7 +344,7 @@ until you complete the Bonus Lab.
     * Standalone components, such as Accumulo and Kafka
 * Follow the [documentation](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_create_local_parcel_repo.html)
 * Set the local repository URL in Cloudera Manager
-* Capture this setting in a screenshot and save it to `installation/4_local_repo.png`
+* Capture this setting in a screenshot and save it to `labs/4_local_repo.png`
 * Mark your Issue `submitted`
 
 ---
