@@ -199,10 +199,13 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 * Use the same AWS region and Availability Zone as your neighbors
 * Create five `m3.xlarge` nodes
   * Do not use spot instances
-  * **Learn how to increase your volume space** The AWS default 8 GB.
+  * **Learn how to increase your volume space** 
+    * The AWS default is 8 GB.
 * For GCE, create five `n1-highmen-2` nodes
   * Do not use preemptible instances
-* Make sure your AMI uses a [<strong>Cloudera-supported OS</strong>](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_cm_requirements.html)
+* Make sure your AMI uses a Cloudera-supported OS
+  * Requirements are listed per release on the download page
+  * For example, platforms for [CM 5.9.0](http://www.cloudera.com/downloads/manager/5-9-0.html)
 * Use one instance for the Cloudera Manager server and 'edge' CDH services
   * Edge services include Hue and Oozie
 
@@ -270,8 +273,8 @@ or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topi
     * Install the <code>mysql</code> package on all nodes
     * Install <code>mysql-server</code> on the server and replica nodes
     * Download and copy [the JDBC connector](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-binary-installation.html) to all nodes. 
-2. You should not need to edit your <code>/etc/my.cnf</code> file
-    * Consult your MySQL documentation for enabling replication.<p>
+2. You will not need to create a <code>/etc/my.cnf</code> file to start MySQL
+    * But you will need to add properties to support replication. Check MySQL documentation.<p>
 3. Start the <code>mysqld</code> service.
 4. Use <code>/usr/bin/mysql_secure_installation</code> to:<br>
     a. Set password protection for the server<br>
