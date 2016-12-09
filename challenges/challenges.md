@@ -6,7 +6,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - November 18, 2016 - Munich, Germany
+# <center> Challenges - December 9, 2016 - Singapore, Singapore
 
 * Overview
     * Build a CM-managed CDH cluster and secure it
@@ -32,17 +32,17 @@
 * In the file `challenges/labs/0_setup.md`:
     * List the region, AMI ID, and OS you are using 
     * List the volume space you have available on each node
-    * The command and output for `yum repolist enabled` 
+    * List the command and output for `yum repolist enabled` 
 * Add the following Linux accounts to all nodes
-    * User `bavaria` with a UID of `2700`
-    * User `saxony` with a UID of `2800`
-    * Create the group `democratic` and add `saxony` to it
-    * Create the group `social` and add `bavaria` to it
-* List the `/etc/passwd` entries for `bavaria` and `saxony` in your setup file
-* List the `/etc/group` entries for `democratic` and `social` in your setup file
+    * User `raffles` with a UID of `2700`
+    * User `orchard` with a UID of `2800`
+    * Create the group `shops` and add `orchard` to it
+    * Create the group `walks` and add `raffles` to it
+* List the `/etc/passwd` entries for `raffles` and `orchard` in your setup file
+* List the `/etc/group` entries for `shops` and `walks` in your setup file
 * Push to your GitHub repo
 * Label your Issue `submitted` 
-* Assign the Issue to `mfernest` and `jqnik`
+* Assign the Issue to `mfernest` and `jamestyj`
 
 ---
 <div style="page-break-after: always;"></div>
@@ -51,13 +51,12 @@
 
 * Create the Issue `Install MySQL`
 * Assign the Issue to yourself and label it `started`
-* Install MySQL 5.6.x server on one of your instances
-    * Use the YUM repository from `dev.mysql.com`
+* Install MySQL 5.5.x server on any node you choose
+    * Download and configure the YUM repository from `dev.mysql.com`
     * Copy `/etc/yum.repos.d/mysql-community.repo` to `challenges/labs/1_mysql-community.repo.md`
 * On all cluster nodes
-    * Install the MySQL client package and the MySQL JDBC connector file.
+    * Install the MySQL client package and the MySQL JDBC connector jar.
 * Start the `mysqld` service
-* Delete the `test` database
 * Create the following databases
     * `scm`
     * `rman`
@@ -65,13 +64,12 @@
     * `oozie`
     * `hue`
     * `sentry`
-* Add the following to the file `challenges/labs/1_mysql.md`
-    * The command and output of `mysql --version`
-    * The command and output for a list of databases in MySQL
-    * The command and output for a list of grants in MySQL
+* Put the following in the file `challenges/labs/1_mysql.md`
+    * The hostname of your MySQL node 
+    * The command and output for `mysql --version`
+    * The command and output for listing MySQL databases 
 * Push this work to your GitHub repo
-* Label the Issue 'submitted` 
-* Assign the issue to the instructors
+* Label the Issue 'submitted` and assign it to both instructors
 
 ---
 <div style="page-break-after: always;"></div>
@@ -79,17 +77,18 @@
 ## <center> Challenge 2: Install Cloudera Manager
 
 * Create the Issue `Install CM`
-* Assign the Issue to yourself and label it `started`
+* Assign yourself to the Issue and label it `started`
 * Install Cloudera Manager on a different node from MySQL
-* Configure the CM repo to install the `5.7.4` release
-    * List the command and output of `ls /etc/yum.repos.d` in `challenges/labs/2_cm.md`
-    * Copy the `cloudera-manager.repo` file to `challenges/labs/2_cloudera-manager.repo.md`
+* Configure the CM repo to install the latest release
+  * List the command and output of `ls /etc/yum.repos.d` in `challenges/labs/2_cm.md`
+  * Copy the `cloudera-manager.repo` file to `challenges/labs/2_cloudera-manager.repo.md`
 * Configure Cloudera Manager
-    * Grant `scm` access to your MySQL server _only_ from the CM node (no host wildcard)
-    * Copy the `GRANT` statement you used into `challenges/labs/2_cm.md`
-    * Copy your full `scm_prepare_database.sh` command and output into the same file
-* Start the Cloudera Manager server
-    * Copy the `db.properties` file to `challenges/labs/2_db.properties.md`
+  * Use the `scm_prepare_database.sh` script to write your `db.properties` file 
+    * List the full command line in `2_cm.md`
+* Start the Cloudera Manager server. Then in `challenges/labs/2_db.properties.md`:
+  * Copy the first line from your server log
+  * Copy the log line that contains the phrase "Started Jetty server"
+  * Copy your `db.properties` file to `challenges/labs/2_db.properties.md`
 * Push to your GitHub repo and label the Issue 'submitted`
 * Assign the issue to the instructors
 
@@ -100,15 +99,14 @@
 
 * Create the Issue `Install CDH`
 * Assign the issue to yourself and label it `started`
-* Install the latest CDH release allowed; deploy Coreset services only
-* Create the file `challenges/labs/3_cm.md`
-    * Copy the statement `SHOW GRANTS FOR <database>` and the output for each of `rman`, `hive`, and `scm` into the file
-* Create user directories in HDFS for `bavaria` and `saxony`
+* Install the latest CDH release; deploy Coreset services only
+  * Rename your cluster using your GitHub handle
+* Create user directories in HDFS for `raffles` and `orchard`
 * Add the following to `3_cm.md`:
     * Command and output for `hdfs dfs -ls /user`
-    * The output from the CM API call `../api/v12/hosts` 
-* Login to the Hue console and install the Hive sample data
-    * Save a screenshot of the Hue home page into `challenges/labs/3_hue_installed.png`
+    * The output from the CM API call `../api/v14/hosts` 
+* Login to Hue and install the Hive sample data
+    * Capture the Hue home page to `challenges/labs/3_hue_installed.png`
 * Push this work to your GitHub repo and label the Issue `submitted`
 * Assign the issue to the instructors
 
@@ -119,16 +117,16 @@
 
 * Create the Issue `Test HDFS`
 * Assign the issue to yourself and label it `started`
-* As user `bavaria`, use `teragen` to generate a 51,200,000-record dataset into eight files
-    * Set the block size to 16 MB
+* As user `raffles`, use `teragen` to generate a 51,200,000-record dataset into eight files
+    * Set the block size to 64 MB
     * Name the target directory `tgen512m`
     * Use the `time` command to capture job duration
 * Put the following in the file `challenges/labs/4_teragen.md`
     * The full `teragen` command 
     * The output of the `time` command
-    * The command and output of `hdfs dfs -ls /user/bavaria/tgen512m`
+    * The command and output of `hdfs dfs -ls /user/raffles/tgen512m`
     * Show how many blocks are linked to this directory
-* Push this work to your GitHub repo and label the Issue `finished`
+* Push this work to your GitHub repo and label the Issue `submitted`
 * Assign the issue to the instructor
 
 ---
@@ -139,39 +137,40 @@
 * Create the Issue `Kerberize cluster`
 * Assign the issue to yourself and label it `started`
 * Install an MIT KDC on the same node as MySQL
-  * Name your realm after your GitHub handle in uppercase,
-  * Use your favorite country code as a suffix
-  * For example: `MFERNEST.IE`
-* Create principals for `bavaria`, `saxony`, and `cloudera-scm`
+  * Name your realm after your GitHub handle
+  * Use SG as a suffix
+  * For example: `MFERNEST.SG`
+* Create principals for `raffles`, `orchard`, and `cloudera-scm`
   * Give `cloudera-scm` the privileges needed to create principals and keytabs
-* Use Cloudera Manager to integrate Kerberos with the cluster
-* Run the `terasort` program as `bavaria` using `/user/bavaria/tgen512m`
+* Enable Kerberos for the cluster
+* Run the `terasort` program as `raffles` using `/user/raffles/tgen512m`
   * Copy the command and output to `challenges/labs/5_terasort.md`
-* Run the Hadoop `pi` program as the user `saxony`
+* Run the Hadoop `pi` program as the user `orchard`
   * Copy the command and output to `challenges/labs/5_pi.md`
-* Also submit:
-  * All the text-based files in `/var/kerberos/krb5kdc/', renamed as follows:
-    * A prefix of `5_` and extension `.md` to each file name
+*  Copy the text-based files in `/var/kerberos/krb5kdc/' as follows:
+    * Attach the prefix `5_` and the extension `.md` 
     * Example: `5_kdc.conf.md`
-    * **Format** the contents accordingly
-* Push this work to your GitHub repo and label the Issue `finished`
+* Push this work to your GitHub repo and label the Issue `submitted`
 * Assign the issue to the instructors
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - Upgrades 
+## <center> Challenge 6 - Enable Sentry 
 
-* Create the Issue `Upgrade cluster`
-* Assign the issue to yourself and label it `started`
-* Upgrade to the latest available version of Cloudera Manager
-  * Upgrade the agents
-  * Use a CM API call to report the CM version
-  * Copy the command and output into `6_cm_version.md`
-* Upgrade to the latest available version of CDH
-  * Capture the `Settings -> About` dialog to `6_cdh_version.md`
-* Push this work to your GitHub repo and label the Issue `finished`
-* Assign the issue to the instructors
+* Create the Issue `Configure Sentry`
+* Install and configure Sentry
+* Add `raffles` as a Sentry administrator
+* Login to `beeline`
+  * Create an `overlord` role that has rights to the `default` database
+    * Map the `walks` group to this role
+  * Create an `worker` role that has `SELECT` privileges on all tables in `default`
+    * Map the `shops` group to this role
+* Login to `beeline` as the principal for `orchard`
+  * List the result of `SHOW TABLES;` in `challenges/labs/6_results.md`
+* Login to `beeline` as the principal for `raffles`
+  * List the result of `SHOW TABLES;` in the same file
+* Push all work to your GitHub repo
 
 ---
 <div style="page-break-after: always;"></div>
