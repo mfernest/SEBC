@@ -147,7 +147,7 @@
   * Copy the command and output to `challenges/labs/5_terasort.md`
 * Run the Hadoop `pi` program as the user `orchard`
   * Copy the command and output to `challenges/labs/5_pi.md`
-*  Copy the text-based files in `/var/kerberos/krb5kdc/' as follows:
+*  Copy the text-based files in `/var/kerberos/krb5kdc/` as follows:
     * Attach the prefix `5_` and the extension `.md` 
     * Example: `5_kdc.conf.md`
 * Push this work to your GitHub repo and label the Issue `submitted`
