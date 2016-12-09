@@ -5,9 +5,9 @@
 
 ---
 
-# <center> FCE Boot Camp </center>
-## <center> October 10-14, 2016 </center>
-## <center> Palo Alto, CA </center>
+# <center> Service Enablement Boot Camp </center>
+## <center> December 5-9, 2016 </center>
+## <center> Singapore, Singapore </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -23,8 +23,7 @@
 
 ## <center> <a name="instructor"/> Instructors & Students
 
-* Michael Ernest (Senior Learning Architect)
-* Daniel Rule (Senior Solutions Architect)
+* Michael Ernest (Senior Learning Architect) - mfernest
 * Please introduce yourselves:
     * Name
     * Region & Role

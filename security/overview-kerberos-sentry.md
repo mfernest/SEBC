@@ -249,8 +249,7 @@
 
 ## <center> Security Lab: Implement TLS Level 1 Security
 
-* This is a [straightforward procedure](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_config_tls_encr.html) 
-    * You do not have to generate certificates
+* This is a [straightforward procedure](http://www.cloudera.com/documentation/enterprise/latest/topics/how_to_configure_cm_tls.html)
 * Copy the `config.ini` file of the agent on any host to `security/labs/config.ini.md`
     * Code-format the contents
 * Use a screen capture of CM to show TLS level 1 is enabled
