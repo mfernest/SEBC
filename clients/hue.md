@@ -122,6 +122,7 @@
 * Use a Linux account with login capability
     * Make sure the account has the same UID/GID on all cluster nodes
 * [Follow this guide](http://gethue.com/hadoop-tutorial-how-to-integrate-unix-users-and-groups/)
+    * You'll need [these notes](http://gethue.com/storing-passwords-in-script-rather-than-hue-ini-files/) to authenticate to Hue from the command line
 * Get a screenshot that shows this user is logged into Hue
     * Name the file <code>client/labs/0_unix_login.png</code>
 
