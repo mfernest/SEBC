@@ -69,14 +69,14 @@ The Cloudera Manager server supports
 
 ## <center> <a name="cm_install_logging"/>Installation Milestones with Path A []()
 
-* Quits if SELinux is enabled 
+* Exits if SELinux is enabled 
 * Installs YUM repos for [CM packages:](http://archive.cloudera.com/cm5/redhat/5/x86_64/cm/5/RPMS/x86_64/)
-   * Postgres server (dedicated version)
+   * Postgres server (embedded version)
    * Oracle JDK
    * Cloudera Manager server and agents 
 * Installs the packages
 * Creates a cluster, deploys services on designated hosts
-  * "Smart" configuration is done for you
+  * Some 'smart' configuration is done for you
 
 ---
 <div style="page-break-after: always;"></div>
@@ -197,11 +197,12 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 ## <center> CM Install Lab
 
 * Use the same AWS region and Availability Zone as your neighbors
+  * FCE staff may use CloudCat
 * Create five `m3.xlarge` nodes
   * Do not use spot instances
   * **Learn how to increase your volume space** 
     * The AWS default is 8 GB.
-* For GCE, create five `n1-highmen-2` nodes
+* For GCE, use `n1-highmen-2` nodes
   * Do not use preemptible instances
 * Make sure your AMI uses a Cloudera-supported OS
   * Requirements are listed per release on the download page
