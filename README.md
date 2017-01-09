@@ -2,23 +2,22 @@
 # <center> 
 
 This repository holds the course materials for Cloudera's Services
-Enablement Boot Camp.
+Enablement Boot Camp and FCE's internal boot camp.
 
 If you've received this repo as a ZIP file via email, please follow
-the instructions that were included to initialize your repo.
-
-You can make your GitHub repo Private or Public.  It does not matter
+the instructions that were included to initialize your repo.  You
+can make your GitHub repo Private or Public.  It does not matter
 to the course which option you use.
 
 <strong>NOTE</strong>: GitHub lets you upload new files and edit
-them online. Don't do this. Use your GitHub repo as a destination
-for your published lab work. Make sure at all times that the most
-recent version of your work is on your laptop.
+them online. Don't do this. Use your GitHub repo to publish your
+lab work only.  Make sure at all times that the most recent version
+of your work is on your laptop.
 
 Make your instructors Collaborators on your GitHub repo. This
-privilege lets them see the repo and create branches of revised
-content. If you're unfamiliar with git, we'll review the process
-of managing content as part of class.
+privilege lets them create pull requests directly on GitHub for
+your review.  If you're unfamiliar with `git`, we'll review the
+process of managing content on Monday morning.
 
 We will use GitHub's Issues feature to track your progress. For
 each section, we'll ask you to create one Issue and use it to log
