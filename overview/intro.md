@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Service Enablement Boot Camp </center>
-## <center> December 5-9, 2016 </center>
-## <center> Singapore, Singapore </center>
+# <center> FCE Boot Camp </center>
+## <center> January 9-13, 2017 </center>
+## <center> Palo Alto, California</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,6 +24,8 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
+* Andre Araujo (Senior Solutions Architect) - araujo
+* Benjamin Vera-Tudela (Senior Solutions Architect) - bveratudela
 * Please introduce yourselves:
     * Name
     * Region & Role
