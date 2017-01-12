@@ -293,5 +293,4 @@ Before you start:
 ## <center> Sentry Lab 
 
 * Install [Sentry as a Service](http://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_service_config.html)
-* Follow this [Sentry tutorial](./quick-sentry-tutorial.md)
-
+* Follow this [Sentry tutorial](./sentry-tutorial.md)
