@@ -281,6 +281,7 @@ List the commands and output for each step below in `storage/labs/2_snapshot_tes
 
 * Use the Cloudera Manager wizard to enable HA
     * Once configured, get a screenshot of the HDFS Instances tab
+        * Hint: Follow closely the [Enabling HDFS HA Using Cloudera Manager](https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_hag_hdfs_ha_enabling.html) instructions. There's more work that needs to be done besides running the wizard.
         * Name the file `storage/3_HDFS_HA.png`
 * Add a CM user and name it with your GitHub handle
     * Assign the `Full Administrator` role to this user
