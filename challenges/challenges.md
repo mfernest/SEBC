@@ -6,7 +6,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - January 13, 2017 - Palo Alto, California
+# <center> Challenges - January 27, 2017 - Remote only
 
 * Overview
     * Build a CM-managed CDH cluster and secure it
@@ -42,7 +42,7 @@
 * List the `/etc/group` entries for `hackers` and `crackers` in your setup file
 * Push to your GitHub repo
 * Label your Issue `submitted` 
-* Assign the Issue to `mfernest` and `bveratudela`
+* Assign the Issue to `mfernest` 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -51,7 +51,7 @@
 
 * Create the Issue `Install MySQL`
 * Assign the Issue to yourself and label it `started`
-* Install a MySQL 5.5.x server on one node 
+* Install a MySQL 5.5.x server on the node you listed first
     * Download, and configure the YUM repository from `dev.mysql.com`
     * Copy `/etc/yum.repos.d/mysql-community.repo` to `challenges/labs/1_mysql-community.repo.md`
 * On all cluster nodes
@@ -90,7 +90,7 @@
   * Add the log line that contains the phrase "Started Jetty server"
   * Copy your `db.properties` file to `challenges/labs/2_db.properties.md`
 * Push to your GitHub repo and label the Issue 'submitted`
-* Assign the issue to the instructors
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -108,7 +108,7 @@
 * Login to Hue and install the Hive sample data
     * Capture the Hue home page to `challenges/labs/3_hue_installed.png`
 * Push this work to your GitHub repo and label the Issue `submitted`
-* Assign the issue to the instructors
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -127,7 +127,7 @@
     * The command and output of `hdfs dfs -ls /user/donald/tgen512m`
     * Show how many blocks are associated with this directory
 * Push this work to your GitHub repo and label the Issue `submitted`
-* Assign the issue to the instructors
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -138,8 +138,8 @@
 * Assign the issue to yourself and label it `started`
 * Install an MIT KDC on the same node as the MySQL server
   * Name your realm after your GitHub handle
-  * Use FNG as a suffix
-  * For example: `MFERNEST.FNG`
+  * Use `REMOTE` as a suffix
+  * For example: `MFERNEST.REMOTE`
 * Create Kerberos principals for `donald`, `vladimir`, and `cloudera-scm`
   * Give `cloudera-scm` the privileges needed to create principals and keytabs
 * Enable Kerberos for the cluster
@@ -147,11 +147,11 @@
   * Copy the command and output to `challenges/labs/5_terasort.md`
 * Run the Hadoop `pi` program as the user `vladimir`
   * Copy the command and output to `challenges/labs/5_pi.md`
-*  Copy all text-based files in `/var/kerberos/krb5kdc/` to your repo as follows:
+*  Copy only text files in `/var/kerberos/krb5kdc/` to your repo as follows:
     * Add the prefix `5_` and the suffix `.md` 
     * Example: `5_kdc.conf.md`
 * Push this work to your GitHub repo and label the Issue `submitted`
-* Assign the issue to the instructors
+* Assign the issue to the instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -164,12 +164,14 @@
 * Login to `beeline`
   * Create an `overlord` role that has rights to the `default` database
     * Map the `crackers` group to this role
-  * Create a `strongman` role that has `SELECT` privileges on all tables in `default`
+  * Create a `strongman` role that has `SELECT` privileges only to the sample tables in `default`
     * Map the `hackers` group to this role
 * Login to `beeline` with the principal for `vladimir`
   * List the result of `SHOW TABLES;` in `challenges/labs/6_results.md`
 * Login again to `beeline` as the principal for `donald`
   * List the result of `SHOW TABLES;` in the same file
+* Push this work to your GitHub repo and label the Issue `submitted`
+* Assign the issue to the instructor
 * Push all work to your GitHub repo
 
 ---
@@ -178,14 +180,8 @@
 ## <center> Once you finish, or when time is called:
 
 * Commit any remaining changes in your repo and push them to GitHub
-* Complete [this quick survey](https://docs.google.com/forms/d/e/1FAIpQLSfBUSFtEcVFzv_9bHwh9dG8ZHzmQk6wWNLFZAVUtdMd1sgZ6g/viewform)
-* Write course feedback in `challenges/labs/7_feedback_final.md`.
-Your challenges are not evaluated unless these questions are answered:
-    * Describe the boot camp: was it useful, difficult, simple?
-    * Which topic was least familiar to you? Which topic was most familiar?
-    * Which topic did you feel was most helpful? Which topic was not useful, if any?
-    * How long before you are ready to to install a production cluster by yourself? What do you need to work on?
-* It has been a pleasure working with you this week! We hope your travel home is safe and comfortable.
+* Indicate in a follow-up email that you have stopped pushing to your repo
+  * You may continue working, if you like, after confirmation of receiving this note
 
 ---
 <div style="page-break-after: always;"></div>
