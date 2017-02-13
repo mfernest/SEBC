@@ -5,9 +5,9 @@
 
 ---
 
-# <center> FCE Boot Camp </center>
-## <center> January 9-13, 2017 </center>
-## <center> Palo Alto, California</center>
+# <center> Services Enablement Boot Camp </center>
+## <center> February 13-17, 2017 </center>
+## <center> Singapore, Singapore</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,8 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
-* Andre Araujo (Senior Solutions Architect) - araujo
-* Benjamin Vera-Tudela (Senior Solutions Architect) - bveratudela
+* Manoj Shanmugasundaram (Solutions Architect) - manojsundaram
 * Please introduce yourselves:
     * Name
     * Region & Role
@@ -72,9 +71,9 @@ sufficient to:
 
 ## <center> <a name="scored_challenges"/> Friday Morning: Challenges []()
 
-* Six challenge stages over three hours
+* Six challenge stages, three hour test period
     * Install and secure a cluster
-* The previous challenge will be available for review
+* The previous challenge is available for review
 
 ---
 <div style="page-break-after: always;"></div>
