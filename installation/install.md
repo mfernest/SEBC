@@ -30,7 +30,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Cloudera Manager architecture
+## <center> Cloudera Manager architecture </center>
 
 The Cloudera Manager server supports
     * Administrative access
@@ -39,7 +39,7 @@ The Cloudera Manager server supports
         * Requires RDBMS for Reports, Navigator services
     * Remote node monitoring
 
-<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> </center>
+<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> 
 
 ---
 <div style="page-break-after: always;"></div>
