@@ -32,6 +32,13 @@
 
 ## <center> Cloudera Manager architecture </center>
 
+<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> </center>
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Cloudera Manager features </center>
+
 * Cloudera Manager server support includes
   * Administrative console for cluster services
   * Links to package and parcel repositories
@@ -39,7 +46,6 @@
     * Needs RDBMS server for support
   * Host and Service monitoring
 
-<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> </center>
 
 ---
 <div style="page-break-after: always;"></div>
