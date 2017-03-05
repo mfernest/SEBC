@@ -6,8 +6,8 @@
 ---
 
 # <center> Services Enablement Boot Camp </center>
-## <center> February 13-17, 2017 </center>
-## <center> Singapore, Singapore</center>
+## <center> March 6-10, 2017 </center>
+## <center> Madrid, Spain</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,7 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
-* Manoj Shanmugasundaram (Solutions Architect) - manojsundaram
+* Robert Siwicki (Senior Solutions Architect) - rsiwicki
 * Please introduce yourselves:
     * Name
     * Region & Role
