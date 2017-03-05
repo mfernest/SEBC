@@ -32,14 +32,14 @@
 
 ## <center> Cloudera Manager architecture </center>
 
-The Cloudera Manager server supports
-    * Administrative access
-    * Package repository links
-    * Management Service: enterprise services & logging
-        * Requires RDBMS for Reports, Navigator services
-    * Remote node monitoring
+* Cloudera Manager server support includes
+  * Administrative console for cluster services
+  * Links to package and parcel repositories
+  * Management Services: reports, logging, auditing
+    * Needs RDBMS server for support
+  * Host and Service monitoring
 
-<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> 
+<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png">
 
 ---
 <div style="page-break-after: always;"></div>
@@ -189,17 +189,17 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 
 ## <center> CM Install Lab - Prepare EC2 or other instances
 
-* If possible, use the local AWS data center (e.g., `ap-southeast-1`)
+* If possible, use the closest available AWS data center
 * Create five `m3.xlarge` nodes
   * Do not use spot instances
   * **Set your volume space to the maximum free amount**
     * The AWS default per instance (8 GB) is not enough.
 * For GCE, use `n1-highmen-2` nodes
   * Do not use preemptible instances
-* Make sure your AMI contains a Cloudera-supported OS
+* Make sure your AMI is based on a Cloudera-supported OS
   * Requirements are listed per release on the download page
-  * For example, platforms for [CM 5.9.0](http://www.cloudera.com/downloads/manager/5-9-0.html)
-* Use one instance for the Cloudera Manager server and 'edge' CDH services
+  * For example, these platforms are supported for [CM 5.9.0](http://www.cloudera.com/downloads/manager/5-9-0.html)
+* Reserve one instance to host Cloudera Manager server and edge/client-facing services
   * Edge services include Hue and Oozie
 
 ---
@@ -208,13 +208,9 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 ## <center> CM Install Lab
 ## <center> <a name="linux_config_lab"/>System Configuration Checks
 
-Before a professional services engagement, Cloudera sends the
-customer a questionnaire to verify hardware, networking, OS
-configuration, disk mounts, and other properties.
-
 Using the steps below, verify the settings of your instances.  Modify
-them if necessary, according to the instructions. When submitting
-your work, make sure to list the commands that goes with each output.
+as necessary, according to the instructions. When submitting
+your work, **list the command that produces each output.**
 
 Capture this work in the file `labs/1_preinstall.md`. Show results
 for one host.
@@ -223,8 +219,8 @@ for one host.
     * Set the value to `1` if necessary
 2. Show the mount attributes of all volumes
 3. Show the reserve space of any non-root, `ext`-based volumes
-    * XFS volumes do not use reserve space
-4. Disable transparent hugepages
+    * XFS volumes do not maintain reserve space
+4. Disable transparent hugepage support
 4. List your network interface configuration
 5. List forward and reverse host lookups using `getent` or `nslookup`
 6. Show the <code>nscd</code> service is running
@@ -287,7 +283,7 @@ or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topi
 <div style="page-break-after: always;"></div>
 
 ## <center> CM/CDH Install Lab
-## <center> Path B install using Cloudera 5.8.2
+## <center> Path B install using Cloudera 5.8.3
 
 [The full rundown is
 here](http://www.cloudera.com/documentation/enterprise/5-8-x/topics/cm_ig_install_path_b.html#concept_qyv_bt1_v5)
