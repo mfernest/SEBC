@@ -39,7 +39,7 @@
     * Needs RDBMS server for support
   * Host and Service monitoring
 
-<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png">
+<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> </center>
 
 ---
 <div style="page-break-after: always;"></div>
