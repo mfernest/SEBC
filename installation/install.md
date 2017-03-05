@@ -32,7 +32,7 @@
 
 ## <center> Cloudera Manager architecture </center>
 
-<center> <img src="http://www.cloudera.com/content/cloudera/en/documentation/core/latest/images/cm_arch.png"> </center>
+<center> <img src="png/cm_arch.png"/> </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -45,7 +45,6 @@
   * Management Services: reports, logging, auditing
     * Needs RDBMS server for support
   * Host and Service monitoring
-
 
 ---
 <div style="page-break-after: always;"></div>
