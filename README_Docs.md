@@ -17,7 +17,7 @@ The C5.9 release comes with thirteen different documents:
 * [Introduction](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-introduction.pdf)
 * [Release Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-releases.pdf)
 * [Installation](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-installation.pdf)
-* [Upgrade]http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-upgrade.pdf()
+* [Upgrade](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-upgrade.pdf)
 * [Quickstart Guides](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-quickstart.pdf)
 * [Adminstration](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-administration.pdf)
 * [Data Management](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-datamgmt.pdf)
