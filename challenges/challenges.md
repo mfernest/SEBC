@@ -28,7 +28,7 @@
 ## <center> Challenge Setup
 
 * Create the Issue `Challenges Setup`
-* Make you have both `mfernest` and `rsiwicki` as Collaborators
+* Make sure you have both `mfernest` and `rsiwicki` as Collaborators
 * Assign the Issue to yourself and label it `started`
 * In the file `challenges/labs/0_setup.md`:
   * List the cloud provider you are using (AWS, GCE, Azure, other)
@@ -56,7 +56,7 @@
 
 * Create the Issue `Install MySQL` or `Install MariaDB` as appropriate
 * Assign the Issue to yourself and label it `started`
-* Install a MySQL 5.6 or MariaDB 5.5 server, as appropriate, on the first`node listed in `0_setup.md`
+* Install a MySQL 5.6 or MariaDB 5.5 server, as appropriate, on the first node listed in `0_setup.md`
     * Use the appropriate YUM repository to install the package.
     * Copy the repo you're using to `challenges/labs/1_my-database-server.repo.md`
 * On all cluster nodes
@@ -74,7 +74,7 @@
     * The command and output for display your database server's version
     * The command and output for listing your created databases 
 * Push this work to your GitHub repo
-* Label the Issue 'submitted` and assign it to both instructors
+* Label the Issue `submitted` and assign it to both instructors
 
 ---
 <div style="page-break-after: always;"></div>
