@@ -45,7 +45,7 @@ The course material assumes you have knowledge/experience to:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="course_objectives"/a> Course Objectives
+## <center> <a name="course_objectives"/> Course Objectives
 
 * Prepare you to install Cloudera Manager-driven clusters for production use
 * Evaluate your readiness for service engagements
@@ -54,7 +54,7 @@ The course material assumes you have knowledge/experience to:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="design_layout"/a>Course Plan
+## <center> <a name="design_layout"/>Course Plan
 
 * Seven general topics with specific, up-to-date content
     * <a href="../installation/install.md">Installation</a>
