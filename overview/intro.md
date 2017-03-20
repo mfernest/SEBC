@@ -5,8 +5,8 @@
 
 ---
 
-# <center> FCE Boot Camp </center>
-## <center> January 9-13, 2017 </center>
+# <center> Field/Partner Services Enablement Boot Camp </center>
+## <center> March 20-24, 2017 </center>
 ## <center> Palo Alto, California</center>
 
 ---
@@ -14,9 +14,9 @@
 
 ## <center> Introductions & Overview
 
-- <a href="#instructor">Instructors & Students</a>
-- <a href="#audience">Audience Assumptions</a>
-- <a href="#design_layout">Course design</a>
+* <a href="#instructor">Instructors & Students</a>
+* <a href="#audience">Audience Assumptions</a>
+* <a href="#design_layout">Course design</a>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,24 +24,22 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
-* Andre Araujo (Senior Solutions Architect) - araujo
-* Benjamin Vera-Tudela (Senior Solutions Architect) - bveratudela
 * Please introduce yourselves:
-    * Name
-    * Region & Role
-    * Your experience with Hadoop to date
+  * Name
+  * Internal: Region & Role
+  * Partner: Company & Location
+  * Your experience with Hadoop to date
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="audience"/> Audience Assumptions
 
-The course material assumes you have knowledge and experience
-sufficient to:
+The course material assumes you have knowledge/experience to:
 
-* Complete all work in Cloudera's Hadoop for Administrators Course
+* Complete all labs in Cloudera's Hadoop for Administrators Course
 * Certify as a Hadoop Administrator
-* Install/operate CDH on a multi-node cluster 
+* Install & operate CDH on a multi-node cluster 
 * Prepare a Linux platform for production use
 
 ---
@@ -49,9 +47,9 @@ sufficient to:
 
 ## <center> <a name="course_objectives"/a> Course Objectives
 
-* Prepare you to install CM/CDH clusters for production
-* Evaluate your readiness for engagements
-* Identify next steps for skills development
+* Prepare you to install Cloudera Manager-driven clusters for production use
+* Evaluate your readiness for service engagements
+* Identify next steps for your own skills development
 
 ---
 <div style="page-break-after: always;"></div>
@@ -70,20 +68,20 @@ sufficient to:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="scored_challenges"/> Friday Morning: Challenges []()
+## <center> <a name="scored_challenges"/> Friday Morning: Challenge Phase[]()
 
-* Six challenge stages over three hours
-    * Install and secure a cluster
-* The previous challenge will be available for review
+* Six stages, three-hour test period
+    * Install and secure a cluster according to given requirements
+* The previous challenge is available for review
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="scored_labs"/> Submitting Work
 
-* All work is submitted to your GitHub fork
-    * Add your instructors as Collaborators
-    * We'll review Git/GitHub tools later today
+* All work is submitted to your GitHub repo
+    * Add your instructor as a Collaborator
+    * We'll review Git/GitHub tools this morning 
     * Submit labs in Markdown or PNG screenshots as instructed
 * We score each lab/challenge as `Complete`, `Incomplete`, or `Did Not Submit`
 * The final evaluation is `Pass`, `Provisional Pass`, or `No Pass`
