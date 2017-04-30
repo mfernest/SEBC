@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Field/Partner Services Enablement Boot Camp </center>
-## <center> March 20-24, 2017 </center>
-## <center> Palo Alto, California</center>
+# <center> Cloudera Services Enablement Boot Camp </center>
+## <center> May 1-5, 2017 </center>
+## <center> Sydney, Australia</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -23,7 +23,8 @@
 
 ## <center> <a name="instructor"/> Instructors & Students
 
-* Michael Ernest (Senior Learning Architect) - mfernest
+* Michael Ernest (Senior Learning Architect) - `mfernest`
+* Carlos Piva (Senior Solutions Architect) - `cpiva`
 * Please introduce yourselves:
   * Name
   * Internal: Region & Role
