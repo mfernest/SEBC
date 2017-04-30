@@ -18,7 +18,7 @@
 
 ## <center> <a name="install_methods"/> CM/CDH Installation
 
-* We use Cloudera  Manager to:
+* We use Cloudera Manager to:
   * Monitor each member node's status 
   * Create clusters and deploy services
   * Modify service configurations
@@ -78,29 +78,30 @@
 * Exits if SELinux is enabled
 * Installs YUM repos for [CM packages:](http://archive.cloudera.com/cm5/redhat/5/x86_64/cm/5/RPMS/x86_64/)
  * Cloudera-packaged PostgreSQL server
- * Oracle JDK 
-    * Cloudera does not test/certify against OpenJDK
+ * Oracle JDK -- OpenJDK is not supported
  * Cloudera Manager server and agents
-* Install packages, configure & start Cloudera Manager
-* Wizard to create a cluster and deploys services 
+* Install packages
+* Configures & starts Cloudera Manager
+* Provides a wizard to create a cluster, deploy CDH services 
   * Some 'smart' configuration is baked in 
     * e.g., HDFS block limit default set to 128 MiB
-    * A variety of default directories
+    * Directories for various services and log files
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_milestones"/> Installation Checkpoints with Path B []()
+## <center> <a name="cm_install_milestones"/> Installation Steps with Path B []()
 
+* Verifying the platform can reveal many potential bugs
 * Review key hardware, OS, disk, and network/kernel settings
-* Install supported Oracle JDK
-* Install/configure [database server](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_installing_configuring_dbs.html)
-* Create databases & grant CM/CDH services access to them
-    * Accessing MySQL/MariaDB or Oracle requires a JDBC connector
-* CM will then
-  * Distribute agent software
-  * Distribute CDH software
-  * Deploy and activate CDH services<p>
+* Install a supported Oracle JDK
+* Install and configure a [database server](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_installing_configuring_dbs.html)
+* Create databases & grant CDH users access to them
+    * For MySQL/MariaDB or Oracle, you need a JDBC connector
+* Once CM is up and running, it automates
+  * Distributing agent software
+  * Distributing CDH software
+  * Deploying and activating CDH services<p>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -118,9 +119,9 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 * A parcel is just a tarball with its own [manifest and layout](https://github.com/cloudera/cm_ext/wiki/Building-a-parcel)
   * Content list: <code>meta/parcel.json</code>
   * CM verifies a parcel's signature via a <code>manifest.json</code>
-    * Ignores parcel location if signature doesn't match
-    * This file is stored on the repo server only
-    * Parcel files are [specific to distribution and major release[(http://archive.cloudera.com/cdh5/parcels/5.9.1/)
+    * Ignores parcel if the signature doesn't match
+    * `manifest.json` is only stored on the repo server 
+    * Each parcel file is [specific to a Linux distribution and major release[(http://archive.cloudera.com/cdh5/parcels/5.9.1/)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -142,7 +143,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
     * Activate/deactivate
     * Remove
     * Delete<p/>
-* The path <code>/opt/cloudera/parcels/CDH</code> points to the activated parcel
+* The path <code>/opt/cloudera/parcels/CDH</code> points to the active CDH parcel
 
 ---
 <div style="page-break-after: always;"></div>
@@ -179,16 +180,16 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 
 ## <center> CM Install Labs - *Before* You Start
 
-* [Follow these instructions](../README.md) if you haven't yet
-* Submit all work in Markdown format for text or PNG files for screen captures
+* [Follow instructions here](../README.md) and [here](../README_GitHub.md) if you haven't already
+* Submit text in Markdown and screenshots as PNG files 
     * Use code formatting at a minimum
 * Create an Issue in your repo called `Installation Lab`
      * Add it to the `Labs` milestone
      * Assign the label `started`
-* Use this Issue to journal your lab progress
-    * Use comments to note each section you have finished
-    * If you run into errors or other blockers, note them in the Issue
-    * Also log how you fixed it
+* Use the issue to note your lab progress
+    * Add a comment when you have finished a lab section
+    * Add a comment if you run into a puzzling error or other blocker
+    * If you also fix it a problem, comment on the cause and solution
 
 ---
 <div style="page-break-after: always;"></div>
@@ -286,24 +287,37 @@ or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topi
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM/CDH Install Lab
-## <center> Path B install using Cloudera 5.9.x
+## <center> Cloudera Manager Install Lab
+## <center> Path B install with CM 5.9.x
 
 [The full rundown is here](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_install_path_b.html)
 
-Notice that you must configure the correct repo. The default is always the latest available version (5.10).
+You will have to modify your package repo. The default repo will point to the latest version (5.11).
 
-Ensure you adhere to the following requirements:
+* Install the right Oracle JDK on your first node
+* Install the right JDBC connector on all nodes
+* Prepare the databases and access grants you will need
+* Configure Cloudera Manager to connect to the database
+* Start Cloudera Manager server -- debug as necessary
+* Do not continue on until you can browse your CM instance at port 7180
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Cloudera Manager Install Lab
+## <center> Install a cluster and deploy CDH
+
+Adhere to the following requirements while using the Cloudera Manager wizard
 
 * Do not use Single User Mode. Do not. Don't do it.
-* Ignore all steps in the CM wizard marked `(Optional)`
+* Ignore any steps in the CM wizard that are marked `(Optional)`
 * Install the Data Hub Edition
 * Install CDH using parcels
-* **Rename your cluster**: use your GitHub name
+* **Rename your cluster** using your GitHub account name
 * Deploy **only** the `Coreset` of CDH services.
 * Deploy **three** ZooKeeper instances.
-    * CM does not prompt you to do this, but complaints if you don't
-* Once you've renamed your cluster and it is healthy, take a screenshot of the home page
+    * CM will not tell you to do this, but it will complain if you don't
+* Once you've renamed your cluster and services are green healthy, take a screenshot of the CM home page
     * Name this file `labs/3_cm_installed.png`.
 * Mark your Issue 'submitted' unless you go on to the Bonus Lab.
 
@@ -333,7 +347,7 @@ Ensure you adhere to the following requirements:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_cdh_key_points"/> Summary Points
+## <center> <a name="cm_cdh_key_points"/> Final Points
 
 * See the graphic of install paths in the `tools/` subdirectory.
 * You can review a full CM HA [configuration here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
