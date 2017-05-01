@@ -20,7 +20,6 @@ Once this is done:
   * `$ git config --global user.name "<your name>"`
   * `$ git config --global user.email "<your email address>"`
   * `$ git remote add upstream <paste in GitHub URL>`
-  * `$ git pull -u upstream master`
 
 Your local git repo should now be synchronized to your GitHub repo.
 If you created files on GitHub already, however, you might have
