@@ -6,7 +6,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - March 10, 2017 - Madrid, Spain
+# <center> Challenges - May 5, 2017 - Sydney, Australia
 
 * Overview
   * Build a CM-managed CDH cluster and secure it
@@ -18,7 +18,7 @@
   * Submit only your own work!
 * Update your GitHub repo often -- don't wait until the end!
 * If you break your cluster, or your cluster breaks you:
-  * Tell an instructor (`mfernest` or `rsiwicki`)
+  * Tell an instructor (`mfernest` or `cpiva`)
   * Review the work you have pushed to GitHub
   * Create a new Issue to describe what you think happened
 
@@ -28,7 +28,7 @@
 ## <center> Challenge Setup
 
 * Create the Issue `Challenges Setup`
-* Make sure you have both `mfernest` and `rsiwicki` as Collaborators
+* Make sure you have both `mfernest` and `cpiva` as Collaborators
 * Assign the Issue to yourself and label it `started`
 * In the file `challenges/labs/0_setup.md`:
   * List the cloud provider you are using (AWS, GCE, Azure, other)
@@ -37,16 +37,16 @@
   * Demonstrate the disk capacity available on each node is >= 30 GB
   * List the command and output for `yum repolist enabled` 
 * Add the following Linux accounts to all nodes
-  * User `neymar` with a UID of `2010`
-  * User `ronaldo` with a UID of `2016`
-  * Create the group `barca` and add `ronaldo` to it
-  * Create the group `merengues` and add `neymar` to it
-* List the `/etc/passwd` entries for `neymar` and `ronaldo` 
+  * User `cate` with a UID of `2300`
+  * User `jemaine` with a UID of `2900`
+  * Create the group `kiwis` and add `jemaine` to it
+  * Create the group `aussies` and add `cate` to it
+* List the `/etc/passwd` entries for `cate` and `jemaine` 
   * Not the entire file!
-* List the `/etc/group` entries for `barca` and `merengues` 
+* List the `/etc/group` entries for `kiwis` and `aussies` 
   * Not the entire file!
 * Push these updates to your GitHub repo
-* Label your Issue `submitted` 
+* Label your Issue `review` 
 * Assign the Issue to both instructors
 
 ---
@@ -54,7 +54,7 @@
 
 ## <center> Challenge 1: Install a MySQL server
 
-* Create the Issue `Install MySQL` or `Install MariaDB` as appropriate
+* Create the Issue `Install MySQL` for RHEL/Centos 6.x or `Install MariaDB` for 7.x
 * Assign the Issue to yourself and label it `started`
 * Install a MySQL 5.6 or MariaDB 5.5 server, as appropriate, on the first node listed in `0_setup.md`
     * Use the appropriate YUM repository to install the package.
@@ -74,16 +74,16 @@
     * The command and output for display your database server's version
     * The command and output for listing your created databases 
 * Push this work to your GitHub repo
-* Label the Issue `submitted` and assign it to both instructors
+* Label the Issue `review` and assign it to both instructors
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 2: Install Cloudera Manager 5.9.x
+## <center> Challenge 2: Install Cloudera Manager
 
 * Create the Issue `Install CM`
 * Assign yourself to the Issue and label it `started`
-* Install Cloudera Manager on the second node listed in `0_setup.md`
+* Install Cloudera Manager on the first node listed in `0_setup.md`
 * Configure the CM repo to install the latest release
   * List the command and output for `ls /etc/yum.repos.d` in `challenges/labs/2_cm.md`
   * Copy the `cloudera-manager.repo` file to `challenges/labs/2_cloudera-manager.repo.md`
@@ -94,25 +94,26 @@
   * Add the complete first line from your server log
   * Add the complete line that contains the phrase "Started Jetty server"
   * Add the full contents of your `db.properties` file 
-* Push these changes to your GitHub repo and label the Issue 'submitted`
+* Push these changes to your GitHub repo and label the Issue 'review`
 * Assign the issue to both instructors
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 3 - Install CDH 5.9.x
+## <center> Challenge 3 - Install CDH 5.10
 
 * Create the Issue `Install CDH`
 * Assign the issue to yourself and label it `started`
-* Install the latest CDH release; deploy Coreset services only
-  * Name your cluster using your GitHub handle
-* Create user directories in HDFS for `neymar` and `ronaldo`
+* Deploy Coreset services + Impala
+  * Rename your cluster using your GitHub handle
+* Create user directories in HDFS for `cate` and `jemaine`
 * Add the following to `3_cm.md`:
     * The command and output for `hdfs dfs -ls /user`
-    * The output from the CM API call `../api/v14/hosts` 
+    * The command and output from the CM API call `../api/v14/hosts` 
+    * The command and output from the CM API call `../api/v6/clusters/<githubName>/services`
 * Login to Hue to install the Hive sample data
-    * Capture a Hue screen that lists the Hive tables to `challenges/labs/3_hue_hive.png`
-* Push this work to your GitHub repo and label the Issue `submitted`
+    * Capture a Hue screen that shows the Hive tables to `challenges/labs/3_hue_hive.png`
+* Push this work to your GitHub repo and label the Issue `review`
 * Assign the issue to both instructors
 
 ---
@@ -122,16 +123,16 @@
 
 * Create the Issue `Test HDFS`
 * Assign the issue to yourself and label it `started`
-* As user `neymar`, use `teragen` to generate a 65,536,000-record dataset into eight files
+* As user `cate`, use `teragen` to generate a 65,536,000-record dataset into eight files
     * Set the block size for this file to 16 MB
-    * Name the target directory `tgen640`
+    * Set the mapper container size to 512 MiB
+    * Name the target directory `tgen`
     * Use the `time` command to capture job duration
 * Put the following in the file `challenges/labs/4_teragen.md`
     * The full `teragen` command and job output 
     * The result of the `time` command
-    * The command and output of `hdfs dfs -ls /user/neymar/tgen640`
-    * The command and output to show how many blocks are stored under this directory
-* Push this work to your GitHub repo and label the Issue `submitted`
+    * The command and output of `hdfs dfs -ls /user/cate/tgen`
+* Push this work to your GitHub repo and label the Issue `review`
 * Assign the issue to both instructors
 
 ---
@@ -143,19 +144,19 @@
 * Assign the issue to yourself and label it `started`
 * Install an MIT KDC on the same node as the CM server
   * Name your realm after your GitHub handle
-  * Use `ES` as a suffix
-  * For example: `RSIWICKI.ES`
-* Create Kerberos principals for `neymar`, `ronaldo`, and `cloudera-scm`
+  * Use `AU` as a suffix
+  * For example: `CPIVA.AU`
+* Create Kerberos principals for `cate`, `jemaine`, and `cloudera-scm`
   * Grant `cloudera-scm` the privileges needed to create principals and generate keytabs
 * Enable Kerberos for the cluster
-* Run the `terasort` program as `neymar` using the output target `/user/neymar/tsort640m`
+* Run the `terasort` program as `cate` using the output target `/user/cate/tsort640m`
   * Copy the command and full output to `challenges/labs/5_terasort.md`
-* Run the Hadoop `pi` program as the user `ronaldo`
+* Run the Hadoop `pi` program as the user `jemaine`
   * Copy the command and full output to `challenges/labs/5_pi.md`
 *  Copy the **text files** stored in `/var/kerberos/krb5kdc/` to your repo:
     * Add the prefix `5_` and the suffix `.md` to the original file name
     * Example: `5_kdc.conf.md`
-* Push this work to your GitHub repo and label the Issue `submitted`
+* Push this work to your GitHub repo and label the Issue `review`
 * Assign the issue to both instructors
 
 ---
@@ -179,8 +180,8 @@
 ## <center> Once you finish, or when time is called:
 
 * Commit any outstanding changes from your repo to GitHub
-* Notify mfernest@cloudera.com that you have stopped pushing to your repo
-  * Continue working, if you like, after sending this note
+* Email `mfe@cloudera.com` that you have stopped pushing to your repo
+  * You can continue working, if you wish, after sending this note
 * Please fill out [this survey form](https://goo.gl/forms/pmHeHx03zRu3cnlc2)
 * Anything else you'd like to express about the class?
   * Please add your comments to `labs/7_feedback_final.md` -- don't forget to commit them!
