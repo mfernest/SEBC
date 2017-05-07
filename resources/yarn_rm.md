@@ -16,7 +16,7 @@
 ---
 <div style="page-break-after:always;"></div>
 
-## <center> The MapReduce service (MRv1)
+## <center> Review: The MapReduce service (MRv1)
 
 * JobTracker responsibilities
     * Schedule jobs
@@ -198,34 +198,31 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> YARN/RM Lab: Doing the Math
+## <center> YARN/RM Lab: Review the Tuning Guides
 
 Cloudera's [public YARN
 guide](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_yarn_tuning.html)
-is too complicated to digest quickly. The spreadsheet from that
-guide is [in your git repository for review](tools/yarn-tuning-guide.xlsx).
+is complicated and difficult to digest quickly. The spreadsheet is
+stored [in your git repository for easy access](tools/yarn-tuning-guide.xlsx).
 
-For this back-of-the-envelope exercise, we'll use a [simpler, less
-exacting form](tools/YARNCalcs.xlsx).
-* Numbers in blue quantify the hardware attributes of your cluster
-* Numbers in pink are calculated; see the formula for each cell
-* Numbers in black either:
-  * Quantify the need of a service
-  * Represent a reasonable default
+For a quick back-of-the-envelope exercise, you can use this [simpler,
+less thorough worksheet](tools/YARNCalcs.xlsx).
+* The numbers in blue specify the hardware attributes of a cluster's worker nodes
+* The numbers in pink are calculations; review the formula in each cell
+* The numbers in black are mostly default values
 
-Suppose you have a cluster with ten worker nodes. Each worker node has:
-* Twenty vcores
-* 128 GB RAM
-* Twelve disks for DataNode use
+Suppose you have a cluster with 20 worker nodes, each of which has:
+* 28 vcores
+* 128 GiB RAM
+* 12 independent disks available to the DataNode
 
 Do the following:
-1. Plug the hardware numbers for your cluster into the spreadsheet
-2. Inspect the derived/default values. Adjust as necessary.
-  * For example, if memory for the OS is too high or low, adjust the cell formula.
-  * Explain any adjustments you make in `resources/labs/0_YARNCalcs.md`
-3. What criteria affects workload factor? What does a value of 1, 2, or 4 signify?
-  * Put your answers in the same file as step 2.
-4. Capture your finished worksheet as a screenshot to `resources/labs/1_YarnCalcs.png`
+1. Plug the hardware numbers into spreadsheet
+2. Change the percentage of reserved memory for the OS to 10%
+3. Set Impala's CPU/memory demand to the minimum recommended value
+4. Assume HBase and Solr will not be deployed
+5. Determine an appropriate workload factor for an ingestion-heavy use case
+5. Capture your finished worksheet as a screenshot to `resources/labs/1_YarnCalcs.png`
 
 ---
 <div style="page-break-after: always;"></div>
@@ -234,7 +231,7 @@ Do the following:
 
 * Navigate to the Static Service Pools page
   * Capture the Status and Service Usage sidebars to `resources/labs/2_service_usage.png`
-* On the Configuration tab, allocate 10% to HDFS and 90% to YARN
+* On the Configuration tab, allocate 20% to HDFS and 80% to YARN
   * If you installed other services such as HBase or Impala, delete them first
   * Complete the wizard and restart your cluster
 * Confirm the settings after the restart
@@ -244,12 +241,12 @@ Do the following:
 
 ## <center> YARN/RM Lab: Tuning for YARN
 
-* In this lab you'll experiment with different work parameters to
-determine which version of a common job runs fastest.
+* In this lab, experiment with job parameters to determine which
+version of a common job runs the fastest.
 
 * Review the file `tools/YARNtest.sh`
 * Run this script from your edge node
-    * Check it first: there are 1-2 things wrong with it
+    * Check it first: there may be 1-2 things wrong with it
     * Modify the script to echo the parameter values for each run
     * Incorporate the `time` command to report how long each job takes to finish
     * Change the mapper, reducer, and container memory parameters to emulate different resource demands
@@ -260,4 +257,4 @@ determine which version of a common job runs fastest.
 * In CM, navigate to YARN Applications
     * Select the `Charts` tab and take a screenshot.
     * Save it to `resources/labs/5_YARN_Charts.png`
-* Set your Issue to `submitted` when it is finished.
+* Label your Issue `review` when the lab is finished.

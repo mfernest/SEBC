@@ -198,11 +198,10 @@ $ sudo -u hdfs hdfs dfsadmin -report
 
 ## <center> <a name="hdfs_backups"/> HDFS Backups
 
-* Cloudera Manager offers BDR (Backup and Data Recovery) under license
-* Coordinated service for backups, snapshots, and replications
-    * Configuration, monitoring, alerting services
-    * Executes `distCp` jobs under the covers
-    * Also preserves file attributes and service metadata such as HMS
+* Cloudera Manager offers BDR (Backup and Data Recovery) under its enterprise license
+* BDR offers a coordinated, hardened service for backups, snapshots, and replication
+    * Includes configuration, monitoring, and alerting services
+    * Preserves file attributes and service metadata such as HMS
 
 ---
 <div style="page-break-after: always;"></div>
@@ -215,7 +214,7 @@ $ sudo -u hdfs hdfs dfsadmin -report
     * Assign yourself to the Issue
 * These labs will have you:
     * Replicate data to another cluster
-    * Use `teragen` and `terasort` to benchmark performance
+    * Use `teragen` and `terasort` to test throughput
     * Test HDFS Snapshots
     * Enable NameNode HA configuration
 
@@ -232,31 +231,33 @@ other's nodes.
 * Name a target directory after your partner's GitHub handle
 * Use `teragen` to create a 500 MB file
 * Copy your partner's file to your target directory 
-    * Let one partner use `distCp` on the command line
-    * Let the other use BDR
+  * Let one partner use `distCp` on the command line
+  * Let the other use BDR
 * Browse the results 
-    * Use `hdfs fsck <path> -files -blocks` on your source and target directories
-    * Copy the work for this lab into `storage/labs/0_replication.md`
+  * Use `hdfs fsck <path> -files -blocks` on your source and target directories
+  * Copy the work for this lab into `storage/labs/0_replication.md`
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> HDFS Lab: Test HDFS performance
+## <center> HDFS Lab: Test HDFS throughput
 
 * Create an end-user Linux account named with your GitHub handle
-    * Create a home HDFS directory for this user as well
-    * Run the following exercises as this user
+  * Make sure this Linux account is added to all cluster nodes
+  * Create an HDFS directory under `/user` 
+  * Run the following exercises under this user account
 * Create a 10 GB file using `teragen`
-    * Set the number of mappers to four
-    * Limit the block size to 32 MB 
-    * Land the result under your user's home directory
-    * Use the `time` command to report the job's duration
+  * Set the number of mappers to four
+  * Limit the block size to 32 MB 
+  * Land the output in your user's home directory
+  * Use the `time` command to report the job's duration
 * Run the `terasort` command on this file 
-    * Use the `time` command to report the job's duration
-    * Land the result under your user's home directory
+  * Use the `time` command to report the job's duration
+  * Land the result under your user's home directory
 * Report your work in `storage/labs/1_terasort_tests.md`, including:
-    * The full `teragen` and `terasort` commands you used 
-    * The `time` result of each job 
+  * The full `teragen` and command you used and the job output
+  * The same for `terasort`
+  * Include the `time` result of each job 
 
 ---
 <div style="page-break-after: always;"></div>
@@ -289,3 +290,4 @@ List the commands and output for each step below in `storage/labs/2_snapshot_tes
     * Re-assign the `admin` user to the `Limited Operator` role
     * Take a screenshot of your users page; save it to `storage/labs/4_CM_users.png`
     * In an Issue comment, post the URL to your Cloudera Manager instance
+* Label your Issue `review`
