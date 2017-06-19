@@ -36,7 +36,7 @@
 
 ## <center> <a name="audience"/> Audience Assumptions
 
-The course material assumes you have knowledge/experience to:
+The course material assumes you have knowledge or experience to:
 
 * Complete all labs in Cloudera's Hadoop for Administrators Course
 * Certify as a Hadoop Administrator
@@ -46,16 +46,16 @@ The course material assumes you have knowledge/experience to:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="course_objectives"/a> Course Objectives
+## <center> <a name="course_objectives"/> Course Objectives
 
-* Prepare you to install Cloudera Manager-driven clusters for production use
-* Evaluate your readiness for service engagements
-* Identify next steps for your own skills development
+* Prepare you to install an EDH cluster for production use
+* Evaluate your readiness for a service engagement
+* Identify next steps in your own skills development for EDH
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="design_layout"/a>Course Plan
+## <center> <a name="design_layout"/>Course Plan
 
 * Seven general topics with specific, up-to-date content
     * <a href="../installation/install.md">Installation</a>
@@ -81,9 +81,9 @@ The course material assumes you have knowledge/experience to:
 ## <center> <a name="scored_labs"/> Submitting Work
 
 * All work is submitted to your GitHub repo
-    * Add your instructor as a Collaborator
-    * We'll review Git/GitHub tools this morning 
-    * Submit labs in Markdown or PNG screenshots as instructed
+    * Add your instructors as Collaborators
+    * We'll review git/GitHub tools in class 
+    * Use Markdown for text and PNG format for screenshots 
 * We score each lab/challenge as `Complete`, `Incomplete`, or `Did Not Submit`
 * The final evaluation is `Pass`, `Provisional Pass`, or `No Pass`
 * We evaluate your labs for

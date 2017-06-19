@@ -1,41 +1,42 @@
 ## Accepting Changes to the Course Material
 
-This is the file you're expected to read once you've unpacked your course ZIP file from the instructors.
+Read this file once you've unpacked your course ZIP file 
 
 Please make sure:
-a) You rename the top-level directory to `SEBC`
-b) You **don't** duplicate the top-level directory, e.g., `./SEBC-master/SEBC`
+a) Your repo is named `SEBC,` not `SEBC-master`
+b) The top-level directory in the repo is not `SEBC-master`
 
-Getting the path right makes it much easier for us to work through
-all repositories at one time.
+Setting the repository name and top-level directories correctly
+reduces our evaluation time a great deal. Please do not add work
+to your repository until the setup is right.
 
 Once this is done:
-* Create an empty repository called SEBC on your GitHub account. Do **not** create a `README.md` file with it.
+* Create an empty repository called `SEBC` on your GitHub account. 
+  * Do **not** create a `README.md` file to initialize it.
+* Next, right-click the `Clone or download` button to copy your repo's URL.
+* In the SEBC directory on your laptop, invoke the following:
+  * `git init`
+  * `git config --global user.name "<your name>"`
+  * `git config --global user.email "<your email address>"`
+  * `git remote add origin <paste in the GitHub URL>`
 
-Once created, click the `Clone or download` button and copy your repo's URL to the system clipboard.
+Your local git repo is now ready to <i>push</i> files to your GitHub
+repo. In the same directory on your laptop, invoke the following:
 
-* Initialize your local SEBC directory as a git repository:
-  * `$ cd SEBC`
-  * `$ git init`
-  * `$ git config --global user.name "<your name>"`
-  * `$ git config --global user.email "<your email address>"`
-  * `$ git remote add upstream <paste in GitHub URL>`
-  * `$ git pull upstream master`
+* `git status`
+* `git add .`
+* `git commit -m "Push course materials for Shanghai, May 2017"`
+* `git push -u origin master`
 
-This last step synchronizes your git repo to GitHub. If you created files on GitHub with the same name as local ones, however, they will also get overwritten. Be sure you don't have an empty `README.md` file on GitHub!
+If this completes successfully, you can browse your GitHub repo to
+see the files have copied to it. If this did not work as expected,
+please consult with an instructor.
 
-Finally, you can push your course to GitHub:
-
-* `$ git add .`
-* `$ git commit -m "Pushing course materials for Madrid, March 2017 session"`
-* `$ git push -u upstream master`
-
-Browse your GitHub version to make sure things transferred.
-
-Also, your instructors may update the course material to address
-typos or other errors. To keep things simple, we'll send you updates file(s). You're expected to copy over the file you have, add and commit the change, and all is good.
-
-**Do not** add new or changed files directly to your GitHub repository. Make the changes locally, then push them to your repository. This will avoid confusion over which repo is the most current. For our purposes, your GitHub repo should never be more current than your local one.
+As stated in `README.md`, **DO NOT** add or change files directly
+on your GitHub repo.  Make all file changes locally and push them.
+This routine will avoid synchronization problems that can occur
+when both copies have been edited in a different way at the same
+time.
 
 ---
 

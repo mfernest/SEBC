@@ -18,50 +18,50 @@
 
 ## <center> <a name="install_methods"/> CM/CDH Installation
 
-* We use Cloudera  Manager to:
-  * Monitor each member node's status 
-  * Create clusters and deploy services
-  * Modify service configurations
-  * Expedite complex tasks, such as:
-    * Update host agent software
-    * Setting up NameNode HA
-    * Integrating Kerberos & LDAP services
-    * Configure & enable HDFS Encryption
+* We use Cloudera Manager in several capacities:
+  * Deploy EDH, Kafka, or Key Trustee services
+  * Monitor the health of each managed node and its Hadoop services
+  * Modify and monitor property settings
+  * Expedite complex tasks, including:
+    * Updating Cloudera Manager server and agent software
+    * Setting up HDFS NameNode for high availability
+    * Integrating security & LDAP-based services
+    * Configuring & enabling HDFS Encryption
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Cloudera Manager architecture </center>
+## <center> CM high-level architecture </center>
 
 <center> <img src="png/cm_arch.png"/> </center>
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Cloudera Manager features </center>
+## <center> CM features </center>
 
-* Cloudera Manager server supports 
-  * Administrative console 
-  * Package and parcel repository links
+* The Cloudera Manager server provides 
+  * An administrative console 
+  * Links to Hadoop package and parcel repositories
   * Management Services: reports, logging, auditing
-    * Uses RDBMS server for support
+    * A database server is needed to support some of these functions
   * Host and Service monitoring
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_paths"/>Installation paths
+## <center> <a name="cm_install_paths"/>Cloudera's supported installation paths
 
 * [Path A: One-stop binary installer](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_a.html)
     * Useful for short-term, throwaway projects
-    * Relies on embedded, hard-configured PostgreSQL server
-* [Path B: Install CM and database manually](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
-    * Any cluster standing for more than 3-6 months
-    * Can use Oracle, MySQL/MariaDB, or PostgreSQL server
-    * Can deploy CDH using Linux packages or [CM parcels](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_parcels.html)
+    * Use an embedded PostgreSQL server
+* [Path B: Manual setup for CM and its database](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_b.html)
+    * Any cluster that will stand for more than 3-6 months
+    * Supports Oracle, MySQL/MariaDB, and PostgreSQL servers
+    * Uses Linux packages or [CM parcels](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_parcels.html)
 * [Path C: Tarballs](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_install_path_c.html)
     * DIY-oriented
-    * Useful with other deployment tools (Chef, Puppet)
+    * Useful for development work, other preferred deployment tools (Chef, Puppet)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -78,29 +78,30 @@
 * Exits if SELinux is enabled
 * Installs YUM repos for [CM packages:](http://archive.cloudera.com/cm5/redhat/5/x86_64/cm/5/RPMS/x86_64/)
  * Cloudera-packaged PostgreSQL server
- * Oracle JDK 
-    * Cloudera does not test/certify against OpenJDK
+ * Oracle JDK -- OpenJDK is not supported
  * Cloudera Manager server and agents
-* Install packages, configure & start Cloudera Manager
-* Wizard to create a cluster and deploys services 
+* Install packages
+* Configures & starts Cloudera Manager
+* Provides a wizard to create a cluster, deploy CDH services 
   * Some 'smart' configuration is baked in 
     * e.g., HDFS block limit default set to 128 MiB
-    * A variety of default directories
+    * Directories for various services and log files
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_install_milestones"/> Installation Checkpoints with Path B []()
+## <center> <a name="cm_install_milestones"/> Installation Steps with Path B []()
 
+* Verifying the platform can reveal many potential bugs
 * Review key hardware, OS, disk, and network/kernel settings
-* Install supported Oracle JDK
-* Install/configure [database server](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_installing_configuring_dbs.html)
-* Create databases & grant CM/CDH services access to them
-    * Accessing MySQL/MariaDB or Oracle requires a JDBC connector
-* CM will then
-  * Distribute agent software
-  * Distribute CDH software
-  * Deploy and activate CDH services<p>
+* Install a supported Oracle JDK
+* Install and configure a [database server](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_installing_configuring_dbs.html)
+* Create databases & grant CDH users access to them
+    * For MySQL/MariaDB or Oracle, you need a JDBC connector
+* Once CM is up and running, it automates
+  * Distributing agent software
+  * Distributing CDH software
+  * Deploying and activating CDH services<p>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -118,9 +119,9 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 * A parcel is just a tarball with its own [manifest and layout](https://github.com/cloudera/cm_ext/wiki/Building-a-parcel)
   * Content list: <code>meta/parcel.json</code>
   * CM verifies a parcel's signature via a <code>manifest.json</code>
-    * Ignores parcel location if signature doesn't match
-    * This file is stored on the repo server only
-    * Parcel files are [specific to distribution and major release[(http://archive.cloudera.com/cdh5/parcels/5.9.1/)
+    * Ignores parcel if the signature doesn't match
+    * `manifest.json` is only stored on the repo server 
+    * Each parcel file is [specific to a Linux distribution and major release[(http://archive.cloudera.com/cdh5/parcels/5.9.1/)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -142,20 +143,20 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
     * Activate/deactivate
     * Remove
     * Delete<p/>
-* The path <code>/opt/cloudera/parcels/CDH</code> points to the activated parcel
+* The path <code>/opt/cloudera/parcels/CDH</code> always points to the active CDH version
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> <a name="cm_service_dbs"/>[Database Support](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_ig_installing_configuring_dbs.html)
-* Management Services (one per CM server)
+* Management Services
   * Reports Manager
   * Navigator Audit & Metadata Servers*
-  * The Host and Service Monitors don't use a relational db
-    * Both use a [LevelDB](https://github.com/google/leveldb) implementation
+  * The Host Monitor and Service Monitor use a file-based store
+    * [LevelDB](https://github.com/google/leveldb) implementation
 * CDH services that need a database server
-    * Hive Metastore
-    * Sentry service
+    * [Hive Metastore](https://www.cloudera.com/documentation/enterprise/latest/topics/hive.html#metastore)
+    * [Sentry service](https://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_overview.html)
     * [Oozie](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_oozie_service.html#cmig_topic_14_unique_1)
     * [Hue](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_mc_hue_service.html#cmig_topic_15_unique_1)
     * [Sqoop Server](http://www.cloudera.com/documentation/enterprise/5-6-x/topics/install_sqoop_ext_db.html#concept_y53_jyf_4r), aka Sqoop2 (not discussed)
@@ -165,37 +166,36 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 
 ## <center> <a name="cm_replicate_db"/> MySQL/MariaDB Replication for HA </a></p>
 
-* A true, complete HA solution for Cloudera Manager is complex and expensive
+* A complete HA solution for Cloudera Manager is complex and expensive
 * [Public documentation is here](https://www.cloudera.com/documentation/enterprise/latest/topics/admin_cm_ha_overview.html#concept_bhl_cvc_pr)
-* A full HA solution required
-  * A load balancer between active & passive CM instances
-  * Redundant networked storage for filesystem-based stores
+* The full solution requires
+  * A load balancer between CM servers (one active, one passive)
+  * Redundant network-accessible storage 
   * Redundant database servers
   * Heartbeat Demon software (Cloudera-supported only)
-* For today's lab, we'll implement [MySQL](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html)/[MariaDB](https://mariadb.com/kb/en/mariadb/setting-up-replication/)
+* For today's lab, we'll just implement [MySQL](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html)/[MariaDB](https://mariadb.com/kb/en/mariadb/setting-up-replication/)
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Labs - *Before* You Start
 
-* [Follow these instructions](../README.md) if you haven't yet
-* Submit all work in Markdown format for text or PNG files for screen captures
-    * Use code formatting at a minimum
+* [Follow instructions here](../README.md) and [here](../README_GitHub.md) if you haven't already
+* Remember to submit text-based work in Markdown and screenshots as PNG files 
+    * Use code formatting (`<code>...</code>`) at a minimum
 * Create an Issue in your repo called `Installation Lab`
      * Add it to the `Labs` milestone
      * Assign the label `started`
-* Use this Issue to journal your lab progress
-    * Use comments to note each section you have finished
-    * If you run into errors or other blockers, note them in the Issue
-    * Also log how you fixed it
+* Use the issue to note your lab progress
+    * Add a comment when you have finished a lab section
+    * Add a comment if you run into a puzzling error or other blocker
+    * If you also fix it a problem, comment on the cause and solution
 
 ---
 <div style="page-break-after: always;"></div>
 
 ## <center> CM Install Lab - Prepare your instances
 
-* If using AWS, use the closest available data center
 * Create five `m3.xlarge` nodes
   * Do not use spot instances
   * **Set your volume space to the maximum free amount**
@@ -213,9 +213,16 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 ## <center> CM Install Lab
 ## <center> <a name="linux_config_lab"/>System Configuration Checks
 
-Using the steps below, verify your instances for readiness. Modify
-them when necessary. When putting your work in `labs/1_preinstall.md`, 
-**list the command that produces each output.**
+Using the steps below, verify all instances are ready. You must modify
+them when necessary, which includes installing missing packages and changing
+kernel tunables or other system settings.
+
+You only need to show this work for one of the instances, but you
+will run into trouble later on if you don't complete this work on
+all of them.
+
+Put your work in `labs/1_preinstall.md`. Make sure to includes the
+command that produces each output.
 
 1. Check `vm.swappiness` on all your nodes
     * Set the value to `1` if necessary
@@ -224,7 +231,7 @@ them when necessary. When putting your work in `labs/1_preinstall.md`,
     * XFS volumes do not support reserve space
 4. Disable transparent hugepage support
 4. List your network interface configuration
-5. Show correct forward and reverse host lookups
+5. Show that forward and reverse host lookups are correctly resolved
   * For `/etc/hosts`, use `getent`
   * For DNS, use `nslookup`
 6. Show the <code>nscd</code> service is running
@@ -286,26 +293,42 @@ or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topi
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> CM/CDH Install Lab
-## <center> Path B install using Cloudera 5.9.x
+## <center> Cloudera Manager Install Lab
+## <center> Path B install using CM 5.9.x
 
-[The full rundown is here](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_install_path_b.html)
+[The full rundown is
+here](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_install_path_b.html).
+You will have to modify your package repo to get the right release.
+The default repo download always points to the latest version.
 
-Notice that you must configure the correct repo. The default is always the latest available version (5.10).
+Use the documentation to complete the following objectives:
 
-Ensure you adhere to the following requirements:
+* Install a supported Oracle JDK on your first node
+* Install a supported JDBC connector on all nodes
+* Create the databases and access grants you will need
+* Configure Cloudera Manager to connect to the database
+* Start your Cloudera Manager server -- debug as necessary
+* Do not continue until you can browse your CM instance at port 7180
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Cloudera Manager Install Lab
+## <center> Install a cluster and deploy CDH
+
+Adhere to the following requirements while creating your cluster:
 
 * Do not use Single User Mode. Do not. Don't do it.
-* Ignore all steps in the CM wizard marked `(Optional)`
+* Ignore any steps in the CM wizard that are marked `(Optional)`
 * Install the Data Hub Edition
 * Install CDH using parcels
-* **Rename your cluster**: use your GitHub name
+* **Rename your cluster** using your GitHub account name
 * Deploy **only** the `Coreset` of CDH services.
 * Deploy **three** ZooKeeper instances.
-    * CM does not prompt you to do this, but complaints if you don't
-* Once you've renamed your cluster and it is healthy, take a screenshot of the home page
+    * CM does not tell you to do this but complains if you don't
+* Once you've renamed your cluster and services are green healthy, take a screenshot of the CM home page
     * Name this file `labs/3_cm_installed.png`.
-* Mark your Issue 'submitted' unless you go on to the Bonus Lab.
+* Label your Issue 'review' unless you go on to the Bonus Lab.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -318,7 +341,7 @@ Ensure you adhere to the following requirements:
 * Follow the [documentation](http://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_create_local_parcel_repo.html) to configure a local repo
 * Add the local URL to Cloudera Manager's parcel configuration
 * Show the parcel repo registers in CM as available
-* Mark your Issue `submitted`
+* Label your Issue `review`
 
 ---
 <div style="page-break-after: always;"></div>
@@ -333,7 +356,7 @@ Ensure you adhere to the following requirements:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="cm_cdh_key_points"/> Summary Points
+## <center> <a name="cm_cdh_key_points"/> Final Points
 
 * See the graphic of install paths in the `tools/` subdirectory.
 * You can review a full CM HA [configuration here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
