@@ -247,24 +247,10 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Security Lab: Implement TLS Level 1 Security
-
-* This is a [straightforward procedure](http://www.cloudera.com/documentation/enterprise/latest/topics/how_to_configure_cm_tls.html)
-* Copy the `config.ini` file of the agent on any host to `security/labs/config.ini.md`
-    * Code-format the contents
-* Use a screen capture of CM to show TLS level 1 is enabled
-    * Put the capture in `security/labs/tls-level-one.png`
-
----
-<div style="page-break-after: always;"></div>
-
 ## <center> Security Labs Preparation
 
 Before you start:
 
-* Create a Linux user named after your GitHub handle
-    * You'll use this account to test access to the cluster
-    * Make sure this account is present on all nodes with the same UID/GID
 * Load sample data for Hive/Impala
     * Login to HUE using your GitHub name and the password `cloudera`
     * The first login to Hue becomes the admin account 
@@ -294,3 +280,16 @@ Before you start:
 
 * Install [Sentry as a Service](http://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_service_config.html)
 * Follow this [Sentry tutorial](./sentry-tutorial.md)
+* Label the Issue `review` once you are finished
+
+---
+<div style="page-break-after: always;"></div>
+
+## <center> Double-bonus Security Lab: Implement TLS Level 1 Security
+
+* This is a [straightforward procedure](http://www.cloudera.com/documentation/enterprise/latest/topics/how_to_configure_cm_tls.html)
+* Copy the `config.ini` file of the agent on any host to `security/labs/config.ini.md`
+    * Code-format the contents
+* Use a screen capture of CM to show TLS level 1 is enabled
+    * Put the capture in `security/labs/tls-level-one.png`
+

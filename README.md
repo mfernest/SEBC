@@ -1,53 +1,80 @@
 # <center>Services Enablement Boot Camp 
 # <center> 
 
-This repository holds the course materials for Cloudera's Services
-Enablement Boot Camp and FCE's internal boot camp.
+This repository contains materials for Cloudera's Services Enablement
+Boot Camp and Cloudera FCE's internal boot camp.
 
-If you've received this repo as a ZIP file via email, please follow
-the instructions that were included to initialize your repo.  You
-can make your GitHub repo Private or Public.  It does not matter
-to the course which option you use.
+If you've received this repo as a ZIP file attachment, use the
+instructions in the email to create your class repo. You can make
+your GitHub repo Private if you wish, but it is not a free option.
+For that reason, most students choose to make their GitHub repository
+public.
 
-<strong>NOTE</strong>: GitHub now lets you upload new files and
-edit them online. Don't do this. Only use your GitHub repo to publish
-your lab work.  Make sure at all times that the most recent version
-of your work is on your laptop.
+<strong>NOTE</strong>: DO NOT add files to your repository through
+the GitHub browser interface.
 
-Make your instructors Collaborators on your GitHub repo. This
-privilege lets them create pull requests on GitHub for your review.
-If you're unfamiliar with `git`, consult with an instructor or
-knowledgable neighbor to help you.
 
-We will use GitHub's Issues feature to track your progress. For
-each section, we'll ask you to create one Issue and use it to log
-your progress. We will use GitHub Labels to mark the state of
-each lab (e.g., started, submitted, evaluated). Finally, we'll use
-GitHub's Milestones to categorize your lab and challenge work. 
+Use GitHub only to receive your lab work by pushing from your local
+copy. Treat your GitHub repo like a backup to what is on your laptop.
+Doing so will save a lot of headaches around maintaining the repo,
+as we will explain in class. The only changes you should make directly
+to your GitHub copy are Issues and Milestones, which are described in
+`README.md`.
 
-In a large class, it may take time for an instructor to assist you.
-If you have a lab problem, describe in your current Issue what the
-problem is. Include the error message or stack trace in the Issue
-dialog, or capture a screen that shows your cluster's condition.
-You should do this anyway, but we know from experience most of you
-will just try to work as fast as you can. :-)
+Add your instructors as Collaborators to your GitHub repo. Because
+we have 25 students and 4 people to facilitate labs, we'll give you
+all the GitHub names you need at the beginning of class. The lead
+instructor's GitHub name is `mfernest`.
 
-Before you start lab work, make the following changes to your GitHub
-repo settings:
+Adding your instructors as Collaborators will let them create <i>pull
+requests</i> on your work. This is a way of editing your submissions
+without changing them directly.  When you review instructor edits,
+you can choose to reject them. Perhaps you would like to correct
+problems a different way or ignore them for a while. The pull request
+stands as a record of that interaction.
 
-* Add your collaborators under `Settings -> Collaborators`.
-* Enable `Issues` under `Settings -> Options`. Click the `Features` box and check `Issues`.
+We use GitHub's Issues feature to establish a workflow around your
+lab submissions.
+
+For each lab section, such as Installation or Storage, you will use
+an Issue to track your progress. You will also use GitHub labels
+to mark the current state of each lab (e.g., `submitted`, `stuck`,
+`review`). Your instructors will use labels to evaluate your work
+once you have marked it for review (such as `complete` or 'incomplete`).
+
+Finally, we will use GitHub milestones to separate your lab work
+from your challenge work.
+
+In a large class, it may take some time for an instructor to help you with a difficult problem.
+Use the Issue to describe the problem and show what diagnostic work you've tried to isolate your problem.
+
+You can include error messages or stack traces as Issue comments,
+or take a screenshot to show your cluster's current condition.  It
+is quite possible these initial steps will help you solve the problem
+yourself. Otherwise, they will show an instructor what you have
+tried so far.
+
+Before you start any labs, make the following changes to your GitHub
+repo:
+
+* Add collaborators under `Settings -> Collaborators`.
+* Enable `Issues` under `Settings -> Options`. Click the `Features` box and enable `Issues`.
 * Click the `Issues` tab and the `Milestones` button
     * Create two milestones: `Labs` and `Challenges`
-    * Set the deadlines for Thursday and Friday of the training week, respectively.
+    * Set the deadlines for Thursday and Friday of the current week.
 * Click the `Labels` button and change your labels as follows:
-    * Leave the `bug` Issue as is
+    * Change `bug` to `stuck` 
     * Change `duplicate` to `started`
-    * Change `enhancement` to `submitted`
-    * Change `help wanted` to `evaluated`
-    * Leave the `invalid` Issue as is
-    * Change `wontfix` to `incomplete`; set the label color to yellow (`#fbca04`).
-    * Leave the `question` Issue as is
+    * Change `enhancement` to `didNotSubmit`
+    * Change `help wanted` to `complete`
+    * Change `invalid` to `review`
+    * Change `wontfix` to `incomplete`; set the label color to `#fbca04`.
+    * Leave the `question` Issue as it is
 
-If you miss these steps, we'll open an Issue on your repo asking you to finish this work.
-We won't review what you submit for labs until you resolve this.
+One of the instructors will open an issue on your repo to acknowledge
+your invitation to collaborate. They will also review your repo for
+all the settings described here, and point out anything that isn't
+setup correctly. This issue will be the only one you're asked to
+close.  All other issues are to be closed by an instructor to show
+no further review is needed.
+
