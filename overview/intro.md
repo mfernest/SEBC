@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Cloudera Services Enablement Boot Camp </center>
-## <center> May 8-12, 2017 </center>
-## <center> Shanghai, China</center>
+# <center> FCE Install/Operations Boot Camp </center>
+## <center> June 19-23, 2017 </center>
+## <center> Palo Alto, California</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -23,10 +23,8 @@
 
 ## <center> <a name="instructor"/> Instructors & Students
 
-* Michael Ernest (Senior Learning Architect) - `mfernest`
-* Cheng Wang (Solutions Architect) - `godiswc`
-* Henry Su (Sales Engineer)
-* Utsav Shah (Senior Solutions Consultant)
+* Michael Ernest (Senior Learning Architect) - mfernest
+* Ronan Stokes (Senior Solutions Architect) 
 * Please introduce yourselves:
   * Name
   * Internal: Region & Role
