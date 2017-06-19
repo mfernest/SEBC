@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Services Enablement Boot Camp </center>
-## <center> March 6-10, 2017 </center>
-## <center> Madrid, Spain</center>
+# <center> FCE Install/Operations Boot Camp </center>
+## <center> June 19-23, 2017 </center>
+## <center> Palo Alto, California</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,7 +24,7 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
-* Robert Siwicki (Senior Solutions Architect) - rsiwicki
+* Ronan Stokes (Senior Solutions Architect) 
 * Please introduce yourselves:
     * Name
     * Region & Role
