@@ -1,4 +1,5 @@
 # <center>Services Enablement Boot Camp 
+# <center> AKA Field Channel Enablement Install/Ops
 # <center> 
 
 This repository contains materials for Cloudera's Services Enablement
