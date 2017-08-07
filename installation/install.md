@@ -121,7 +121,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
   * CM verifies a parcel's signature via a <code>manifest.json</code>
     * Ignores parcel if the signature doesn't match
     * `manifest.json` is only stored on the repo server 
-    * Each parcel file is [specific to a Linux distribution and major release[(http://archive.cloudera.com/cdh5/parcels/5.9.1/)
+    * Each parcel file is [specific to a Linux distribution and major release](http://archive.cloudera.com/cdh5/parcels/5.9.1/)
 
 ---
 <div style="page-break-after: always;"></div>
