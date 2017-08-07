@@ -6,7 +6,7 @@
 ---
 
 # <center> FCE Install/Operations Boot Camp </center>
-## <center> June 19-23, 2017 </center>
+## <center> August 7-11, 2017 </center>
 ## <center> Palo Alto, California</center>
 
 ---
@@ -24,7 +24,6 @@
 ## <center> <a name="instructor"/> Instructors & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
-* Ronan Stokes (Senior Solutions Architect) 
 * Please introduce yourselves:
   * Name
   * Internal: Region & Role
