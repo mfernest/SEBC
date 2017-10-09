@@ -5,9 +5,9 @@
 
 ---
 
-# <center> FCE Install/Operations Boot Camp </center>
-## <center> August 7-11, 2017 </center>
-## <center> Palo Alto, California</center>
+# <center> SEBC Install/Operations Boot Camp </center>
+## <center> October 9-13, 2017 </center>
+## <center> Austin, Texas</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -21,12 +21,11 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> <a name="instructor"/> Instructors & Students
+## <center> <a name="instructor"/> Instructor & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
 * Please introduce yourselves:
   * Name
-  * Internal: Region & Role
   * Partner: Company & Location
   * Your experience with Hadoop to date
 
