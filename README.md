@@ -68,6 +68,7 @@ repo:
     * Change `enhancement` to `didNotSubmit`
     * Change `help wanted` to `complete`
     * Change `invalid` to `review`
+    * Add the label `WorkInProgress` and make it purple.
     * Change `wontfix` to `incomplete`; set the label color to `#fbca04`.
     * Leave the `question` Issue as it is
 
