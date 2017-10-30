@@ -25,7 +25,7 @@ repo. In the same directory on your laptop, invoke the following:
 
 * `git status`
 * `git add .`
-* `git commit -m "Push course materials for Shanghai, May 2017"`
+* `git commit -m "Push course materials for boot camp"`
 * `git push -u origin master`
 
 If this completes successfully, you can browse your GitHub repo to

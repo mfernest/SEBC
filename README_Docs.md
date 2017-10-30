@@ -1,7 +1,7 @@
 ## Notes on Cloudera documentation
 
 * Cloudera documentation is [available online](http://www.cloudera.com/documentation.html) in HTML and PDF format.
-* The current release is C5.9
+* The current release is C5.13
 
 Consider downloading these documents in PDF format. They are 
 easier to read than the online HTML-based format.
@@ -11,7 +11,7 @@ errors, but can also add new volumes or split materials to different
 volumes. There is currently no release notice that announces these
 updates.
 
-The C5.9 release comes with thirteen different documents:
+The C5.9 release comes with 16 different documents:
 
 
 * [Introduction](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-introduction.pdf)
@@ -23,7 +23,10 @@ The C5.9 release comes with thirteen different documents:
 * [Data Management](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-datamgmt.pdf)
 * [Operation](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-operation.pdf)
 * [Security](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-security.pdf)
-* [Impala Guide](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-impala.pdf)
+* [Apache Impala Guide](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-impala.pdf)
+* [Apache Kudu Guide](https://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-kudu.pdf)
+* [Apache Spark Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-spark.pdf)
+* [Apache Hive Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-hive.pdf)
+* [Apache HBase Guide](https://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-hbase.pdf)
+* [Hue Guide](https://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-hue.pdf)
 * [Cloudera Search](http://www.cloudera.com/documentation/enterprise/latest/PDF/cloudera-search.pdf)
-* [Spark Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-spark.pdf)
-* [Hive Guide](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/PDF/cloudera-hive.pdf)
