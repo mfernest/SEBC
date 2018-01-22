@@ -1,7 +1,7 @@
 <!-- CSS work goes here for the time being -->
 <!-- set a:link text-decoration to none -->
 <!-- set a:hover text-decoration to underline -->
-<!-- http://forums.markdownpad.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
+<!-- http://forums.`_markdownpad_`.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
 
 ---
 <div style="page-break-after: always;"></div>
@@ -19,9 +19,9 @@
 
 ## <center>Notes on Service Deployment</center>
 
-* [Practical advice on field deployment](http://blog.cloudera.com/blog/2015/01/how-to-deploy-apache-hadoop-clusters-like-a-boss/)
+* [Practical advice on field deployment](https://blog.cloudera.com/blog/2017/11/deploy-cloudera-edh-clusters-like-a-boss-revamped-part-1/)
 * Design principles for deployment
-    * Separation of concerns (adminisration, end users, security integration)
+    * Separation of concerns (administration, end users, security integration)
     * Planning for growth
 * Cloudera uses four role types to guide deployment
     * Utility: cluster administration, integration services
