@@ -6,7 +6,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - November 3, 2017 - Palo Alto, CA 
+# <center> Challenges - January 26, 2018 - Palo Alto, CA 
 
 * Overview
   * Build a CM-managed CDH cluster and secure it
@@ -18,7 +18,7 @@
   * Submit only your own work
 * Update GitHub often -- don't wait until the end
 * If you break your cluster, or your cluster breaks you:
-  * Tell the instructor 
+  * Tell an instructor 
   * Push the work you have into GitHub
   * Create an Issue to describe what you think went wrong
 
@@ -28,22 +28,22 @@
 ## <center> Challenge Setup
 
 * Create the Issue `Challenges Setup`
-* Make sure `mfernest` is a Collaborator
+* Make sure `mfernest` and `alexciobanu` are Collaborators
 * Assign the Issue to yourself and label it `started`
 * In the file `challenges/labs/0_setup.md`:
   * List the cloud provider you are using 
-  * List your instances by IP address and DNS name (don't use your `/etc/hosts` table for this)
+  * List your instances by IP address and DNS name (don't use `cat /etc/hosts` table for this)
   * List the Linux release you are using 
   * List the file system capacity for the first node 
   * List the command and output for `yum repolist enabled` 
 * Add the following Linux accounts to all nodes
-  * User `reilly` with a UID of `2800`
-  * User `frankola` with a UID of `2900`
-  * Create the group `paloalto` and add `frankola` to it
-  * Create the group `sanfrancisco` and add `reilly` to it
-* List the `/etc/passwd` entries for `reilly` and `frankola` 
+  * User `driscoll` with a UID of `2650`
+  * User `bartfeld` with a UID of `3100`
+  * Create the group `intl` and add `bartfeld` to it
+  * Create the group `americas` and add `driscoll` to it
+* List the `/etc/passwd` entries for `driscoll` and `bartfeld` 
   * Do not list the entire file
-* List the `/etc/group` entries for `paloalto` and `sanfrancisco` 
+* List the `/etc/group` entries for `intl` and `americas` 
   * Do not list the entire file
 * Push these updates to GitHub 
 * Label your Issue `review` 
@@ -52,13 +52,13 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1: Install a MySQL server
+## <center> Challenge 1: Install a MySQL or MariaDB server
 
 * Create the Issue `Install Database` 
 * Assign the Issue to yourself and label it `started`
-* Install MySQL 5.5 on the first node listed in `0_setup.md`
+* Install the server on the first node you listed in `0_setup.md`
   * Use a YUM repository to install the package
-  * Copy the repo file to `challenges/labs/1_my-database-server.repo.md`
+  * Copy the YUM install command and output to `challenges/labs/1_database-server-install.md`
 * On all cluster nodes
   * Install the database client package and JDBC connector jar on all nodes
 * Start the server and create these databases:
@@ -67,50 +67,49 @@
   * `hive`
   * `oozie`
   * `hue`
-  * `sentry`
 * Record the following in `challenges/labs/1_db-server.md`
-  * The command `hostname -f` and its output 
-  * The command `mysql -u <user> -p<password> -e "status;"` and its output 
-  * The command `mysql -u <user>  -p<password> -e "show databases;"` and its output 
+  * The command and output for `hostname -f` on the database server host 
+  * The command and output for `mysql -u <user> -p<password> -e "status;"` 
+  * The command and output for `mysql -u <user> -p<password> -e "show databases;"` 
 * Push this work to GitHub
-* Label the Issue `review` and assign it to the instructor
+* Label the Issue `review` and assign it to the instructors
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 2: Install Cloudera Manager 
+## <center> Challenge 2: Install Cloudera Manager 5.11.x (latest update)
 
 * Create the Issue `Install CM`
 * Assign yourself and label it `started`
-* Install Cloudera Manager on the second node listed in `0_setup.md`
-* List the command and output for `ls /etc/yum.repos.d` on the second node in `challenges/labs/1_cm.md`
-  * Copy `cloudera-manager.repo` to `challenges/labs/2_cloudera-manager.repo.md`
+* Install Cloudera Manager on the second node you listed in `0_setup.md`
+* Copy the YUM command and output for installing Cloudera Manager in `challenges/labs/2_cm-install.md`
 * Connect Cloudera Manager Server to its database
-  * Use the `scm_prepare_database.sh` script to create the `db.properties` file 
-  * Copy the invocation and its output to `2_properties.md`
-  * Copy your `db.properties` content to the same file
+  * Use the `scm_prepare_database.sh` script 
+  * Copy the full command invocation and its output to `2_properties.md`
+  * Copy your `db.properties` content into the same file
 * Start the Cloudera Manager server
 * Put the following in `challenges/labs/2_cm_startup.md`:
   * The first line of your CM server log
-  * All lines containing the string "Started Jetty server"
-* Copy the command and output to get your CM deployment to `challenges/labs/2_cm-deployment.md`
+  * Any line in the log containing the string "Started Jetty server"
+* Copy the API command and output to list your CM deployment into `challenges/labs/2_cm-deployment.md`
 * Push these changes to GitHub and label the Issue `review`
-* Assign the issue to the instructor
+* Assign the issue to the instructors
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 3 - Install CDH 5.8
+## <center> Challenge 3 - Install CDH 5.8.x (latest update)
 
 * Create the Issue `Install CDH`
 * Assign yourself and label it `started`
-* Deploy Coreset services + Spark
-  * Name your cluster using your GitHub handle
-* Set up user directories in HDFS for `reilly` and `frankola`
+* Deploy Coreset services + HBase
+  * Rename your cluster using your GitHub ID
+* Set up `/user` directories in HDFS for `driscoll` and `bartfeld`
+  * Set the user and group permissions accordingly
 * Add the following to `3_cm.md`:
     * The command and output for `hdfs dfs -ls /user`
-    * The command and output from the CM API call `../api/v5/hosts` 
-    * The command and output from the CM API call `../api/v11/clusters/<githubName>/services`
+    * The command and output for the API call `../api/v8/hosts` 
+    * The command and output for the API call `../api/v11/clusters/<githubName>/services`
     * The command and output for your CM deployment (yes, again)
 * Install the Hive sample data via Hue
 * Push this work to GitHub and label the Issue `review`
@@ -123,17 +122,17 @@
 
 * Create the Issue `Test HDFS`
 * Assign yourself and label it `started`
-* As user `reilly`, use `teragen` to generate a 65,536,000-record dataset
-  * Write the output to 12 files 
-  * Set the block size to 32 MB
+* As user `driscoll`, use `teragen` to generate a 65,536,000-record dataset
+  * Write the output to 8 files 
+  * Set the block size to 128 MiB
   * Set the mapper container size to 1 GiB
   * Name the target directory `tgen`
   * Use the `time` command to capture the job's duration
 * Put the following in `challenges/labs/4_teragen.md`
   * The full `teragen` command and output 
   * The `time` command output
-  * The command and output of `hdfs dfs -ls /user/reilly/tgen`
-  * The command and output of `hadoop fsck -blocks /user/reilly/tgen`
+  * The command and output of `hdfs dfs -ls /user/driscoll/tgen`
+  * The command and output of `hadoop fsck -blocks /user/driscoll/tgen/part*`
 * Push this work to GitHub and label the Issue `review`
 * Assign the issue to the instructors
 
@@ -146,41 +145,35 @@
 * Assign the issue to yourself and label it `started`
 * Install an MIT KDC on the third node of your cluster
   * Name your realm using your GitHub handle
-  * Use `FNG` as a suffix
-  * For example: `MFERNEST.FNG`
-* Create Kerberos user principals for `reilly`, `frankola`, and `cloudera-scm`
-  * Assign `cloudera-scm` the privileges needed to create service principals and keytab files
+  * Use `NEW` as a suffix
+  * For example: `MFERNEST.NEW`
+* Create Kerberos user principals for `driscoll`, `bartfeld`, and `cloudera-scm`
+  * Allow `cloudera-scm` to create service principals and generate keytabs 
 * Kerberize the cluster
-* Run the `terasort` program as user `reilly` with the output target `/user/reilly/tsort`
+* Run `terasort` as user `driscoll`; use the output target `/user/driscoll/tsort`
   * Use the `tgen` directory as input
   * Copy the command and full output to `challenges/labs/5_terasort.md`
-* Run the Hadoop `pi` program as user `frankola`
+* Run the Hadoop `pi` program as user `bartfeld`
   * Use the task parameters `50` and `100` 
   * Copy the command and full output to `challenges/labs/5_pi.md`
-*  Copy the configuration files in `/var/kerberos/krb5kdc/` to your repo
-    * Add the prefix `5_` and the suffix `.md` to the original file name
+*  Copy the text configuration files from `/var/kerberos/krb5kdc/` to your repo
+    * Add the prefix `5_` and the suffix `.md` to the original file names
 * Push this work to GitHub and label the Issue `review`
-* Assign the issue to the instructor
+* Assign the issue to the instructors
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 6 - Install & Configure the Sentry Service
+## <center> Challenge 6 - Upgrade CM and CDH
 
-* Create the Issue `Install Sentry`
+* Create the Issue `Upgrade Cluster`
   * Label it `started`
-* Use Cloudera Manager to install and enable Sentry
-* Configure Hive to use Sentry
-* Create a role `Logger` that can read the `web_logs` database
-  * Assign the `sanfrancisco` group to this role
-* Create a role for `Customer` that can read the `customers` databases
-  * Assign the `paloalto` group to this role
-* Use `beeline` to select ten records from `web_logs`
-* Use `beeswax` to select ten records from `customers`
-* Capture the beeline text and save to `6_beeline.md` 
-* Screen-capture the results for beeswax and save to `6_beeswax.png`
+* Upgrade CM to the latest available release
+  * Capture the Support -> About panel in `6_cm-about.md`
+* Upgrade CDH to the latest available release
+  * Capture your CDH cluster dashboard in `6_cdh_about.md`
 * Label the issue `review`
-* Assign the issue to the instructor
+* Assign the issue to the instructors
 * Push all work to GitHub
 
 ---
@@ -189,7 +182,7 @@
 ## <center> When time runs out:
 
 * Commit any outstanding changes from your repo to GitHub
-* Email `mfe@cloudera.com`that you have stopped pushing to your repo
+* Email to `mfe@cloudera.com` to show you stopped pushing to your repo
 * In-class candidates only:
   * Please fill out [this survey form](https://goo.gl/forms/pmHeHx03zRu3cnlc2)
   * Add your comments to `labs/7_feedback_final.md` -- remember to commit them!

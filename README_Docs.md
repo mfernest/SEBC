@@ -1,7 +1,7 @@
 ## Notes on Cloudera documentation
 
 * Cloudera documentation is [available online](http://www.cloudera.com/documentation.html) in HTML and PDF format.
-* The current release is C5.13
+* The current release is C5.14
 
 Consider downloading these documents in PDF format. They are 
 easier to read than the online HTML-based format.

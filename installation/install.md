@@ -143,7 +143,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
     * Activate/deactivate
     * Remove
     * Delete<p/>
-* The path <code>/opt/cloudera/parcels/CDH</code> always points to the active CDH version
+* The path <code>/opt/cloudera/parcels/CDH</code> will point to the active CDH version
 
 ---
 <div style="page-break-after: always;"></div>
