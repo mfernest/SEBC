@@ -45,9 +45,9 @@
 * `GRANT SELECT ON DATABASE default TO ROLE reads;`
 * `GRANT ROLE reads TO GROUP selector;`
 
-### Grant read privilege for `default.sample07` only to 'writes':
+### Grant INSERT privilege for `default.sample07`  to 'writes':
 * `REVOKE ALL ON DATABASE default FROM ROLE writes;`
-* `GRANT SELECT ON default.sample_07 TO ROLE writes;`
+* `GRANT INSERT ON default.sample_07 TO ROLE writes;`
 * `GRANT ROLE writes TO GROUP inserters;`
 
 ### `kinit` as george, then login to beeline
