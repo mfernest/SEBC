@@ -203,7 +203,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 * For GCE, use `n1-highmen-2` nodes
   * Do not use preemptible instances
 * Make sure the AMI you choose is a Cloudera-supported OS
-  * The supported platforms are described [here](http://www.cloudera.com/downloads/manager/5-9-0.html)
+  * The supported platforms are described [here](https://www.cloudera.com/documentation/enterprise/release-notes/topics/rn_consolidated_pcm.html)
 * Use one instance to host Cloudera Manager server and edge/client-facing services
   * This includes Hue and Apache Oozie
 
@@ -236,6 +236,8 @@ command that produces each output.
   * For DNS, use `nslookup`
 6. Show the <code>nscd</code> service is running
 7. Show the <code>ntpd</code> service is running<br>
+
+Note: Detailed environment tuning recommendations are [here](https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_admin_performance.html)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -294,10 +296,10 @@ or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topi
 <div style="page-break-after: always;"></div>
 
 ## <center> Cloudera Manager Install Lab
-## <center> Path B install using CM 5.9.x
+## <center> Path B install using CM 5.12.x
 
 [The full rundown is
-here](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_install_path_b.html).
+here](https://www.cloudera.com/documentation/enterprise/5-12-x/topics/cm_ig_install_path_b.html).
 You will have to modify your package repo to get the right release.
 The default repo download always points to the latest version.
 
@@ -350,6 +352,7 @@ Adhere to the following requirements while creating your cluster:
 ## <center> <a name="scripted_install_lab"/>Auto-deployment
 
 * If you are interested to learn about automating installs:
+    * Fork/clone [Cloudera ansible playbook](https://github.com/cloudera-ps/cloudera-playbook)
     * Fork/clone [Justin Hayes' auto-deploy project](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
 * No submissions are needed; you can browse this repository as you wish.
 
