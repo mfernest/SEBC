@@ -43,8 +43,8 @@
 
 ## <center> <a name="hue_services">HUE's Services</a>
 
-* [Query editors](clients/hue.md#-query-support)
-* [Data browsers](clients/hue.md#-data--metadata-browsers)
+* [Query editors](hue.md#-query-support)
+* [Data browsers](hue.md#-data--metadata-browsers)
 * <a href="#hue_workflow_tools">Workflow tools</a>
 * <a href="#hue_search_console">Cloudera Search console</a>
 
