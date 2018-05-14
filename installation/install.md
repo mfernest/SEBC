@@ -10,7 +10,7 @@
 * <a href="#install_methods">Installation Methods</a>
 * <a href="#parcels">Understanding Parcels</a>
 * <a href="#db_setup">Embedded vs. external database</a>
-* <a href="#cm_cdh_key_points">Supplemental CM/CDH Points</a>
+* <a href="#cm_cdh_key_points">Extra  CM/CDH Details</a>
 * <a href="#cm_ui_overview">Cloudera Manager UI Overview</a>
 
 ---
