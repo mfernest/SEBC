@@ -6,7 +6,7 @@
 ---
 <div style="page-break-after: always;"></div>
 
-# <center> Challenges - March 9, 2018 - Palo Alto, CA
+# <center> Challenges - May 18, 2018 - FCE New Hire
 
 * Overview
   * Build a CM-managed CDH cluster and secure it
@@ -28,8 +28,8 @@
 ## <center> Challenge Setup
 
 * Create the Issue `Challenges Setup`
-* Verify `mfernest` and `cfusi` are Collaborators
-* If you re-taking the challenge, make sure your GitHub labels have been configured
+* Make sure `mfernest`  and `mohit` are Collaborators
+* Make sure your GitHub labels have been configured
 * Assign the Issue to yourself and label it `started`
 * In the file `challenges/labs/0_setup.md`:
   * List the cloud provider you are using (AWS, GCE, Azure, CloudCat, other)
@@ -38,25 +38,25 @@
   * List the file system capacity for the first node 
   * List the command and output for `yum repolist enabled` 
 * Add the following Linux accounts to all nodes
-  * User `hilary` with a UID of `2800`
-  * User `anupam` with a UID of `2900`
-  * Create the group `analytics` and add `anupam` to it
-  * Create the group `datasci` and add `hilary` to it
-* List the `/etc/passwd` entries for `hilary` and `anupam` 
+  * User `oakland` with a UID of `2800`
+  * User `sanfran` with a UID of `2900`
+  * Create the group `national` and add `sanfran` to it
+  * Create the group `american` and add `oakland` to it
+* List the `/etc/passwd` entries for `oakland` and `sanfran` 
   * Do not list the entire file
-* List the `/etc/group` entries for `analytics` and `datasci` 
+* List the `/etc/group` entries for `national` and `american` 
   * Do not list the entire file
 * Push these updates to GitHub 
 * Label your Issue `review` 
-* Assign the Issue to the instructor
+* Assign the Issue to an instructor
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 1: Install a Database server
+## <center> Challenge 1: Install a MySQL server
 
 * Create the Issue `Install MySQL` if you are using RHEL/Centos 6.x
-  * Or name it `Install MariaDB` if you are using RHEL/CentOS 7.x
+  * Name the Issue `Install MariaDB` if you are using RHEL/CentOS 7.x
 * Assign the Issue to yourself and label it `started`
 * Install MySQL 5.5 or MariaDB 5.5 server on the first node listed in `0_setup.md`
   * Use a YUM repository to install the package
@@ -74,12 +74,12 @@
   * A command and output that reports the database server version
   * A command and output that lists all the databases in the server
 * Push this work to GitHub
-* Label the Issue `review` and assign it to the instructor
+* Label the Issue `review` and assign it to an instructor
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 2: Install Cloudera Manager 5.11.x (latest)
+## <center> Challenge 2: Install Cloudera Manager 
 
 * Create the Issue `Install CM`
 * Assign yourself and label it `started`
@@ -95,26 +95,28 @@
   * The line(s) that contain the phrase "Started Jetty server"
   * The content of the `db.properties` file 
 * Push these changes to GitHub and label the Issue `review`
-* Assign the issue to the instructor
+* Assign the issue to an instructor
 
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Challenge 3 - Install CDH 5.11.x
+## <center> Challenge 3 - Install the lastest CDH 5.8 version
 
 * Create the Issue `Install CDH`
 * Assign yourself and label it `started`
-* Deploy Coreset services + Impala
+* Deploy Coreset services + Spark
   * Rename your cluster after your GitHub handle
-* Create user directories in HDFS for `hilary` and `anupam`
+* Create user directories in HDFS for `oakland` and `sanfran`
 * Add the following to `3_cm.md`:
     * The command and output for `hdfs dfs -ls /user`
     * The command and output from the CM API call `../api/v14/hosts` 
     * The command and output from the CM API call `../api/v8/clusters/<githubName>/services`
 * Login to Hue and install the Hive sample data 
-    * Copy a Hue screen that shows the Hive tables to `challenges/labs/3_hue_hive.png`
+    * Use `beeline` to display the `default` database tables
+    * Copy the output to `challenges/labs/3_beeline.png`
+
 * Push this work to GitHub and label the Issue `review`
-* Assign the issue to the instructor
+* Assign the issue to an instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -123,19 +125,19 @@
 
 * Create the Issue `Test HDFS`
 * Assign yourself and label it `started`
-* As user `hilary`, use `teragen` to generate a 65,536,000-record dataset
-  * Write the output to 16 files 
-  * Set the block size to 64 MB
-  * Set the mapper container size to 768 MiB
+* As user `oakland`, use `teragen` to generate a 65,536,000-record dataset
+  * Write the output to 12 files 
+  * Set the block size to 32 MB
+  * Set the mapper container size to 1000 MiB
   * Name the target directory `tgen`
   * Use the `time` command to capture job duration
 * Put the following in `challenges/labs/4_teragen.md`
   * The full `teragen` command and output 
   * The result of the `time` command
-  * The command and output of `hdfs dfs -ls /user/hilary/tgen`
-  * The command and output of `hadoop fsck -blocks /user/hilary`
+  * The command and output of `hdfs dfs -ls /user/oakland/tgen`
+  * The command and output of `hadoop fsck -blocks /user/oakland`
 * Push this work to GitHub and label the Issue `review`
-* Assign the issue to the instructors
+* Assign the issue to an instructor
 
 ---
 <div style="page-break-after: always;"></div>
@@ -144,18 +146,17 @@
 
 * Create the Issue `Kerberize cluster`
 * Assign the issue to yourself and label it `started`
-* Install an MIT KDC on the second node in your cluster
-  * Name your realm using your GitHub handle
-  * Use `PA` as a suffix
-  * For example: `MASSIMO.PA`
-* Create Kerberos user principals for `hilary`, `anupam`, and `cloudera-scm`
-  * Give `cloudera-scm` the privileges needed to create service principals and keytab files
+* Install an MIT KDC on the last node in your cluster
+  * Name your realm after your GitHub handle
+  * Use `NH` as a suffix
+  * For example: `MFERNEST.NH`
+* Create Kerberos user principals for `oakland`, `sanfran`, and `cloudera-scm`
+  * Assign `cloudera-scm` the privileges needed to create service principals and keytab files
 * Kerberize the cluster
-* Run the `terasort` program as user `hilary` with the output target `/user/hilary/tsort`
-  * Generate 24,000,000 records
+* Run the `terasort` program as user `oakland` with the output target `/user/oakland/tsort`
   * Copy the command and full output to `challenges/labs/5_terasort.md`
-* Run the Hadoop `pi` program as user `anupam`
-  * Use the task parameters `50` and `100` 
+* Run the Hadoop `pi` program as user `sanfran`
+  * Use the task parameters to `50` and `100` 
   * Copy the command and full output to `challenges/labs/5_pi.md`
 *  Copy the configuration files in `/var/kerberos/krb5kdc/` to your repo:
     * Add the prefix `5_` and the suffix `.md` to the original file name
@@ -173,9 +174,9 @@
 * Use Cloudera Manager to install and enable Sentry
 * Configure both Hive & Impala to use Sentry
 * Create a role for `HttpViewer` that can read the `web_logs` database
-  * Assign the `datasci` group to this role
+  * Assign the `american` group to this role
 * Create a role for `ServiceViewer` that can read the `customers` databases
-  * Assign the `analytics` group to this role
+  * Assign the `national` group to this role
 * Use `beeline` to select ten records from `web_logs`
 * Use `beeswax` to select ten records from `customers`
 * Capture each outcome as a screenshot, `6_beeline.png` and `6_beeswax.png`
