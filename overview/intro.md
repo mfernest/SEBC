@@ -6,8 +6,8 @@
 ---
 
 # <center> SEBC Install/Operations Boot Camp </center>
-## <center> October 9-13, 2017 </center>
-## <center> Austin, Texas</center>
+## <center> May 14 to 18, 2018 </center>
+## <center> Singapore</center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -23,7 +23,7 @@
 
 ## <center> <a name="instructor"/> Instructor & Students
 
-* Michael Ernest (Senior Learning Architect) - mfernest
+* Manoj Shanmugasundaram (Solutions Architect) - manojsundaram
 * Please introduce yourselves:
   * Name
   * Partner: Company & Location
@@ -37,8 +37,8 @@
 The course material assumes you have knowledge or experience to:
 
 * Complete all labs in Cloudera's Hadoop for Administrators Course
-* Certify as a Hadoop Administrator
-* Install & operate CDH on a multi-node cluster 
+* Certified as a Hadoop Administrator
+* Install & operate CDH on a multi-node cluster
 * Prepare a Linux platform for production use
 
 ---
@@ -60,7 +60,7 @@ The course material assumes you have knowledge or experience to:
     * <a href="../storage/hdfs_testing.md">Storage</a>
     * <a href="../resources/yarn_rm.md">Resource Management</a>
     * <a href="../enterprise/cm.md">Using Cloudera Manager</a>
-    * <a href="../security/overview_kerberos_sentry.md">Enterprise Security</a>
+    * <a href="../security/overview-kerberos-sentry.md">Enterprise Security</a>
     * <a href="../clients/hue.md">Supporting Hadoop Clients</a>
     * <a href="../troubleshooting/tech_support.md">Technical Resources</a>
 
@@ -80,8 +80,8 @@ The course material assumes you have knowledge or experience to:
 
 * All work is submitted to your GitHub repo
     * Add your instructors as Collaborators
-    * We'll review git/GitHub tools in class 
-    * Use Markdown for text and PNG format for screenshots 
+    * We'll review git/GitHub tools in class
+    * Use Markdown for text and PNG format for screenshots
 * We score each lab/challenge as `Complete`, `Incomplete`, or `Did Not Submit`
 * The final evaluation is `Pass`, `Provisional Pass`, or `No Pass`
 * We evaluate your labs for

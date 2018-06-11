@@ -19,7 +19,6 @@
 ## <center> <a name="hue_design_goals">HUE Design & Goals</a>
 
 * Customizable service portal
-    * Customer success story: [RainStor Embraces HUE](http://rainstor.com/rainstor-embraces-hue/)
 * Three client authentication modes
 * Graphical browsing and reporting
 * Application UIs
@@ -31,7 +30,7 @@
 
 ## <center> Current Version & Resources
 
-* C5.9 ==> [Hue 3.11](http://gethue.com/category/3-11/)
+* C5.14 ==> Hue 3.9.0
     * Apache-licensed, not an ASF project
     * Ported to HDP, MapR, Pivotal, IBM Big Insights
 * [Online demo available](http://demo.gethue.com/)
@@ -44,8 +43,8 @@
 
 ## <center> <a name="hue_services">HUE's Services</a>
 
-* <a href="hue_query_editors">Query editors</a>
-* <a href="hue_data_browsers">Data browsers</a>
+* [Query editors](hue.md#-query-support)
+* [Data browsers](hue.md#-data--metadata-browsers)
 * <a href="#hue_workflow_tools">Workflow tools</a>
 * <a href="#hue_search_console">Cloudera Search console</a>
 
