@@ -40,8 +40,8 @@
 
 ## <center> CM features </center>
 
-* The Cloudera Manager server provides 
-  * An administrative console 
+* The Cloudera Manager server provides
+  * An administrative console
   * Links to Hadoop package and parcel repositories
   * Management Services: reports, logging, auditing
     * A database server is needed to support some of these functions
@@ -82,8 +82,8 @@
  * Cloudera Manager server and agents
 * Install packages
 * Configures & starts Cloudera Manager
-* Provides a wizard to create a cluster, deploy CDH services 
-  * Some 'smart' configuration is baked in 
+* Provides a wizard to create a cluster, deploy CDH services
+  * Some 'smart' configuration is baked in
     * e.g., HDFS block limit default set to 128 MiB
     * Directories for various services and log files
 
@@ -120,7 +120,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
   * Content list: <code>meta/parcel.json</code>
   * CM verifies a parcel's signature via a <code>manifest.json</code>
     * Ignores parcel if the signature doesn't match
-    * `manifest.json` is only stored on the repo server 
+    * `manifest.json` is only stored on the repo server
     * Each parcel file is [specific to a Linux distribution and major release[(http://archive.cloudera.com/cdh5/parcels/5.9.1/)
 
 ---
@@ -170,7 +170,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 * [Public documentation is here](https://www.cloudera.com/documentation/enterprise/latest/topics/admin_cm_ha_overview.html#concept_bhl_cvc_pr)
 * The full solution requires
   * A load balancer between CM servers (one active, one passive)
-  * Redundant network-accessible storage 
+  * Redundant network-accessible storage
   * Redundant database servers
   * Heartbeat Demon software (Cloudera-supported only)
 * For today's lab, we'll just implement [MySQL](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html)/[MariaDB](https://mariadb.com/kb/en/mariadb/setting-up-replication/)
@@ -181,7 +181,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 ## <center> CM Install Labs - *Before* You Start
 
 * [Follow instructions here](../README.md) and [here](../README_GitHub.md) if you haven't already
-* Remember to submit text-based work in Markdown and screenshots as PNG files 
+* Remember to submit text-based work in Markdown and screenshots as PNG files
     * Use code formatting (`<code>...</code>`) at a minimum
 * Create an Issue in your repo called `Installation Lab`
      * Add it to the `Labs` milestone
@@ -196,14 +196,14 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
 
 ## <center> CM Install Lab - Prepare your instances
 
-* Create five `m3.xlarge` nodes
+* Create five `m4.xlarge` nodes
   * Do not use spot instances
   * **Set your volume space to the maximum free amount**
     * The AWS default per instance (8 GB) is not enough.
 * For GCE, use `n1-highmen-2` nodes
   * Do not use preemptible instances
 * Make sure the AMI you choose is a Cloudera-supported OS
-  * These platforms are supported for [CM 5.9.0](http://www.cloudera.com/downloads/manager/5-9-0.html)
+  * The supported platforms are described [here](https://www.cloudera.com/documentation/enterprise/release-notes/topics/rn_consolidated_pcm.html)
 * Use one instance to host Cloudera Manager server and edge/client-facing services
   * This includes Hue and Apache Oozie
 
@@ -236,6 +236,8 @@ command that produces each output.
   * For DNS, use `nslookup`
 6. Show the <code>nscd</code> service is running
 7. Show the <code>ntpd</code> service is running<br>
+
+Note: Detailed environment tuning recommendations are [here](https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_admin_performance.html)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -294,10 +296,10 @@ or [here for MySQL](http://www.cloudera.com/documentation/enterprise/latest/topi
 <div style="page-break-after: always;"></div>
 
 ## <center> Cloudera Manager Install Lab
-## <center> Path B install using CM 5.9.x
+## <center> Path B install using CM 5.12.x
 
 [The full rundown is
-here](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_ig_install_path_b.html).
+here](https://www.cloudera.com/documentation/enterprise/5-12-x/topics/cm_ig_install_path_b.html).
 You will have to modify your package repo to get the right release.
 The default repo download always points to the latest version.
 
@@ -350,6 +352,7 @@ Adhere to the following requirements while creating your cluster:
 ## <center> <a name="scripted_install_lab"/>Auto-deployment
 
 * If you are interested to learn about automating installs:
+    * Fork/clone [Cloudera ansible playbook](https://github.com/cloudera-ps/cloudera-playbook)
     * Fork/clone [Justin Hayes' auto-deploy project](https://github.com/justinhayes/cm_api/tree/master/python/examples/auto-deploy)
 * No submissions are needed; you can browse this repository as you wish.
 
@@ -360,7 +363,7 @@ Adhere to the following requirements while creating your cluster:
 
 * See the graphic of install paths in the `tools/` subdirectory.
 * You can review a full CM HA [configuration here](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/admin_cm_ha_overview.html)
-* Note that CDH operation does not depend on Cloudera Manager's state 
+* Note that CDH operation does not depend on Cloudera Manager's state
 * CM supports a REST API
   * Each API version is a superset of all prior versions
   * Try `http://<i>your_cm_host</i>:7180/api/version` in your browser

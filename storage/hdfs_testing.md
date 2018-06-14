@@ -19,9 +19,9 @@
 
 ## <center>Notes on Service Deployment</center>
 
-* [Practical advice on field deployment](http://blog.cloudera.com/blog/2015/01/how-to-deploy-apache-hadoop-clusters-like-a-boss/)
+* [Practical advice on field deployment](https://blog.cloudera.com/blog/2017/11/deploy-cloudera-edh-clusters-like-a-boss-revamped-part-1/)
 * Design principles for deployment
-    * Separation of concerns (adminisration, end users, security integration)
+    * Separation of concerns (administration, end users, security integration)
     * Planning for growth
 * Cloudera uses four role types to guide deployment
     * Utility: cluster administration, integration services
@@ -32,16 +32,16 @@
 ---
 <div style="page-break-after: always;"></div>
 
-## <center>Layout changes with node count 
+## <center>Layout changes with node count
 
 * 10 nodes or fewer: combine master & worker roles, utility & edge roles
 * 20-100 nodes: separate masters and workers, use dedicated utility & edge nodes
 * 100+ nodes: add utility, master, and edge roles according to use case
 * Once a machine is assigned to a role, adjust the resource requirements
-    * Master: four disks, mirror the OS volume 
+    * Master: four disks, mirror the OS volume
         * One disk for logging and other storage requirements
         * One disk for Zookeeper*
-    * Worker: More disks and RAM 
+    * Worker: More disks and RAM
     * Edge/Utility: VMs or older hardware can be sufficient
 
 ---
@@ -49,7 +49,7 @@
 
 ## <center> <a name="hdfs_namenode_ha"/> NameNode HA
 
-* CM 5 offers a [NameNode HA wizard](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Managing-Clusters/cm5mc_hdfs_hi_avail.html)
+* CM 5 offers a [NameNode HA wizard](https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_hag_hdfs_ha_config.html)
     * `HDFS -> Actions -> Enable High Availability`
     * [Locate the JournalNodes](http://www.cloudera.com/documentation/enterprise/latest/topics/cdh_hag_hdfs_ha_enabling.html#cmug_topic_5_12_1)
     * [Know what the Quorum Journal Manager and Zookeeper do] (https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
@@ -60,8 +60,8 @@
 ## <center> <a name="hdfs_smoke_testing"/> HDFS Smoke Testing
 
 * Following software installation, test hardware and network for failure
-* [The terasort suite](http://www.michael-noll.com/blog/2011/04/09/smoke-testing-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite) is ideal for this: easy to apply and simple to monitor.
-    * Some people recommend [TestDFSIO, nnbench, mrbench](http://www.michael-noll.com/blog/2011/04/09/smoke-testing-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio) -- you have choices.
+* [The terasort suite](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite) is ideal for this: easy to apply and simple to monitor.
+    * Some people recommend [TestDFSIO, nnbench, mrbench](http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio) -- you have choices.
 * Most important: corroborate performance with system tools, such as `iostat`.
 
 ---
@@ -101,11 +101,11 @@ Strategy for storage use cases in C5:
 
 * The NameNode links a file's path to block storage on the DataNodes
     * Locality is therefore defined by [disk storage](https://issues.apache.org/jira/browse/HDFS-4949)
-    * This is sufficient for batch-processing architecture 
+    * This is sufficient for batch-processing architecture
     * Job setup and data shuffling costs cancel out efficient NRT retrieval
 * Consider repeated joins with a need for quick responses
-    * A repeated query could go to another DataNode 
-    * You'd like to prefer a node with in-memory 
+    * A repeated query could go to another DataNode
+    * You'd like to prefer a node with in-memory
 
 ---
 <div style="page-break-after: always;"></div>
@@ -117,10 +117,10 @@ Adds cache locality to NN reports<p>
 * An admin can specify an HDFS file/directory to be 'cached'
     * Eviction policy is TTL-based
     * No hit ratio metrics
-* DataNodes with associated blocks receive a cache-on-read instruction 
+* DataNodes with associated blocks receive a cache-on-read instruction
     * In-memory storage is off-heap: no heavy impact on DataNodes
     * The admin can also limit the number of replicas for caching
-* Local clients, such as `impalad`, can read caches locally 
+* Local clients, such as `impalad`, can read caches locally
     * Short-circuit read (SCR) API
     * Zero-copy read (ZCR) API
 
@@ -137,16 +137,16 @@ Adds cache locality to NN reports<p>
 ## <center> Directory caching example
 
 ```
-$ hadoop fs -put myfile /user/mfernest/commons
-$ sudo -u hdfs hdfs cacheadmin -addPool mfe
-Successfully added cache pool mfe.
-$ sudo -u hdfs cacheadmin -addDirective -path /user/mfernest/commons  -pool mfe
+$ hadoop fs -put myfile /user/manojs/commons
+$ sudo -u hdfs hdfs cacheadmin -addPool mypool1
+Successfully added cache pool mypool1.
+$ sudo -u hdfs cacheadmin -addDirective -path /user/manojs/commons  -pool mypool1
 Added cache directive 1
 $ sleep 180
 ```
 DataNodes track blocks and report cache state to the NameNode
 ```
-$ hdfs cacheadmin -listPools -stats mfe
+$ hdfs cacheadmin -listPools -stats mypool1
 ...
 $ sudo -u hdfs hdfs dfsadmin -report
 ...
@@ -176,7 +176,7 @@ $ sudo -u hdfs hdfs dfsadmin -report
 * There is also zero-copy Read
     * [Uses `mmap()` to read system page$](https://issues.apache.org/jira/browse/HDFS-4953)
     * Clients can implement the [API](https://issues.apache.org/jira/browse/HDFS-5191)
-* Upstream JIRAs 
+* Upstream JIRAs
     * Write caching: [HDFS-5851](https://issues.apache.org/jira/browse/HDFS-5851)
 
 ---    
@@ -230,10 +230,10 @@ other's nodes.
 * Name a source directory after your GitHub handle
 * Name a target directory after your partner's GitHub handle
 * Use `teragen` to create a 500 MB file
-* Copy your partner's file to your target directory 
+* Copy your partner's file to your target directory
   * Let one partner use `distCp` on the command line
   * Let the other use BDR
-* Browse the results 
+* Browse the results
   * Use `hdfs fsck <path> -files -blocks` on your source and target directories
   * Copy the work for this lab into `storage/labs/0_replication.md`
 
@@ -244,20 +244,20 @@ other's nodes.
 
 * Create an end-user Linux account named with your GitHub handle
   * Make sure this Linux account is added to all cluster nodes
-  * Create an HDFS directory under `/user` 
+  * Create an HDFS directory under `/user`
   * Run the following exercises under this user account
 * Create a 10 GB file using `teragen`
   * Set the number of mappers to four
-  * Limit the block size to 32 MB 
+  * Limit the block size to 32 MB
   * Land the output in your user's home directory
   * Use the `time` command to report the job's duration
-* Run the `terasort` command on this file 
+* Run the `terasort` command on this file
   * Use the `time` command to report the job's duration
   * Land the result under your user's home directory
 * Report your work in `storage/labs/1_terasort_tests.md`, including:
   * The full `teragen` and command you used and the job output
   * The same for `terasort`
-  * Include the `time` result of each job 
+  * Include the `time` result of each job
 
 ---
 <div style="page-break-after: always;"></div>
@@ -271,7 +271,7 @@ List the commands and output for each step below in `storage/labs/2_snapshot_tes
 * Create a snapshot called `sebc-hdfs-test`
 * Delete the directory
 * Delete the ZIP file
-* Restore the deleted file 
+* Restore the deleted file
 
 * Capture the NameNode web UI screen that lists snapshots in `storage/labs/2_snapshot_list.png`.
 

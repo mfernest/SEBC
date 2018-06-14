@@ -87,7 +87,7 @@
 * <a href="#hdfs_perms_acls">HDFS permissions & ACLs</a>
     * File permissions for user-group-world may be too simple
     * You must support a list of groups, not just one
-* [Apache Sentry (incubating)](https://sentry.incubator.apache.org/)
+* [Apache Sentry](https://sentry.apache.org/)
     * Protects data objects (`server, database, table, URI`) that are projected onto file content
     * Maps Linux/LDAP groups to roles that are configured with access privileges
 
@@ -253,7 +253,7 @@ Before you start:
 
 * Load sample data for Hive/Impala
     * Login to HUE using your GitHub name and the password `cloudera`
-    * The first login to Hue becomes the admin account 
+    * The first login to Hue becomes the admin account
 * Follow the setup wizard to load sample tables for Hive and Impala
     * You'll need this data to support the Sentry lab
 
@@ -276,7 +276,7 @@ Before you start:
 ---
 <div style="page-break-after: always;"></div>
 
-## <center> Sentry Lab 
+## <center> Sentry Lab
 
 * Install [Sentry as a Service](http://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_service_config.html)
 * Follow this [Sentry tutorial](./sentry-tutorial.md)
@@ -292,4 +292,3 @@ Before you start:
     * Code-format the contents
 * Use a screen capture of CM to show TLS level 1 is enabled
     * Put the capture in `security/labs/tls-level-one.png`
-

@@ -1,6 +1,5 @@
-# <center>Services Enablement Boot Camp 
-# <center> AKA Field Channel Enablement Install/Ops
-# <center> 
+# <center>Services Enablement Boot Camp
+# <center>
 
 This repository contains materials for Cloudera's Services Enablement
 Boot Camp and Cloudera FCE's internal boot camp.
@@ -22,10 +21,8 @@ as we will explain in class. The only changes you should make directly
 to your GitHub copy are Issues and Milestones, which are described in
 `README.md`.
 
-Add your instructors as Collaborators to your GitHub repo. Because
-we have 25 students and 4 people to facilitate labs, we'll give you
-all the GitHub names you need at the beginning of class. The lead
-instructor's GitHub name is `mfernest`.
+Add your instructor(s) as Collaborators to your GitHub repo. The lead
+instructor's GitHub name is `manojsundaram`.
 
 Adding your instructors as Collaborators will let them create <i>pull
 requests</i> on your work. This is a way of editing your submissions
@@ -64,7 +61,7 @@ repo:
     * Create two milestones: `Labs` and `Challenges`
     * Set the deadlines for Thursday and Friday of the current week.
 * Click the `Labels` button and change your labels as follows:
-    * Change `bug` to `stuck` 
+    * Change `bug` to `stuck`
     * Change `duplicate` to `started`
     * Change `enhancement` to `didNotSubmit`
     * Change `help wanted` to `complete`
@@ -78,4 +75,3 @@ all the settings described here, and point out anything that isn't
 setup correctly. This issue will be the only one you're asked to
 close.  All other issues are to be closed by an instructor to show
 no further review is needed.
-
