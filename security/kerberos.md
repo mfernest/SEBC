@@ -1,3 +1,3 @@
 # SEBC
-Services Enablement Boot Camp
-http://blog.puneethabm.in/configure-hadoop-security-with-cloudera-manager-using-kerberos/
+Blog article outlining CM/Kerberos integration
+https://blog.puneethabm.com/configure-hadoop-security-with-cloudera-manager-using-kerberos/
