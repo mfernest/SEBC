@@ -7,7 +7,7 @@
 
 # <center> Engineering Install/Operations Boot Camp </center>
 ## <center> June 18-22, 2018 </center>
-## <center> Palo Alto, California</center>
+## <center> Palo Alto, California -- Balboa Conference Room </center>
 
 ---
 <div style="page-break-after: always;"></div>
