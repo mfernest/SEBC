@@ -19,6 +19,7 @@
 
 ## <center>Notes on Service Deployment</center>
 
+<!-- introduce reference architecture documentation here -->
 * [Practical advice on field deployment](https://blog.cloudera.com/blog/2017/11/deploy-cloudera-edh-clusters-like-a-boss-revamped-part-1/)
 * Design principles for deployment
     * Separation of concerns (administration, end users, security integration)

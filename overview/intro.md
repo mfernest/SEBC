@@ -6,7 +6,7 @@
 ---
 
 # <center> FCE Install/Operations Boot Camp </center>
-## <center> January 22 - January 26, 2018 </center>
+## <center> May 14-18, 2018 </center>
 ## <center> Palo Alto, California</center>
 
 ---
@@ -24,7 +24,7 @@
 ## <center> <a name="instructor"/> Instructor & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
-* Alex Ciobanu ( Solution Architect ) - alexciobanu
+* Mohit Sabarwhal (Solutions Architect ) - mohit
 * Please introduce yourselves:
   * Name
   * Role & Location
