@@ -5,9 +5,9 @@
 
 ---
 
-# <center> Engineering Install/Operations Boot Camp </center>
-## <center> June 18-22, 2018 </center>
-## <center> Palo Alto, California -- Balboa Conference Room </center>
+# <center> FCE Install/Operations Boot Camp </center>
+## <center> July 23-27, 2018 </center>
+## <center> San Francisco, California </center>
 
 ---
 <div style="page-break-after: always;"></div>
@@ -24,6 +24,7 @@
 ## <center> <a name="instructor"/> Instructor & Students
 
 * Michael Ernest (Senior Learning Architect) - mfernest
+* Andreia Maia (Senior Solutions Consultant) - andreiamaia
 * Please introduce yourselves:
   * Name
   * Role & Location

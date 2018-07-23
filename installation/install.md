@@ -19,14 +19,14 @@
 ## <center> <a name="install_methods"/> CM/CDH Installation
 
 * We use Cloudera Manager in several capacities:
-  * Deploy EDH, Kafka, or Key Trustee clusters
-  * Monitor the health of managed nodes and Hadoop services
-  * Modify and monitor property settings
-  * Expedite complex tasks, including:
-    * Updating Cloudera Manager server and agent software
-    * Setting up HDFS NameNode for high availability
-    * Integrating security & LDAP-based services
-    * Configuring & enabling HDFS Encryption
+  * To deploy EDH, Kafka, or Key Trustee clusters
+  * To monitor the health of managed nodes and Hadoop services
+  * To monitor and modify property settings
+  * Expedite complex tasks, such as:
+    * Upgrading Cloudera Manager server and agent software
+    * Configuring HDFS NameNode HA
+    * Integrating Kerberos & LDAP services
+    * Enabling HDFS Encryption
 
 ---
 <div style="page-break-after: always;"></div>
