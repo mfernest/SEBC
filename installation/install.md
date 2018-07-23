@@ -10,7 +10,7 @@
 * <a href="#install_methods">Installation Methods</a>
 * <a href="#parcels">Understanding Parcels</a>
 * <a href="#db_setup">Embedded vs. external database</a>
-* <a href="#cm_cdh_key_points">Supplemental CM/CDH Points</a>
+* <a href="#cm_cdh_key_points">Extra  CM/CDH Details</a>
 * <a href="#cm_ui_overview">Cloudera Manager UI Overview</a>
 
 ---
@@ -19,14 +19,14 @@
 ## <center> <a name="install_methods"/> CM/CDH Installation
 
 * We use Cloudera Manager in several capacities:
-  * Deploy EDH, Kafka, or Key Trustee clusters
-  * Monitor the health of managed nodes and Hadoop services
-  * Modify and monitor property settings
-  * Expedite complex tasks, including:
-    * Updating Cloudera Manager server and agent software
-    * Setting up HDFS NameNode for high availability
-    * Integrating security & LDAP-based services
-    * Configuring & enabling HDFS Encryption
+  * To deploy EDH, Kafka, or Key Trustee clusters
+  * To monitor the health of managed nodes and Hadoop services
+  * To monitor and modify property settings
+  * Expedite complex tasks, such as:
+    * Upgrading Cloudera Manager server and agent software
+    * Configuring HDFS NameNode HA
+    * Integrating Kerberos & LDAP services
+    * Enabling HDFS Encryption
 
 ---
 <div style="page-break-after: always;"></div>
@@ -121,7 +121,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
   * CM verifies a parcel's signature via a <code>manifest.json</code>
     * Ignores parcel if the signature doesn't match
     * `manifest.json` is only stored on the repo server 
-    * Each parcel file is [specific to a Linux distribution and major release[(http://archive.cloudera.com/cdh5/parcels/5.9.1/)
+    * Each parcel file is [specific to a Linux distribution and major release](http://archive.cloudera.com/cdh5/parcels/5.9.1/)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -143,7 +143,7 @@ Parcels are [CM-specific code blobs](https://github.com/cloudera/cm_ext/wiki/Par
     * Activate/deactivate
     * Remove
     * Delete<p/>
-* The path <code>/opt/cloudera/parcels/CDH</code> always points to the active CDH version
+* The path <code>/opt/cloudera/parcels/CDH</code> will point to the active CDH version
 
 ---
 <div style="page-break-after: always;"></div>

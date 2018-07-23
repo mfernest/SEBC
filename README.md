@@ -14,7 +14,6 @@ public.
 <strong>NOTE</strong>: DO NOT add files to your repository through
 the GitHub browser interface.
 
-
 Use GitHub only to receive your lab work by pushing from your local
 copy. Treat your GitHub repo like a backup to what is on your laptop.
 Doing so will save a lot of headaches around maintaining the repo,
@@ -62,13 +61,14 @@ repo:
 * Enable `Issues` under `Settings -> Options`. Click the `Features` box and enable `Issues`.
 * Click the `Issues` tab and the `Milestones` button
     * Create two milestones: `Labs` and `Challenges`
-    * Set the deadlines for Thursday and Friday of the current week.
+    * Set the deadlines for Thursday and Friday.
 * Click the `Labels` button and change your labels as follows:
     * Change `bug` to `stuck` 
     * Change `duplicate` to `started`
     * Change `enhancement` to `didNotSubmit`
     * Change `help wanted` to `complete`
     * Change `invalid` to `review`
+    * Add the label `WorkInProgress` and make it purple.
     * Change `wontfix` to `incomplete`; set the label color to `#fbca04`.
     * Leave the `question` Issue as it is
 

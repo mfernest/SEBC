@@ -1,7 +1,7 @@
 <!-- CSS work goes here for the time being -->
 <!-- set a:link text-decoration to none -->
 <!-- set a:hover text-decoration to underline -->
-<!-- http://forums.markdownpad.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
+<!-- http://forums.`_markdownpad_`.com/discussion/143/include-pdf-pagebreak-instructions-in-markdown/p1 -->
 
 ---
 <div style="page-break-after: always;"></div>
@@ -19,9 +19,10 @@
 
 ## <center>Notes on Service Deployment</center>
 
-* [Practical advice on field deployment](http://blog.cloudera.com/blog/2015/01/how-to-deploy-apache-hadoop-clusters-like-a-boss/)
+<!-- introduce reference architecture documentation here -->
+* [Practical advice on field deployment](https://blog.cloudera.com/blog/2017/11/deploy-cloudera-edh-clusters-like-a-boss-revamped-part-1/)
 * Design principles for deployment
-    * Separation of concerns (adminisration, end users, security integration)
+    * Separation of concerns (administration, end users, security integration)
     * Planning for growth
 * Cloudera uses four role types to guide deployment
     * Utility: cluster administration, integration services
@@ -60,8 +61,10 @@
 ## <center> <a name="hdfs_smoke_testing"/> HDFS Smoke Testing
 
 * Following software installation, test hardware and network for failure
-* [The terasort suite](http://www.michael-noll.com/blog/2011/04/09/smoke-testing-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite) is ideal for this: easy to apply and simple to monitor.
-    * Some people recommend [TestDFSIO, nnbench, mrbench](http://www.michael-noll.com/blog/2011/04/09/smoke-testing-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio) -- you have choices.
+* [The terasort suite](
+http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#terasort-benchmark-suite) is ideal for this: easy to apply and simple to monitor.
+    * Some people recommend [TestDFSIO, nnbench, mrbench](
+    http://www.michael-noll.com/blog/2011/04/09/benchmarking-and-stress-testing-an-hadoop-cluster-with-terasort-testdfsio-nnbench-mrbench/#testdfsio) -- you have choices.
 * Most important: corroborate performance with system tools, such as `iostat`.
 
 ---
